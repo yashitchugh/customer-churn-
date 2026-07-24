@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>DS/ML Learning Hub · Yashit Chugh</title>
+
+    <!-- Font & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ----- Reset & Base ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, system-ui, sans-serif;
+            background: #f6f9fc;
+            color: #0b1a2e;
+            padding: 1rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .app {
+            max-width: 1200px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 20px 60px rgba(0, 20, 50, 0.08);
+            overflow: hidden;
+            padding: 1.5rem 1.5rem 2.5rem;
+            transition: all 0.2s;
+        }
+
+        /* ----- Header ----- */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 0.75rem;
+        }
+        .header h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .header h1 i {
+            color: #2563eb;
+            font-size: 1.8rem;
+        }
+        .header .badge {
+            background: #eef2ff;
+            color: #2563eb;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.3rem 0.9rem;
+            border-radius: 100px;
+            letter-spacing: 0.02em;
+        }
+        .header-actions {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .header-actions .progress-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e293b;
+            background: #f1f5f9;
+            padding: 0.3rem 1rem;
+            border-radius: 100px;
+        }
+
+        /* ----- Navigation (tabs) ----- */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e9edf2;
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #64748b;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .tab-btn i {
+            font-size: 0.9rem;
+        }
+        .tab-btn:hover {
+            background: #f1f5f9;
+            color: #0b1a2e;
+        }
+        .tab-btn.active {
+            background: #2563eb;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        }
+
+        /* ----- Panels ----- */
+        .panel {
+            display: none;
+            animation: fade 0.25s ease;
+        }
+        .panel.active {
+            display: block;
+        }
+        @keyframes fade {
+            0% {
+                opacity: 0.6;
+                transform: translateY(6px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ----- Cards (topics / datasets) ----- */
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.8rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .section-title i {
+            color: #2563eb;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+        .card {
+            background: #fafcff;
+            border: 1px solid #e9edf2;
+            border-radius: 18px;
+            padding: 1.2rem 1.2rem 1rem;
+            transition: all 0.15s;
+            cursor: default;
+        }
+        .card:hover {
+            border-color: #b9c8e0;
+            background: #ffffff;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+        }
+        .card .title {
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card .title .tag {
+            font-size: 0.6rem;
+            font-weight: 600;
+            background: #e9edf2;
+            padding: 0.15rem 0.7rem;
+            border-radius: 40px;
+            color: #334155;
+            letter-spacing: 0.02em;
+        }
+        .card .desc {
+            font-size: 0.82rem;
+            color: #475569;
+            margin: 0.4rem 0 0.7rem;
+            line-height: 1.4;
+        }
+        .card .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .card .links a {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-decoration: none;
+            background: #f1f5f9;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            color: #1e293b;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: 0.1s;
+        }
+        .card .links a i {
+            font-size: 0.7rem;
+            color: #2563eb;
+        }
+        .card .links a:hover {
+            background: #e2e8f0;
+        }
+        .card .checkbox-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.7rem;
+            font-size: 0.8rem;
+            color: #475569;
+            border-top: 1px dashed #e2e8f0;
+            padding-top: 0.6rem;
+        }
+        .card .checkbox-wrap input[type="checkbox"] {
+            width: 17px;
+            height: 17px;
+            accent-color: #2563eb;
+            cursor: pointer;
+        }
+
+        /* ----- Project detail (steps) ----- */
+        .project-steps {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1rem 1.3rem;
+            margin-top: 0.8rem;
+            border: 1px solid #e9edf2;
+        }
+        .project-steps summary {
+            font-weight: 600;
+            cursor: pointer;
+            color: #0b1a2e;
+            font-size: 0.9rem;
+        }
+        .project-steps ol {
+            margin: 0.7rem 0 0.2rem 1.2rem;
+            font-size: 0.8rem;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+        .project-steps ol li {
+            margin-bottom: 0.2rem;
+        }
+
+        /* ----- Footer / meta ----- */
+        .footer-note {
+            margin-top: 2.5rem;
+            border-top: 1px solid #e9edf2;
+            padding-top: 1.2rem;
+            font-size: 0.75rem;
+            color: #64748b;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .footer-note a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        /* ----- Responsive tweaks ----- */
+        @media (max-width: 600px) {
+            .app {
+                padding: 1rem;
+            }
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            .tab-btn {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.9rem;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app" id="app">
+
+        <!-- HEADER -->
+        <div class="header">
+            <h1><i class="fas fa-brain"></i> ML·DS Hub</h1>
+            <div class="header-actions">
+                <span class="progress-text" id="progressDisplay"><i class="far fa-circle"></i> 0 / 0</span>
+                <span class="badge"><i class="fas fa-code"></i> Yashit Chugh</span>
+            </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs" id="tabContainer">
+            <button class="tab-btn active" data-panel="theory"><i class="fas fa-book-open"></i> Theory</button>
+            <button class="tab-btn" data-panel="projects"><i class="fas fa-database"></i> Datasets</button>
+        </div>
+
+        <!-- ============ PANEL 1: THEORY ============ -->
+        <div class="panel active" id="panel-theory">
+            <div class="section-title"><i class="fas fa-graduation-cap"></i> Curated Learning Path</div>
+            <div class="grid-2" id="theoryGrid"></div>
+        </div>
+
+        <!-- ============ PANEL 2: PROJECTS ============ -->
+        <div class="panel" id="panel-projects">
+            <div class="section-title"><i class="fas fa-project-diagram"></i> 20 Datasets · Hands‑on</div>
+            <div class="grid-2" id="projectGrid"></div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-note">
+            <span><i class="far fa-clock"></i> Last updated · July 2026</span>
+            <span>
+                <i class="fas fa-link"></i>
+                <a href="#" onclick="event.preventDefault()">GFG</a> ·
+                <a href="#" onclick="event.preventDefault()">StatQuest</a>
+            </span>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        //  DATA
+        // ============================================================
+        const THEORY_DATA = [{
+            id: 't1',
+            title: 'Python for DS',
+            desc: 'Pandas, NumPy, Matplotlib, Seaborn – core data toolkit.',
+            links: [
+                { label: 'GFG', url: 'https://www.geeksforgeeks.org/python-programming-language/' },
+                { label: 'StatQuest', url: 'https://www.youtube.com/c/StatQuest' }
+            ]
+        }, {
+            id: 't2',
+            title: 'Statistics & Probability',
+            desc: 'Descriptive stats, distributions, hypothesis testing, Bayesian.',
+            links: [
+                { label: 'GFG', url: 'https://www.geeksforgeeks.org/statistics/' },
+                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=qBigTkBLU6g' }
+            ]
+        }, {
+            id: 't3',
+            title: 'Machine Learning',
+            desc: 'Regression, classification, clustering, ensemble methods.',
+            links: [
+                { label: 'GFG', url: 'https://www.geeksforgeeks.org/machine-learning/' },
+                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=Gv9_4yMHFhI' }
+            ]
+        }, {
+            id: 't4',
+            title: 'Deep Learning',
+            desc: 'ANN, CNNs, RNNs, LSTMs, transformers, attention.',
+            links: [
+                { label: 'GFG', url: 'https://www.geeksforgeeks.org/deep-learning/' },
+                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=aircAruvnKk' }
+            ]
+        }, {
+            id: 't5',
+            title: 'NLP',
+            desc: 'Tokenization, embeddings, RNNs, transformers, BERT, GPT.',
+            links: [
+                { label: 'GFG', url: 'https://www.geeksforgeeks.org/natural-language-processing-nlp/' },
+                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=5YdXGGSiyRU' }
+            ]
+        }, {
+            id: 't6',
+            title: 'Generative AI & LLMs',
+            desc: 'Prompt engineering, fine‑tuning, RAG, GPT, Gemini.',
+            links: [
+                { label: 'GFG', url: 'https://www.geeksforgeeks.org/generative-ai/' },
+                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=5vY2_5Gm_6g' }
+            ]
+        }, {
+            id: 't7',
+            title: 'ML Pipelines & MLOps',
+            desc: 'Data versioning, CI/CD, monitoring, Kubeflow, MLflow.',
+            links: [
+                { label: 'GFG', url: 'https://www.geeksforgeeks.org/mlops/' },
+                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=6x8ZNCb4nSI' }
+            ]
+        }, {
+            id: 't8',
+            title: 'Dashboard & Viz',
+            desc: 'Power BI, Tableau, Dash, Streamlit, Plotly.',
+            links: [
+                { label: 'GFG', url: 'https://www.geeksforgeeks.org/data-visualization/' },
+                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=5ZtrSR7zL9Y' }
+            ]
+        }, {
+            id: 't9',
+            title: 'Data Engineering',
+            desc: 'SQL, ETL, data warehousing, Spark, Kafka.',
+            links: [
+                { label: 'GFG', url: 'https://www.geeksforgeeks.org/data-engineering/' },
+                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=2p5wQ3mF3dQ' }
+            ]
+        }, {
+            id: 't10',
+            title: 'Time Series',
+            desc: 'ARIMA, SARIMA, Prophet, LSTM for forecasting.',
+            links: [
+                { label: 'GFG', url: 'https://www.geeksforgeeks.org/time-series-analysis/' },
+                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=8SQCY9b8K8E' }
+            ]
+        }];
+
+        // 20 famous datasets with project steps
+        const PROJECT_DATA = [{
+            id: 'p1',
+            title: 'Iris',
+            desc: 'Classic flower classification – 3 species.',
+            steps: ['EDA & pairplots', 'Train Logistic Regression / KNN', 'Evaluate accuracy & confusion matrix']
+        }, {
+            id: 'p2',
+            title: 'Titanic',
+            desc: 'Survival prediction – feature engineering classic.',
+            steps: ['Handle missing values', 'Feature engineering (title, family)', 'Try Random Forest & XGBoost']
+        }, {
+            id: 'p3',
+            title: 'Boston Housing',
+            desc: 'Predict house prices (regression).',
+            steps: ['Correlation analysis', 'Linear Regression + Ridge/Lasso', 'RMSE & residual plots']
+        }, {
+            id: 'p4',
+            title: 'MNIST',
+            desc: 'Handwritten digit recognition.',
+            steps: ['Flatten images', 'Train MLP / CNN', 'Visualize misclassifications']
+        }, {
+            id: 'p5',
+            title: 'Fashion‑MNIST',
+            desc: 'Clothing image classification – harder than MNIST.',
+            steps: ['CNN with dropout', 'Data augmentation', 'Compare with MNIST']
+        }, {
+            id: 'p6',
+            title: 'CIFAR‑10',
+            desc: 'Small object recognition (10 classes).',
+            steps: ['Build ResNet‑style CNN', 'Use batch norm', 'Plot training/validation curves']
+        }, {
+            id: 'p7',
+            title: 'Wine Quality',
+            desc: 'Predict wine quality (0–10).',
+            steps: ['Multiclass classification', 'SMOTE for imbalance', 'Try SVM & XGBoost']
+        }, {
+            id: 'p8',
+            title: 'Breast Cancer (Wisconsin)',
+            desc: 'Binary classification – diagnostic.',
+            steps: ['PCA for visualization', 'Logistic Regression & Random Forest', 'ROC‑AUC analysis']
+        }, {
+            id: 'p9',
+            title: 'Spam / Ham',
+            desc: 'SMS spam classification.',
+            steps: ['TF‑IDF vectorization', 'Naïve Bayes', 'Precision / Recall']
+        }, {
+            id: 'p10',
+            title: 'IMDB Reviews',
+            desc: 'Sentiment analysis – positive/negative.',
+            steps: ['Word embeddings (Word2Vec)', 'LSTM / GRU', 'Attention layer']
+        }, {
+            id: 'p11',
+            title: 'Twitter Sentiment',
+            desc: 'Real‑world tweets sentiment.',
+            steps: ['Preprocess emojis/hashtags', 'BERT fine‑tuning', 'Confusion matrix']
+        }, {
+            id: 'p12',
+            title: 'Stock Prices (Yahoo)',
+            desc: 'Time series forecasting.',
+            steps: ['Dickey‑Fuller test', 'ARIMA / Prophet', 'Forecast vs actual']
+        }, {
+            id: 'p13',
+            title: 'Air Quality',
+            desc: 'PM2.5 / pollutant forecasting.',
+            steps: ['Missing value imputation', 'LSTM for multivariate TS', 'MAE / RMSE']
+        }, {
+            id: 'p14',
+            title: 'Credit Card Fraud',
+            desc: 'Highly imbalanced fraud detection.',
+            steps: ['SMOTE / ADASYN', 'Random Forest / XGBoost', 'Precision‑Recall curve']
+        }, {
+            id: 'p15',
+            title: 'Customer Segmentation',
+            desc: 'Unsupervised clustering of customers.',
+            steps: ['K‑means / DBSCAN', 'Elbow method + silhouette', 'Visualize clusters (PCA)']
+        }, {
+            id: 'p16',
+            title: 'California Housing',
+            desc: 'Median house value prediction.',
+            steps: ['Geospatial EDA', 'XGBoost + hyperopt', 'SHAP interpretation']
+        }, {
+            id: 'p17',
+            title: 'Forest Cover Type',
+            desc: 'Multiclass cartographic classification.',
+            steps: ['Feature scaling', 'Random Forest', 'Class‑wise F1']
+        }, {
+            id: 'p18',
+            title: 'Human Activity Recognition',
+            desc: 'Sensor (accelerometer) data.',
+            steps: ['Time‑domain features', 'LSTM / 1D‑CNN', 'Confusion matrix']
+        }, {
+            id: 'p19',
+            title: 'COCO (subset)',
+            desc: 'Object detection / segmentation.',
+            steps: ['Use YOLO / Detectron2', 'mAP evaluation', 'Visualize bounding boxes']
+        }, {
+            id: 'p20',
+            title: 'KITTI',
+            desc: 'Autonomous driving – stereo / LiDAR.',
+            steps: ['3D point cloud visualization', 'Object detection (PointNet)', 'Awareness of sensor data']
+        }];
+
+        // ============================================================
+        //  RENDER
+        // ============================================================
+        const theoryGrid = document.getElementById('theoryGrid');
+        const projectGrid = document.getElementById('projectGrid');
+        const progressDisplay = document.getElementById('progressDisplay');
+
+        // helper to build card HTML
+        function buildTheoryCard(item) {
+            const linksHtml = item.links.map(l =>
+                `<a href="${l.url}" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> ${l.label}</a>`
+            ).join('');
+            return `
+                <div class="card" data-id="${item.id}">
+                    <div class="title">${item.title} <span class="tag">theory</span></div>
+                    <div class="desc">${item.desc}</div>
+                    <div class="links">${linksHtml}</div>
+                    <div class="checkbox-wrap">
+                        <input type="checkbox" class="theory-check" data-id="${item.id}" />
+                        <span>Mark as read</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildProjectCard(item) {
+            const stepsHtml = item.steps.map((s, i) => `<li>${i+1}. ${s}</li>`).join('');
+            return `
+                <div class="card" data-id="${item.id}">
+                    <div class="title">${item.title} <span class="tag">dataset</span></div>
+                    <div class="desc">${item.desc}</div>
+                    <div class="project-steps">
+                        <details>
+                            <summary><i class="fas fa-list-check"></i> Project steps</summary>
+                            <ol>${stepsHtml}</ol>
+                        </details>
+                    </div>
+                    <div class="checkbox-wrap">
+                        <input type="checkbox" class="project-check" data-id="${item.id}" />
+                        <span>Completed</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAll() {
+            theoryGrid.innerHTML = THEORY_DATA.map(buildTheoryCard).join('');
+            projectGrid.innerHTML = PROJECT_DATA.map(buildProjectCard).join('');
+            // attach events after render
+            attachCheckEvents();
+            updateProgress();
+            restoreStates();
+        }
+
+        // ============================================================
+        //  PERSISTENCE (localStorage)
+        // ============================================================
+        function saveState(key, value) {
+            try {
+                localStorage.setItem('mlhub_' + key, JSON.stringify(value));
+            } catch (_) {}
+        }
+
+        function loadState(key, fallback) {
+            try {
+                const raw = localStorage.getItem('mlhub_' + key);
+                return raw ? JSON.parse(raw) : fallback;
+            } catch (_) { return fallback; }
+        }
+
+        function getCheckedIds(prefix) {
+            const stored = loadState(prefix + '_checked', []);
+            return stored;
+        }
+
+        function setCheckedIds(prefix, ids) {
+            saveState(prefix + '_checked', ids);
+        }
+
+        function restoreStates() {
+            // theory
+            const theoryDone = getCheckedIds('theory');
+            document.querySelectorAll('.theory-check').forEach(cb => {
+                cb.checked = theoryDone.includes(cb.dataset.id);
+            });
+            // projects
+            const projDone = getCheckedIds('project');
+            document.querySelectorAll('.project-check').forEach(cb => {
+                cb.checked = projDone.includes(cb.dataset.id);
+            });
+            updateProgress();
+        }
+
+        function attachCheckEvents() {
+            // Theory checkboxes
+            document.querySelectorAll('.theory-check').forEach(cb => {
+                cb.addEventListener('change', function(e) {
+                    const id = this.dataset.id;
+                    let arr = getCheckedIds('theory');
+                    if (this.checked) {
+                        if (!arr.includes(id)) arr.push(id);
+                    } else {
+                        arr = arr.filter(x => x !== id);
+                    }
+                    setCheckedIds('theory', arr);
+                    updateProgress();
+                });
+            });
+            // Project checkboxes
+            document.querySelectorAll('.project-check').forEach(cb => {
+                cb.addEventListener('change', function(e) {
+                    const id = this.dataset.id;
+                    let arr = getCheckedIds('project');
+                    if (this.checked) {
+                        if (!arr.includes(id)) arr.push(id);
+                    } else {
+                        arr = arr.filter(x => x !== id);
+                    }
+                    setCheckedIds('project', arr);
+                    updateProgress();
+                });
+            });
+        }
+
+        function updateProgress() {
+            const theoryDone = getCheckedIds('theory').length;
+            const projDone = getCheckedIds('project').length;
+            const total = THEORY_DATA.length + PROJECT_DATA.length;
+            const done = theoryDone + projDone;
+            progressDisplay.innerHTML = `<i class="fas fa-check-circle"></i> ${done} / ${total}`;
+        }
+
+        // ============================================================
+        //  TAB SWITCHING
+        // ============================================================
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // deactivate all
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const panelId = this.dataset.panel;
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                document.getElementById('panel-' + panelId).classList.add('active');
+            });
+        });
+
+        // ============================================================
+        //  BOOT
+        // ============================================================
+        renderAll();
+    </script>
+</body>
+</html>
