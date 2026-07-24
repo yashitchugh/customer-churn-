@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>AI/DS · Interactive Engine</title>
+    <title>AI/DS · 2026 Learning Engine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
@@ -271,7 +271,7 @@
             color: #fff;
         }
 
-        /* Error Cards specific */
+        /* Error Cards */
         .error-severity {
             font-size: 0.65rem;
             font-weight: 700;
@@ -292,7 +292,7 @@
             color: #a7f3d0;
         }
 
-        /* Roadmap Visual */
+        /* Roadmap */
         .roadmap-container {
             display: flex;
             flex-direction: column;
@@ -337,9 +337,6 @@
             color: #4f46e5;
             font-size: 1.4rem;
             flex-shrink: 0;
-        }
-        .roadmap-arrow .fa-arrow-right {
-            display: inline;
         }
         @media (max-width: 700px) {
             .roadmap-row {
@@ -438,6 +435,21 @@
             align-items: center;
             gap: 0.5rem;
         }
+        .modal-box .modal-body .yt-link {
+            display: inline-block;
+            background: #4f46e5;
+            color: #fff;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            transition: 0.2s;
+        }
+        .modal-box .modal-body .yt-link:hover {
+            background: #6366f1;
+        }
 
         .footer {
             margin-top: 2.5rem;
@@ -487,7 +499,7 @@
         <header class="header">
             <div class="logo-area">
                 <i class="fas fa-brain"></i>
-                <h1>DS·ML Engine</h1>
+                <h1>DS·ML 2026</h1>
             </div>
             <div class="header-actions">
                 <div class="progress-stats">
@@ -499,6 +511,7 @@
 
         <div class="tabs">
             <button class="tab-btn active" data-panel="curriculum"><i class="fas fa-graduation-cap"></i> Curriculum</button>
+            <button class="tab-btn" data-panel="youtube"><i class="fab fa-youtube"></i> YouTube</button>
             <button class="tab-btn" data-panel="datasets"><i class="fas fa-database"></i> Datasets</button>
             <button class="tab-btn" data-panel="errors"><i class="fas fa-bug"></i> Error Lab</button>
             <button class="tab-btn" data-panel="roadmap"><i class="fas fa-map-signs"></i> Roadmap</button>
@@ -509,23 +522,32 @@
             <div class="grid-2" id="theoryGrid"></div>
         </div>
 
-        <!-- PANEL 2: DATASETS -->
+        <!-- PANEL 2: YOUTUBE -->
+        <div class="panel" id="panel-youtube">
+            <div style="margin-bottom:1.5rem;">
+                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600;"><i class="fas fa-star"></i> Top Channels</span>
+                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600; margin-left:0.5rem;"><i class="fas fa-list"></i> Best Playlists</span>
+            </div>
+            <div class="grid-2" id="youtubeGrid"></div>
+        </div>
+
+        <!-- PANEL 3: DATASETS -->
         <div class="panel" id="panel-datasets">
             <div class="grid-2" id="projectGrid"></div>
         </div>
 
-        <!-- PANEL 3: ERROR LAB -->
+        <!-- PANEL 4: ERROR LAB -->
         <div class="panel" id="panel-errors">
             <div class="grid-2" id="errorGrid"></div>
         </div>
 
-        <!-- PANEL 4: ROADMAP -->
+        <!-- PANEL 5: ROADMAP -->
         <div class="panel" id="panel-roadmap">
             <div class="roadmap-container" id="roadmapContainer"></div>
         </div>
 
         <div class="footer">
-            <span><i class="far fa-calendar-alt"></i> Built for Yashit · PIET CSE'28</span>
+            <span><i class="far fa-calendar-alt"></i> 2026 Market-Aligned</span>
             <span><i class="fas fa-sync-alt"></i> Auto-saved progress</span>
         </div>
     </div>
@@ -681,7 +703,7 @@
             }
         }];
 
-        // PROJECTS (Datasets) with full pipeline steps
+        // PROJECTS (Datasets)
         const PROJECT_DATA = [{
             id: 'p1',
             title: 'Iris',
@@ -936,14 +958,140 @@
             code: 'f1_score(y_true, y_pred, zero_division=0).'
         }];
 
-        // ROADMAP DATA
+        // ROADMAP DATA (2026 Focus)
         const ROADMAP_DATA = [
-            { icon: 'fa-calculator', title: 'Foundation', desc: 'Python, Stats, SQL' },
-            { icon: 'fa-chart-line', title: 'Core ML', desc: 'Regression, Trees, Clustering' },
+            { icon: 'fa-code', title: 'Python & SQL', desc: 'Foundation' },
+            { icon: 'fa-chart-line', title: 'Classical ML', desc: 'Regression, Trees, Clustering' },
             { icon: 'fa-microchip', title: 'Deep Learning', desc: 'CNN, RNN, Transformers' },
-            { icon: 'fa-robot', title: 'GenAI & LLMs', desc: 'RAG, Fine-tuning, Prompt' },
-            { icon: 'fa-gears', title: 'MLOps', desc: 'Pipelines, Monitoring' }
+            { icon: 'fa-robot', title: 'Generative AI & LLMs', desc: 'RAG, Prompting, Fine-tuning' },
+            { icon: 'fa-gears', title: 'MLOps & Deployment', desc: 'Pipelines, Monitoring, Cloud' },
+            { icon: 'fa-people-group', title: 'Data Storytelling', desc: 'Business Impact & Communication' }
         ];
+
+        // ============================================================
+        // YOUTUBE DATA (Curated for 2026)
+        // ============================================================
+        const YOUTUBE_DATA = [{
+            id: 'yt1',
+            title: 'StatQuest with Josh Starmer',
+            category: 'Foundation',
+            desc: 'Makes statistics & ML feel joyful and simple. Start here if math makes you nervous.',
+            channelUrl: 'https://www.youtube.com/c/StatQuest',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF',
+            tags: ['Statistics', 'ML Basics', 'Visual Learning']
+        }, {
+            id: 'yt2',
+            title: '3Blue1Brown',
+            category: 'Foundation',
+            desc: 'The most intuitive explanations of linear algebra, calculus, and neural nets. Builds visual understanding of complex math.',
+            channelUrl: 'https://www.youtube.com/c/3blue1brown',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab',
+            tags: ['Math', 'Linear Algebra', 'Calculus', 'Neural Nets']
+        }, {
+            id: 'yt3',
+            title: 'Andrej Karpathy',
+            category: 'Deep Learning',
+            desc: 'Deep dives on how LLMs and neural networks actually work. His "zero-to-hero" series is gold for understanding transformers.',
+            channelUrl: 'https://www.youtube.com/c/AndrejKarpathy',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ',
+            tags: ['LLMs', 'Neural Nets', 'Transformers', 'Zero to Hero']
+        }, {
+            id: 'yt4',
+            title: 'DeepLearning.AI',
+            category: 'Deep Learning',
+            desc: 'Structured AI education by Andrew Ng. Complete courses on deep learning, LLMs, RAG, and AI Agents.',
+            channelUrl: 'https://www.youtube.com/c/Deeplearningai',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLoROMvodv4rOABNPzXr6BvY0uPj7uKz2P',
+            tags: ['Structured Courses', 'Andrew Ng', 'LLMs', 'RAG']
+        }, {
+            id: 'yt5',
+            title: 'Sentdex (Harrison Kinsley)',
+            category: 'Hands-On Coding',
+            desc: 'Massive Python library with ML, NLP, deep learning tutorials. Great for code-driven, project-based learning.',
+            channelUrl: 'https://www.youtube.com/c/sentdex',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLQVvvaa0QuDfKTOs3Keq_61G_dJX2G8-p',
+            tags: ['Python', 'ML Projects', 'NLP', 'Deep Learning']
+        }, {
+            id: 'yt6',
+            title: 'Krish Naik',
+            category: 'Hands-On Coding',
+            desc: 'Consistent tutorials on applied ML, deep learning, and real-world deployments. Perfect for job-seekers and early-career practitioners.',
+            channelUrl: 'https://www.youtube.com/user/krishnaik06',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLZoTAELRMXVPS-dI7v4WgLSTZ9A5I1r1n',
+            tags: ['Applied ML', 'Deployments', 'Interview Prep']
+        }, {
+            id: 'yt7',
+            title: 'Sebastian Raschka',
+            category: 'Deep Learning',
+            desc: 'Practical, well-explained content on ML, deep learning, and LLMs. Often goes beyond theory into real-world training/debugging insights.',
+            channelUrl: 'https://www.youtube.com/c/SebastianRaschka',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLTKMiZHVd_2K2fQ9Jf-sdfNl2b3mX0w9D',
+            tags: ['ML', 'Deep Learning', 'LLMs', 'Practical Insights']
+        }, {
+            id: 'yt8',
+            title: 'freeCodeCamp',
+            category: 'Hands-On Coding',
+            desc: 'Full 10-hour+ courses on ML, Python, data science - for free. Great for deep structure without cost.',
+            channelUrl: 'https://www.youtube.com/c/Freecodecamp',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLWKjhJtqVAbnqBxcdjVGgT3uVR10bzTEB',
+            tags: ['Long-form Courses', 'Python', 'ML', 'Data Science']
+        }, {
+            id: 'yt9',
+            title: 'Yannic Kilcher',
+            category: 'Research',
+            desc: 'Deep paper readings. Covers LLMs, multi-modal, reinforcement learning. Great for algorithm roles and research.',
+            channelUrl: 'https://www.youtube.com/c/YannicKilcher',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PL1vNr6rdS4JvF9kG1Vwz2VXl7f7j7P8b7',
+            tags: ['Research Papers', 'LLMs', 'Deep Learning', 'AI Research']
+        }, {
+            id: 'yt10',
+            title: 'Two Minute Papers',
+            category: 'Research',
+            desc: '5-minute visual breakdowns of cutting-edge AI papers. Great for quickly tracking new developments.',
+            channelUrl: 'https://www.youtube.com/c/KárolyZsolnai',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLujX4uC5pCg7w7yXNh5F5e4b6G7Xc3v2f',
+            tags: ['AI Research', 'Quick Summaries', 'Visual Explanations']
+        }, {
+            id: 'yt11',
+            title: 'Hugging Face',
+            category: 'Tools & Deployment',
+            desc: 'Official tutorials on Transformers, PEFT, RAG, Agents, and open-source model deployment.',
+            channelUrl: 'https://www.youtube.com/c/HuggingFace',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLo2E4I4l5D2b7X5f4Y8J0bX9c3D4kF5nG',
+            tags: ['Transformers', 'PEFT', 'RAG', 'Deployment']
+        }, {
+            id: 'yt12',
+            title: 'IBM Technology',
+            category: 'Tools & Deployment',
+            desc: 'Deep dives into industry trends, cloud, and enterprise AI. Great for understanding how AI is applied in the real world.',
+            channelUrl: 'https://www.youtube.com/c/IBMTechnology',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLOspHqNVtKABX6B3Hwq8qj5k1sY8h0o6v',
+            tags: ['Industry Trends', 'Cloud', 'Enterprise AI', 'Deep Dives']
+        }, {
+            id: 'yt13',
+            title: 'Tech With Tim',
+            category: 'Hands-On Coding',
+            desc: 'Python and development tutorials. Great for building practical coding skills.',
+            channelUrl: 'https://www.youtube.com/c/TechWithTim',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PLzMcBGfZo4-n8xM2T0dU2b3jQ4z3Hd8pY',
+            tags: ['Python', 'Development', 'Tutorials']
+        }, {
+            id: 'yt14',
+            title: 'Dave Ebbelaar',
+            category: 'Tools & Deployment',
+            desc: 'Focus on MLOps, real-world data workflows, and AI pipelines. Essential for learning how production systems actually work.',
+            channelUrl: 'https://www.youtube.com/c/DaveEbbelaar',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PL7j7i8Xq5z4n7s4t7y8k9l0m1n2b3c4d5e',
+            tags: ['MLOps', 'Production', 'Data Workflows', 'AI Pipelines']
+        }, {
+            id: 'yt15',
+            title: 'Dwarkesh Patel',
+            category: 'Industry & Trends',
+            desc: 'Long-form interviews with Ilya Sutskever, Karpathy, Yann LeCun, and other AI leaders. Understand the big picture.',
+            channelUrl: 'https://www.youtube.com/c/DwarkeshPatel',
+            playlistUrl: 'https://www.youtube.com/playlist?list=PL7j7i8Xq5z4n7s4t7y8k9l0m1n2b3c4d5e',
+            tags: ['Interviews', 'AI Leaders', 'Industry Insights', 'AGI']
+        }];
 
         // ============================================================
         //  STATE & HELPERS
@@ -971,8 +1119,9 @@
         function updateProgress() {
             const theoryDone = getChecked('theory').length;
             const projDone = getChecked('project').length;
-            const total = THEORY_DATA.length + PROJECT_DATA.length;
-            const done = theoryDone + projDone;
+            const ytDone = getChecked('youtube').length;
+            const total = THEORY_DATA.length + PROJECT_DATA.length + YOUTUBE_DATA.length;
+            const done = theoryDone + projDone + ytDone;
             document.getElementById('doneCount').textContent = done;
             document.getElementById('totalCount').textContent = total;
             document.getElementById('mainProgress').style.width = (done / total * 100) + '%';
@@ -984,6 +1133,7 @@
         const theoryGrid = document.getElementById('theoryGrid');
         const projectGrid = document.getElementById('projectGrid');
         const errorGrid = document.getElementById('errorGrid');
+        const youtubeGrid = document.getElementById('youtubeGrid');
         const roadmapContainer = document.getElementById('roadmapContainer');
 
         function renderTheory() {
@@ -1071,6 +1221,36 @@
             }).join('');
         }
 
+        function renderYoutube() {
+            youtubeGrid.innerHTML = YOUTUBE_DATA.map(item => `
+                    <div class="card" data-id="${item.id}">
+                        <div class="badge-cat">${item.category}</div>
+                        <div class="title">${item.title}</div>
+                        <div class="desc">${item.desc}</div>
+                        <div style="display:flex; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.8rem;">
+                            ${item.tags.map(t => `<span style="background:#273548; padding:0.1rem 0.6rem; border-radius:40px; font-size:0.6rem; color:#94a3b8;">#${t}</span>`).join('')}
+                        </div>
+                        <div class="links">
+                            <a href="${item.channelUrl}" target="_blank"><i class="fab fa-youtube"></i> Channel</a>
+                            <a href="${item.playlistUrl}" target="_blank"><i class="fas fa-list"></i> Playlist</a>
+                        </div>
+                        <div class="actions">
+                            <div class="check-wrap">
+                                <input type="checkbox" class="youtube-cb" data-id="${item.id}" ${isChecked('youtube', item.id) ? 'checked' : ''} />
+                                <span>Watched</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+            document.querySelectorAll('.youtube-cb').forEach(cb => {
+                cb.addEventListener('change', function() {
+                    toggleCheck('youtube', this.dataset.id);
+                    updateProgress();
+                });
+            });
+        }
+
         function renderRoadmap() {
             let html = '';
             for (let i = 0; i < ROADMAP_DATA.length; i++) {
@@ -1147,6 +1327,7 @@
         renderTheory();
         renderProjects();
         renderErrors();
+        renderYoutube();
         renderRoadmap();
         updateProgress();
     </script>
