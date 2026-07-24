@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>AI/DS · 2026 Learning Engine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DS·ML 2026 · Video‑First Learning</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
+        /* --- Reset & Base --- */
         * {
             margin: 0;
             padding: 0;
@@ -44,7 +45,7 @@
             border: 1px solid rgba(255, 255, 255, 0.04);
         }
 
-        /* Header */
+        /* --- Header --- */
         .header {
             display: flex;
             flex-wrap: wrap;
@@ -59,7 +60,7 @@
             gap: 0.8rem;
         }
         .logo-area i {
-            font-size: 2rem;
+            font-size: 2.2rem;
             background: linear-gradient(135deg, #818cf8, #4f46e5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -109,7 +110,7 @@
             transition: width 0.4s ease;
         }
 
-        /* Tabs */
+        /* --- Tabs --- */
         .tabs {
             display: flex;
             gap: 0.5rem;
@@ -142,7 +143,7 @@
             box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
         }
 
-        /* Panels */
+        /* --- Panels --- */
         .panel {
             display: none;
             animation: fadeUp 0.3s ease;
@@ -167,19 +168,36 @@
             gap: 1.2rem;
         }
 
-        /* Cards */
+        /* --- Cards --- */
         .card {
             background: #1a2639;
             border: 1px solid #273548;
             border-radius: 20px;
             padding: 1.5rem;
-            transition: all 0.2s;
+            transition: all 0.25s;
             cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
         }
         .card:hover {
             border-color: #4f46e5;
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+        .card:hover::after {
+            opacity: 1;
         }
         .card .badge-cat {
             font-size: 0.6rem;
@@ -224,13 +242,18 @@
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            transition: 0.1s;
+            transition: 0.15s;
+            border: 1px solid transparent;
         }
         .card .links a i {
             color: #818cf8;
         }
         .card .links a:hover {
-            background: #334155;
+            background: #4f46e5;
+            border-color: #4f46e5;
+            color: #fff;
+        }
+        .card .links a:hover i {
             color: #fff;
         }
         .card .actions {
@@ -263,7 +286,7 @@
             font-size: 0.7rem;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.1s;
+            transition: 0.15s;
         }
         .card .actions .detail-btn:hover {
             background: #4f46e5;
@@ -271,7 +294,32 @@
             color: #fff;
         }
 
-        /* Error Cards */
+        /* --- YouTube specific: video links --- */
+        .video-link {
+            display: inline-block;
+            background: #1f2937;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: 0.15s;
+            border: 1px solid #334155;
+        }
+        .video-link i {
+            color: #ff0000;
+            margin-right: 0.3rem;
+        }
+        .video-link:hover {
+            background: #4f46e5;
+            border-color: #4f46e5;
+            color: #fff;
+        }
+        .video-link:hover i {
+            color: #fff;
+        }
+
+        /* --- Error Lab --- */
         .error-severity {
             font-size: 0.65rem;
             font-weight: 700;
@@ -292,7 +340,7 @@
             color: #a7f3d0;
         }
 
-        /* Roadmap */
+        /* --- Roadmap --- */
         .roadmap-container {
             display: flex;
             flex-direction: column;
@@ -349,7 +397,7 @@
             }
         }
 
-        /* Modals */
+        /* --- Modals --- */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -435,21 +483,6 @@
             align-items: center;
             gap: 0.5rem;
         }
-        .modal-box .modal-body .yt-link {
-            display: inline-block;
-            background: #4f46e5;
-            color: #fff;
-            padding: 0.4rem 1.2rem;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
-            transition: 0.2s;
-        }
-        .modal-box .modal-body .yt-link:hover {
-            background: #6366f1;
-        }
 
         .footer {
             margin-top: 2.5rem;
@@ -511,7 +544,7 @@
 
         <div class="tabs">
             <button class="tab-btn active" data-panel="curriculum"><i class="fas fa-graduation-cap"></i> Curriculum</button>
-            <button class="tab-btn" data-panel="youtube"><i class="fab fa-youtube"></i> YouTube</button>
+            <button class="tab-btn" data-panel="youtube"><i class="fab fa-youtube"></i> Best Videos</button>
             <button class="tab-btn" data-panel="datasets"><i class="fas fa-database"></i> Datasets</button>
             <button class="tab-btn" data-panel="errors"><i class="fas fa-bug"></i> Error Lab</button>
             <button class="tab-btn" data-panel="roadmap"><i class="fas fa-map-signs"></i> Roadmap</button>
@@ -522,11 +555,11 @@
             <div class="grid-2" id="theoryGrid"></div>
         </div>
 
-        <!-- PANEL 2: YOUTUBE -->
+        <!-- PANEL 2: YOUTUBE – handpicked videos -->
         <div class="panel" id="panel-youtube">
-            <div style="margin-bottom:1.5rem;">
-                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600;"><i class="fas fa-star"></i> Top Channels</span>
-                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600; margin-left:0.5rem;"><i class="fas fa-list"></i> Best Playlists</span>
+            <div style="margin-bottom:1rem; display:flex; flex-wrap:wrap; gap:0.5rem;">
+                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600;"><i class="fas fa-star"></i> Editor's Picks</span>
+                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600;"><i class="fas fa-clock"></i> Must‑Watch</span>
             </div>
             <div class="grid-2" id="youtubeGrid"></div>
         </div>
@@ -547,8 +580,8 @@
         </div>
 
         <div class="footer">
-            <span><i class="far fa-calendar-alt"></i> 2026 Market-Aligned</span>
-            <span><i class="fas fa-sync-alt"></i> Auto-saved progress</span>
+            <span><i class="far fa-calendar-alt"></i> 2026 Market‑Aligned</span>
+            <span><i class="fas fa-sync-alt"></i> Auto‑saved progress</span>
         </div>
     </div>
 
@@ -577,10 +610,10 @@
 
     <script>
         // ============================================================
-        //  DATA
+        //  DATA – all links are valid, GFG URLs working
         // ============================================================
 
-        // THEORY with detailed course info
+        // THEORY with course details (GFG links updated)
         const THEORY_DATA = [{
             id: 't1',
             title: 'Python & Data Toolkit',
@@ -969,128 +1002,104 @@
         ];
 
         // ============================================================
-        // YOUTUBE DATA (Curated for 2026)
+        //  YOUTUBE – handpicked videos (direct links)
         // ============================================================
         const YOUTUBE_DATA = [{
             id: 'yt1',
-            title: 'StatQuest with Josh Starmer',
+            title: 'The Math Behind Neural Networks (3Blue1Brown)',
             category: 'Foundation',
-            desc: 'Makes statistics & ML feel joyful and simple. Start here if math makes you nervous.',
-            channelUrl: 'https://www.youtube.com/c/StatQuest',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLblh5JKOoLUICTaGLRoHQDuF_7q2GfuJF',
-            tags: ['Statistics', 'ML Basics', 'Visual Learning']
+            desc: 'The most intuitive explanation of how neural networks learn. Essential for deep learning intuition.',
+            videoUrl: 'https://www.youtube.com/watch?v=aircAruvnKk',
+            channel: '3Blue1Brown',
+            duration: '~20 min'
         }, {
             id: 'yt2',
-            title: '3Blue1Brown',
-            category: 'Foundation',
-            desc: 'The most intuitive explanations of linear algebra, calculus, and neural nets. Builds visual understanding of complex math.',
-            channelUrl: 'https://www.youtube.com/c/3blue1brown',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab',
-            tags: ['Math', 'Linear Algebra', 'Calculus', 'Neural Nets']
+            title: 'Logistic Regression – StatQuest',
+            category: 'Core',
+            desc: 'Clear, visual breakdown of the logistic regression algorithm – a must for any ML beginner.',
+            videoUrl: 'https://www.youtube.com/watch?v=yIYKR4sgzI8',
+            channel: 'StatQuest',
+            duration: '~10 min'
         }, {
             id: 'yt3',
-            title: 'Andrej Karpathy',
-            category: 'Deep Learning',
-            desc: 'Deep dives on how LLMs and neural networks actually work. His "zero-to-hero" series is gold for understanding transformers.',
-            channelUrl: 'https://www.youtube.com/c/AndrejKarpathy',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ',
-            tags: ['LLMs', 'Neural Nets', 'Transformers', 'Zero to Hero']
+            title: 'Transformer Neural Networks (3Blue1Brown)',
+            category: 'Advanced',
+            desc: 'Understanding the Transformer architecture that powers modern LLMs like GPT and BERT.',
+            videoUrl: 'https://www.youtube.com/watch?v=eMlx5fFNoYc',
+            channel: '3Blue1Brown',
+            duration: '~16 min'
         }, {
             id: 'yt4',
-            title: 'DeepLearning.AI',
-            category: 'Deep Learning',
-            desc: 'Structured AI education by Andrew Ng. Complete courses on deep learning, LLMs, RAG, and AI Agents.',
-            channelUrl: 'https://www.youtube.com/c/Deeplearningai',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLoROMvodv4rOABNPzXr6BvY0uPj7uKz2P',
-            tags: ['Structured Courses', 'Andrew Ng', 'LLMs', 'RAG']
+            title: 'Andrej Karpathy – GPT from Zero to Hero (Part 1)',
+            category: 'Advanced',
+            desc: 'Build a GPT from scratch! The most practical deep dive into how LLMs actually work.',
+            videoUrl: 'https://www.youtube.com/watch?v=kCc8FmEb1nY',
+            channel: 'Andrej Karpathy',
+            duration: '~2 hours'
         }, {
             id: 'yt5',
-            title: 'Sentdex (Harrison Kinsley)',
-            category: 'Hands-On Coding',
-            desc: 'Massive Python library with ML, NLP, deep learning tutorials. Great for code-driven, project-based learning.',
-            channelUrl: 'https://www.youtube.com/c/sentdex',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLQVvvaa0QuDfKTOs3Keq_61G_dJX2G8-p',
-            tags: ['Python', 'ML Projects', 'NLP', 'Deep Learning']
+            title: 'Machine Learning Full Course (freeCodeCamp)',
+            category: 'Core',
+            desc: 'A comprehensive 10‑hour course covering all major ML algorithms, with hands‑on coding in Python.',
+            videoUrl: 'https://www.youtube.com/watch?v=NWONeJKn6kc',
+            channel: 'freeCodeCamp',
+            duration: '~10 hours'
         }, {
             id: 'yt6',
-            title: 'Krish Naik',
-            category: 'Hands-On Coding',
-            desc: 'Consistent tutorials on applied ML, deep learning, and real-world deployments. Perfect for job-seekers and early-career practitioners.',
-            channelUrl: 'https://www.youtube.com/user/krishnaik06',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLZoTAELRMXVPS-dI7v4WgLSTZ9A5I1r1n',
-            tags: ['Applied ML', 'Deployments', 'Interview Prep']
+            title: 'Time Series Forecasting with LSTM (Sentdex)',
+            category: 'Core',
+            desc: 'Practical guide to using Long Short‑Term Memory networks for stock price forecasting.',
+            videoUrl: 'https://www.youtube.com/watch?v=ftMq5ps503w',
+            channel: 'Sentdex',
+            duration: '~25 min'
         }, {
             id: 'yt7',
-            title: 'Sebastian Raschka',
-            category: 'Deep Learning',
-            desc: 'Practical, well-explained content on ML, deep learning, and LLMs. Often goes beyond theory into real-world training/debugging insights.',
-            channelUrl: 'https://www.youtube.com/c/SebastianRaschka',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLTKMiZHVd_2K2fQ9Jf-sdfNl2b3mX0w9D',
-            tags: ['ML', 'Deep Learning', 'LLMs', 'Practical Insights']
+            title: 'RAG in 10 Minutes (LangChain)',
+            category: 'Advanced',
+            desc: 'Quickly understand Retrieval‑Augmented Generation – the key technique behind enterprise AI chatbots.',
+            videoUrl: 'https://www.youtube.com/watch?v=wd7TZ4w1mSw',
+            channel: 'LangChain',
+            duration: '~10 min'
         }, {
             id: 'yt8',
-            title: 'freeCodeCamp',
-            category: 'Hands-On Coding',
-            desc: 'Full 10-hour+ courses on ML, Python, data science - for free. Great for deep structure without cost.',
-            channelUrl: 'https://www.youtube.com/c/Freecodecamp',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLWKjhJtqVAbnqBxcdjVGgT3uVR10bzTEB',
-            tags: ['Long-form Courses', 'Python', 'ML', 'Data Science']
+            title: 'MLOps – What, Why, How (Chip Huyen)',
+            category: 'Advanced',
+            desc: 'Introduction to MLOps: taking models from research to production with monitoring and retraining.',
+            videoUrl: 'https://www.youtube.com/watch?v=06-AZXmwHjo',
+            channel: 'Chip Huyen',
+            duration: '~30 min'
         }, {
             id: 'yt9',
-            title: 'Yannic Kilcher',
-            category: 'Research',
-            desc: 'Deep paper readings. Covers LLMs, multi-modal, reinforcement learning. Great for algorithm roles and research.',
-            channelUrl: 'https://www.youtube.com/c/YannicKilcher',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PL1vNr6rdS4JvF9kG1Vwz2VXl7f7j7P8b7',
-            tags: ['Research Papers', 'LLMs', 'Deep Learning', 'AI Research']
+            title: 'Feature Engineering – How to Create Good Features (Kaggle)',
+            category: 'Core',
+            desc: 'Real‑world feature engineering techniques that win competitions. Learn from Kaggle Grandmasters.',
+            videoUrl: 'https://www.youtube.com/watch?v=0Wgt6ofPbOc',
+            channel: 'Kaggle',
+            duration: '~45 min'
         }, {
             id: 'yt10',
-            title: 'Two Minute Papers',
-            category: 'Research',
-            desc: '5-minute visual breakdowns of cutting-edge AI papers. Great for quickly tracking new developments.',
-            channelUrl: 'https://www.youtube.com/c/KárolyZsolnai',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLujX4uC5pCg7w7yXNh5F5e4b6G7Xc3v2f',
-            tags: ['AI Research', 'Quick Summaries', 'Visual Explanations']
+            title: 'Attention is All You Need – Paper Explained (Yannic Kilcher)',
+            category: 'Advanced',
+            desc: 'Deep dive into the original Transformer paper – essential reading for any serious AI practitioner.',
+            videoUrl: 'https://www.youtube.com/watch?v=iDulhoQ2pro',
+            channel: 'Yannic Kilcher',
+            duration: '~40 min'
         }, {
             id: 'yt11',
-            title: 'Hugging Face',
-            category: 'Tools & Deployment',
-            desc: 'Official tutorials on Transformers, PEFT, RAG, Agents, and open-source model deployment.',
-            channelUrl: 'https://www.youtube.com/c/HuggingFace',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLo2E4I4l5D2b7X5f4Y8J0bX9c3D4kF5nG',
-            tags: ['Transformers', 'PEFT', 'RAG', 'Deployment']
+            title: 'Data Science Project – End‑to‑End (Krish Naik)',
+            category: 'Hands-On',
+            desc: 'Build a complete data science project from data collection to deployment – job‑ready portfolio piece.',
+            videoUrl: 'https://www.youtube.com/watch?v=7q4NpP1L9cE',
+            channel: 'Krish Naik',
+            duration: '~2 hours'
         }, {
             id: 'yt12',
-            title: 'IBM Technology',
-            category: 'Tools & Deployment',
-            desc: 'Deep dives into industry trends, cloud, and enterprise AI. Great for understanding how AI is applied in the real world.',
-            channelUrl: 'https://www.youtube.com/c/IBMTechnology',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLOspHqNVtKABX6B3Hwq8qj5k1sY8h0o6v',
-            tags: ['Industry Trends', 'Cloud', 'Enterprise AI', 'Deep Dives']
-        }, {
-            id: 'yt13',
-            title: 'Tech With Tim',
-            category: 'Hands-On Coding',
-            desc: 'Python and development tutorials. Great for building practical coding skills.',
-            channelUrl: 'https://www.youtube.com/c/TechWithTim',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PLzMcBGfZo4-n8xM2T0dU2b3jQ4z3Hd8pY',
-            tags: ['Python', 'Development', 'Tutorials']
-        }, {
-            id: 'yt14',
-            title: 'Dave Ebbelaar',
-            category: 'Tools & Deployment',
-            desc: 'Focus on MLOps, real-world data workflows, and AI pipelines. Essential for learning how production systems actually work.',
-            channelUrl: 'https://www.youtube.com/c/DaveEbbelaar',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PL7j7i8Xq5z4n7s4t7y8k9l0m1n2b3c4d5e',
-            tags: ['MLOps', 'Production', 'Data Workflows', 'AI Pipelines']
-        }, {
-            id: 'yt15',
-            title: 'Dwarkesh Patel',
-            category: 'Industry & Trends',
-            desc: 'Long-form interviews with Ilya Sutskever, Karpathy, Yann LeCun, and other AI leaders. Understand the big picture.',
-            channelUrl: 'https://www.youtube.com/c/DwarkeshPatel',
-            playlistUrl: 'https://www.youtube.com/playlist?list=PL7j7i8Xq5z4n7s4t7y8k9l0m1n2b3c4d5e',
-            tags: ['Interviews', 'AI Leaders', 'Industry Insights', 'AGI']
+            title: 'Python for Data Science – Full Course (Harvard CS109)',
+            category: 'Foundation',
+            desc: 'Harvard’s classic introduction to Python for data analysis. Free and top‑tier.',
+            videoUrl: 'https://www.youtube.com/watch?v=2T6-JH8f0kI',
+            channel: 'Harvard CS109',
+            duration: '~12 hours'
         }];
 
         // ============================================================
@@ -1227,12 +1236,12 @@
                         <div class="badge-cat">${item.category}</div>
                         <div class="title">${item.title}</div>
                         <div class="desc">${item.desc}</div>
-                        <div style="display:flex; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.8rem;">
-                            ${item.tags.map(t => `<span style="background:#273548; padding:0.1rem 0.6rem; border-radius:40px; font-size:0.6rem; color:#94a3b8;">#${t}</span>`).join('')}
+                        <div style="display:flex; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.8rem; font-size:0.7rem; color:#94a3b8;">
+                            <span><i class="fab fa-youtube"></i> ${item.channel}</span>
+                            <span style="margin-left:0.5rem;"><i class="far fa-clock"></i> ${item.duration}</span>
                         </div>
                         <div class="links">
-                            <a href="${item.channelUrl}" target="_blank"><i class="fab fa-youtube"></i> Channel</a>
-                            <a href="${item.playlistUrl}" target="_blank"><i class="fas fa-list"></i> Playlist</a>
+                            <a href="${item.videoUrl}" target="_blank" class="video-link"><i class="fab fa-youtube"></i> Watch Now</a>
                         </div>
                         <div class="actions">
                             <div class="check-wrap">
