@@ -7,8 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* --- RESET & BASE --- */
-    * { margin:0; padding:0; box-sizing:border-box; }
+    /* --- RESET & BASE STYLES --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
     body {
       font-family: 'Inter', sans-serif;
       background: #06060c;
@@ -25,15 +26,16 @@
     .app {
       max-width: 600px;
       width: 100%;
-      background: rgba(15, 10, 25, 0.82);
-      backdrop-filter: blur(16px);
+      background: rgba(15, 10, 25, 0.85);
+      backdrop-filter: blur(20px);
       border-radius: 32px;
       padding: 1.2rem 1.2rem 1.8rem;
-      border: 1px solid rgba(230,36,41,0.3);
-      box-shadow: 0 0 70px rgba(230,36,41,0.15), inset 0 0 20px rgba(230,36,41,0.05);
+      border: 1px solid rgba(230, 36, 41, 0.35);
+      box-shadow: 0 0 70px rgba(230, 36, 41, 0.18), inset 0 0 20px rgba(230, 36, 41, 0.05);
       position: relative;
       overflow: hidden;
       z-index: 2;
+      will-change: transform;
     }
 
     /* --- HERO POSTER BANNER --- */
@@ -47,16 +49,20 @@
       border: 1px solid rgba(230, 36, 41, 0.4);
       box-shadow: 0 8px 25px rgba(0,0,0,0.7);
     }
+    
     .hero-banner img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
-      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: transform;
     }
+    
     .hero-banner:hover img {
-      transform: scale(1.08) rotate(1deg);
+      transform: scale3d(1.08, 1.08, 1) rotate(0.8deg);
     }
+    
     .hero-overlay {
       position: absolute;
       inset: 0;
@@ -65,6 +71,7 @@
       align-items: flex-end;
       padding: 1rem;
     }
+    
     .hero-overlay span {
       font-size: 0.75rem;
       font-weight: 800;
@@ -77,7 +84,7 @@
       box-shadow: 0 0 15px rgba(230, 36, 41, 0.5);
     }
 
-    /* --- ANIMATED SPIDER-MAN MOVEMENT --- */
+    /* --- GPU-ACCELERATED SWINGING CHARACTER FX --- */
     .spidey-mover {
       position: absolute;
       top: 15px;
@@ -88,12 +95,15 @@
       z-index: 10;
       animation: swingAndTraverse 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
       filter: drop-shadow(0 5px 15px rgba(230,36,41,0.7));
+      will-change: transform;
     }
+    
     .spidey-mover img {
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
+    
     .spidey-mover::before {
       content: '';
       position: absolute;
@@ -101,18 +111,18 @@
       left: 50%;
       width: 1.5px;
       height: 150px;
-      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.8));
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.85));
     }
 
     @keyframes swingAndTraverse {
-      0% { transform: translate(0, 0) rotate(-20deg); left: -80px; }
-      25% { transform: translate(180px, 100px) rotate(25deg); }
-      50% { transform: translate(360px, 10px) rotate(-15deg); }
-      75% { transform: translate(480px, 120px) rotate(20deg); }
-      100% { transform: translate(680px, 0px) rotate(-20deg); left: 100%; }
+      0% { transform: translate3d(0, 0, 0) rotate(-20deg); left: -80px; }
+      25% { transform: translate3d(180px, 100px, 0) rotate(25deg); }
+      50% { transform: translate3d(360px, 10px, 0) rotate(-15deg); }
+      75% { transform: translate3d(480px, 120px, 0) rotate(20deg); }
+      100% { transform: translate3d(680px, 0px, 0) rotate(-20deg); left: 100%; }
     }
 
-    /* --- HEADER --- */
+    /* --- HEADER & LOGO WITH GLOW PULSE --- */
     .header {
       display: flex;
       flex-wrap: wrap;
@@ -123,18 +133,22 @@
       position: relative;
       z-index: 2;
     }
+    
     .logo { display: flex; align-items: center; gap: 0.5rem; }
+    
     .logo i {
       font-size: 1.8rem;
       color: #e62429;
-      filter: drop-shadow(0 0 12px rgba(230,36,41,0.6));
-      animation: glow-pulse 2s infinite;
+      animation: glow-pulse 2.2s infinite ease-in-out;
+      will-change: transform, filter;
     }
+    
     @keyframes glow-pulse {
-      0% { filter: drop-shadow(0 0 5px rgba(230,36,41,0.3)); transform: scale(1); }
-      50% { filter: drop-shadow(0 0 22px rgba(230,36,41,0.8)); transform: scale(1.05); }
-      100% { filter: drop-shadow(0 0 5px rgba(230,36,41,0.3)); transform: scale(1); }
+      0% { filter: drop-shadow(0 0 5px rgba(230,36,41,0.4)); transform: scale3d(1, 1, 1); }
+      50% { filter: drop-shadow(0 0 25px rgba(230,36,41,0.95)); transform: scale3d(1.1, 1.1, 1); }
+      100% { filter: drop-shadow(0 0 5px rgba(230,36,41,0.4)); transform: scale3d(1, 1, 1); }
     }
+    
     .logo h1 {
       font-size: 1.3rem;
       font-weight: 900;
@@ -142,6 +156,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    
     .logo .badge {
       font-size: 0.55rem;
       background: #e62429;
@@ -152,7 +167,9 @@
       font-weight: 800;
       letter-spacing: 0.5px;
     }
+    
     .header-actions { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+    
     .streak-box, .level-box {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.1);
@@ -162,23 +179,28 @@
       font-weight: 700;
       display: flex; align-items: center; gap: 0.3rem; color: #fbbf24;
     }
+    
     .level-box { background: #e62429; border-color: #e62429; color: #fff; }
+    
     .progress-stats {
       display: flex; align-items: center; gap: 0.4rem;
       background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
       padding: 0.15rem 0.75rem; border-radius: 100px;
     }
+    
     .progress-stats span { font-size: 0.6rem; color: #9ca3af; }
     .progress-stats strong { color: #f8fafc; }
     .progress-bar-bg { width: 60px; height: 4px; background: #222; border-radius: 4px; overflow: hidden; }
+    
     .progress-bar-fill {
       height: 100%; width: 0%;
       background: linear-gradient(90deg, #e62429, #ff5722);
       border-radius: 4px; transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* --- START BUTTON --- */
+    /* --- BUTTONS & INTERACTIVE HOVER STATES --- */
     .start-wrap { display: flex; justify-content: center; margin-bottom: 1.2rem; position: relative; z-index: 2; }
+    
     .start-btn {
       background: linear-gradient(135deg, #e62429, #a81115);
       border: none; padding: 0.75rem 2rem; border-radius: 60px;
@@ -186,140 +208,195 @@
       cursor: pointer; box-shadow: 0 0 25px rgba(230,36,41,0.4);
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       display: flex; align-items: center; gap: 0.6rem; width: 100%; justify-content: center;
+      position: relative; overflow: hidden;
+      will-change: transform, box-shadow;
     }
-    .start-btn:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 0 45px rgba(230,36,41,0.7); }
-    .start-btn:active { transform: scale(0.97); }
+    
+    .start-btn:hover {
+      transform: translate3d(0, -3px, 0) scale3d(1.02, 1.02, 1);
+      box-shadow: 0 0 45px rgba(230,36,41,0.75);
+    }
+    
+    .start-btn:active { transform: scale3d(0.97, 0.97, 1); }
 
-    /* --- TODAY'S PICK --- */
+    /* --- TODAY'S HIGHLIGHT --- */
     .today-highlight {
       background: rgba(255,255,255,0.03);
       border: 1.5px solid rgba(230,36,41,0.35);
       border-radius: 16px; padding: 0.85rem 1rem; margin-bottom: 1.2rem;
       display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
       gap: 0.5rem; position: relative; z-index: 2;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      will-change: transform;
     }
-    .today-highlight:hover { border-color: rgba(230,36,41,0.7); }
+    
+    .today-highlight:hover { border-color: rgba(230,36,41,0.7); transform: translate3d(0, -2px, 0); }
     .today-highlight .label { font-size: 0.6rem; color: #e62429; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
     .today-highlight .title { font-weight: 700; font-size: 0.9rem; color: #f8fafc; }
     .today-highlight .desc { color: #9ca3af; font-size: 0.7rem; }
+    
     .today-highlight .link {
       background: #e62429; color: #fff; padding: 0.25rem 1rem; border-radius: 40px;
       text-decoration: none; font-weight: 700; font-size: 0.7rem;
-      transition: 0.25s; display: inline-flex; align-items: center; gap: 0.3rem; white-space: nowrap;
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); display: inline-flex; align-items: center; gap: 0.3rem; white-space: nowrap;
+      position: relative; overflow: hidden;
     }
-    .today-highlight .link:hover { background: #ff3b41; transform: translateX(3px); }
+    
+    .today-highlight .link:hover { background: #ff3b41; transform: translate3d(3px, 0, 0); box-shadow: 0 0 15px rgba(230,36,41,0.5); }
 
-    /* --- SEARCH --- */
+    /* --- SEARCH INPUT --- */
     .search-box { display: flex; gap: 0.5rem; margin-bottom: 1rem; position: relative; z-index: 2; }
     .search-box input {
       flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
       border-radius: 40px; padding: 0.5rem 1.1rem; color: #e8e8e8; font-size: 0.8rem;
-      outline: none; transition: all 0.3s;
+      outline: none; transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
-    .search-box input:focus { border-color: #e62429; box-shadow: 0 0 15px rgba(230,36,41,0.3); }
+    .search-box input:focus { border-color: #e62429; box-shadow: 0 0 20px rgba(230,36,41,0.35); transform: scale3d(1.01, 1.01, 1); }
 
-    /* --- TABS --- */
+    /* --- NAVIGATION TABS --- */
     .tabs {
       display: flex; gap: 0.25rem; margin-bottom: 1.2rem;
       border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.4rem;
       flex-wrap: wrap; position: relative; z-index: 2;
     }
+    
     .tab-btn {
       background: transparent; border: none; padding: 0.35rem 0.85rem;
       font-weight: 700; font-size: 0.68rem; color: #71717a;
-      border-radius: 40px; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 40px; cursor: pointer; transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
       display: flex; align-items: center; gap: 0.35rem; position: relative; overflow: hidden;
+      will-change: transform, background, color;
     }
-    .tab-btn:hover { color: #f4f4f5; background: rgba(255,255,255,0.08); }
+    
+    .tab-btn:hover { color: #f4f4f5; background: rgba(255,255,255,0.08); transform: translate3d(0, -1px, 0); }
+    
     .tab-btn.active {
       background: #e62429; color: #fff;
       box-shadow: 0 0 20px rgba(230,36,41,0.5);
-      transform: scale(1.04);
+      transform: scale3d(1.05, 1.05, 1);
     }
 
-    /* ============================================================
-       PAGE / TAB SWITCH ANIMATIONS
-       ============================================================ */
+    /* --- SPRING BOUNCE PAGE/TAB TRANSITION SEQUENCES --- */
     .panel {
       display: none;
       opacity: 0;
-    }
-    .panel.active {
-      display: block;
-      animation: slideInWeb 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform: translate3d(0, 20px, 0) scale3d(0.96, 0.96, 1);
+      filter: blur(8px);
+      will-change: opacity, transform, filter;
     }
 
-    @keyframes slideInWeb {
+    .panel.active {
+      display: block;
+      animation: springWebIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .panel.exiting {
+      display: block;
+      animation: fadeWebOut 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+    }
+
+    @keyframes springWebIn {
       0% {
         opacity: 0;
-        transform: translateY(18px) scale(0.97);
-        filter: blur(4px);
+        transform: translate3d(0, 24px, 0) scale3d(0.95, 0.95, 1);
+        filter: blur(8px);
       }
-      60% {
-        transform: translateY(-2px) scale(1.005);
+      70% {
+        transform: translate3d(0, -3px, 0) scale3d(1.01, 1.01, 1);
+        filter: blur(0px);
       }
       100% {
         opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+        filter: blur(0px);
       }
     }
 
-    /* --- CARDS ANIMATIONS --- */
+    @keyframes fadeWebOut {
+      0% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 0;
+        transform: translate3d(0, -12px, 0) scale3d(0.97, 0.97, 1);
+        filter: blur(4px);
+      }
+    }
+
+    /* --- CARDS & GRID LAYOUT --- */
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
+    
     .card {
       background: rgba(255,255,255,0.035);
       border: 1px solid rgba(255,255,255,0.07);
       border-radius: 14px; padding: 0.85rem 1rem;
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1); cursor: default;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative; overflow: hidden;
+      will-change: transform, border-color, box-shadow;
     }
+    
     .card:hover {
-      border-color: rgba(230,36,41,0.5);
-      transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px rgba(230,36,41,0.2);
+      border-color: rgba(230,36,41,0.6);
+      transform: translate3d(0, -5px, 0) scale3d(1.01, 1.01, 1);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.7), 0 0 20px rgba(230,36,41,0.25);
     }
+    
     .card .badge-cat {
       font-size: 0.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
       padding: 0.1rem 0.5rem; border-radius: 40px; background: rgba(255,255,255,0.06);
       color: #a1a1aa; display: inline-block; margin-bottom: 0.25rem;
     }
+    
     .card .title { font-weight: 700; font-size: 0.88rem; color: #f8fafc; margin-bottom: 0.15rem; }
     .card .desc { font-size: 0.7rem; color: #9ca3af; line-height: 1.35; margin-bottom: 0.45rem; }
     .card .resource-links { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.45rem; }
+    
     .card .resource-links a {
       font-size: 0.6rem; color: #60a5fa; text-decoration: none;
       background: rgba(255,255,255,0.05); padding: 0.1rem 0.55rem; border-radius: 40px;
-      border: 1px solid rgba(255,255,255,0.08); transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.08); transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative; overflow: hidden;
     }
-    .card .resource-links a:hover { background: #e62429; color: #fff; border-color: #e62429; transform: translateY(-1px); }
+    
+    .card .resource-links a:hover { background: #e62429; color: #fff; border-color: #e62429; transform: translate3d(0, -2px, 0); }
+    
     .card .actions {
       display: flex; justify-content: space-between; align-items: center;
       border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.45rem; margin-top: 0.2rem;
     }
-    .card .actions .check-wrap { display: flex; align-items: center; gap: 0.35rem; font-size: 0.65rem; color: #9ca3af; }
+    
+    .card .actions .check-wrap { display: flex; align-items: center; gap: 0.35rem; font-size: 0.65rem; color: #9ca3af; cursor: pointer; }
     .card .actions .check-wrap input[type="checkbox"] { width: 14px; height: 14px; accent-color: #e62429; cursor: pointer; }
 
-    /* --- ROADMAP --- */
+    /* --- ROADMAP ITEMS --- */
     .roadmap-container { display: flex; flex-direction: column; gap: 0.8rem; padding: 0.3rem 0; }
     .roadmap-row { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+    
     .roadmap-node {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
       border-radius: 12px; padding: 0.7rem 1rem; flex: 1; min-width: 120px;
-      text-align: center; transition: all 0.3s;
+      text-align: center; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative; overflow: hidden;
     }
-    .roadmap-node:hover { border-color: #e62429; transform: scale(1.02); }
+    
+    .roadmap-node:hover { border-color: #e62429; transform: translate3d(0, -3px, 0) scale3d(1.02, 1.02, 1); box-shadow: 0 0 18px rgba(230,36,41,0.3); }
     .roadmap-node .node-icon { font-size: 1.3rem; color: #e62429; }
     .roadmap-node .node-title { font-weight: 700; font-size: 0.72rem; color: #f8fafc; }
     .roadmap-node .node-desc { font-size: 0.58rem; color: #9ca3af; }
 
-    /* --- STATS --- */
+    /* --- STATS GRID --- */
     .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 0.5rem 0; }
+    
     .stat-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 14px; padding: 0.85rem; text-align: center; transition: transform 0.3s;
+      border-radius: 14px; padding: 0.85rem; text-align: center;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative; overflow: hidden;
     }
-    .stat-card:hover { transform: translateY(-3px); }
+    
+    .stat-card:hover { transform: translate3d(0, -4px, 0); border-color: rgba(230,36,41,0.4); }
     .stat-card .number { font-size: 1.7rem; font-weight: 900; color: #e62429; }
     .stat-card .label { font-size: 0.6rem; color: #9ca3af; margin-top: 0.1rem; }
 
@@ -328,23 +405,34 @@
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
       border-radius: 14px; padding: 0.85rem; margin-top: 0.5rem;
     }
+    
     .notepad-area textarea {
       width: 100%; background: transparent; border: none; color: #e8e8e8;
       font-family: 'Inter', sans-serif; font-size: 0.82rem; resize: vertical;
       min-height: 110px; outline: none; padding: 0.2rem;
     }
 
-    /* --- CLICK RIPPLE ANIMATION --- */
-    .web-ripple {
+    /* --- DYNAMIC SHOCKWAVE / RIPPLE CLICK FX --- */
+    .web-shockwave {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(230, 36, 41, 0.6) 0%, transparent 70%);
-      transform: scale(0);
-      animation: rippleEffect 0.6s ease-out;
+      background: radial-gradient(circle, rgba(230, 36, 41, 0.75) 0%, rgba(230, 36, 41, 0.15) 50%, transparent 75%);
+      transform: scale3d(0, 0, 1);
+      animation: shockwavePulse 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
       pointer-events: none;
+      z-index: 99;
+      will-change: transform, opacity;
     }
-    @keyframes rippleEffect {
-      to { transform: scale(4); opacity: 0; }
+
+    @keyframes shockwavePulse {
+      0% {
+        transform: scale3d(0, 0, 1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale3d(3.5, 3.5, 1);
+        opacity: 0;
+      }
     }
 
     .footer {
@@ -386,7 +474,7 @@
   </header>
 
   <div class="start-wrap">
-    <button class="start-btn" id="startBtn"><i class="fas fa-bolt"></i> Web Slinger – Start Today</button>
+    <button class="start-btn interactive-element" id="startBtn"><i class="fas fa-bolt"></i> Web Slinger – Start Today</button>
   </div>
 
   <div class="today-highlight" id="todayHighlight">
@@ -395,7 +483,7 @@
       <div class="title" id="todayTitle">Feature Engineering</div>
       <div class="desc" id="todayDesc">Turn raw data into model-ready features.</div>
     </div>
-    <a href="https://www.geeksforgeeks.org/machine-learning/what-is-feature-engineering/" id="todayLink" class="link" target="_blank">Read <i class="fas fa-arrow-right"></i></a>
+    <a href="https://www.geeksforgeeks.org/machine-learning/what-is-feature-engineering/" id="todayLink" class="link interactive-element" target="_blank">Read <i class="fas fa-arrow-right"></i></a>
   </div>
 
   <div class="search-box">
@@ -403,13 +491,13 @@
   </div>
 
   <div class="tabs">
-    <button class="tab-btn active" data-panel="topics"><i class="fas fa-graduation-cap"></i> Topics</button>
-    <button class="tab-btn" data-panel="videos"><i class="fab fa-youtube"></i> Videos</button>
-    <button class="tab-btn" data-panel="datasets"><i class="fas fa-database"></i> Datasets</button>
-    <button class="tab-btn" data-panel="errors"><i class="fas fa-bug"></i> Errors</button>
-    <button class="tab-btn" data-panel="roadmap"><i class="fas fa-map-signs"></i> Roadmap</button>
-    <button class="tab-btn" data-panel="stats"><i class="fas fa-chart-pie"></i> Stats</button>
-    <button class="tab-btn" data-panel="notepad"><i class="fas fa-pen"></i> Notes</button>
+    <button class="tab-btn active interactive-element" data-panel="topics"><i class="fas fa-graduation-cap"></i> Topics</button>
+    <button class="tab-btn interactive-element" data-panel="videos"><i class="fab fa-youtube"></i> Videos</button>
+    <button class="tab-btn interactive-element" data-panel="datasets"><i class="fas fa-database"></i> Datasets</button>
+    <button class="tab-btn interactive-element" data-panel="errors"><i class="fas fa-bug"></i> Errors</button>
+    <button class="tab-btn interactive-element" data-panel="roadmap"><i class="fas fa-map-signs"></i> Roadmap</button>
+    <button class="tab-btn interactive-element" data-panel="stats"><i class="fas fa-chart-pie"></i> Stats</button>
+    <button class="tab-btn interactive-element" data-panel="notepad"><i class="fas fa-pen"></i> Notes</button>
   </div>
 
   <div class="panel active" id="panel-topics"><div class="grid-2" id="topicsGrid"></div></div>
@@ -431,7 +519,7 @@
 </div>
 
 <script>
-  // DATA
+  // --- APPLICATION DATA ---
   const TOPICS = [
     { id: 't1', title: 'Feature Engineering', cat: 'Core', desc: 'Turn raw data into model-ready features.', resources: [{ label: 'GFG Guide', url: 'https://www.geeksforgeeks.org/machine-learning/what-is-feature-engineering/' }] },
     { id: 't2', title: 'Model Evaluation', cat: 'Core', desc: 'Know if your model actually works.', resources: [{ label: 'GFG Metrics', url: 'https://www.geeksforgeeks.org/machine-learning/metrics-for-machine-learning-model/' }] },
@@ -461,17 +549,17 @@
     { icon: 'fa-brain', title: 'Deep Learning', desc: 'Neural Networks & Transformers' }
   ];
 
-  // LOCAL STORAGE STATE
+  // --- STATE MANAGEMENT ---
   let completed = JSON.parse(localStorage.getItem('spidey_completed') || '{}');
 
   function render() {
-    // Render Topics
+    // Topics Grid
     document.getElementById('topicsGrid').innerHTML = TOPICS.map(t => `
-      <div class="card">
+      <div class="card interactive-element">
         <span class="badge-cat">${t.cat}</span>
         <div class="title">${t.title}</div>
         <div class="desc">${t.desc}</div>
-        <div class="resource-links">${t.resources.map(r => `<a href="${r.url}" target="_blank">${r.label}</a>`).join('')}</div>
+        <div class="resource-links">${t.resources.map(r => `<a href="${r.url}" class="interactive-element" target="_blank">${r.label}</a>`).join('')}</div>
         <div class="actions">
           <label class="check-wrap">
             <input type="checkbox" ${completed[t.id] ? 'checked' : ''} onchange="toggleDone('${t.id}')"> Done
@@ -480,13 +568,13 @@
       </div>
     `).join('');
 
-    // Render Videos
+    // Videos Grid
     document.getElementById('videosGrid').innerHTML = VIDEOS.map(v => `
-      <div class="card">
+      <div class="card interactive-element">
         <span class="badge-cat">${v.cat}</span>
         <div class="title">${v.title}</div>
         <div class="desc">Channel: ${v.channel}</div>
-        <div class="resource-links"><a href="${v.video}" target="_blank">Watch Video</a></div>
+        <div class="resource-links"><a href="${v.video}" class="interactive-element" target="_blank">Watch Video</a></div>
         <div class="actions">
           <label class="check-wrap">
             <input type="checkbox" ${completed[v.id] ? 'checked' : ''} onchange="toggleDone('${v.id}')"> Watched
@@ -495,9 +583,9 @@
       </div>
     `).join('');
 
-    // Render Datasets
+    // Datasets Grid
     document.getElementById('datasetsGrid').innerHTML = DATASETS.map(d => `
-      <div class="card">
+      <div class="card interactive-element">
         <span class="badge-cat">${d.cat}</span>
         <div class="title">${d.title}</div>
         <div class="desc">${d.desc}</div>
@@ -509,19 +597,19 @@
       </div>
     `).join('');
 
-    // Render Errors
+    // Errors Grid
     document.getElementById('errorsGrid').innerHTML = ERRORS.map(e => `
-      <div class="card">
+      <div class="card interactive-element">
         <div class="title">${e.title}</div>
         <div class="desc">${e.desc}</div>
         <div class="desc" style="color: #e62429;"><strong>Fix:</strong> ${e.fix}</div>
       </div>
     `).join('');
 
-    // Render Roadmap
+    // Roadmap
     document.getElementById('roadmapContainer').innerHTML = ROADMAP.map(r => `
       <div class="roadmap-row">
-        <div class="roadmap-node">
+        <div class="roadmap-node interactive-element">
           <i class="fas ${r.icon} node-icon"></i>
           <div class="node-title">${r.title}</div>
           <div class="node-desc">${r.desc}</div>
@@ -529,7 +617,7 @@
       </div>
     `).join('');
 
-    // Render Stats
+    // Stats Calculations
     const totalItems = TOPICS.length + VIDEOS.length + DATASETS.length;
     const doneCount = Object.keys(completed).filter(k => completed[k]).length;
     document.getElementById('doneCount').innerText = doneCount;
@@ -537,9 +625,9 @@
     document.getElementById('mainProgress').style.width = `${(doneCount / totalItems) * 100}%`;
 
     document.getElementById('statsGrid').innerHTML = `
-      <div class="stat-card"><div class="number">${doneCount}</div><div class="label">Completed</div></div>
-      <div class="stat-card"><div class="number">${totalItems - doneCount}</div><div class="label">Remaining</div></div>
-      <div class="stat-card"><div class="number">${Math.round((doneCount / totalItems) * 100)}%</div><div class="label">Progress</div></div>
+      <div class="stat-card interactive-element"><div class="number">${doneCount}</div><div class="label">Completed</div></div>
+      <div class="stat-card interactive-element"><div class="number">${totalItems - doneCount}</div><div class="label">Remaining</div></div>
+      <div class="stat-card interactive-element"><div class="number">${Math.round((doneCount / totalItems) * 100)}%</div><div class="label">Progress</div></div>
     `;
   }
 
@@ -549,30 +637,63 @@
     render();
   }
 
-  // TAB SWITCHING & RIPPLE ANIMATION
+  // --- SMOOTH PAGE & TAB TRANSITIONS ---
+  let isTransitioning = false;
+
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      // Create Web Ripple Effect
-      const circle = document.createElement('span');
-      const diameter = Math.max(btn.clientWidth, btn.clientHeight);
-      const radius = diameter / 2;
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${e.clientX - btn.getBoundingClientRect().left - radius}px`;
-      circle.style.top = `${e.clientY - btn.getBoundingClientRect().top - radius}px`;
-      circle.classList.add('web-ripple');
-      btn.appendChild(circle);
-      setTimeout(() => circle.remove(), 600);
+      const targetPanelId = `panel-${btn.dataset.panel}`;
+      const currentPanel = document.querySelector('.panel.active');
+      const targetPanel = document.getElementById(targetPanelId);
 
-      // Switch Active Tab and Active Panel
+      if (currentPanel === targetPanel || isTransitioning) return;
+      isTransitioning = true;
+
+      // Update active state on tab buttons
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-
       btn.classList.add('active');
-      const panel = document.getElementById(`panel-${btn.dataset.panel}`);
-      panel.classList.add('active');
+
+      // Animate current panel out smooth
+      currentPanel.classList.remove('active');
+      currentPanel.classList.add('exiting');
+
+      setTimeout(() => {
+        currentPanel.classList.remove('exiting');
+        currentPanel.style.display = 'none';
+
+        // Animate target panel in with spring bounce
+        targetPanel.style.display = 'block';
+        // Force reflow
+        void targetPanel.offsetWidth;
+        targetPanel.classList.add('active');
+
+        isTransitioning = false;
+      }, 180);
     });
   });
 
+  // --- DYNAMIC CURSOR SHOCKWAVE / RIPPLE EFFECT ---
+  document.addEventListener('click', (e) => {
+    const targetElement = e.target.closest('.interactive-element, .card, .tab-btn, .start-btn, .roadmap-node, .stat-card, .link');
+    if (!targetElement) return;
+
+    const shockwave = document.createElement('span');
+    const rect = targetElement.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 1.2;
+
+    shockwave.style.width = shockwave.style.height = `${size}px`;
+    shockwave.style.left = `${e.clientX - rect.left - size / 2}px`;
+    shockwave.style.top = `${e.clientY - rect.top - size / 2}px`;
+    shockwave.classList.add('web-shockwave');
+
+    targetElement.appendChild(shockwave);
+
+    setTimeout(() => {
+      shockwave.remove();
+    }, 600);
+  });
+
+  // Initialize App
   render();
 </script>
 </body>
