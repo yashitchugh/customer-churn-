@@ -2,36 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🕷️ Spidey·ML – Coder's Learning Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>🕷️ Spidey·ML</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(145deg, #0a0a0a 0%, #1a0a1a 100%);
+      background: #0a0a0a;
       color: #e8e8e8;
       min-height: 100vh;
-      padding: 1rem;
+      padding: 0.8rem;
       display: flex;
       justify-content: center;
       align-items: flex-start;
+      overflow-x: hidden;
     }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #1a1a1a; }
-    ::-webkit-scrollbar-thumb { background: #e62429; border-radius: 4px; }
-
     .app {
-      max-width: 1300px;
+      max-width: 600px;
       width: 100%;
-      background: rgba(20, 10, 30, 0.6);
+      background: rgba(20,10,30,0.6);
       backdrop-filter: blur(12px);
       border-radius: 32px;
-      padding: 1.8rem 2rem 2.2rem;
-      border: 1px solid rgba(230, 36, 41, 0.2);
-      box-shadow: 0 0 60px rgba(230, 36, 41, 0.05), 0 0 120px rgba(20, 10, 30, 0.8);
-      transition: all 0.3s;
+      padding: 1.2rem 1.2rem 1.8rem;
+      border: 1px solid rgba(230,36,41,0.25);
+      box-shadow: 0 0 60px rgba(230,36,41,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Web background pattern */
+    .app::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 40%, rgba(230,36,41,0.03) 0%, transparent 60%),
+                  repeating-linear-gradient(45deg, rgba(230,36,41,0.02) 0px, rgba(230,36,41,0.02) 2px, transparent 2px, transparent 10px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Animated spider */
+    .spider-float {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 2.2rem;
+      color: #e62429;
+      animation: swing 4s ease-in-out infinite;
+      z-index: 1;
+      opacity: 0.7;
+      filter: drop-shadow(0 0 10px rgba(230,36,41,0.3));
+    }
+    @keyframes swing {
+      0% { transform: rotate(-10deg) translateY(0); }
+      50% { transform: rotate(10deg) translateY(-8px); }
+      100% { transform: rotate(-10deg) translateY(0); }
+    }
+    /* Web lines (CSS only) */
+    .web-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(230,36,41,0.05) 0%, transparent 50%);
+    }
+    .web-lines::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60%;
+      height: 60%;
+      background: repeating-linear-gradient(45deg, rgba(230,36,41,0.02) 0px, rgba(230,36,41,0.02) 1px, transparent 1px, transparent 8px);
+      transform: rotate(10deg);
     }
 
     /* ----- HEADER ----- */
@@ -40,51 +89,59 @@
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
     }
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.7rem;
+      gap: 0.5rem;
     }
     .logo i {
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       color: #e62429;
       filter: drop-shadow(0 0 12px rgba(230,36,41,0.4));
+      animation: pulse-glow 2s infinite;
+    }
+    @keyframes pulse-glow {
+      0% { filter: drop-shadow(0 0 8px rgba(230,36,41,0.2)); }
+      50% { filter: drop-shadow(0 0 20px rgba(230,36,41,0.6)); }
+      100% { filter: drop-shadow(0 0 8px rgba(230,36,41,0.2)); }
     }
     .logo h1 {
-      font-size: 1.6rem;
+      font-size: 1.3rem;
       font-weight: 900;
-      background: linear-gradient(to right, #ffffff, #b0b0b0);
+      background: linear-gradient(to right, #f8fafc, #9ca3af);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .logo .badge {
-      font-size: 0.6rem;
+      font-size: 0.5rem;
       background: #e62429;
-      padding: 0.15rem 0.6rem;
-      border-radius: 40px;
       color: #fff;
-      font-weight: 700;
+      padding: 0.05rem 0.5rem;
+      border-radius: 40px;
       -webkit-text-fill-color: #fff;
+      font-weight: 700;
     }
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.4rem;
       flex-wrap: wrap;
     }
     .streak-box, .level-box {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
-      padding: 0.2rem 0.9rem;
+      padding: 0.15rem 0.7rem;
       border-radius: 100px;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.3rem;
       color: #fbbf24;
     }
     .level-box {
@@ -95,222 +152,177 @@
     .progress-stats {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.4rem;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.08);
-      padding: 0.15rem 0.9rem 0.15rem 1rem;
+      padding: 0.1rem 0.7rem 0.1rem 0.8rem;
       border-radius: 100px;
     }
-    .progress-stats span { font-size: 0.7rem; color: #9ca3af; }
+    .progress-stats span { font-size: 0.6rem; color: #9ca3af; }
     .progress-stats strong { color: #f8fafc; }
     .progress-bar-bg {
-      width: 80px; height: 4px; background: #2a2a2a; border-radius: 4px; overflow: hidden;
+      width: 60px; height: 3px; background: #2a2a2a; border-radius: 4px; overflow: hidden;
     }
     .progress-bar-fill {
       height: 100%; width: 0%; background: linear-gradient(90deg, #e62429, #f97316);
       border-radius: 4px; transition: width 0.4s;
     }
 
-    /* ----- START BUTTON ----- */
+    /* ----- START BUTTON (Web Slinger) ----- */
     .start-wrap {
-      display: flex; justify-content: center; margin-bottom: 1.5rem;
+      display: flex; justify-content: center; margin-bottom: 1.2rem; position: relative; z-index: 2;
     }
     .start-btn {
       background: linear-gradient(135deg, #e62429, #b91c1c);
-      border: none; padding: 0.8rem 2.8rem; border-radius: 60px;
-      font-size: 1.1rem; font-weight: 800; color: #fff;
-      cursor: pointer; box-shadow: 0 0 40px rgba(230,36,41,0.3);
-      transition: all 0.3s; display: flex; align-items: center; gap: 0.8rem;
-      animation: pulse 2s infinite;
+      border: none; padding: 0.7rem 2rem; border-radius: 60px;
+      font-size: 1rem; font-weight: 800; color: #fff;
+      cursor: pointer; box-shadow: 0 0 30px rgba(230,36,41,0.3);
+      transition: all 0.3s; display: flex; align-items: center; gap: 0.6rem;
+      animation: web-pulse 2s infinite;
+      width: 100%; justify-content: center;
     }
-    .start-btn:hover { transform: scale(1.04); box-shadow: 0 0 60px rgba(230,36,41,0.5); }
-    @keyframes pulse {
-      0% { box-shadow: 0 0 20px rgba(230,36,41,0.2); }
-      50% { box-shadow: 0 0 50px rgba(230,36,41,0.6); }
-      100% { box-shadow: 0 0 20px rgba(230,36,41,0.2); }
+    .start-btn:hover { transform: scale(1.02); box-shadow: 0 0 50px rgba(230,36,41,0.5); }
+    @keyframes web-pulse {
+      0% { box-shadow: 0 0 15px rgba(230,36,41,0.2); }
+      50% { box-shadow: 0 0 40px rgba(230,36,41,0.6); }
+      100% { box-shadow: 0 0 15px rgba(230,36,41,0.2); }
     }
 
-    /* ----- TODAY'S PICK ----- */
+    /* ----- TODAY'S PICK (Daily Web) ----- */
     .today-highlight {
       background: rgba(255,255,255,0.04);
       border: 1.5px solid rgba(230,36,41,0.3);
-      border-radius: 16px; padding: 1rem 1.4rem; margin-bottom: 1.8rem;
+      border-radius: 16px; padding: 0.8rem 1rem; margin-bottom: 1.2rem;
       display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-      gap: 0.8rem; backdrop-filter: blur(8px);
+      gap: 0.5rem; backdrop-filter: blur(8px); position: relative; z-index: 2;
     }
-    .today-highlight .label { font-size: 0.7rem; color: #e62429; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
-    .today-highlight .title { font-weight: 800; font-size: 1.05rem; color: #f8fafc; }
-    .today-highlight .desc { color: #9ca3af; font-size: 0.8rem; }
+    .today-highlight .label { font-size: 0.6rem; color: #e62429; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .today-highlight .title { font-weight: 700; font-size: 0.9rem; color: #f8fafc; }
+    .today-highlight .desc { color: #9ca3af; font-size: 0.7rem; }
     .today-highlight .link {
-      background: #e62429; color: #fff; padding: 0.35rem 1.4rem; border-radius: 40px;
-      text-decoration: none; font-weight: 700; font-size: 0.8rem;
-      transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+      background: #e62429; color: #fff; padding: 0.2rem 1rem; border-radius: 40px;
+      text-decoration: none; font-weight: 700; font-size: 0.7rem;
+      transition: 0.2s; display: inline-flex; align-items: center; gap: 0.3rem;
+      white-space: nowrap;
     }
-    .today-highlight .link:hover { background: #f97316; transform: scale(1.02); }
+    .today-highlight .link:hover { background: #f97316; }
+
+    /* ----- SEARCH ----- */
+    .search-box {
+      display: flex; gap: 0.5rem; margin-bottom: 1rem; position: relative; z-index: 2;
+    }
+    .search-box input {
+      flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 40px; padding: 0.4rem 1rem; color: #e8e8e8; font-size: 0.8rem;
+      outline: none; transition: 0.2s;
+    }
+    .search-box input:focus { border-color: #e62429; }
+    .search-box input::placeholder { color: #6b7280; }
 
     /* ----- TABS ----- */
     .tabs {
-      display: flex; gap: 0.3rem; margin-bottom: 1.4rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.4rem;
-      flex-wrap: wrap;
+      display: flex; gap: 0.2rem; margin-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.3rem;
+      flex-wrap: wrap; position: relative; z-index: 2;
     }
     .tab-btn {
-      background: transparent; border: none; padding: 0.35rem 1.1rem;
-      font-weight: 600; font-size: 0.75rem; color: #6b7280;
+      background: transparent; border: none; padding: 0.25rem 0.8rem;
+      font-weight: 600; font-size: 0.65rem; color: #6b7280;
       border-radius: 40px; cursor: pointer; transition: 0.2s;
-      display: flex; align-items: center; gap: 0.4rem;
+      display: flex; align-items: center; gap: 0.3rem;
     }
     .tab-btn:hover { color: #e8e8e8; background: rgba(255,255,255,0.05); }
-    .tab-btn.active { background: #e62429; color: #fff; box-shadow: 0 0 20px rgba(230,36,41,0.2); }
+    .tab-btn.active { background: #e62429; color: #fff; box-shadow: 0 0 15px rgba(230,36,41,0.2); }
     .tab-btn.active i { color: #fff; }
 
     .panel { display: none; animation: fadeUp 0.25s ease; }
     .panel.active { display: block; }
     @keyframes fadeUp { 0% { opacity: 0; transform: translateY(6px); } 100% { opacity: 1; transform: translateY(0); } }
 
-    .grid-2 {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 0.9rem;
-    }
-
     /* ----- CARDS (glass) ----- */
+    .grid-2 {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.7rem;
+    }
     .card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px; padding: 1rem 1.2rem;
+      border-radius: 14px; padding: 0.8rem 1rem;
       transition: all 0.25s; cursor: default;
       backdrop-filter: blur(4px);
     }
-    .card:hover { border-color: rgba(230,36,41,0.4); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.6); }
+    .card:hover { border-color: rgba(230,36,41,0.4); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
     .card .badge-cat {
       font-size: 0.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-      padding: 0.1rem 0.6rem; border-radius: 40px; background: rgba(255,255,255,0.06);
-      color: #9ca3af; display: inline-block; margin-bottom: 0.3rem;
+      padding: 0.05rem 0.5rem; border-radius: 40px; background: rgba(255,255,255,0.06);
+      color: #9ca3af; display: inline-block; margin-bottom: 0.2rem;
       border: 1px solid rgba(255,255,255,0.05);
     }
     .card .badge-cat.red { background: rgba(230,36,41,0.15); color: #ef4444; border-color: rgba(230,36,41,0.2); }
-    .card .title { font-weight: 700; font-size: 0.95rem; color: #f8fafc; margin-bottom: 0.15rem; }
-    .card .desc { font-size: 0.75rem; color: #9ca3af; line-height: 1.4; margin-bottom: 0.5rem; }
+    .card .title { font-weight: 700; font-size: 0.85rem; color: #f8fafc; margin-bottom: 0.1rem; }
+    .card .desc { font-size: 0.7rem; color: #9ca3af; line-height: 1.3; margin-bottom: 0.4rem; }
+    .card .resource-links {
+      display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.4rem;
+    }
+    .card .resource-links a {
+      font-size: 0.6rem; color: #60a5fa; text-decoration: none;
+      background: rgba(255,255,255,0.04); padding: 0.05rem 0.5rem; border-radius: 40px;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: 0.15s;
+    }
+    .card .resource-links a:hover { background: #e62429; color: #fff; border-color: #e62429; }
     .card .actions {
       display: flex; justify-content: space-between; align-items: center;
-      border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.5rem; margin-top: 0.1rem;
+      border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.4rem; margin-top: 0.1rem;
     }
     .card .actions .check-wrap {
-      display: flex; align-items: center; gap: 0.3rem; font-size: 0.65rem; color: #9ca3af;
+      display: flex; align-items: center; gap: 0.3rem; font-size: 0.6rem; color: #9ca3af;
     }
     .card .actions .check-wrap input[type="checkbox"] {
-      width: 15px; height: 15px; accent-color: #e62429; cursor: pointer;
-    }
-    .card .actions .detail-btn {
-      background: transparent; border: 1px solid rgba(255,255,255,0.08); color: #9ca3af;
-      padding: 0.1rem 0.7rem; border-radius: 40px; font-size: 0.6rem; font-weight: 600;
-      cursor: pointer; transition: 0.15s;
-    }
-    .card .actions .detail-btn:hover { background: #e62429; border-color: #e62429; color: #fff; }
-
-    /* video link */
-    .video-link {
-      display: inline-block; background: rgba(255,255,255,0.05); padding: 0.1rem 0.7rem;
-      border-radius: 40px; font-size: 0.65rem; color: #e8e8e8; text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.08); transition: 0.15s;
-    }
-    .video-link i { color: #e62429; margin-right: 0.25rem; }
-    .video-link:hover { background: #e62429; border-color: #e62429; color: #fff; }
-    .video-link:hover i { color: #fff; }
-    .video-meta { font-size: 0.6rem; color: #6b7280; margin-bottom: 0.4rem; }
-    .video-meta i { color: #e62429; }
-
-    /* Resources / docs link */
-    .docs-link {
-      display: inline-block; font-size: 0.6rem; color: #60a5fa;
-      text-decoration: none; margin-right: 0.4rem; transition: 0.15s;
-    }
-    .docs-link i { margin-right: 0.15rem; }
-    .docs-link:hover { color: #93bbfc; text-decoration: underline; }
-
-    /* ----- ROADMAP ----- */
-    .roadmap-container {
-      display: flex; flex-direction: column; gap: 1.2rem; padding: 0.5rem 0;
-    }
-    .roadmap-row {
-      display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
-    }
-    .roadmap-node {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px; padding: 1rem 1.4rem; flex: 1; min-width: 140px;
-      text-align: center; transition: 0.2s; backdrop-filter: blur(4px);
-    }
-    .roadmap-node:hover { border-color: #e62429; }
-    .roadmap-node .node-icon { font-size: 1.6rem; color: #e62429; margin-bottom: 0.2rem; }
-    .roadmap-node .node-title { font-weight: 700; font-size: 0.85rem; color: #f8fafc; }
-    .roadmap-node .node-desc { font-size: 0.65rem; color: #9ca3af; margin-top: 0.1rem; }
-    .roadmap-arrow { color: #e62429; font-size: 1.2rem; flex-shrink: 0; opacity: 0.5; }
-    @media (max-width: 700px) {
-      .roadmap-row { flex-direction: column; align-items: stretch; }
-      .roadmap-arrow { transform: rotate(90deg); text-align: center; }
+      width: 14px; height: 14px; accent-color: #e62429; cursor: pointer;
     }
 
-    /* ----- ERRORS (Spider-Man theme) ----- */
-    .sev-tag {
-      font-size: 0.5rem; font-weight: 700; padding: 0.05rem 0.6rem; border-radius: 40px; margin-left: 0.3rem;
-    }
-    .sev-high { background: #7f1d1d; color: #fca5a5; }
-    .sev-medium { background: #78350f; color: #fcd34d; }
-    .sev-low { background: #064e3b; color: #6ee7b7; }
-    .spidey-badge {
-      font-size: 0.65rem; color: #60a5fa; margin-left: 0.4rem;
-    }
-
-    /* ----- STATS PAGE ----- */
+    /* ----- STATS ----- */
     .stats-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem;
-      margin: 1rem 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; margin: 0.5rem 0;
     }
     .stat-card {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px; padding: 1rem; text-align: center;
+      border-radius: 14px; padding: 0.8rem; text-align: center;
     }
-    .stat-card .number { font-size: 2rem; font-weight: 900; color: #e62429; }
-    .stat-card .label { font-size: 0.7rem; color: #9ca3af; margin-top: 0.2rem; }
+    .stat-card .number { font-size: 1.6rem; font-weight: 900; color: #e62429; }
+    .stat-card .label { font-size: 0.6rem; color: #9ca3af; margin-top: 0.1rem; }
 
     /* ----- NOTEPAD ----- */
     .notepad-area {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px; padding: 1rem; margin-top: 1rem;
+      border-radius: 14px; padding: 0.8rem; margin-top: 0.5rem;
     }
     .notepad-area textarea {
       width: 100%; background: transparent; border: none; color: #e8e8e8;
-      font-family: 'Inter', sans-serif; font-size: 0.85rem; resize: vertical;
-      min-height: 120px; outline: none; padding: 0.2rem;
+      font-family: 'Inter', sans-serif; font-size: 0.8rem; resize: vertical;
+      min-height: 100px; outline: none; padding: 0.2rem;
     }
     .notepad-area textarea::placeholder { color: #6b7280; }
 
-    /* ----- SEARCH ----- */
-    .search-box {
-      display: flex; gap: 0.5rem; margin-bottom: 1.2rem;
+    /* ----- ROADMAP (mini) ----- */
+    .roadmap-mini {
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0;
     }
-    .search-box input {
-      flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 40px; padding: 0.5rem 1.2rem; color: #e8e8e8; font-size: 0.85rem;
-      outline: none; transition: 0.2s;
+    .roadmap-mini .item {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 40px; padding: 0.15rem 0.7rem; font-size: 0.6rem;
+      color: #9ca3af; display: flex; align-items: center; gap: 0.3rem;
     }
-    .search-box input:focus { border-color: #e62429; }
-    .search-box input::placeholder { color: #6b7280; }
+    .roadmap-mini .item i { color: #e62429; }
 
-    /* ----- FOOTER ----- */
-    .footer {
-      margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.04);
-      padding-top: 0.8rem; display: flex; justify-content: space-between;
-      flex-wrap: wrap; font-size: 0.65rem; color: #4b5563;
-    }
-
-    /* Confetti */
+    /* ----- CONFETTI ----- */
     .confetti-container {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none; z-index: 9999; overflow: hidden;
     }
     .confetti-piece {
-      position: absolute; width: 8px; height: 8px; border-radius: 2px;
+      position: absolute; width: 6px; height: 6px; border-radius: 2px;
       animation: confetti-fall linear forwards;
     }
     @keyframes confetti-fall {
@@ -318,33 +330,42 @@
       100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
     }
 
-    @media (max-width: 600px) {
-      .app { padding: 1rem; }
-      .header { flex-direction: column; align-items: stretch; }
-      .header-actions { justify-content: space-between; width: 100%; }
-      .start-btn { width: 100%; justify-content: center; }
+    .footer {
+      margin-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.04);
+      padding-top: 0.6rem; display: flex; justify-content: space-between;
+      flex-wrap: wrap; font-size: 0.55rem; color: #4b5563;
+    }
+
+    @media (max-width: 450px) {
+      .app { padding: 0.8rem; }
+      .header { gap: 0.4rem; }
+      .logo h1 { font-size: 1.1rem; }
       .grid-2 { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+      .start-btn { font-size: 0.9rem; padding: 0.6rem 1.2rem; }
+      .tabs { gap: 0.1rem; }
+      .tab-btn { padding: 0.2rem 0.6rem; font-size: 0.6rem; }
       .today-highlight { flex-direction: column; align-items: stretch; }
       .today-highlight .link { text-align: center; justify-content: center; }
-      .tabs { overflow-x: auto; flex-wrap: nowrap; gap: 0.2rem; }
-      .tab-btn { white-space: nowrap; padding: 0.3rem 0.8rem; font-size: 0.7rem; }
-      .roadmap-node { min-width: 120px; padding: 0.8rem 1rem; }
     }
   </style>
 </head>
 <body>
 <div class="app" id="app">
+  <!-- Animated Spider -->
+  <div class="spider-float"><i class="fas fa-spider"></i></div>
+  <div class="web-lines"></div>
 
   <!-- HEADER -->
   <header class="header">
     <div class="logo">
       <i class="fas fa-spider"></i>
       <h1>Spidey·ML</h1>
-      <span class="badge">v2.0</span>
+      <span class="badge">v2</span>
     </div>
     <div class="header-actions">
-      <div class="streak-box"><i class="fas fa-fire"></i> <span id="streakDisplay">0</span>d</div>
-      <div class="level-box" id="levelBadge">🌱 Novice</div>
+      <div class="streak-box"><i class="fas fa-fire"></i> <span id="streakDisplay">0</span></div>
+      <div class="level-box" id="levelBadge">🌱</div>
       <div class="progress-stats">
         <span><strong id="doneCount">0</strong>/<span id="totalCount">0</span></span>
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="mainProgress"></div></div>
@@ -352,52 +373,44 @@
     </div>
   </header>
 
-  <!-- START BUTTON -->
+  <!-- START BUTTON (Web Slinger) -->
   <div class="start-wrap">
-    <button class="start-btn" id="startBtn"><i class="fas fa-bolt"></i> Start Today's Win</button>
+    <button class="start-btn" id="startBtn"><i class="fas fa-bolt"></i> Web Slinger – Start Today</button>
   </div>
 
   <!-- TODAY'S PICK -->
   <div class="today-highlight" id="todayHighlight">
     <div>
-      <div class="label"><i class="fas fa-star"></i> Today's Focus</div>
+      <div class="label"><i class="fas fa-star"></i> Daily Web Pick</div>
       <div class="title" id="todayTitle">Loading...</div>
-      <div class="desc" id="todayDesc">Hit "Start" to get a recommendation</div>
+      <div class="desc" id="todayDesc">Tap the button to get a resource</div>
     </div>
-    <a href="#" id="todayLink" class="link" target="_blank">Open <i class="fas fa-arrow-right"></i></a>
+    <a href="#" id="todayLink" class="link" target="_blank">Read <i class="fas fa-arrow-right"></i></a>
   </div>
 
   <!-- SEARCH -->
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="🔍 Search topics, videos, datasets..." />
+    <input type="text" id="searchInput" placeholder="🔍 Search topics, resources..." />
   </div>
 
   <!-- TABS -->
   <div class="tabs">
-    <button class="tab-btn active" data-panel="curriculum"><i class="fas fa-graduation-cap"></i> Topics</button>
-    <button class="tab-btn" data-panel="youtube"><i class="fab fa-youtube"></i> Videos</button>
-    <button class="tab-btn" data-panel="datasets"><i class="fas fa-database"></i> Datasets</button>
-    <button class="tab-btn" data-panel="errors"><i class="fas fa-bug"></i> Errors</button>
-    <button class="tab-btn" data-panel="roadmap"><i class="fas fa-map-signs"></i> Roadmap</button>
+    <button class="tab-btn active" data-panel="topics"><i class="fas fa-graduation-cap"></i> Topics</button>
+    <button class="tab-btn" data-panel="resources"><i class="fas fa-link"></i> All Links</button>
     <button class="tab-btn" data-panel="stats"><i class="fas fa-chart-pie"></i> Stats</button>
-    <button class="tab-btn" data-panel="notepad"><i class="fas fa-pen"></i> Notepad</button>
+    <button class="tab-btn" data-panel="notepad"><i class="fas fa-pen"></i> Notes</button>
   </div>
 
   <!-- PANELS -->
-  <div class="panel active" id="panel-curriculum"><div class="grid-2" id="theoryGrid"></div></div>
-  <div class="panel" id="panel-youtube"><div class="grid-2" id="youtubeGrid"></div></div>
-  <div class="panel" id="panel-datasets"><div class="grid-2" id="projectGrid"></div></div>
-  <div class="panel" id="panel-errors"><div class="grid-2" id="errorGrid"></div></div>
-  <div class="panel" id="panel-roadmap"><div class="roadmap-container" id="roadmapContainer"></div></div>
+  <div class="panel active" id="panel-topics"><div class="grid-2" id="topicsGrid"></div></div>
+  <div class="panel" id="panel-resources"><div class="grid-2" id="resourcesGrid"></div></div>
   <div class="panel" id="panel-stats">
     <div class="stats-grid" id="statsGrid"></div>
-    <div style="margin-top:1rem; font-size:0.8rem; color:#9ca3af;">
-      <i class="fas fa-chart-simple"></i> Keep going – every check brings you closer to mastery!
-    </div>
+    <div class="roadmap-mini" id="roadmapMini"></div>
   </div>
   <div class="panel" id="panel-notepad">
     <div class="notepad-area">
-      <textarea id="notepadContent" placeholder="Write your notes here... (auto-saved)"></textarea>
+      <textarea id="notepadContent" placeholder="📝 Jot down your thoughts, code snippets, or questions..."></textarea>
     </div>
   </div>
 
@@ -412,137 +425,98 @@
 
 <script>
   // ============================================================
-  // DATA – Practical, job-ready, with docs links
+  //  DATA – All resources from the reading list
   // ============================================================
-
-  // Theory with docs/links (GFG fallback to TDS, Real Python, etc.)
-  const THEORY_DATA = [
-    { id: 't1', title: 'Python for Data', cat: 'Foundation', desc: 'Pandas, NumPy, Matplotlib – daily drivers.',
-      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/python-programming-language/' },
-             { label: 'Real Python', url: 'https://realpython.com/' }] },
-    { id: 't2', title: 'SQL for Data', cat: 'Foundation', desc: 'Joins, aggregations, window functions – interview必备.',
-      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/sql-tutorial/' },
-             { label: 'W3Schools', url: 'https://www.w3schools.com/sql/' }] },
-    { id: 't3', title: 'Stats You Actually Use', cat: 'Foundation', desc: 'Mean, median, distributions, p-values (practical).',
-      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/statistics/' },
-             { label: 'Khan Academy', url: 'https://www.khanacademy.org/math/statistics-probability' }] },
-    { id: 't4', title: 'Classical ML', cat: 'Core', desc: 'Regression, trees, random forest, XGBoost.',
-      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/machine-learning/' },
-             { label: 'Scikit-learn', url: 'https://scikit-learn.org/stable/' }] },
-    { id: 't5', title: 'Feature Engineering', cat: 'Core', desc: 'One-hot, scaling, binning, interaction terms.',
-      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/feature-engineering/' },
-             { label: 'TDS', url: 'https://towardsdatascience.com/tagged/feature-engineering' }] },
-    { id: 't6', title: 'Model Evaluation', cat: 'Core', desc: 'Cross-val, ROC-AUC, confusion matrix, business metrics.',
-      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/model-evaluation-metrics/' },
-             { label: 'TDS', url: 'https://towardsdatascience.com/tagged/model-evaluation' }] },
-    { id: 't7', title: 'Deep Learning (Practical)', cat: 'Advanced', desc: 'CNNs, RNNs, Transfer Learning – applied.',
-      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/deep-learning/' },
-             { label: 'PyTorch', url: 'https://pytorch.org/tutorials/' }] },
-    { id: 't8', title: 'NLP & LLMs (Job-Ready)', cat: 'Advanced', desc: 'BERT, GPT, RAG, fine-tuning – what employers want.',
-      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/natural-language-processing-nlp/' },
-             { label: 'Hugging Face', url: 'https://huggingface.co/learn' }] },
-    { id: 't9', title: 'MLOps & Deployment', cat: 'Advanced', desc: 'Flask, Docker, MLflow, monitoring – ship it.',
-      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/mlops/' },
-             { label: 'MLflow', url: 'https://mlflow.org/docs/latest/index.html' }] },
-    { id: 't10', title: 'Dashboard & Storytelling', cat: 'Core', desc: 'Streamlit, Power BI, Tableau – business impact.',
-      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/data-visualization/' },
-             { label: 'Streamlit', url: 'https://docs.streamlit.io/' }] }
+  const TOPICS = [
+    {
+      id: 't1',
+      title: 'Feature Engineering',
+      cat: 'Core',
+      desc: 'Turn raw data into model-ready features.',
+      resources: [
+        { label: 'GFG – What is FE?', url: 'https://www.geeksforgeeks.org/machine-learning/what-is-feature-engineering/' },
+        { label: 'TDS – Techniques', url: 'https://towardsdatascience.com/feature-engineering-techniques-bab6cb39ed7e/' },
+        { label: 'Kaggle Video', url: 'https://www.youtube.com/watch?v=0Wgt6ofPbOc' }
+      ]
+    },
+    {
+      id: 't2',
+      title: 'Model Evaluation',
+      cat: 'Core',
+      desc: 'Know if your model actually works.',
+      resources: [
+        { label: 'GFG – Evaluation', url: 'https://www.geeksforgeeks.org/machine-learning/machine-learning-model-evaluation/' },
+        { label: 'GFG – Metrics', url: 'https://www.geeksforgeeks.org/machine-learning/metrics-for-machine-learning-model/' },
+        { label: 'GFG – Model Selection', url: 'https://www.geeksforgeeks.org/machine-learning/model-selection-for-machine-learning/' },
+        { label: 'Quiz – Test Yourself', url: 'https://www.geeksforgeeks.org/quizzes/model-evaluation-Techniques-in-machine-learning/' }
+      ]
+    },
+    {
+      id: 't3',
+      title: 'Deep Learning',
+      cat: 'Advanced',
+      desc: 'Neural networks for real-world problems.',
+      resources: [
+        { label: 'GFG – DL Tutorial', url: 'https://www.geeksforgeeks.org/deep-learning/deep-learning-tutorial/' },
+        { label: 'GFG – DL Projects', url: 'https://www.geeksforgeeks.org/deep-learning/deep-learning-projects-with-source-code/' },
+        { label: 'Learn PyTorch', url: 'https://www.learnpytorch.io/' },
+        { label: 'PyTorch 1H – Raschka', url: 'https://sebastianraschka.com/teaching/pytorch-1h/' }
+      ]
+    },
+    {
+      id: 't4',
+      title: 'Natural Language Processing',
+      cat: 'Advanced',
+      desc: 'Make machines understand language.',
+      resources: [
+        { label: 'GFG – NLP Tutorial', url: 'https://www.geeksforgeeks.org/nlp/natural-language-processing-nlp-tutorial/' },
+        { label: 'GFG – NLP Projects', url: 'https://www.geeksforgeeks.org/nlp/top-natural-language-processing-nlp-projects/' },
+        { label: 'Hugging Face Course', url: 'https://huggingface.co/learn' }
+      ]
+    },
+    {
+      id: 't5',
+      title: 'MLOps & MLflow',
+      cat: 'Advanced',
+      desc: 'Deploy, monitor, and scale models.',
+      resources: [
+        { label: 'IBM – MLOps Guide', url: 'https://www.ibm.com/think/topics/mlops' },
+        { label: 'GFG – MLOps Intro', url: 'https://www.geeksforgeeks.org/machine-learning/what-is-mlops/' },
+        { label: 'GFG – MLflow Tutorial', url: 'https://www.geeksforgeeks.org/machine-learning/machine-learning-with-mlflow/' },
+        { label: 'MLflow Docs', url: 'https://mlflow.org/docs/latest/index.html' }
+      ]
+    },
+    {
+      id: 't6',
+      title: 'Data Visualization',
+      cat: 'Core',
+      desc: 'Tell stories with data.',
+      resources: [
+        { label: 'IBM – Guide', url: 'https://www.ibm.com/think/topics/data-visualization' },
+        { label: 'GFG – Visualization', url: 'https://www.geeksforgeeks.org/data-visualization/' },
+        { label: 'Streamlit Docs', url: 'https://docs.streamlit.io/' }
+      ]
+    },
+    {
+      id: 't7',
+      title: 'Python & SQL',
+      cat: 'Foundation',
+      desc: 'The backbone of data science.',
+      resources: [
+        { label: 'Real Python', url: 'https://realpython.com/' },
+        { label: 'W3Schools SQL', url: 'https://www.w3schools.com/sql/' }
+      ]
+    }
   ];
 
-  // YouTube – ordered learning path
-  const YOUTUBE_DATA = [
-    { id: 'yt1', title: 'Python for Data Science (freeCodeCamp)', cat: 'Foundation',
-      video: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI', channel: 'freeCodeCamp', duration: '~4h' },
-    { id: 'yt2', title: 'SQL for Data Analytics (Alex The Analyst)', cat: 'Foundation',
-      video: 'https://www.youtube.com/watch?v=7S_tz1z_5bA', channel: 'Alex The Analyst', duration: '~3h' },
-    { id: 'yt3', title: 'Logistic Regression (StatQuest)', cat: 'Core',
-      video: 'https://www.youtube.com/watch?v=yIYKR4sgzI8', channel: 'StatQuest', duration: '~10min' },
-    { id: 'yt4', title: 'Decision Trees & Random Forest (StatQuest)', cat: 'Core',
-      video: 'https://www.youtube.com/watch?v=7VeUPuFGJHk', channel: 'StatQuest', duration: '~15min' },
-    { id: 'yt5', title: 'XGBoost (StatQuest)', cat: 'Core',
-      video: 'https://www.youtube.com/watch?v=ZVFeW798-2I', channel: 'StatQuest', duration: '~12min' },
-    { id: 'yt6', title: 'Feature Engineering (Kaggle)', cat: 'Core',
-      video: 'https://www.youtube.com/watch?v=0Wgt6ofPbOc', channel: 'Kaggle', duration: '~45min' },
-    { id: 'yt7', title: 'Neural Networks (3B1B)', cat: 'Advanced',
-      video: 'https://www.youtube.com/watch?v=aircAruvnKk', channel: '3Blue1Brown', duration: '~20min' },
-    { id: 'yt8', title: 'CNNs (StatQuest)', cat: 'Advanced',
-      video: 'https://www.youtube.com/watch?v=HGwBXDKFk9I', channel: 'StatQuest', duration: '~10min' },
-    { id: 'yt9', title: 'Transformers (3B1B)', cat: 'Advanced',
-      video: 'https://www.youtube.com/watch?v=eMlx5fFNoYc', channel: '3Blue1Brown', duration: '~16min' },
-    { id: 'yt10', title: 'BERT (StatQuest)', cat: 'Advanced',
-      video: 'https://www.youtube.com/watch?v=0MJRdVyQvRM', channel: 'StatQuest', duration: '~10min' },
-    { id: 'yt11', title: 'RAG in 10 min (LangChain)', cat: 'Advanced',
-      video: 'https://www.youtube.com/watch?v=wd7TZ4w1mSw', channel: 'LangChain', duration: '~10min' },
-    { id: 'yt12', title: 'GPT (StatQuest)', cat: 'Advanced',
-      video: 'https://www.youtube.com/watch?v=5vY2_5Gm_6g', channel: 'StatQuest', duration: '~8min' },
-    { id: 'yt13', title: 'MLOps (Chip Huyen)', cat: 'Advanced',
-      video: 'https://www.youtube.com/watch?v=06-AZXmwHjo', channel: 'Chip Huyen', duration: '~30min' },
-    { id: 'yt14', title: 'Deploy ML with Flask (Krish Naik)', cat: 'Advanced',
-      video: 'https://www.youtube.com/watch?v=7q4NpP1L9cE', channel: 'Krish Naik', duration: '~2h' }
-  ];
-
-  // Datasets
-  const PROJECT_DATA = [
-    { id: 'p1', title: 'Titanic', cat: 'tabular', desc: 'Survival prediction – classic starter.' },
-    { id: 'p2', title: 'Iris', cat: 'tabular', desc: '3-species classification – quick win.' },
-    { id: 'p3', title: 'Boston Housing', cat: 'tabular', desc: 'House price prediction – regression.' },
-    { id: 'p4', title: 'Wine Quality', cat: 'tabular', desc: 'Wine score prediction – multiclass.' },
-    { id: 'p5', title: 'Breast Cancer (Wisconsin)', cat: 'tabular', desc: 'Diagnostic binary classification.' },
-    { id: 'p6', title: 'California Housing', cat: 'tabular', desc: 'Median house value – geospatial.' },
-    { id: 'p7', title: 'Forest Cover Type', cat: 'tabular', desc: 'Multiclass cartographic classification.' },
-    { id: 'p8', title: 'MNIST', cat: 'vision', desc: 'Handwritten digit recognition – CNN intro.' },
-    { id: 'p9', title: 'Fashion-MNIST', cat: 'vision', desc: 'Clothing classification – slightly harder.' },
-    { id: 'p10', title: 'CIFAR-10', cat: 'vision', desc: 'Object recognition – transfer learning.' },
-    { id: 'p11', title: 'IMDB Reviews', cat: 'nlp', desc: 'Sentiment analysis – NLP starter.' },
-    { id: 'p12', title: 'Spam/Ham', cat: 'nlp', desc: 'SMS classification – text preprocessing.' },
-    { id: 'p13', title: 'Twitter Sentiment', cat: 'nlp', desc: 'Real‑world tweet sentiment – BERT.' },
-    { id: 'p14', title: 'Stock Prices', cat: 'timeseries', desc: 'Forecast – ARIMA vs LSTM.' },
-    { id: 'p15', title: 'Air Quality', cat: 'timeseries', desc: 'PM2.5 forecasting – multivariate.' },
-    { id: 'p16', title: 'Human Activity Recognition', cat: 'timeseries', desc: 'Sensor data – 1D-CNN.' },
-    { id: 'p17', title: 'Customer Segmentation', cat: 'other', desc: 'Clustering – K-means, PCA.' },
-    { id: 'p18', title: 'Credit Card Fraud', cat: 'other', desc: 'Imbalanced classification – SMOTE.' },
-    { id: 'p19', title: 'COCO (subset)', cat: 'vision', desc: 'Object detection – YOLO.' },
-    { id: 'p20', title: 'KITTI', cat: 'vision', desc: 'Autonomous driving – point clouds.' }
-  ];
-
-  // Errors – enhanced with Spider-Man quotes
-  const ERROR_DATA = [
-    { id: 'e1', title: 'KeyError: column not found', severity: 'low', desc: 'Column typo or missing.',
-      fix: 'Print df.columns to see available names. With great power comes great responsibility – check your spelling!' },
-    { id: 'e2', title: 'ValueError: shapes not aligned', severity: 'high', desc: 'Matrix dimensions mismatch.',
-      fix: 'Use .shape. Ensure columns match rows. "Your friendly neighborhood debugger" – check dimensions.' },
-    { id: 'e3', title: 'CUDA Out of Memory', severity: 'high', desc: 'GPU ran out of RAM.',
-      fix: 'Reduce batch size or use gradient accumulation. "With great memory comes great responsibility" – downsize.' },
-    { id: 'e4', title: 'MemoryError (RAM)', severity: 'high', desc: 'Dataset too large for RAM.',
-      fix: 'Use chunksize or reduce dtype precision. "Spidey senses tingling – use a smaller chunk!"' },
-    { id: 'e5', title: 'ConvergenceWarning', severity: 'medium', desc: 'Model failed to converge.',
-      fix: 'Increase max_iter or scale features. "Persistence is key – keep iterating!"' },
-    { id: 'e6', title: 'AttributeError: module has no attr', severity: 'medium', desc: 'Typo or deprecated function.',
-      fix: 'Check library docs for updated names. "Your spidey senses – check the docs!"' },
-    { id: 'e7', title: 'UndefinedMetricWarning', severity: 'low', desc: 'F1 undefined due to no predictions.',
-      fix: 'Add zero_division=0 in f1_score. "Even heroes need a fallback – set zero_division."' },
-    { id: 'e8', title: 'IndexError: list index out of range', severity: 'medium', desc: 'Accessing empty list or wrong index.',
-      fix: 'Check len() before access. "With great indexing comes great responsibility – check the length!"' }
-  ];
-
-  // Roadmap
-  const ROADMAP_DATA = [
-    { icon: 'fa-code', title: 'Python & SQL', desc: 'Data wrangling' },
-    { icon: 'fa-chart-bar', title: 'Stats & EDA', desc: 'Explore & understand' },
-    { icon: 'fa-robot', title: 'Classical ML', desc: 'Regression, Trees, XGBoost' },
-    { icon: 'fa-microchip', title: 'Deep Learning', desc: 'CNN, RNN, Transfer' },
-    { icon: 'fa-language', title: 'NLP & LLMs', desc: 'BERT, RAG, Fine-tuning' },
-    { icon: 'fa-gears', title: 'MLOps & Deploy', desc: 'Ship & monitor' }
-  ];
-
-  // Combine for daily pick
-  const ALL_ITEMS = [...THEORY_DATA, ...YOUTUBE_DATA, ...PROJECT_DATA];
+  // Flatten all resources for the "All Links" tab
+  const ALL_RESOURCES = TOPICS.flatMap(t => t.resources.map(r => ({ ...r, topic: t.title, topicId: t.id })));
 
   // ============================================================
-  // STATE
+  //  STATE MANAGEMENT
   // ============================================================
   function getChecked(prefix) {
-    try { return JSON.parse(localStorage.getItem('mlhub_' + prefix)) || []; } catch (e) { return []; }
+    try { return JSON.parse(localStorage.getItem('mlhub_' + prefix)) || []; } catch(e) { return []; }
   }
   function setChecked(prefix, arr) {
     localStorage.setItem('mlhub_' + prefix, JSON.stringify(arr));
@@ -577,229 +551,168 @@
 
   function getLevel(done, total) {
     const pct = total > 0 ? done/total : 0;
-    if (pct < 0.2) return { emoji: '🌱', name: 'Novice' };
-    if (pct < 0.4) return { emoji: '📘', name: 'Learner' };
-    if (pct < 0.6) return { emoji: '🚀', name: 'Explorer' };
-    if (pct < 0.8) return { emoji: '⚡', name: 'Pro' };
-    return { emoji: '🏆', name: 'Master' };
+    if (pct < 0.2) return '🌱';
+    if (pct < 0.4) return '📘';
+    if (pct < 0.6) return '🚀';
+    if (pct < 0.8) return '⚡';
+    return '🏆';
   }
 
   function updateProgress() {
-    const tDone = getChecked('theory').length;
-    const yDone = getChecked('youtube').length;
-    const pDone = getChecked('project').length;
-    const total = THEORY_DATA.length + YOUTUBE_DATA.length + PROJECT_DATA.length;
-    const done = tDone + yDone + pDone;
+    const allIds = ALL_RESOURCES.map(r => r.url);
+    const checked = getChecked('resource');
+    const done = checked.filter(id => allIds.includes(id)).length;
+    const total = allIds.length;
     document.getElementById('doneCount').textContent = done;
     document.getElementById('totalCount').textContent = total;
     document.getElementById('mainProgress').style.width = (done/total*100) + '%';
-    const lv = getLevel(done, total);
-    document.getElementById('levelBadge').textContent = lv.emoji + ' ' + lv.name;
+    document.getElementById('levelBadge').textContent = getLevel(done, total);
     return { done, total };
   }
 
   // ============================================================
-  // CONFETTI
+  //  CONFETTI
   // ============================================================
   function fireConfetti() {
     const container = document.getElementById('confettiBox');
     const colors = ['#e62429', '#f97316', '#fbbf24', '#22c55e', '#3b82f6', '#8b5cf6'];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 40; i++) {
       const p = document.createElement('div');
       p.className = 'confetti-piece';
       p.style.left = Math.random() * 100 + '%';
       p.style.background = colors[Math.floor(Math.random() * colors.length)];
-      p.style.width = (Math.random() * 6 + 4) + 'px';
-      p.style.height = (Math.random() * 6 + 4) + 'px';
-      p.style.animationDuration = (Math.random() * 1.8 + 0.8) + 's';
-      p.style.animationDelay = (Math.random() * 0.4) + 's';
+      p.style.width = (Math.random() * 5 + 3) + 'px';
+      p.style.height = (Math.random() * 5 + 3) + 'px';
+      p.style.animationDuration = (Math.random() * 1.5 + 0.8) + 's';
+      p.style.animationDelay = (Math.random() * 0.3) + 's';
       container.appendChild(p);
-      setTimeout(() => p.remove(), 3000);
+      setTimeout(() => p.remove(), 2500);
     }
   }
 
   // ============================================================
-  // RENDER (with search filtering)
+  //  RENDER
   // ============================================================
-  function renderTheory(filter = '') {
-    const grid = document.getElementById('theoryGrid');
-    const items = THEORY_DATA.filter(t => t.title.toLowerCase().includes(filter) || t.desc.toLowerCase().includes(filter));
-    grid.innerHTML = items.map(item => `
+  function renderTopics(filter = '') {
+    const grid = document.getElementById('topicsGrid');
+    const items = TOPICS.filter(t => t.title.toLowerCase().includes(filter) || t.desc.toLowerCase().includes(filter));
+    grid.innerHTML = items.map(t => `
       <div class="card">
-        <div class="badge-cat red">${item.cat}</div>
-        <div class="title">${item.title}</div>
-        <div class="desc">${item.desc}</div>
-        <div style="margin-bottom:0.4rem;">
-          ${item.docs.map(d => `<a href="${d.url}" target="_blank" class="docs-link"><i class="fas fa-link"></i> ${d.label}</a>`).join('')}
+        <div class="badge-cat red">${t.cat}</div>
+        <div class="title">${t.title}</div>
+        <div class="desc">${t.desc}</div>
+        <div class="resource-links">
+          ${t.resources.map(r => `<a href="${r.url}" target="_blank">${r.label}</a>`).join('')}
         </div>
         <div class="actions">
           <div class="check-wrap">
-            <input type="checkbox" class="theory-cb" data-id="${item.id}" ${isChecked('theory', item.id) ? 'checked' : ''} />
-            <span>Done</span>
+            <input type="checkbox" class="resource-cb" data-url="${t.resources[0].url}" ${isChecked('resource', t.resources[0].url) ? 'checked' : ''} />
+            <span>Read</span>
           </div>
         </div>
       </div>
     `).join('');
-    document.querySelectorAll('.theory-cb').forEach(cb => {
-      cb.addEventListener('change', function() {
-        toggleCheck('theory', this.dataset.id);
-        updateProgress(); fireConfetti();
-      });
-    });
+    attachCheckEvents();
   }
 
-  function renderYoutube(filter = '') {
-    const grid = document.getElementById('youtubeGrid');
-    const items = YOUTUBE_DATA.filter(t => t.title.toLowerCase().includes(filter) || t.channel.toLowerCase().includes(filter));
-    grid.innerHTML = items.map(item => `
+  function renderAllResources(filter = '') {
+    const grid = document.getElementById('resourcesGrid');
+    const items = ALL_RESOURCES.filter(r => r.label.toLowerCase().includes(filter) || r.topic.toLowerCase().includes(filter));
+    grid.innerHTML = items.map(r => `
       <div class="card">
-        <div class="badge-cat">${item.cat}</div>
-        <div class="title">${item.title}</div>
-        <div class="video-meta"><i class="fab fa-youtube"></i> ${item.channel} · ${item.duration}</div>
-        <div style="margin-bottom:0.5rem;">
-          <a href="${item.video}" target="_blank" class="video-link"><i class="fab fa-youtube"></i> Watch</a>
+        <div class="badge-cat">${r.topic}</div>
+        <div class="title">${r.label}</div>
+        <div class="desc" style="font-size:0.6rem;color:#6b7280;">${r.url}</div>
+        <div style="margin:0.3rem 0;">
+          <a href="${r.url}" target="_blank" style="color:#60a5fa;font-size:0.7rem;text-decoration:none;background:rgba(255,255,255,0.04);padding:0.1rem 0.6rem;border-radius:40px;border:1px solid rgba(255,255,255,0.06);">Open Link</a>
         </div>
         <div class="actions">
           <div class="check-wrap">
-            <input type="checkbox" class="youtube-cb" data-id="${item.id}" ${isChecked('youtube', item.id) ? 'checked' : ''} />
-            <span>Watched</span>
+            <input type="checkbox" class="resource-cb" data-url="${r.url}" ${isChecked('resource', r.url) ? 'checked' : ''} />
+            <span>Read</span>
           </div>
         </div>
       </div>
     `).join('');
-    document.querySelectorAll('.youtube-cb').forEach(cb => {
-      cb.addEventListener('change', function() {
-        toggleCheck('youtube', this.dataset.id);
-        updateProgress(); fireConfetti();
-      });
+    attachCheckEvents();
+  }
+
+  function attachCheckEvents() {
+    document.querySelectorAll('.resource-cb').forEach(cb => {
+      cb.removeEventListener('change', handleCheck);
+      cb.addEventListener('change', handleCheck);
     });
   }
 
-  function renderProjects(filter = '') {
-    const grid = document.getElementById('projectGrid');
-    const items = PROJECT_DATA.filter(t => t.title.toLowerCase().includes(filter) || t.desc.toLowerCase().includes(filter));
-    grid.innerHTML = items.map(item => `
-      <div class="card">
-        <div class="badge-cat">${item.cat}</div>
-        <div class="title">${item.title}</div>
-        <div class="desc">${item.desc}</div>
-        <div class="actions">
-          <div class="check-wrap">
-            <input type="checkbox" class="project-cb" data-id="${item.id}" ${isChecked('project', item.id) ? 'checked' : ''} />
-            <span>Done</span>
-          </div>
-        </div>
-      </div>
-    `).join('');
-    document.querySelectorAll('.project-cb').forEach(cb => {
-      cb.addEventListener('change', function() {
-        toggleCheck('project', this.dataset.id);
-        updateProgress(); fireConfetti();
-      });
-    });
-  }
-
-  function renderErrors() {
-    const grid = document.getElementById('errorGrid');
-    grid.innerHTML = ERROR_DATA.map(item => {
-      const sevClass = item.severity === 'high' ? 'sev-high' : item.severity === 'medium' ? 'sev-medium' : 'sev-low';
-      return `
-        <div class="card">
-          <div class="badge-cat">${item.severity.toUpperCase()} <span class="sev-tag ${sevClass}">${item.severity}</span>
-            <span class="spidey-badge"><i class="fas fa-spider"></i></span>
-          </div>
-          <div class="title">${item.title}</div>
-          <div class="desc"><strong>Cause:</strong> ${item.desc}</div>
-          <div class="desc" style="color:#fcd34d;"><strong>Fix:</strong> ${item.fix}</div>
-        </div>
-      `;
-    }).join('');
-  }
-
-  function renderRoadmap() {
-    const container = document.getElementById('roadmapContainer');
-    let html = '';
-    for (let i = 0; i < ROADMAP_DATA.length; i++) {
-      const node = ROADMAP_DATA[i];
-      html += `<div class="roadmap-node">
-                <div class="node-icon"><i class="fas ${node.icon}"></i></div>
-                <div class="node-title">${node.title}</div>
-                <div class="node-desc">${node.desc}</div>
-              </div>`;
-      if (i < ROADMAP_DATA.length - 1) html += `<div class="roadmap-arrow"><i class="fas fa-arrow-right"></i></div>`;
-    }
-    container.innerHTML = `<div class="roadmap-row">${html}</div>`;
+  function handleCheck(e) {
+    const url = this.dataset.url;
+    toggleCheck('resource', url);
+    updateProgress();
+    fireConfetti();
   }
 
   function renderStats() {
     const grid = document.getElementById('statsGrid');
-    const tDone = getChecked('theory').length;
-    const yDone = getChecked('youtube').length;
-    const pDone = getChecked('project').length;
-    const total = THEORY_DATA.length + YOUTUBE_DATA.length + PROJECT_DATA.length;
-    const done = tDone + yDone + pDone;
+    const allIds = ALL_RESOURCES.map(r => r.url);
+    const checked = getChecked('resource');
+    const done = checked.filter(id => allIds.includes(id)).length;
+    const total = allIds.length;
     const pct = total > 0 ? Math.round(done/total*100) : 0;
     grid.innerHTML = `
-      <div class="stat-card"><div class="number">${done}</div><div class="label">Completed</div></div>
-      <div class="stat-card"><div class="number">${total}</div><div class="label">Total Items</div></div>
+      <div class="stat-card"><div class="number">${done}</div><div class="label">Read</div></div>
+      <div class="stat-card"><div class="number">${total}</div><div class="label">Total</div></div>
       <div class="stat-card"><div class="number">${pct}%</div><div class="label">Progress</div></div>
       <div class="stat-card"><div class="number">${getStreak()}</div><div class="label">Day Streak</div></div>
-      <div class="stat-card"><div class="number">${THEORY_DATA.length}</div><div class="label">Topics</div></div>
-      <div class="stat-card"><div class="number">${YOUTUBE_DATA.length}</div><div class="label">Videos</div></div>
-      <div class="stat-card"><div class="number">${PROJECT_DATA.length}</div><div class="label">Datasets</div></div>
+      <div class="stat-card"><div class="number">${TOPICS.length}</div><div class="label">Topics</div></div>
+      <div class="stat-card"><div class="number">${ALL_RESOURCES.length}</div><div class="label">Resources</div></div>
     `;
+    // Roadmap mini
+    const roadmap = document.getElementById('roadmapMini');
+    roadmap.innerHTML = TOPICS.map(t => `
+      <span class="item"><i class="fas fa-check-circle" style="color:${isChecked('resource', t.resources[0]?.url) ? '#22c55e' : '#6b7280'}"></i> ${t.title}</span>
+    `).join('');
   }
 
   // ============================================================
-  // TODAY'S PICK (date-based)
+  //  TODAY'S PICK (date-based)
   // ============================================================
   function getTodaysPick() {
     const today = new Date().toDateString();
     let hash = 0;
     for (let i = 0; i < today.length; i++) { hash = ((hash << 5) - hash) + today.charCodeAt(i); hash |= 0; }
-    const idx = Math.abs(hash) % ALL_ITEMS.length;
-    return ALL_ITEMS[idx];
+    const idx = Math.abs(hash) % ALL_RESOURCES.length;
+    return ALL_RESOURCES[idx];
   }
 
   function updateTodayPick() {
-    const item = getTodaysPick();
-    document.getElementById('todayTitle').textContent = item.title;
-    document.getElementById('todayDesc').textContent = item.desc || (item.channel ? `From ${item.channel}` : '');
-    let link = '#';
-    if (item.video) link = item.video;
-    else if (item.id && item.id.startsWith('t')) link = 'https://www.geeksforgeeks.org/';
-    else link = '#';
-    document.getElementById('todayLink').href = link;
+    const pick = getTodaysPick();
+    document.getElementById('todayTitle').textContent = pick.label;
+    document.getElementById('todayDesc').textContent = `From topic: ${pick.topic}`;
+    document.getElementById('todayLink').href = pick.url;
   }
 
   // ============================================================
-  // START BUTTON
+  //  START BUTTON
   // ============================================================
   document.getElementById('startBtn').addEventListener('click', function() {
-    const item = getTodaysPick();
-    if (item.video) {
-      window.open(item.video, '_blank');
-      fireConfetti();
-      document.getElementById('todayTitle').textContent = '🔥 You started!';
-      document.getElementById('todayDesc').textContent = `Opened: ${item.title}`;
-    } else {
-      alert(`Today's focus: ${item.title}\nGo to the "${item.cat || 'general'}" section and dive in!`);
-      fireConfetti();
-    }
+    const pick = getTodaysPick();
+    window.open(pick.url, '_blank');
+    fireConfetti();
+    document.getElementById('todayTitle').textContent = '🕸️ You started!';
+    document.getElementById('todayDesc').textContent = `Reading: ${pick.label}`;
   });
 
   // ============================================================
-  // SEARCH
+  //  SEARCH
   // ============================================================
   document.getElementById('searchInput').addEventListener('input', function() {
     const q = this.value.toLowerCase().trim();
-    renderTheory(q);
-    renderYoutube(q);
-    renderProjects(q);
+    renderTopics(q);
+    renderAllResources(q);
   });
 
   // ============================================================
-  // NOTEPAD (auto-save)
+  //  NOTEPAD
   // ============================================================
   const notepad = document.getElementById('notepadContent');
   notepad.value = localStorage.getItem('mlhub_notepad') || '';
@@ -808,7 +721,7 @@
   });
 
   // ============================================================
-  // TABS
+  //  TABS
   // ============================================================
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -822,15 +735,12 @@
   });
 
   // ============================================================
-  // BOOT
+  //  BOOT
   // ============================================================
   function init() {
     updateStreak();
-    renderTheory();
-    renderYoutube();
-    renderProjects();
-    renderErrors();
-    renderRoadmap();
+    renderTopics();
+    renderAllResources();
     renderStats();
     updateProgress();
     updateTodayPick();
