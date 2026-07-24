@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>AI/DS Learning Engine</title>
+    <title>AI/DS · Interactive Engine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
@@ -34,7 +34,6 @@
             background: #4f46e5;
             border-radius: 8px;
         }
-
         .app {
             max-width: 1280px;
             width: 100%;
@@ -79,25 +78,6 @@
             gap: 1rem;
             flex-wrap: wrap;
         }
-        .daily-btn {
-            background: rgba(79, 70, 229, 0.15);
-            border: 1px solid rgba(79, 70, 229, 0.3);
-            color: #a5b4fc;
-            padding: 0.5rem 1.2rem;
-            border-radius: 100px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-        .daily-btn:hover {
-            background: #4f46e5;
-            color: #fff;
-            border-color: #4f46e5;
-        }
         .progress-stats {
             display: flex;
             align-items: center;
@@ -136,13 +116,14 @@
             margin-bottom: 2rem;
             border-bottom: 1px solid #1e293b;
             padding-bottom: 0.5rem;
+            flex-wrap: wrap;
         }
         .tab-btn {
             background: transparent;
             border: none;
             padding: 0.6rem 1.6rem;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #64748b;
             border-radius: 40px;
             cursor: pointer;
@@ -180,35 +161,6 @@
             }
         }
 
-        /* Filters */
-        .filter-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.8rem;
-        }
-        .filter-btn {
-            background: #1e293b;
-            border: 1px solid transparent;
-            padding: 0.4rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #94a3b8;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-        .filter-btn:hover {
-            border-color: #4f46e5;
-            color: #e2e8f0;
-        }
-        .filter-btn.active {
-            background: #4f46e5;
-            color: #fff;
-            border-color: #4f46e5;
-        }
-
-        /* Grids */
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -223,7 +175,6 @@
             padding: 1.5rem;
             transition: all 0.2s;
             cursor: default;
-            position: relative;
         }
         .card:hover {
             border-color: #4f46e5;
@@ -320,7 +271,88 @@
             color: #fff;
         }
 
-        /* Daily Dose Modal */
+        /* Error Cards specific */
+        .error-severity {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.15rem 0.8rem;
+            border-radius: 40px;
+            margin-left: 0.5rem;
+        }
+        .sev-high {
+            background: #b91c1c;
+            color: #fecaca;
+        }
+        .sev-medium {
+            background: #b45309;
+            color: #fde68a;
+        }
+        .sev-low {
+            background: #065f46;
+            color: #a7f3d0;
+        }
+
+        /* Roadmap Visual */
+        .roadmap-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+        .roadmap-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .roadmap-node {
+            background: #1a2639;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 1.2rem 1.8rem;
+            flex: 1;
+            min-width: 160px;
+            text-align: center;
+            transition: 0.2s;
+            position: relative;
+        }
+        .roadmap-node:hover {
+            border-color: #818cf8;
+        }
+        .roadmap-node .node-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
+            color: #818cf8;
+        }
+        .roadmap-node .node-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .roadmap-node .node-desc {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-top: 0.2rem;
+        }
+        .roadmap-arrow {
+            color: #4f46e5;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .roadmap-arrow .fa-arrow-right {
+            display: inline;
+        }
+        @media (max-width: 700px) {
+            .roadmap-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .roadmap-arrow {
+                transform: rotate(90deg);
+                text-align: center;
+            }
+        }
+
+        /* Modals */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -328,7 +360,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
@@ -342,8 +374,10 @@
             background: #1a2639;
             border: 1px solid #334155;
             border-radius: 32px;
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
             padding: 2rem;
             box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
             animation: fadeUp 0.25s ease;
@@ -356,7 +390,7 @@
             background: none;
             border: none;
             color: #94a3b8;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             cursor: pointer;
         }
         .modal-box .close-modal:hover {
@@ -364,8 +398,8 @@
         }
         .modal-box h2 {
             font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, #a5b4fc, #818cf8);
+            margin-bottom: 0.3rem;
+            background: linear-gradient(to right, #f8fafc, #a5b4fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -374,48 +408,37 @@
             margin-bottom: 1.5rem;
             font-size: 0.9rem;
         }
-        .modal-box .modal-body p {
-            background: #0f172a;
-            padding: 1.2rem;
-            border-radius: 16px;
-            border-left: 4px solid #4f46e5;
-            line-height: 1.7;
-            color: #e2e8f0;
-            font-size: 0.95rem;
-        }
-        .modal-box .modal-body .tag {
-            display: inline-block;
-            background: #4f46e5;
-            padding: 0.2rem 1rem;
-            border-radius: 40px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-top: 1rem;
-            color: #fff;
-        }
-
-        /* Project Deep Dive (inside card or modal) - we'll use a detail modal */
-        .project-steps-list {
-            margin-top: 0.8rem;
-        }
-        .project-steps-list li {
-            list-style: none;
-            font-size: 0.8rem;
-            padding: 0.3rem 0;
-            border-bottom: 1px solid #1e293b;
+        .modal-box .modal-body p,
+        .modal-box .modal-body li {
             color: #cbd5e1;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .modal-box .modal-body ul {
+            list-style: none;
+            padding: 0;
+        }
+        .modal-box .modal-body ul li {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #1e293b;
             display: flex;
             gap: 0.8rem;
             align-items: baseline;
         }
-        .project-steps-list li i {
+        .modal-box .modal-body ul li i {
             color: #818cf8;
-            width: 16px;
-            font-size: 0.7rem;
-            margin-top: 0.2rem;
+            width: 18px;
+        }
+        .modal-box .modal-body .section-label {
+            font-weight: 700;
+            color: #e2e8f0;
+            margin: 1rem 0 0.5rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        /* Footer */
         .footer {
             margin-top: 2.5rem;
             border-top: 1px solid #1e293b;
@@ -426,10 +449,6 @@
             gap: 0.5rem;
             font-size: 0.75rem;
             color: #475569;
-        }
-        .footer a {
-            color: #818cf8;
-            text-decoration: none;
         }
 
         @media (max-width: 600px) {
@@ -454,23 +473,23 @@
             .tab-btn {
                 white-space: nowrap;
                 padding: 0.4rem 1rem;
-                font-size: 0.8rem;
+                font-size: 0.75rem;
+            }
+            .modal-box {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-
     <div class="app" id="app">
 
-        <!-- HEADER -->
         <header class="header">
             <div class="logo-area">
-                <i class="fas fa-microchip"></i>
+                <i class="fas fa-brain"></i>
                 <h1>DS·ML Engine</h1>
             </div>
             <div class="header-actions">
-                <button class="daily-btn" id="dailyDoseBtn"><i class="fas fa-dice-d6"></i> Daily Dose</button>
                 <div class="progress-stats">
                     <span><strong id="doneCount">0</strong> / <span id="totalCount">0</span></span>
                     <div class="progress-bar-bg"><div class="progress-bar-fill" id="mainProgress"></div></div>
@@ -478,52 +497,46 @@
             </div>
         </header>
 
-        <!-- TABS -->
         <div class="tabs">
-            <button class="tab-btn active" data-panel="theory"><i class="fas fa-graduation-cap"></i> Curriculum</button>
-            <button class="tab-btn" data-panel="projects"><i class="fas fa-database"></i> Datasets</button>
+            <button class="tab-btn active" data-panel="curriculum"><i class="fas fa-graduation-cap"></i> Curriculum</button>
+            <button class="tab-btn" data-panel="datasets"><i class="fas fa-database"></i> Datasets</button>
+            <button class="tab-btn" data-panel="errors"><i class="fas fa-bug"></i> Error Lab</button>
+            <button class="tab-btn" data-panel="roadmap"><i class="fas fa-map-signs"></i> Roadmap</button>
         </div>
 
-        <!-- PANEL: THEORY -->
-        <div class="panel active" id="panel-theory">
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
-                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600;"><i class="fas fa-layer-group"></i> Foundation</span>
-                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600;"><i class="fas fa-cogs"></i> Core</span>
-                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600;"><i class="fas fa-rocket"></i> Advanced</span>
-            </div>
+        <!-- PANEL 1: CURRICULUM -->
+        <div class="panel active" id="panel-curriculum">
             <div class="grid-2" id="theoryGrid"></div>
         </div>
 
-        <!-- PANEL: PROJECTS -->
-        <div class="panel" id="panel-projects">
-            <div class="filter-bar" id="filterBar">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="tabular">Tabular</button>
-                <button class="filter-btn" data-filter="vision">Vision</button>
-                <button class="filter-btn" data-filter="nlp">NLP</button>
-                <button class="filter-btn" data-filter="timeseries">Time Series</button>
-                <button class="filter-btn" data-filter="other">Other</button>
-            </div>
+        <!-- PANEL 2: DATASETS -->
+        <div class="panel" id="panel-datasets">
             <div class="grid-2" id="projectGrid"></div>
         </div>
 
-        <!-- FOOTER -->
+        <!-- PANEL 3: ERROR LAB -->
+        <div class="panel" id="panel-errors">
+            <div class="grid-2" id="errorGrid"></div>
+        </div>
+
+        <!-- PANEL 4: ROADMAP -->
+        <div class="panel" id="panel-roadmap">
+            <div class="roadmap-container" id="roadmapContainer"></div>
+        </div>
+
         <div class="footer">
             <span><i class="far fa-calendar-alt"></i> Built for Yashit · PIET CSE'28</span>
-            <span><i class="fas fa-sync-alt"></i> Progress auto-saved</span>
+            <span><i class="fas fa-sync-alt"></i> Auto-saved progress</span>
         </div>
     </div>
 
-    <!-- DAILY DOSE MODAL -->
-    <div class="modal-overlay" id="dailyModal">
+    <!-- COURSE DETAIL MODAL -->
+    <div class="modal-overlay" id="courseModal">
         <div class="modal-box">
-            <button class="close-modal" id="closeDailyModal">&times;</button>
-            <h2><i class="fas fa-dice-d6"></i> Daily Dose</h2>
-            <div class="modal-sub">Random concept to sharpen your edge.</div>
-            <div class="modal-body" id="dailyBody">
-                <p>Loading...</p>
-                <span class="tag">#random</span>
-            </div>
+            <button class="close-modal" id="closeCourseModal">&times;</button>
+            <h2 id="courseModalTitle">Course Title</h2>
+            <div class="modal-sub" id="courseModalDesc">Description</div>
+            <div class="modal-body" id="courseModalBody"></div>
         </div>
     </div>
 
@@ -531,120 +544,153 @@
     <div class="modal-overlay" id="projectModal">
         <div class="modal-box">
             <button class="close-modal" id="closeProjectModal">&times;</button>
-            <h2 id="projectModalTitle">Project Name</h2>
+            <h2 id="projectModalTitle">Project</h2>
             <div class="modal-sub" id="projectModalDesc">Description</div>
             <div class="modal-body">
-                <div style="font-weight:600; font-size:0.8rem; color:#94a3b8; margin-bottom:0.5rem;"><i class="fas fa-list-check"></i> Full ML Pipeline</div>
-                <ul class="project-steps-list" id="projectModalSteps"></ul>
+                <div class="section-label"><i class="fas fa-list-check"></i> Standard ML Pipeline</div>
+                <ul id="projectModalSteps"></ul>
             </div>
         </div>
     </div>
 
     <script>
         // ============================================================
-        // DATA
+        //  DATA
         // ============================================================
+
+        // THEORY with detailed course info
         const THEORY_DATA = [{
             id: 't1',
             title: 'Python & Data Toolkit',
             cat: 'Foundation',
             desc: 'Pandas, NumPy, Matplotlib, Seaborn.',
-            links: [
-                { label: 'GFG', url: 'https://www.geeksforgeeks.org/python-programming-language/' },
-                { label: 'StatQuest', url: 'https://www.youtube.com/c/StatQuest' }
-            ]
+            links: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/python-programming-language/' }],
+            course: {
+                overview: 'Master the essential Python libraries for data manipulation, visualization, and numerical computing.',
+                resources: ['Pandas Official Docs', 'NumPy Quickstart', 'Matplotlib Gallery'],
+                videos: ['StatQuest: Pandas', 'Corey Schafer: NumPy'],
+                project: 'Analyze a CSV dataset (e.g., sales data) using Pandas and create 5 insightful plots with Matplotlib/Seaborn.'
+            }
         }, {
             id: 't2',
             title: 'Statistics & Probability',
             cat: 'Foundation',
             desc: 'Descriptive, distributions, hypothesis testing.',
-            links: [
-                { label: 'GFG', url: 'https://www.geeksforgeeks.org/statistics/' },
-                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=qBigTkBLU6g' }
-            ]
+            links: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/statistics/' }],
+            course: {
+                overview: 'Understand the mathematical backbone of ML: mean, variance, distributions, p-values, and confidence intervals.',
+                resources: ['Khan Academy Stats', 'StatQuest PDF'],
+                videos: ['StatQuest: Statistics Fundamentals', '3Blue1Brown: Probability'],
+                project: 'Perform A/B testing on a dummy dataset. Calculate p-values and draw conclusions.'
+            }
         }, {
             id: 't3',
             title: 'Classical Machine Learning',
             cat: 'Core',
             desc: 'Regression, classification, clustering, ensembles.',
-            links: [
-                { label: 'GFG', url: 'https://www.geeksforgeeks.org/machine-learning/' },
-                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=Gv9_4yMHFhI' }
-            ]
+            links: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/machine-learning/' }],
+            course: {
+                overview: 'Dive into Linear/Logistic Regression, Decision Trees, Random Forest, XGBoost, and K-Means.',
+                resources: ['Scikit-learn docs', 'ML Cheatsheet'],
+                videos: ['StatQuest: ML Playlist', 'Andrew Ng CS229'],
+                project: 'Build a classification pipeline on the Titanic dataset. Compare Logistic Regression vs Random Forest.'
+            }
         }, {
             id: 't4',
             title: 'Time Series Analysis',
             cat: 'Core',
             desc: 'ARIMA, SARIMA, Prophet, LSTMs.',
-            links: [
-                { label: 'GFG', url: 'https://www.geeksforgeeks.org/time-series-analysis/' },
-                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=8SQCY9b8K8E' }
-            ]
+            links: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/time-series-analysis/' }],
+            course: {
+                overview: 'Learn to handle date/time data, decompose trends/seasonality, and forecast using statistical and deep learning methods.',
+                resources: ['Forecasting: Principles and Practice', 'Prophet docs'],
+                videos: ['StatQuest: Time Series', 'Sentdex: LSTM Time Series'],
+                project: 'Forecast the next 30 days of a stock price using ARIMA and an LSTM. Compare RMSE.'
+            }
         }, {
             id: 't5',
             title: 'Deep Learning',
             cat: 'Advanced',
             desc: 'ANN, CNNs, RNNs, Transformers, Attention.',
-            links: [
-                { label: 'GFG', url: 'https://www.geeksforgeeks.org/deep-learning/' },
-                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=aircAruvnKk' }
-            ]
+            links: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/deep-learning/' }],
+            course: {
+                overview: 'Neural networks from scratch: backpropagation, CNNs for images, RNNs for sequences, and the revolutionary Transformer architecture.',
+                resources: ['Deep Learning Book (Goodfellow)', 'PyTorch Tutorials'],
+                videos: ['3Blue1Brown: Neural Networks', 'Andrej Karpathy: Zero to Hero'],
+                project: 'Train a CNN on CIFAR-10. Then swap the classifier head and fine-tune a pretrained ResNet.'
+            }
         }, {
             id: 't6',
             title: 'Natural Language Processing',
             cat: 'Advanced',
             desc: 'Tokenization, embeddings, BERT, GPT.',
-            links: [
-                { label: 'GFG', url: 'https://www.geeksforgeeks.org/natural-language-processing-nlp/' },
-                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=5YdXGGSiyRU' }
-            ]
+            links: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/natural-language-processing-nlp/' }],
+            course: {
+                overview: 'Go from bag-of-words to state-of-the-art transformers. Understand attention, fine-tuning, and prompt engineering.',
+                resources: ['Hugging Face Course', 'Speech and Language Processing'],
+                videos: ['StatQuest: NLP', 'Andrej Karpathy: GPT from scratch'],
+                project: 'Fine-tune a DistilBERT model on a custom text classification dataset (e.g., sentiment analysis on tweets).'
+            }
         }, {
             id: 't7',
             title: 'Generative AI & LLMs',
             cat: 'Advanced',
             desc: 'Prompt engineering, RAG, fine-tuning.',
-            links: [
-                { label: 'GFG', url: 'https://www.geeksforgeeks.org/generative-ai/' },
-                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=5vY2_5Gm_6g' }
-            ]
+            links: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/generative-ai/' }],
+            course: {
+                overview: 'Explore the world of GenAI: text generation, image synthesis (Diffusion), RAG for Q&A, and parameter-efficient fine-tuning (LoRA).',
+                resources: ['OpenAI Cookbook', 'LangChain Docs'],
+                videos: ['Andrej Karpathy: State of GPT', 'Stanford CS324'],
+                project: 'Build a RAG pipeline using LangChain and a vector database (Chroma) to answer questions from your own PDF documents.'
+            }
         }, {
             id: 't8',
             title: 'ML Pipelines & MLOps',
             cat: 'Advanced',
             desc: 'DVC, MLflow, Kubeflow, monitoring.',
-            links: [
-                { label: 'GFG', url: 'https://www.geeksforgeeks.org/mlops/' },
-                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=6x8ZNCb4nSI' }
-            ]
+            links: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/mlops/' }],
+            course: {
+                overview: 'Bridge the gap between development and production. Learn versioning for data, model tracking, orchestration, and drift detection.',
+                resources: ['MLOps Zoomcamp', 'DVC docs'],
+                videos: ['DataTalksClub: MLOps', 'Chip Huyen: MLOps'],
+                project: 'Set up MLflow to log parameters/metrics. Implement a simple CI/CD pipeline for a model using GitHub Actions.'
+            }
         }, {
             id: 't9',
             title: 'Data Visualization',
             cat: 'Core',
             desc: 'Dash, Streamlit, Power BI, Tableau.',
-            links: [
-                { label: 'GFG', url: 'https://www.geeksforgeeks.org/data-visualization/' },
-                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=5ZtrSR7zL9Y' }
-            ]
+            links: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/data-visualization/' }],
+            course: {
+                overview: 'Transform raw data into compelling stories. Master static plots (Matplotlib/Seaborn) and interactive dashboards (Plotly/Streamlit).',
+                resources: ['Plotly docs', 'Streamlit Gallery'],
+                videos: ['Sentdex: Data Visualization', 'Streamlit Tutorial'],
+                project: 'Build an interactive dashboard for the Iris dataset using Streamlit, allowing users to filter species and see scatter plots.'
+            }
         }, {
             id: 't10',
             title: 'Data Engineering',
             cat: 'Advanced',
             desc: 'SQL, ETL, Spark, Kafka.',
-            links: [
-                { label: 'GFG', url: 'https://www.geeksforgeeks.org/data-engineering/' },
-                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=2p5wQ3mF3dQ' }
-            ]
+            links: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/data-engineering/' }],
+            course: {
+                overview: 'Understand the backbone of data science: reliable data pipelines. Work with large-scale data processing using Spark and real-time streams with Kafka.',
+                resources: ['Spark Documentation', 'Kafka Tutorial'],
+                videos: ['Data Engineering 101', 'Spark Summit Talks'],
+                project: 'Write a PySpark script to process a large log file, perform aggregations, and store the results in Parquet format.'
+            }
         }];
 
+        // PROJECTS (Datasets) with full pipeline steps
         const PROJECT_DATA = [{
             id: 'p1',
             title: 'Iris',
             cat: 'tabular',
             desc: 'Classic 3-species flower classification.',
             steps: [
-                '1. EDA & pairplots to visualize feature relationships.',
+                '1. Perform EDA: pairplots and correlation matrix.',
                 '2. Train Logistic Regression, KNN, and Decision Tree.',
-                '3. Evaluate using accuracy, confusion matrix, and classification report.'
+                '3. Evaluate using accuracy, confusion matrix, and F1-score.'
             ]
         }, {
             id: 'p2',
@@ -652,8 +698,8 @@
             cat: 'tabular',
             desc: 'Predict survival with feature engineering.',
             steps: [
-                '1. Handle missing values (Age, Cabin).',
-                '2. Feature engineering: Title, Family Size, Deck.',
+                '1. Handle missing values (Age, Cabin, Embarked).',
+                '2. Create new features: Title, FamilySize, Deck.',
                 '3. Compare Random Forest, XGBoost, and Logistic Regression.'
             ]
         }, {
@@ -662,7 +708,7 @@
             cat: 'tabular',
             desc: 'Median home value prediction.',
             steps: [
-                '1. Correlation analysis & feature selection.',
+                '1. Compute correlation matrix to select features.',
                 '2. Implement Linear, Ridge, and Lasso regression.',
                 '3. Evaluate using RMSE, MAE, and residual plots.'
             ]
@@ -674,7 +720,7 @@
             steps: [
                 '1. Preprocess (normalize, flatten).',
                 '2. Build a simple MLP and a CNN.',
-                '3. Visualize misclassified examples.'
+                '3. Visualize misclassified examples to spot patterns.'
             ]
         }, {
             id: 'p5',
@@ -684,7 +730,7 @@
             steps: [
                 '1. Use CNN with Dropout and BatchNorm.',
                 '2. Apply data augmentation (rotation, shift).',
-                '3. Compare performance with MNIST model.'
+                '3. Compare performance with the MNIST model.'
             ]
         }, {
             id: 'p6',
@@ -694,7 +740,7 @@
             steps: [
                 '1. Build a ResNet-style CNN.',
                 '2. Implement learning rate scheduling.',
-                '3. Plot training/validation loss curves.'
+                '3. Plot training/validation loss curves to detect overfitting.'
             ]
         }, {
             id: 'p7',
@@ -702,7 +748,7 @@
             cat: 'tabular',
             desc: 'Predict wine quality score (0-10).',
             steps: [
-                '1. Multiclass classification setup.',
+                '1. Setup for multiclass classification.',
                 '2. Handle imbalance using SMOTE.',
                 '3. Try SVM, Random Forest, and XGBoost.'
             ]
@@ -722,9 +768,9 @@
             cat: 'nlp',
             desc: 'SMS text classification.',
             steps: [
-                '1. Text preprocessing (lowercase, remove stopwords).',
+                '1. Text preprocessing (lowercase, remove stopwords, stem).',
                 '2. TF-IDF vectorization.',
-                '3. Naïve Bayes and SVM classifiers.'
+                '3. Compare Naïve Bayes and SVM classifiers.'
             ]
         }, {
             id: 'p10',
@@ -754,7 +800,7 @@
             steps: [
                 '1. Check stationarity (ADF test).',
                 '2. Fit ARIMA/SARIMA model.',
-                '3. Compare with LSTM forecast.'
+                '3. Compare with LSTM forecast and compute RMSE.'
             ]
         }, {
             id: 'p13',
@@ -763,7 +809,7 @@
             desc: 'PM2.5 pollutant forecasting.',
             steps: [
                 '1. Impute missing values using interpolation.',
-                '2. Multivariate LSTM (use weather data).',
+                '2. Build a multivariate LSTM (use weather data).',
                 '3. Evaluate using RMSE and MAE.'
             ]
         }, {
@@ -774,7 +820,7 @@
             steps: [
                 '1. Handle class imbalance (SMOTE, ADASYN).',
                 '2. Train Random Forest and XGBoost.',
-                '3. Focus on Precision-Recall AUC.'
+                '3. Focus on Precision-Recall AUC (not accuracy).'
             ]
         }, {
             id: 'p15',
@@ -783,8 +829,8 @@
             desc: 'Unsupervised customer clustering.',
             steps: [
                 '1. Scale features using StandardScaler.',
-                '2. K-means with Elbow & Silhouette analysis.',
-                '3. Visualize clusters with PCA.'
+                '2. Perform K-means with Elbow & Silhouette analysis.',
+                '3. Visualize clusters with PCA in 2D.'
             ]
         }, {
             id: 'p16',
@@ -803,7 +849,7 @@
             desc: 'Multiclass cartographic classification.',
             steps: [
                 '1. Feature scaling (MinMax).',
-                '2. Random Forest with class_weight.',
+                '2. Train Random Forest with class_weight.',
                 '3. Compute class-wise F1-score.'
             ]
         }, {
@@ -812,7 +858,7 @@
             cat: 'timeseries',
             desc: 'Sensor data (accelerometer).',
             steps: [
-                '1. Extract time-domain features (mean, std).',
+                '1. Extract time-domain features (mean, std, min, max).',
                 '2. Build 1D-CNN and LSTM.',
                 '3. Compare confusion matrices.'
             ]
@@ -838,22 +884,69 @@
             ]
         }];
 
-        // Daily dose phrases
-        const DAILY_DOSES = [
-            { concept: "Bias-Variance Tradeoff", desc: "High bias (underfitting) vs High variance (overfitting). Use cross-validation and regularization to find the sweet spot." },
-            { concept: "Gradient Descent", desc: "Optimization algorithm to minimize loss. Variants: Batch, Stochastic (SGD), Mini-batch. Learning rate is key." },
-            { concept: "Attention is All You Need", desc: "Transformers use self-attention to weigh input tokens. No RNNs. Parallelizable and state-of-the-art for NLP." },
-            { concept: "Confusion Matrix", desc: "A table to evaluate classification. TN, FP, FN, TP. Derives metrics: Precision, Recall, F1, Accuracy." },
-            { concept: "Principal Component Analysis (PCA)", desc: "Unsupervised dimensionality reduction. Finds orthogonal axes of maximum variance." },
-            { concept: "Regularization (L1/L2)", desc: "L1 (Lasso) yields sparse features. L2 (Ridge) shrinks weights evenly. Prevents overfitting." },
-            { concept: "Cross-Validation", desc: "K-Fold CV splits data into K folds. Trains K times, each on K-1 folds, validates on the held-out fold. Reduces variance." },
-            { concept: "Feature Engineering", desc: "Creating new features from raw data. Log transforms, polynomial features, domain-specific interactions." },
-            { concept: "LLM Fine-Tuning", desc: "Adapting pre-trained models (like Llama, GPT) to specific tasks using instruction tuning or PEFT (LoRA)." },
-            { concept: "MLOps Lifecycle", desc: "Data versioning, model registry, CI/CD, monitoring (drift detection), and retraining pipelines." }
+        // ERROR LAB DATA
+        const ERROR_DATA = [{
+            id: 'e1',
+            title: 'ValueError: shapes not aligned',
+            severity: 'high',
+            desc: 'Matrix dimensions do not match for dot product.',
+            fix: 'Print the shape of your arrays using .shape. Ensure the number of columns in the first matrix equals the number of rows in the second.',
+            code: 'X.shape = (100, 5), W.shape = (3, 1) -> Error. Fix: W.shape = (5, 1).'
+        }, {
+            id: 'e2',
+            title: 'CUDA Out of Memory (OOM)',
+            severity: 'high',
+            desc: 'GPU ran out of memory during training.',
+            fix: 'Reduce batch size, use gradient accumulation, or reduce model size (e.g., fewer layers). Use `torch.cuda.empty_cache()`.',
+            code: 'Batch size 64 -> OOM. Reduce to 32 or 16.'
+        }, {
+            id: 'e3',
+            title: 'ConvergenceWarning',
+            severity: 'medium',
+            desc: 'Logistic Regression failed to converge.',
+            fix: 'Increase the number of iterations (`max_iter`), or scale your features using StandardScaler.',
+            code: 'model = LogisticRegression(max_iter=1000).'
+        }, {
+            id: 'e4',
+            title: 'KeyError: Column not found',
+            severity: 'low',
+            desc: 'Trying to access a column that does not exist in the DataFrame.',
+            fix: 'Print `df.columns` to see available columns. Check for leading/trailing spaces in column names.',
+            code: 'df["Age "] vs df["Age"].'
+        }, {
+            id: 'e5',
+            title: 'AttributeError: module has no attribute',
+            severity: 'medium',
+            desc: 'Misspelled function or old version of the library.',
+            fix: 'Check the library docs. Sometimes functions are renamed (e.g., `sklearn.cross_validation` is now `sklearn.model_selection`).',
+            code: 'from sklearn.model_selection import train_test_split (not cross_validation).'
+        }, {
+            id: 'e6',
+            title: 'MemoryError (RAM)',
+            severity: 'high',
+            desc: 'Trying to load a dataset too large for RAM.',
+            fix: 'Use `chunksize` in `pd.read_csv()`, or use data types with less memory (e.g., `float32` instead of `float64`).',
+            code: 'df = pd.read_csv("large.csv", chunksize=10000).'
+        }, {
+            id: 'e7',
+            title: 'UndefinedMetricWarning',
+            severity: 'low',
+            desc: 'F1-score is undefined because no predicted samples.',
+            fix: 'Check your model predictions. The model might be predicting only one class. Add `zero_division=0` or 1.',
+            code: 'f1_score(y_true, y_pred, zero_division=0).'
+        }];
+
+        // ROADMAP DATA
+        const ROADMAP_DATA = [
+            { icon: 'fa-calculator', title: 'Foundation', desc: 'Python, Stats, SQL' },
+            { icon: 'fa-chart-line', title: 'Core ML', desc: 'Regression, Trees, Clustering' },
+            { icon: 'fa-microchip', title: 'Deep Learning', desc: 'CNN, RNN, Transformers' },
+            { icon: 'fa-robot', title: 'GenAI & LLMs', desc: 'RAG, Fine-tuning, Prompt' },
+            { icon: 'fa-gears', title: 'MLOps', desc: 'Pipelines, Monitoring' }
         ];
 
         // ============================================================
-        // STATE MANAGEMENT
+        //  STATE & HELPERS
         // ============================================================
         function getChecked(prefix) {
             try { return JSON.parse(localStorage.getItem('mlhub_' + prefix)) || []; } catch (e) { return []; }
@@ -875,11 +968,23 @@
             return getChecked(prefix).includes(id);
         }
 
+        function updateProgress() {
+            const theoryDone = getChecked('theory').length;
+            const projDone = getChecked('project').length;
+            const total = THEORY_DATA.length + PROJECT_DATA.length;
+            const done = theoryDone + projDone;
+            document.getElementById('doneCount').textContent = done;
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('mainProgress').style.width = (done / total * 100) + '%';
+        }
+
         // ============================================================
-        // RENDER FUNCTIONS
+        //  RENDER FUNCTIONS
         // ============================================================
         const theoryGrid = document.getElementById('theoryGrid');
         const projectGrid = document.getElementById('projectGrid');
+        const errorGrid = document.getElementById('errorGrid');
+        const roadmapContainer = document.getElementById('roadmapContainer');
 
         function renderTheory() {
             theoryGrid.innerHTML = THEORY_DATA.map(item => `
@@ -895,6 +1000,7 @@
                                 <input type="checkbox" class="theory-cb" data-id="${item.id}" ${isChecked('theory', item.id) ? 'checked' : ''} />
                                 <span>Completed</span>
                             </div>
+                            <button class="detail-btn course-detail-btn" data-id="${item.id}"><i class="fas fa-book-open"></i> Open Course</button>
                         </div>
                     </div>
                 `).join('');
@@ -905,12 +1011,19 @@
                     updateProgress();
                 });
             });
+
+            document.querySelectorAll('.course-detail-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    const topic = THEORY_DATA.find(t => t.id === id);
+                    if (topic) openCourseModal(topic);
+                });
+            });
         }
 
-        function renderProjects(filter = 'all') {
-            const filtered = filter === 'all' ? PROJECT_DATA : PROJECT_DATA.filter(p => p.cat === filter);
-            projectGrid.innerHTML = filtered.map(item => `
-                    <div class="card" data-id="${item.id}" data-cat="${item.cat}">
+        function renderProjects() {
+            projectGrid.innerHTML = PROJECT_DATA.map(item => `
+                    <div class="card" data-id="${item.id}">
                         <div class="badge-cat">${item.cat}</div>
                         <div class="title">${item.title}</div>
                         <div class="desc">${item.desc}</div>
@@ -919,7 +1032,7 @@
                                 <input type="checkbox" class="project-cb" data-id="${item.id}" ${isChecked('project', item.id) ? 'checked' : ''} />
                                 <span>Done</span>
                             </div>
-                            <button class="detail-btn" data-id="${item.id}"><i class="fas fa-chevron-circle-right"></i> Pipeline</button>
+                            <button class="detail-btn project-detail-btn" data-id="${item.id}"><i class="fas fa-list-check"></i> Pipeline</button>
                         </div>
                     </div>
                 `).join('');
@@ -931,7 +1044,7 @@
                 });
             });
 
-            document.querySelectorAll('.detail-btn').forEach(btn => {
+            document.querySelectorAll('.project-detail-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = this.dataset.id;
                     const project = PROJECT_DATA.find(p => p.id === id);
@@ -940,40 +1053,72 @@
             });
         }
 
-        function updateProgress() {
-            const theoryDone = getChecked('theory').length;
-            const projDone = getChecked('project').length;
-            const total = THEORY_DATA.length + PROJECT_DATA.length;
-            const done = theoryDone + projDone;
-            document.getElementById('doneCount').textContent = done;
-            document.getElementById('totalCount').textContent = total;
-            document.getElementById('mainProgress').style.width = (done / total * 100) + '%';
+        function renderErrors() {
+            errorGrid.innerHTML = ERROR_DATA.map(item => {
+                const sevClass = item.severity === 'high' ? 'sev-high' : item.severity === 'medium' ? 'sev-medium' :
+                    'sev-low';
+                return `
+                        <div class="card">
+                            <div class="badge-cat">${item.severity.toUpperCase()} <span class="error-severity ${sevClass}">${item.severity}</span></div>
+                            <div class="title">${item.title}</div>
+                            <div class="desc"><strong>Cause:</strong> ${item.desc}</div>
+                            <div class="desc" style="color:#fde68a;"><strong>Fix:</strong> ${item.fix}</div>
+                            <div style="background:#0f172a; padding:0.5rem; border-radius:8px; font-family:monospace; font-size:0.75rem; color:#a5b4fc; margin-top:0.5rem;">
+                                💡 ${item.code}
+                            </div>
+                        </div>
+                    `;
+            }).join('');
+        }
+
+        function renderRoadmap() {
+            let html = '';
+            for (let i = 0; i < ROADMAP_DATA.length; i++) {
+                const node = ROADMAP_DATA[i];
+                html += `<div class="roadmap-node">
+                            <div class="node-icon"><i class="fas ${node.icon}"></i></div>
+                            <div class="node-title">${node.title}</div>
+                            <div class="node-desc">${node.desc}</div>
+                        </div>`;
+                if (i < ROADMAP_DATA.length - 1) {
+                    html += `<div class="roadmap-arrow"><i class="fas fa-arrow-right"></i></div>`;
+                }
+            }
+            roadmapContainer.innerHTML = `<div class="roadmap-row">${html}</div>`;
         }
 
         // ============================================================
-        // MODALS
+        //  MODALS
         // ============================================================
-        const dailyModal = document.getElementById('dailyModal');
+        const courseModal = document.getElementById('courseModal');
         const projectModal = document.getElementById('projectModal');
 
-        document.getElementById('dailyDoseBtn').addEventListener('click', () => {
-            const dose = DAILY_DOSES[Math.floor(Math.random() * DAILY_DOSES.length)];
-            document.getElementById('dailyBody').innerHTML = `
-                    <p><strong>${dose.concept}</strong><br><br>${dose.desc}</p>
-                    <span class="tag"><i class="fas fa-lightbulb"></i> Today's Insight</span>
-                `;
-            dailyModal.classList.add('open');
-        });
-
-        document.getElementById('closeDailyModal').addEventListener('click', () => dailyModal.classList.remove('open'));
+        document.getElementById('closeCourseModal').addEventListener('click', () => courseModal.classList.remove('open'));
         document.getElementById('closeProjectModal').addEventListener('click', () => projectModal.classList.remove('open'));
 
-        dailyModal.addEventListener('click', (e) => {
-            if (e.target === dailyModal) dailyModal.classList.remove('open');
+        [courseModal, projectModal].forEach(m => {
+            m.addEventListener('click', (e) => {
+                if (e.target === m) m.classList.remove('open');
+            });
         });
-        projectModal.addEventListener('click', (e) => {
-            if (e.target === projectModal) projectModal.classList.remove('open');
-        });
+
+        function openCourseModal(topic) {
+            document.getElementById('courseModalTitle').textContent = topic.title;
+            document.getElementById('courseModalDesc').textContent = topic.course.overview;
+
+            const videosHtml = topic.course.videos.map(v => `<li><i class="fab fa-youtube"></i> ${v}</li>`).join('');
+            const resourcesHtml = topic.course.resources.map(r => `<li><i class="fas fa-file-alt"></i> ${r}</li>`).join('');
+
+            document.getElementById('courseModalBody').innerHTML = `
+                        <div class="section-label"><i class="fas fa-video"></i> Recommended Videos</div>
+                        <ul>${videosHtml}</ul>
+                        <div class="section-label"><i class="fas fa-book"></i> Reading / Resources</div>
+                        <ul>${resourcesHtml}</ul>
+                        <div class="section-label"><i class="fas fa-project-diagram"></i> Hands-on Mini Project</div>
+                        <p style="background:#0f172a; padding:1rem; border-radius:12px; border-left:4px solid #4f46e5;">${topic.course.project}</p>
+                    `;
+            courseModal.classList.add('open');
+        }
 
         function openProjectModal(project) {
             document.getElementById('projectModalTitle').textContent = project.title;
@@ -985,16 +1130,8 @@
         }
 
         // ============================================================
-        // FILTERS & TABS
+        //  TABS
         // ============================================================
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                renderProjects(this.dataset.filter);
-            });
-        });
-
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1005,12 +1142,13 @@
         });
 
         // ============================================================
-        // BOOT
+        //  BOOT
         // ============================================================
         renderTheory();
-        renderProjects('all');
+        renderProjects();
+        renderErrors();
+        renderRoadmap();
         updateProgress();
     </script>
-
 </body>
 </html>
