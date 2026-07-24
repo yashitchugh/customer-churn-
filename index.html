@@ -1,1026 +1,841 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>Dev·ML · Coder's Learning Engine</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <style>
-        /* ===== RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Inter', -apple-system, system-ui, sans-serif;
-            background: #0a0a0a;
-            color: #e8e8e8;
-            padding: 0.8rem;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #dc2626;
-            border-radius: 4px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🕷️ Spidey·ML – Coder's Learning Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #0a0a0a 0%, #1a0a1a 100%);
+      color: #e8e8e8;
+      min-height: 100vh;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #1a1a1a; }
+    ::-webkit-scrollbar-thumb { background: #e62429; border-radius: 4px; }
 
-        .app {
-            max-width: 1280px;
-            width: 100%;
-            background: #0f0f0f;
-            border-radius: 28px;
-            padding: 1.5rem 1.8rem 2rem;
-            box-shadow: 0 0 60px rgba(220, 38, 38, 0.06), 0 0 120px rgba(220, 38, 38, 0.03);
-            border: 1px solid rgba(220, 38, 38, 0.12);
-            position: relative;
-        }
+    .app {
+      max-width: 1300px;
+      width: 100%;
+      background: rgba(20, 10, 30, 0.6);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      padding: 1.8rem 2rem 2.2rem;
+      border: 1px solid rgba(230, 36, 41, 0.2);
+      box-shadow: 0 0 60px rgba(230, 36, 41, 0.05), 0 0 120px rgba(20, 10, 30, 0.8);
+      transition: all 0.3s;
+    }
 
-        /* ===== HEADER ===== */
-        .header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            gap: 0.8rem;
-        }
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-        }
-        .logo-area i {
-            font-size: 2rem;
-            color: #dc2626;
-            filter: drop-shadow(0 0 12px rgba(220, 38, 38, 0.3));
-        }
-        .logo-area h1 {
-            font-size: 1.5rem;
-            font-weight: 900;
-            letter-spacing: -0.04em;
-            background: linear-gradient(to right, #f8fafc, #9ca3af);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .logo-area .sub {
-            font-size: 0.6rem;
-            font-weight: 600;
-            color: #dc2626;
-            background: rgba(220, 38, 38, 0.15);
-            padding: 0.1rem 0.6rem;
-            border-radius: 40px;
-            margin-left: 0.2rem;
-            -webkit-text-fill-color: #dc2626;
-        }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-        }
-        .streak-box {
-            background: #1a1a1a;
-            padding: 0.2rem 0.9rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            border: 1px solid #2a2a2a;
-            color: #fbbf24;
-        }
-        .streak-box i {
-            color: #f59e0b;
-        }
-        .level-badge {
-            background: #dc2626;
-            padding: 0.2rem 0.9rem;
-            border-radius: 100px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: #fff;
-            box-shadow: 0 0 20px rgba(220, 38, 38, 0.25);
-        }
-        .progress-stats {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: #1a1a1a;
-            padding: 0.15rem 0.9rem 0.15rem 1rem;
-            border-radius: 100px;
-            border: 1px solid #2a2a2a;
-        }
-        .progress-stats span {
-            font-size: 0.7rem;
-            color: #9ca3af;
-        }
-        .progress-stats strong {
-            color: #f8fafc;
-        }
-        .progress-bar-bg {
-            width: 70px;
-            height: 4px;
-            background: #2a2a2a;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .progress-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #dc2626, #ef4444);
-            border-radius: 4px;
-            transition: width 0.4s ease;
-        }
+    /* ----- HEADER ----- */
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .logo i {
+      font-size: 2.2rem;
+      color: #e62429;
+      filter: drop-shadow(0 0 12px rgba(230,36,41,0.4));
+    }
+    .logo h1 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      background: linear-gradient(to right, #ffffff, #b0b0b0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .logo .badge {
+      font-size: 0.6rem;
+      background: #e62429;
+      padding: 0.15rem 0.6rem;
+      border-radius: 40px;
+      color: #fff;
+      font-weight: 700;
+      -webkit-text-fill-color: #fff;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .streak-box, .level-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.2rem 0.9rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #fbbf24;
+    }
+    .level-box {
+      background: #e62429;
+      border-color: #e62429;
+      color: #fff;
+    }
+    .progress-stats {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.15rem 0.9rem 0.15rem 1rem;
+      border-radius: 100px;
+    }
+    .progress-stats span { font-size: 0.7rem; color: #9ca3af; }
+    .progress-stats strong { color: #f8fafc; }
+    .progress-bar-bg {
+      width: 80px; height: 4px; background: #2a2a2a; border-radius: 4px; overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%; width: 0%; background: linear-gradient(90deg, #e62429, #f97316);
+      border-radius: 4px; transition: width 0.4s;
+    }
 
-        /* ===== BIG START BUTTON ===== */
-        .start-btn-wrap {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-        .start-btn {
-            background: linear-gradient(135deg, #dc2626, #b91c1c);
-            border: none;
-            padding: 0.8rem 2.6rem;
-            border-radius: 60px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: #fff;
-            cursor: pointer;
-            box-shadow: 0 0 40px rgba(220, 38, 38, 0.25);
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            animation: pulse-red 2s infinite;
-            letter-spacing: 0.02em;
-        }
-        .start-btn:hover {
-            transform: scale(1.04);
-            box-shadow: 0 0 60px rgba(220, 38, 38, 0.45);
-        }
-        @keyframes pulse-red {
-            0% { box-shadow: 0 0 20px rgba(220,38,38,0.2); }
-            50% { box-shadow: 0 0 50px rgba(220,38,38,0.5); }
-            100% { box-shadow: 0 0 20px rgba(220,38,38,0.2); }
-        }
+    /* ----- START BUTTON ----- */
+    .start-wrap {
+      display: flex; justify-content: center; margin-bottom: 1.5rem;
+    }
+    .start-btn {
+      background: linear-gradient(135deg, #e62429, #b91c1c);
+      border: none; padding: 0.8rem 2.8rem; border-radius: 60px;
+      font-size: 1.1rem; font-weight: 800; color: #fff;
+      cursor: pointer; box-shadow: 0 0 40px rgba(230,36,41,0.3);
+      transition: all 0.3s; display: flex; align-items: center; gap: 0.8rem;
+      animation: pulse 2s infinite;
+    }
+    .start-btn:hover { transform: scale(1.04); box-shadow: 0 0 60px rgba(230,36,41,0.5); }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 20px rgba(230,36,41,0.2); }
+      50% { box-shadow: 0 0 50px rgba(230,36,41,0.6); }
+      100% { box-shadow: 0 0 20px rgba(230,36,41,0.2); }
+    }
 
-        /* ===== TODAY'S HIGHLIGHT ===== */
-        .today-highlight {
-            background: #141414;
-            border: 1.5px solid #dc2626;
-            border-radius: 16px;
-            padding: 1rem 1.4rem;
-            margin-bottom: 1.8rem;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.8rem;
-            box-shadow: inset 0 0 40px rgba(220, 38, 38, 0.03);
-        }
-        .today-highlight .label {
-            font-size: 0.7rem;
-            color: #ef4444;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-        .today-highlight .title {
-            font-weight: 800;
-            font-size: 1.05rem;
-            color: #f8fafc;
-        }
-        .today-highlight .desc {
-            color: #9ca3af;
-            font-size: 0.8rem;
-        }
-        .today-highlight .link {
-            background: #dc2626;
-            color: #fff;
-            padding: 0.35rem 1.2rem;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.8rem;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            white-space: nowrap;
-        }
-        .today-highlight .link:hover {
-            background: #ef4444;
-            transform: scale(1.02);
-        }
+    /* ----- TODAY'S PICK ----- */
+    .today-highlight {
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(230,36,41,0.3);
+      border-radius: 16px; padding: 1rem 1.4rem; margin-bottom: 1.8rem;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 0.8rem; backdrop-filter: blur(8px);
+    }
+    .today-highlight .label { font-size: 0.7rem; color: #e62429; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .today-highlight .title { font-weight: 800; font-size: 1.05rem; color: #f8fafc; }
+    .today-highlight .desc { color: #9ca3af; font-size: 0.8rem; }
+    .today-highlight .link {
+      background: #e62429; color: #fff; padding: 0.35rem 1.4rem; border-radius: 40px;
+      text-decoration: none; font-weight: 700; font-size: 0.8rem;
+      transition: 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .today-highlight .link:hover { background: #f97316; transform: scale(1.02); }
 
-        /* ===== TABS ===== */
-        .tabs {
-            display: flex;
-            gap: 0.3rem;
-            margin-bottom: 1.4rem;
-            border-bottom: 1px solid #1e1e1e;
-            padding-bottom: 0.4rem;
-            flex-wrap: wrap;
-        }
-        .tab-btn {
-            background: transparent;
-            border: none;
-            padding: 0.35rem 1.1rem;
-            font-weight: 600;
-            font-size: 0.75rem;
-            color: #6b7280;
-            border-radius: 40px;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        .tab-btn:hover {
-            color: #e8e8e8;
-            background: #1a1a1a;
-        }
-        .tab-btn.active {
-            background: #dc2626;
-            color: #fff;
-            box-shadow: 0 0 20px rgba(220, 38, 38, 0.2);
-        }
-        .tab-btn.active i {
-            color: #fff;
-        }
+    /* ----- TABS ----- */
+    .tabs {
+      display: flex; gap: 0.3rem; margin-bottom: 1.4rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: transparent; border: none; padding: 0.35rem 1.1rem;
+      font-weight: 600; font-size: 0.75rem; color: #6b7280;
+      border-radius: 40px; cursor: pointer; transition: 0.2s;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .tab-btn:hover { color: #e8e8e8; background: rgba(255,255,255,0.05); }
+    .tab-btn.active { background: #e62429; color: #fff; box-shadow: 0 0 20px rgba(230,36,41,0.2); }
+    .tab-btn.active i { color: #fff; }
 
-        .panel {
-            display: none;
-            animation: fadeUp 0.25s ease;
-        }
-        .panel.active {
-            display: block;
-        }
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(6px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+    .panel { display: none; animation: fadeUp 0.25s ease; }
+    .panel.active { display: block; }
+    @keyframes fadeUp { 0% { opacity: 0; transform: translateY(6px); } 100% { opacity: 1; transform: translateY(0); } }
 
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 0.9rem;
-        }
+    .grid-2 {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0.9rem;
+    }
 
-        /* ===== CARDS ===== */
-        .card {
-            background: #141414;
-            border: 1px solid #222;
-            border-radius: 14px;
-            padding: 1rem 1.2rem;
-            transition: all 0.25s;
-            cursor: default;
-            position: relative;
-        }
-        .card:hover {
-            border-color: #dc2626;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-        }
-        .card .badge-cat {
-            font-size: 0.5rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            padding: 0.1rem 0.6rem;
-            border-radius: 40px;
-            background: #1e1e1e;
-            color: #9ca3af;
-            display: inline-block;
-            margin-bottom: 0.3rem;
-            border: 1px solid #2a2a2a;
-        }
-        .card .badge-cat.red {
-            background: rgba(220, 38, 38, 0.15);
-            color: #ef4444;
-            border-color: rgba(220, 38, 38, 0.2);
-        }
-        .card .title {
-            font-weight: 700;
-            font-size: 0.95rem;
-            margin-bottom: 0.15rem;
-            color: #f8fafc;
-        }
-        .card .desc {
-            font-size: 0.75rem;
-            color: #9ca3af;
-            line-height: 1.4;
-            margin-bottom: 0.5rem;
-        }
-        .card .actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #1e1e1e;
-            padding-top: 0.5rem;
-            margin-top: 0.1rem;
-        }
-        .card .actions .check-wrap {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            font-size: 0.65rem;
-            color: #9ca3af;
-        }
-        .card .actions .check-wrap input[type="checkbox"] {
-            width: 15px;
-            height: 15px;
-            accent-color: #dc2626;
-            cursor: pointer;
-        }
-        .card .actions .detail-btn {
-            background: transparent;
-            border: 1px solid #2a2a2a;
-            color: #9ca3af;
-            padding: 0.1rem 0.7rem;
-            border-radius: 40px;
-            font-size: 0.6rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-        .card .actions .detail-btn:hover {
-            background: #dc2626;
-            border-color: #dc2626;
-            color: #fff;
-        }
+    /* ----- CARDS (glass) ----- */
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 1rem 1.2rem;
+      transition: all 0.25s; cursor: default;
+      backdrop-filter: blur(4px);
+    }
+    .card:hover { border-color: rgba(230,36,41,0.4); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.6); }
+    .card .badge-cat {
+      font-size: 0.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 0.1rem 0.6rem; border-radius: 40px; background: rgba(255,255,255,0.06);
+      color: #9ca3af; display: inline-block; margin-bottom: 0.3rem;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .card .badge-cat.red { background: rgba(230,36,41,0.15); color: #ef4444; border-color: rgba(230,36,41,0.2); }
+    .card .title { font-weight: 700; font-size: 0.95rem; color: #f8fafc; margin-bottom: 0.15rem; }
+    .card .desc { font-size: 0.75rem; color: #9ca3af; line-height: 1.4; margin-bottom: 0.5rem; }
+    .card .actions {
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.5rem; margin-top: 0.1rem;
+    }
+    .card .actions .check-wrap {
+      display: flex; align-items: center; gap: 0.3rem; font-size: 0.65rem; color: #9ca3af;
+    }
+    .card .actions .check-wrap input[type="checkbox"] {
+      width: 15px; height: 15px; accent-color: #e62429; cursor: pointer;
+    }
+    .card .actions .detail-btn {
+      background: transparent; border: 1px solid rgba(255,255,255,0.08); color: #9ca3af;
+      padding: 0.1rem 0.7rem; border-radius: 40px; font-size: 0.6rem; font-weight: 600;
+      cursor: pointer; transition: 0.15s;
+    }
+    .card .actions .detail-btn:hover { background: #e62429; border-color: #e62429; color: #fff; }
 
-        /* ===== VIDEO LINK ===== */
-        .video-link {
-            display: inline-block;
-            background: #1a1a1a;
-            padding: 0.1rem 0.7rem;
-            border-radius: 40px;
-            font-size: 0.65rem;
-            color: #e8e8e8;
-            text-decoration: none;
-            border: 1px solid #2a2a2a;
-            transition: 0.15s;
-        }
-        .video-link i {
-            color: #dc2626;
-            margin-right: 0.25rem;
-        }
-        .video-link:hover {
-            background: #dc2626;
-            border-color: #dc2626;
-            color: #fff;
-        }
-        .video-link:hover i {
-            color: #fff;
-        }
-        .video-meta {
-            font-size: 0.6rem;
-            color: #6b7280;
-            margin-bottom: 0.4rem;
-        }
-        .video-meta i {
-            color: #dc2626;
-        }
+    /* video link */
+    .video-link {
+      display: inline-block; background: rgba(255,255,255,0.05); padding: 0.1rem 0.7rem;
+      border-radius: 40px; font-size: 0.65rem; color: #e8e8e8; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.08); transition: 0.15s;
+    }
+    .video-link i { color: #e62429; margin-right: 0.25rem; }
+    .video-link:hover { background: #e62429; border-color: #e62429; color: #fff; }
+    .video-link:hover i { color: #fff; }
+    .video-meta { font-size: 0.6rem; color: #6b7280; margin-bottom: 0.4rem; }
+    .video-meta i { color: #e62429; }
 
-        /* ===== ROADMAP ===== */
-        .roadmap-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            padding: 0.5rem 0;
-        }
-        .roadmap-row {
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-        }
-        .roadmap-node {
-            background: #141414;
-            border: 1px solid #222;
-            border-radius: 14px;
-            padding: 1rem 1.4rem;
-            flex: 1;
-            min-width: 150px;
-            text-align: center;
-            transition: 0.2s;
-        }
-        .roadmap-node:hover {
-            border-color: #dc2626;
-        }
-        .roadmap-node .node-icon {
-            font-size: 1.6rem;
-            margin-bottom: 0.2rem;
-            color: #dc2626;
-        }
-        .roadmap-node .node-title {
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: #f8fafc;
-        }
-        .roadmap-node .node-desc {
-            font-size: 0.65rem;
-            color: #9ca3af;
-            margin-top: 0.1rem;
-        }
-        .roadmap-arrow {
-            color: #dc2626;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            opacity: 0.5;
-        }
-        @media (max-width: 700px) {
-            .roadmap-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .roadmap-arrow {
-                transform: rotate(90deg);
-                text-align: center;
-            }
-        }
+    /* Resources / docs link */
+    .docs-link {
+      display: inline-block; font-size: 0.6rem; color: #60a5fa;
+      text-decoration: none; margin-right: 0.4rem; transition: 0.15s;
+    }
+    .docs-link i { margin-right: 0.15rem; }
+    .docs-link:hover { color: #93bbfc; text-decoration: underline; }
 
-        /* ===== ERROR LAB ===== */
-        .sev-tag {
-            font-size: 0.5rem;
-            font-weight: 700;
-            padding: 0.05rem 0.6rem;
-            border-radius: 40px;
-            margin-left: 0.3rem;
-        }
-        .sev-high { background: #7f1d1d; color: #fca5a5; }
-        .sev-medium { background: #78350f; color: #fcd34d; }
-        .sev-low { background: #064e3b; color: #6ee7b7; }
+    /* ----- ROADMAP ----- */
+    .roadmap-container {
+      display: flex; flex-direction: column; gap: 1.2rem; padding: 0.5rem 0;
+    }
+    .roadmap-row {
+      display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+    }
+    .roadmap-node {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; padding: 1rem 1.4rem; flex: 1; min-width: 140px;
+      text-align: center; transition: 0.2s; backdrop-filter: blur(4px);
+    }
+    .roadmap-node:hover { border-color: #e62429; }
+    .roadmap-node .node-icon { font-size: 1.6rem; color: #e62429; margin-bottom: 0.2rem; }
+    .roadmap-node .node-title { font-weight: 700; font-size: 0.85rem; color: #f8fafc; }
+    .roadmap-node .node-desc { font-size: 0.65rem; color: #9ca3af; margin-top: 0.1rem; }
+    .roadmap-arrow { color: #e62429; font-size: 1.2rem; flex-shrink: 0; opacity: 0.5; }
+    @media (max-width: 700px) {
+      .roadmap-row { flex-direction: column; align-items: stretch; }
+      .roadmap-arrow { transform: rotate(90deg); text-align: center; }
+    }
 
-        /* ===== CONFETTI ===== */
-        .confetti-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            overflow: hidden;
-        }
-        .confetti-piece {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            border-radius: 2px;
-            animation: confetti-fall linear forwards;
-        }
-        @keyframes confetti-fall {
-            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-        }
+    /* ----- ERRORS (Spider-Man theme) ----- */
+    .sev-tag {
+      font-size: 0.5rem; font-weight: 700; padding: 0.05rem 0.6rem; border-radius: 40px; margin-left: 0.3rem;
+    }
+    .sev-high { background: #7f1d1d; color: #fca5a5; }
+    .sev-medium { background: #78350f; color: #fcd34d; }
+    .sev-low { background: #064e3b; color: #6ee7b7; }
+    .spidey-badge {
+      font-size: 0.65rem; color: #60a5fa; margin-left: 0.4rem;
+    }
 
-        /* ===== FOOTER ===== */
-        .footer {
-            margin-top: 1.8rem;
-            border-top: 1px solid #1a1a1a;
-            padding-top: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            font-size: 0.65rem;
-            color: #4b5563;
-        }
-        .footer a {
-            color: #dc2626;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            color: #ef4444;
-        }
+    /* ----- STATS PAGE ----- */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem;
+      margin: 1rem 0;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 1rem; text-align: center;
+    }
+    .stat-card .number { font-size: 2rem; font-weight: 900; color: #e62429; }
+    .stat-card .label { font-size: 0.7rem; color: #9ca3af; margin-top: 0.2rem; }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 600px) {
-            .app {
-                padding: 1rem;
-                border-radius: 20px;
-            }
-            .header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .header-actions {
-                justify-content: space-between;
-                width: 100%;
-            }
-            .progress-stats {
-                flex: 1;
-                justify-content: space-between;
-            }
-            .start-btn {
-                font-size: 0.95rem;
-                padding: 0.65rem 1.6rem;
-                width: 100%;
-                justify-content: center;
-            }
-            .grid-2 {
-                grid-template-columns: 1fr;
-            }
-            .today-highlight {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .today-highlight .link {
-                text-align: center;
-                justify-content: center;
-            }
-            .tabs {
-                overflow-x: auto;
-                flex-wrap: nowrap;
-                gap: 0.2rem;
-            }
-            .tab-btn {
-                white-space: nowrap;
-                padding: 0.3rem 0.8rem;
-                font-size: 0.7rem;
-            }
-            .logo-area h1 {
-                font-size: 1.2rem;
-            }
-            .logo-area .sub {
-                font-size: 0.5rem;
-            }
-            .roadmap-node {
-                min-width: 120px;
-                padding: 0.8rem 1rem;
-            }
-        }
-    </style>
+    /* ----- NOTEPAD ----- */
+    .notepad-area {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px; padding: 1rem; margin-top: 1rem;
+    }
+    .notepad-area textarea {
+      width: 100%; background: transparent; border: none; color: #e8e8e8;
+      font-family: 'Inter', sans-serif; font-size: 0.85rem; resize: vertical;
+      min-height: 120px; outline: none; padding: 0.2rem;
+    }
+    .notepad-area textarea::placeholder { color: #6b7280; }
+
+    /* ----- SEARCH ----- */
+    .search-box {
+      display: flex; gap: 0.5rem; margin-bottom: 1.2rem;
+    }
+    .search-box input {
+      flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 40px; padding: 0.5rem 1.2rem; color: #e8e8e8; font-size: 0.85rem;
+      outline: none; transition: 0.2s;
+    }
+    .search-box input:focus { border-color: #e62429; }
+    .search-box input::placeholder { color: #6b7280; }
+
+    /* ----- FOOTER ----- */
+    .footer {
+      margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.04);
+      padding-top: 0.8rem; display: flex; justify-content: space-between;
+      flex-wrap: wrap; font-size: 0.65rem; color: #4b5563;
+    }
+
+    /* Confetti */
+    .confetti-container {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 9999; overflow: hidden;
+    }
+    .confetti-piece {
+      position: absolute; width: 8px; height: 8px; border-radius: 2px;
+      animation: confetti-fall linear forwards;
+    }
+    @keyframes confetti-fall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .app { padding: 1rem; }
+      .header { flex-direction: column; align-items: stretch; }
+      .header-actions { justify-content: space-between; width: 100%; }
+      .start-btn { width: 100%; justify-content: center; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .today-highlight { flex-direction: column; align-items: stretch; }
+      .today-highlight .link { text-align: center; justify-content: center; }
+      .tabs { overflow-x: auto; flex-wrap: nowrap; gap: 0.2rem; }
+      .tab-btn { white-space: nowrap; padding: 0.3rem 0.8rem; font-size: 0.7rem; }
+      .roadmap-node { min-width: 120px; padding: 0.8rem 1rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="app" id="app">
+<div class="app" id="app">
 
-        <!-- HEADER -->
-        <header class="header">
-            <div class="logo-area">
-                <i class="fas fa-terminal"></i>
-                <h1>dev·ml<span class="sub">⚡2026</span></h1>
-            </div>
-            <div class="header-actions">
-                <div class="streak-box"><i class="fas fa-fire"></i> <span id="streakDisplay">0</span>d</div>
-                <div class="level-badge" id="levelBadge">🌱 Novice</div>
-                <div class="progress-stats">
-                    <span><strong id="doneCount">0</strong>/<span id="totalCount">0</span></span>
-                    <div class="progress-bar-bg"><div class="progress-bar-fill" id="mainProgress"></div></div>
-                </div>
-            </div>
-        </header>
-
-        <!-- START BUTTON -->
-        <div class="start-btn-wrap">
-            <button class="start-btn" id="startBtn"><i class="fas fa-bolt"></i> Start Today's Win</button>
-        </div>
-
-        <!-- TODAY'S PICK -->
-        <div class="today-highlight" id="todayHighlight">
-            <div>
-                <div class="label"><i class="fas fa-star"></i> Today's Focus</div>
-                <div class="title" id="todayTitle">Loading...</div>
-                <div class="desc" id="todayDesc">Hit "Start" to get a recommendation</div>
-            </div>
-            <a href="#" id="todayLink" class="link" target="_blank">Open <i class="fas fa-arrow-right"></i></a>
-        </div>
-
-        <!-- TABS -->
-        <div class="tabs">
-            <button class="tab-btn active" data-panel="curriculum"><i class="fas fa-graduation-cap"></i> Topics</button>
-            <button class="tab-btn" data-panel="youtube"><i class="fab fa-youtube"></i> Videos</button>
-            <button class="tab-btn" data-panel="datasets"><i class="fas fa-database"></i> Datasets</button>
-            <button class="tab-btn" data-panel="errors"><i class="fas fa-bug"></i> Errors</button>
-            <button class="tab-btn" data-panel="roadmap"><i class="fas fa-map-signs"></i> Roadmap</button>
-        </div>
-
-        <!-- PANELS -->
-        <div class="panel active" id="panel-curriculum"><div class="grid-2" id="theoryGrid"></div></div>
-        <div class="panel" id="panel-youtube"><div class="grid-2" id="youtubeGrid"></div></div>
-        <div class="panel" id="panel-datasets"><div class="grid-2" id="projectGrid"></div></div>
-        <div class="panel" id="panel-errors"><div class="grid-2" id="errorGrid"></div></div>
-        <div class="panel" id="panel-roadmap"><div class="roadmap-container" id="roadmapContainer"></div></div>
-
-        <div class="footer">
-            <span><i class="fas fa-code"></i> Built for coders · no fluff</span>
-            <span><i class="fas fa-sync-alt"></i> Auto-saved</span>
-        </div>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <i class="fas fa-spider"></i>
+      <h1>Spidey·ML</h1>
+      <span class="badge">v2.0</span>
     </div>
+    <div class="header-actions">
+      <div class="streak-box"><i class="fas fa-fire"></i> <span id="streakDisplay">0</span>d</div>
+      <div class="level-box" id="levelBadge">🌱 Novice</div>
+      <div class="progress-stats">
+        <span><strong id="doneCount">0</strong>/<span id="totalCount">0</span></span>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="mainProgress"></div></div>
+      </div>
+    </div>
+  </header>
 
-    <!-- CONFETTI -->
-    <div class="confetti-container" id="confettiBox"></div>
+  <!-- START BUTTON -->
+  <div class="start-wrap">
+    <button class="start-btn" id="startBtn"><i class="fas fa-bolt"></i> Start Today's Win</button>
+  </div>
 
-    <script>
-        // ============================================================
-        //  DATA – Practical, job-ready content only
-        // ============================================================
+  <!-- TODAY'S PICK -->
+  <div class="today-highlight" id="todayHighlight">
+    <div>
+      <div class="label"><i class="fas fa-star"></i> Today's Focus</div>
+      <div class="title" id="todayTitle">Loading...</div>
+      <div class="desc" id="todayDesc">Hit "Start" to get a recommendation</div>
+    </div>
+    <a href="#" id="todayLink" class="link" target="_blank">Open <i class="fas fa-arrow-right"></i></a>
+  </div>
 
-        // Theory – filtered to what's actually used in industry
-        const THEORY_DATA = [
-            { id: 't1', title: 'Python for Data', cat: 'Foundation', desc: 'Pandas, NumPy, Matplotlib – daily drivers.' },
-            { id: 't2', title: 'SQL for Data', cat: 'Foundation', desc: 'Joins, aggregations, window functions – interview必备.' },
-            { id: 't3', title: 'Stats You Actually Use', cat: 'Foundation', desc: 'Mean, median, distributions, p-values (practical).' },
-            { id: 't4', title: 'Classical ML', cat: 'Core', desc: 'Regression, trees, random forest, XGBoost.' },
-            { id: 't5', title: 'Feature Engineering', cat: 'Core', desc: 'One-hot, scaling, binning, interaction terms.' },
-            { id: 't6', title: 'Model Evaluation', cat: 'Core', desc: 'Cross-val, ROC-AUC, confusion matrix, business metrics.' },
-            { id: 't7', title: 'Deep Learning (Practical)', cat: 'Advanced', desc: 'CNNs, RNNs, Transfer Learning – applied.' },
-            { id: 't8', title: 'NLP & LLMs (Job-Ready)', cat: 'Advanced', desc: 'BERT, GPT, RAG, fine-tuning – what employers want.' },
-            { id: 't9', title: 'MLOps & Deployment', cat: 'Advanced', desc: 'Flask, Docker, MLflow, monitoring – ship it.' },
-            { id: 't10', title: 'Dashboard & Storytelling', cat: 'Core', desc: 'Streamlit, Power BI, Tableau – business impact.' }
-        ];
+  <!-- SEARCH -->
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="🔍 Search topics, videos, datasets..." />
+  </div>
 
-        // YouTube videos – ordered as a learning path
-        const YOUTUBE_DATA = [
-            // 1. Must-Know Basics
-            { id: 'yt1', title: 'Python for Data Science (freeCodeCamp)', cat: 'Foundation',
-                video: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI', channel: 'freeCodeCamp', duration: '~4h' },
-            { id: 'yt2', title: 'SQL for Data Analytics (Alex The Analyst)', cat: 'Foundation',
-                video: 'https://www.youtube.com/watch?v=7S_tz1z_5bA', channel: 'Alex The Analyst', duration: '~3h' },
-            // 2. Core ML
-            { id: 'yt3', title: 'Logistic Regression (StatQuest)', cat: 'Core',
-                video: 'https://www.youtube.com/watch?v=yIYKR4sgzI8', channel: 'StatQuest', duration: '~10min' },
-            { id: 'yt4', title: 'Decision Trees & Random Forest (StatQuest)', cat: 'Core',
-                video: 'https://www.youtube.com/watch?v=7VeUPuFGJHk', channel: 'StatQuest', duration: '~15min' },
-            { id: 'yt5', title: 'XGBoost – The Algorithm That Wins (StatQuest)', cat: 'Core',
-                video: 'https://www.youtube.com/watch?v=ZVFeW798-2I', channel: 'StatQuest', duration: '~12min' },
-            { id: 'yt6', title: 'Feature Engineering (Kaggle)', cat: 'Core',
-                video: 'https://www.youtube.com/watch?v=0Wgt6ofPbOc', channel: 'Kaggle', duration: '~45min' },
-            // 3. Deep Learning & NLP
-            { id: 'yt7', title: 'Neural Networks (3B1B) – Intuition', cat: 'Advanced',
-                video: 'https://www.youtube.com/watch?v=aircAruvnKk', channel: '3Blue1Brown', duration: '~20min' },
-            { id: 'yt8', title: 'CNNs – Convolutional Neural Networks (StatQuest)', cat: 'Advanced',
-                video: 'https://www.youtube.com/watch?v=HGwBXDKFk9I', channel: 'StatQuest', duration: '~10min' },
-            { id: 'yt9', title: 'Transformers (3B1B) – What You Need', cat: 'Advanced',
-                video: 'https://www.youtube.com/watch?v=eMlx5fFNoYc', channel: '3Blue1Brown', duration: '~16min' },
-            { id: 'yt10', title: 'BERT – How It Works (StatQuest)', cat: 'Advanced',
-                video: 'https://www.youtube.com/watch?v=0MJRdVyQvRM', channel: 'StatQuest', duration: '~10min' },
-            // 4. GenAI & RAG
-            { id: 'yt11', title: 'RAG in 10 Minutes (LangChain)', cat: 'Advanced',
-                video: 'https://www.youtube.com/watch?v=wd7TZ4w1mSw', channel: 'LangChain', duration: '~10min' },
-            { id: 'yt12', title: 'GPT – How It Works (StatQuest)', cat: 'Advanced',
-                video: 'https://www.youtube.com/watch?v=5vY2_5Gm_6g', channel: 'StatQuest', duration: '~8min' },
-            // 5. MLOps & Deployment
-            { id: 'yt13', title: 'MLOps – What, Why, How (Chip Huyen)', cat: 'Advanced',
-                video: 'https://www.youtube.com/watch?v=06-AZXmwHjo', channel: 'Chip Huyen', duration: '~30min' },
-            { id: 'yt14', title: 'Deploy ML with Flask (Krish Naik)', cat: 'Advanced',
-                video: 'https://www.youtube.com/watch?v=7q4NpP1L9cE', channel: 'Krish Naik', duration: '~2h' }
-        ];
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" data-panel="curriculum"><i class="fas fa-graduation-cap"></i> Topics</button>
+    <button class="tab-btn" data-panel="youtube"><i class="fab fa-youtube"></i> Videos</button>
+    <button class="tab-btn" data-panel="datasets"><i class="fas fa-database"></i> Datasets</button>
+    <button class="tab-btn" data-panel="errors"><i class="fas fa-bug"></i> Errors</button>
+    <button class="tab-btn" data-panel="roadmap"><i class="fas fa-map-signs"></i> Roadmap</button>
+    <button class="tab-btn" data-panel="stats"><i class="fas fa-chart-pie"></i> Stats</button>
+    <button class="tab-btn" data-panel="notepad"><i class="fas fa-pen"></i> Notepad</button>
+  </div>
 
-        // Datasets – practical projects
-        const PROJECT_DATA = [
-            { id: 'p1', title: 'Titanic', cat: 'tabular', desc: 'Survival prediction – classic starter.' },
-            { id: 'p2', title: 'Iris', cat: 'tabular', desc: '3-species classification – quick win.' },
-            { id: 'p3', title: 'Boston Housing', cat: 'tabular', desc: 'House price prediction – regression.' },
-            { id: 'p4', title: 'Wine Quality', cat: 'tabular', desc: 'Wine score prediction – multiclass.' },
-            { id: 'p5', title: 'Breast Cancer (Wisconsin)', cat: 'tabular', desc: 'Diagnostic binary classification.' },
-            { id: 'p6', title: 'California Housing', cat: 'tabular', desc: 'Median house value – geospatial.' },
-            { id: 'p7', title: 'Forest Cover Type', cat: 'tabular', desc: 'Multiclass cartographic classification.' },
-            { id: 'p8', title: 'MNIST', cat: 'vision', desc: 'Handwritten digit recognition – CNN intro.' },
-            { id: 'p9', title: 'Fashion-MNIST', cat: 'vision', desc: 'Clothing classification – slightly harder.' },
-            { id: 'p10', title: 'CIFAR-10', cat: 'vision', desc: 'Object recognition – transfer learning.' },
-            { id: 'p11', title: 'IMDB Reviews', cat: 'nlp', desc: 'Sentiment analysis – NLP starter.' },
-            { id: 'p12', title: 'Spam/Ham', cat: 'nlp', desc: 'SMS classification – text preprocessing.' },
-            { id: 'p13', title: 'Twitter Sentiment', cat: 'nlp', desc: 'Real‑world tweet sentiment – BERT.' },
-            { id: 'p14', title: 'Stock Prices', cat: 'timeseries', desc: 'Forecast – ARIMA vs LSTM.' },
-            { id: 'p15', title: 'Air Quality', cat: 'timeseries', desc: 'PM2.5 forecasting – multivariate.' },
-            { id: 'p16', title: 'Human Activity Recognition', cat: 'timeseries', desc: 'Sensor data – 1D-CNN.' },
-            { id: 'p17', title: 'Customer Segmentation', cat: 'other', desc: 'Clustering – K-means, PCA.' },
-            { id: 'p18', title: 'Credit Card Fraud', cat: 'other', desc: 'Imbalanced classification – SMOTE.' },
-            { id: 'p19', title: 'COCO (subset)', cat: 'vision', desc: 'Object detection – YOLO.' },
-            { id: 'p20', title: 'KITTI', cat: 'vision', desc: 'Autonomous driving – point clouds.' }
-        ];
+  <!-- PANELS -->
+  <div class="panel active" id="panel-curriculum"><div class="grid-2" id="theoryGrid"></div></div>
+  <div class="panel" id="panel-youtube"><div class="grid-2" id="youtubeGrid"></div></div>
+  <div class="panel" id="panel-datasets"><div class="grid-2" id="projectGrid"></div></div>
+  <div class="panel" id="panel-errors"><div class="grid-2" id="errorGrid"></div></div>
+  <div class="panel" id="panel-roadmap"><div class="roadmap-container" id="roadmapContainer"></div></div>
+  <div class="panel" id="panel-stats">
+    <div class="stats-grid" id="statsGrid"></div>
+    <div style="margin-top:1rem; font-size:0.8rem; color:#9ca3af;">
+      <i class="fas fa-chart-simple"></i> Keep going – every check brings you closer to mastery!
+    </div>
+  </div>
+  <div class="panel" id="panel-notepad">
+    <div class="notepad-area">
+      <textarea id="notepadContent" placeholder="Write your notes here... (auto-saved)"></textarea>
+    </div>
+  </div>
 
-        // Errors – common and practical
-        const ERROR_DATA = [
-            { id: 'e1', title: 'KeyError: column not found', severity: 'low', desc: 'Column name typo or missing.',
-                fix: 'Print df.columns to see available names.' },
-            { id: 'e2', title: 'ValueError: shapes not aligned', severity: 'high',
-                desc: 'Matrix dimensions mismatch for dot product.', fix: 'Use .shape. Ensure columns match rows.' },
-            { id: 'e3', title: 'CUDA Out of Memory', severity: 'high', desc: 'GPU ran out of RAM.',
-                fix: 'Reduce batch size or use gradient accumulation.' },
-            { id: 'e4', title: 'MemoryError (RAM)', severity: 'high', desc: 'Dataset too large for RAM.',
-                fix: 'Use chunksize or reduce dtype precision.' },
-            { id: 'e5', title: 'ConvergenceWarning', severity: 'medium', desc: 'Model failed to converge.',
-                fix: 'Increase max_iter or scale features.' },
-            { id: 'e6', title: 'AttributeError: module has no attr', severity: 'medium', desc: 'Typo or deprecated.',
-                fix: 'Check library docs for updated names.' },
-            { id: 'e7', title: 'UndefinedMetricWarning', severity: 'low', desc: 'F1 undefined due to no predictions.',
-                fix: 'Add zero_division=0 in f1_score.' },
-            { id: 'e8', title: 'IndexError: list index out of range', severity: 'medium',
-                desc: 'Accessing empty list or wrong index.', fix: 'Check len() before access.' }
-        ];
+  <div class="footer">
+    <span><i class="fas fa-spider"></i> With great power comes great ML</span>
+    <span><i class="fas fa-sync-alt"></i> Auto-saved</span>
+  </div>
+</div>
 
-        // Roadmap – practical skills map
-        const ROADMAP_DATA = [
-            { icon: 'fa-code', title: 'Python & SQL', desc: 'Data wrangling' },
-            { icon: 'fa-chart-bar', title: 'Stats & EDA', desc: 'Explore & understand' },
-            { icon: 'fa-robot', title: 'Classical ML', desc: 'Regression, Trees, XGBoost' },
-            { icon: 'fa-microchip', title: 'Deep Learning', desc: 'CNN, RNN, Transfer' },
-            { icon: 'fa-language', title: 'NLP & LLMs', desc: 'BERT, RAG, Fine-tuning' },
-            { icon: 'fa-gears', title: 'MLOps & Deploy', desc: 'Ship & monitor' }
-        ];
+<!-- CONFETTI -->
+<div class="confetti-container" id="confettiBox"></div>
 
-        // Combine all items for daily pick
-        const ALL_ITEMS = [...THEORY_DATA, ...YOUTUBE_DATA, ...PROJECT_DATA];
+<script>
+  // ============================================================
+  // DATA – Practical, job-ready, with docs links
+  // ============================================================
 
-        // ============================================================
-        //  STATE
-        // ============================================================
-        function getChecked(prefix) {
-            try { return JSON.parse(localStorage.getItem('mlhub_' + prefix)) || []; } catch (e) { return []; }
-        }
+  // Theory with docs/links (GFG fallback to TDS, Real Python, etc.)
+  const THEORY_DATA = [
+    { id: 't1', title: 'Python for Data', cat: 'Foundation', desc: 'Pandas, NumPy, Matplotlib – daily drivers.',
+      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/python-programming-language/' },
+             { label: 'Real Python', url: 'https://realpython.com/' }] },
+    { id: 't2', title: 'SQL for Data', cat: 'Foundation', desc: 'Joins, aggregations, window functions – interview必备.',
+      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/sql-tutorial/' },
+             { label: 'W3Schools', url: 'https://www.w3schools.com/sql/' }] },
+    { id: 't3', title: 'Stats You Actually Use', cat: 'Foundation', desc: 'Mean, median, distributions, p-values (practical).',
+      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/statistics/' },
+             { label: 'Khan Academy', url: 'https://www.khanacademy.org/math/statistics-probability' }] },
+    { id: 't4', title: 'Classical ML', cat: 'Core', desc: 'Regression, trees, random forest, XGBoost.',
+      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/machine-learning/' },
+             { label: 'Scikit-learn', url: 'https://scikit-learn.org/stable/' }] },
+    { id: 't5', title: 'Feature Engineering', cat: 'Core', desc: 'One-hot, scaling, binning, interaction terms.',
+      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/feature-engineering/' },
+             { label: 'TDS', url: 'https://towardsdatascience.com/tagged/feature-engineering' }] },
+    { id: 't6', title: 'Model Evaluation', cat: 'Core', desc: 'Cross-val, ROC-AUC, confusion matrix, business metrics.',
+      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/model-evaluation-metrics/' },
+             { label: 'TDS', url: 'https://towardsdatascience.com/tagged/model-evaluation' }] },
+    { id: 't7', title: 'Deep Learning (Practical)', cat: 'Advanced', desc: 'CNNs, RNNs, Transfer Learning – applied.',
+      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/deep-learning/' },
+             { label: 'PyTorch', url: 'https://pytorch.org/tutorials/' }] },
+    { id: 't8', title: 'NLP & LLMs (Job-Ready)', cat: 'Advanced', desc: 'BERT, GPT, RAG, fine-tuning – what employers want.',
+      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/natural-language-processing-nlp/' },
+             { label: 'Hugging Face', url: 'https://huggingface.co/learn' }] },
+    { id: 't9', title: 'MLOps & Deployment', cat: 'Advanced', desc: 'Flask, Docker, MLflow, monitoring – ship it.',
+      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/mlops/' },
+             { label: 'MLflow', url: 'https://mlflow.org/docs/latest/index.html' }] },
+    { id: 't10', title: 'Dashboard & Storytelling', cat: 'Core', desc: 'Streamlit, Power BI, Tableau – business impact.',
+      docs: [{ label: 'GFG', url: 'https://www.geeksforgeeks.org/data-visualization/' },
+             { label: 'Streamlit', url: 'https://docs.streamlit.io/' }] }
+  ];
 
-        function setChecked(prefix, arr) {
-            localStorage.setItem('mlhub_' + prefix, JSON.stringify(arr));
-        }
+  // YouTube – ordered learning path
+  const YOUTUBE_DATA = [
+    { id: 'yt1', title: 'Python for Data Science (freeCodeCamp)', cat: 'Foundation',
+      video: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI', channel: 'freeCodeCamp', duration: '~4h' },
+    { id: 'yt2', title: 'SQL for Data Analytics (Alex The Analyst)', cat: 'Foundation',
+      video: 'https://www.youtube.com/watch?v=7S_tz1z_5bA', channel: 'Alex The Analyst', duration: '~3h' },
+    { id: 'yt3', title: 'Logistic Regression (StatQuest)', cat: 'Core',
+      video: 'https://www.youtube.com/watch?v=yIYKR4sgzI8', channel: 'StatQuest', duration: '~10min' },
+    { id: 'yt4', title: 'Decision Trees & Random Forest (StatQuest)', cat: 'Core',
+      video: 'https://www.youtube.com/watch?v=7VeUPuFGJHk', channel: 'StatQuest', duration: '~15min' },
+    { id: 'yt5', title: 'XGBoost (StatQuest)', cat: 'Core',
+      video: 'https://www.youtube.com/watch?v=ZVFeW798-2I', channel: 'StatQuest', duration: '~12min' },
+    { id: 'yt6', title: 'Feature Engineering (Kaggle)', cat: 'Core',
+      video: 'https://www.youtube.com/watch?v=0Wgt6ofPbOc', channel: 'Kaggle', duration: '~45min' },
+    { id: 'yt7', title: 'Neural Networks (3B1B)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=aircAruvnKk', channel: '3Blue1Brown', duration: '~20min' },
+    { id: 'yt8', title: 'CNNs (StatQuest)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=HGwBXDKFk9I', channel: 'StatQuest', duration: '~10min' },
+    { id: 'yt9', title: 'Transformers (3B1B)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=eMlx5fFNoYc', channel: '3Blue1Brown', duration: '~16min' },
+    { id: 'yt10', title: 'BERT (StatQuest)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=0MJRdVyQvRM', channel: 'StatQuest', duration: '~10min' },
+    { id: 'yt11', title: 'RAG in 10 min (LangChain)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=wd7TZ4w1mSw', channel: 'LangChain', duration: '~10min' },
+    { id: 'yt12', title: 'GPT (StatQuest)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=5vY2_5Gm_6g', channel: 'StatQuest', duration: '~8min' },
+    { id: 'yt13', title: 'MLOps (Chip Huyen)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=06-AZXmwHjo', channel: 'Chip Huyen', duration: '~30min' },
+    { id: 'yt14', title: 'Deploy ML with Flask (Krish Naik)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=7q4NpP1L9cE', channel: 'Krish Naik', duration: '~2h' }
+  ];
 
-        function toggleCheck(prefix, id) {
-            let arr = getChecked(prefix);
-            if (arr.includes(id)) arr = arr.filter(x => x !== id);
-            else arr.push(id);
-            setChecked(prefix, arr);
-            return arr;
-        }
+  // Datasets
+  const PROJECT_DATA = [
+    { id: 'p1', title: 'Titanic', cat: 'tabular', desc: 'Survival prediction – classic starter.' },
+    { id: 'p2', title: 'Iris', cat: 'tabular', desc: '3-species classification – quick win.' },
+    { id: 'p3', title: 'Boston Housing', cat: 'tabular', desc: 'House price prediction – regression.' },
+    { id: 'p4', title: 'Wine Quality', cat: 'tabular', desc: 'Wine score prediction – multiclass.' },
+    { id: 'p5', title: 'Breast Cancer (Wisconsin)', cat: 'tabular', desc: 'Diagnostic binary classification.' },
+    { id: 'p6', title: 'California Housing', cat: 'tabular', desc: 'Median house value – geospatial.' },
+    { id: 'p7', title: 'Forest Cover Type', cat: 'tabular', desc: 'Multiclass cartographic classification.' },
+    { id: 'p8', title: 'MNIST', cat: 'vision', desc: 'Handwritten digit recognition – CNN intro.' },
+    { id: 'p9', title: 'Fashion-MNIST', cat: 'vision', desc: 'Clothing classification – slightly harder.' },
+    { id: 'p10', title: 'CIFAR-10', cat: 'vision', desc: 'Object recognition – transfer learning.' },
+    { id: 'p11', title: 'IMDB Reviews', cat: 'nlp', desc: 'Sentiment analysis – NLP starter.' },
+    { id: 'p12', title: 'Spam/Ham', cat: 'nlp', desc: 'SMS classification – text preprocessing.' },
+    { id: 'p13', title: 'Twitter Sentiment', cat: 'nlp', desc: 'Real‑world tweet sentiment – BERT.' },
+    { id: 'p14', title: 'Stock Prices', cat: 'timeseries', desc: 'Forecast – ARIMA vs LSTM.' },
+    { id: 'p15', title: 'Air Quality', cat: 'timeseries', desc: 'PM2.5 forecasting – multivariate.' },
+    { id: 'p16', title: 'Human Activity Recognition', cat: 'timeseries', desc: 'Sensor data – 1D-CNN.' },
+    { id: 'p17', title: 'Customer Segmentation', cat: 'other', desc: 'Clustering – K-means, PCA.' },
+    { id: 'p18', title: 'Credit Card Fraud', cat: 'other', desc: 'Imbalanced classification – SMOTE.' },
+    { id: 'p19', title: 'COCO (subset)', cat: 'vision', desc: 'Object detection – YOLO.' },
+    { id: 'p20', title: 'KITTI', cat: 'vision', desc: 'Autonomous driving – point clouds.' }
+  ];
 
-        function isChecked(prefix, id) {
-            return getChecked(prefix).includes(id);
-        }
+  // Errors – enhanced with Spider-Man quotes
+  const ERROR_DATA = [
+    { id: 'e1', title: 'KeyError: column not found', severity: 'low', desc: 'Column typo or missing.',
+      fix: 'Print df.columns to see available names. With great power comes great responsibility – check your spelling!' },
+    { id: 'e2', title: 'ValueError: shapes not aligned', severity: 'high', desc: 'Matrix dimensions mismatch.',
+      fix: 'Use .shape. Ensure columns match rows. "Your friendly neighborhood debugger" – check dimensions.' },
+    { id: 'e3', title: 'CUDA Out of Memory', severity: 'high', desc: 'GPU ran out of RAM.',
+      fix: 'Reduce batch size or use gradient accumulation. "With great memory comes great responsibility" – downsize.' },
+    { id: 'e4', title: 'MemoryError (RAM)', severity: 'high', desc: 'Dataset too large for RAM.',
+      fix: 'Use chunksize or reduce dtype precision. "Spidey senses tingling – use a smaller chunk!"' },
+    { id: 'e5', title: 'ConvergenceWarning', severity: 'medium', desc: 'Model failed to converge.',
+      fix: 'Increase max_iter or scale features. "Persistence is key – keep iterating!"' },
+    { id: 'e6', title: 'AttributeError: module has no attr', severity: 'medium', desc: 'Typo or deprecated function.',
+      fix: 'Check library docs for updated names. "Your spidey senses – check the docs!"' },
+    { id: 'e7', title: 'UndefinedMetricWarning', severity: 'low', desc: 'F1 undefined due to no predictions.',
+      fix: 'Add zero_division=0 in f1_score. "Even heroes need a fallback – set zero_division."' },
+    { id: 'e8', title: 'IndexError: list index out of range', severity: 'medium', desc: 'Accessing empty list or wrong index.',
+      fix: 'Check len() before access. "With great indexing comes great responsibility – check the length!"' }
+  ];
 
-        function getStreak() {
-            try { return parseInt(localStorage.getItem('mlhub_streak')) || 0; } catch (e) { return 0; }
-        }
+  // Roadmap
+  const ROADMAP_DATA = [
+    { icon: 'fa-code', title: 'Python & SQL', desc: 'Data wrangling' },
+    { icon: 'fa-chart-bar', title: 'Stats & EDA', desc: 'Explore & understand' },
+    { icon: 'fa-robot', title: 'Classical ML', desc: 'Regression, Trees, XGBoost' },
+    { icon: 'fa-microchip', title: 'Deep Learning', desc: 'CNN, RNN, Transfer' },
+    { icon: 'fa-language', title: 'NLP & LLMs', desc: 'BERT, RAG, Fine-tuning' },
+    { icon: 'fa-gears', title: 'MLOps & Deploy', desc: 'Ship & monitor' }
+  ];
 
-        function setStreak(val) {
-            localStorage.setItem('mlhub_streak', val);
-        }
+  // Combine for daily pick
+  const ALL_ITEMS = [...THEORY_DATA, ...YOUTUBE_DATA, ...PROJECT_DATA];
 
-        function getLastVisit() {
-            try { return localStorage.getItem('mlhub_lastvisit') || ''; } catch (e) { return ''; }
-        }
+  // ============================================================
+  // STATE
+  // ============================================================
+  function getChecked(prefix) {
+    try { return JSON.parse(localStorage.getItem('mlhub_' + prefix)) || []; } catch (e) { return []; }
+  }
+  function setChecked(prefix, arr) {
+    localStorage.setItem('mlhub_' + prefix, JSON.stringify(arr));
+  }
+  function toggleCheck(prefix, id) {
+    let arr = getChecked(prefix);
+    if (arr.includes(id)) arr = arr.filter(x => x !== id); else arr.push(id);
+    setChecked(prefix, arr);
+    return arr;
+  }
+  function isChecked(prefix, id) {
+    return getChecked(prefix).includes(id);
+  }
 
-        function setLastVisit(val) {
-            localStorage.setItem('mlhub_lastvisit', val);
-        }
+  // Streak
+  function getStreak() { try { return parseInt(localStorage.getItem('mlhub_streak')) || 0; } catch(e) { return 0; } }
+  function setStreak(v) { localStorage.setItem('mlhub_streak', v); }
+  function getLastVisit() { return localStorage.getItem('mlhub_lastvisit') || ''; }
+  function setLastVisit(v) { localStorage.setItem('mlhub_lastvisit', v); }
+  function updateStreak() {
+    const today = new Date().toDateString();
+    const last = getLastVisit();
+    let s = getStreak();
+    if (last !== today) {
+      const y = new Date(); y.setDate(y.getDate()-1);
+      if (last === y.toDateString()) s += 1; else s = 1;
+      setStreak(s); setLastVisit(today);
+    }
+    document.getElementById('streakDisplay').textContent = s;
+    return s;
+  }
 
-        function updateStreak() {
-            const today = new Date().toDateString();
-            const last = getLastVisit();
-            let streak = getStreak();
-            if (last !== today) {
-                const yesterday = new Date();
-                yesterday.setDate(yesterday.getDate() - 1);
-                if (last === yesterday.toDateString()) {
-                    streak += 1;
-                } else {
-                    streak = 1;
-                }
-                setStreak(streak);
-                setLastVisit(today);
-            }
-            document.getElementById('streakDisplay').textContent = streak;
-            return streak;
-        }
+  function getLevel(done, total) {
+    const pct = total > 0 ? done/total : 0;
+    if (pct < 0.2) return { emoji: '🌱', name: 'Novice' };
+    if (pct < 0.4) return { emoji: '📘', name: 'Learner' };
+    if (pct < 0.6) return { emoji: '🚀', name: 'Explorer' };
+    if (pct < 0.8) return { emoji: '⚡', name: 'Pro' };
+    return { emoji: '🏆', name: 'Master' };
+  }
 
-        function getLevel(done, total) {
-            const pct = total > 0 ? done / total : 0;
-            if (pct < 0.2) return { emoji: '🌱', name: 'Novice' };
-            if (pct < 0.4) return { emoji: '📘', name: 'Learner' };
-            if (pct < 0.6) return { emoji: '🚀', name: 'Explorer' };
-            if (pct < 0.8) return { emoji: '⚡', name: 'Pro' };
-            return { emoji: '🏆', name: 'Master' };
-        }
+  function updateProgress() {
+    const tDone = getChecked('theory').length;
+    const yDone = getChecked('youtube').length;
+    const pDone = getChecked('project').length;
+    const total = THEORY_DATA.length + YOUTUBE_DATA.length + PROJECT_DATA.length;
+    const done = tDone + yDone + pDone;
+    document.getElementById('doneCount').textContent = done;
+    document.getElementById('totalCount').textContent = total;
+    document.getElementById('mainProgress').style.width = (done/total*100) + '%';
+    const lv = getLevel(done, total);
+    document.getElementById('levelBadge').textContent = lv.emoji + ' ' + lv.name;
+    return { done, total };
+  }
 
-        // ============================================================
-        //  PROGRESS
-        // ============================================================
-        function updateProgress() {
-            const theoryDone = getChecked('theory').length;
-            const ytDone = getChecked('youtube').length;
-            const projDone = getChecked('project').length;
-            const total = THEORY_DATA.length + YOUTUBE_DATA.length + PROJECT_DATA.length;
-            const done = theoryDone + ytDone + projDone;
-            document.getElementById('doneCount').textContent = done;
-            document.getElementById('totalCount').textContent = total;
-            document.getElementById('mainProgress').style.width = (done / total * 100) + '%';
-            const level = getLevel(done, total);
-            document.getElementById('levelBadge').textContent = level.emoji + ' ' + level.name;
-            return { done, total };
-        }
+  // ============================================================
+  // CONFETTI
+  // ============================================================
+  function fireConfetti() {
+    const container = document.getElementById('confettiBox');
+    const colors = ['#e62429', '#f97316', '#fbbf24', '#22c55e', '#3b82f6', '#8b5cf6'];
+    for (let i = 0; i < 50; i++) {
+      const p = document.createElement('div');
+      p.className = 'confetti-piece';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.background = colors[Math.floor(Math.random() * colors.length)];
+      p.style.width = (Math.random() * 6 + 4) + 'px';
+      p.style.height = (Math.random() * 6 + 4) + 'px';
+      p.style.animationDuration = (Math.random() * 1.8 + 0.8) + 's';
+      p.style.animationDelay = (Math.random() * 0.4) + 's';
+      container.appendChild(p);
+      setTimeout(() => p.remove(), 3000);
+    }
+  }
 
-        // ============================================================
-        //  CONFETTI
-        // ============================================================
-        function fireConfetti() {
-            const container = document.getElementById('confettiBox');
-            const colors = ['#dc2626', '#ef4444', '#f59e0b', '#22c55e', '#06b6d4', '#8b5cf6'];
-            for (let i = 0; i < 50; i++) {
-                const piece = document.createElement('div');
-                piece.className = 'confetti-piece';
-                piece.style.left = Math.random() * 100 + '%';
-                piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-                piece.style.width = (Math.random() * 6 + 4) + 'px';
-                piece.style.height = (Math.random() * 6 + 4) + 'px';
-                piece.style.animationDuration = (Math.random() * 1.8 + 0.8) + 's';
-                piece.style.animationDelay = (Math.random() * 0.4) + 's';
-                container.appendChild(piece);
-                setTimeout(() => piece.remove(), 3000);
-            }
-        }
+  // ============================================================
+  // RENDER (with search filtering)
+  // ============================================================
+  function renderTheory(filter = '') {
+    const grid = document.getElementById('theoryGrid');
+    const items = THEORY_DATA.filter(t => t.title.toLowerCase().includes(filter) || t.desc.toLowerCase().includes(filter));
+    grid.innerHTML = items.map(item => `
+      <div class="card">
+        <div class="badge-cat red">${item.cat}</div>
+        <div class="title">${item.title}</div>
+        <div class="desc">${item.desc}</div>
+        <div style="margin-bottom:0.4rem;">
+          ${item.docs.map(d => `<a href="${d.url}" target="_blank" class="docs-link"><i class="fas fa-link"></i> ${d.label}</a>`).join('')}
+        </div>
+        <div class="actions">
+          <div class="check-wrap">
+            <input type="checkbox" class="theory-cb" data-id="${item.id}" ${isChecked('theory', item.id) ? 'checked' : ''} />
+            <span>Done</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    document.querySelectorAll('.theory-cb').forEach(cb => {
+      cb.addEventListener('change', function() {
+        toggleCheck('theory', this.dataset.id);
+        updateProgress(); fireConfetti();
+      });
+    });
+  }
 
-        // ============================================================
-        //  RENDER
-        // ============================================================
-        function renderTheory() {
-            const grid = document.getElementById('theoryGrid');
-            grid.innerHTML = THEORY_DATA.map(item => `
-                <div class="card">
-                    <div class="badge-cat red">${item.cat}</div>
-                    <div class="title">${item.title}</div>
-                    <div class="desc">${item.desc}</div>
-                    <div class="actions">
-                        <div class="check-wrap">
-                            <input type="checkbox" class="theory-cb" data-id="${item.id}" ${isChecked('theory', item.id) ? 'checked' : ''} />
-                            <span>Done</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            document.querySelectorAll('.theory-cb').forEach(cb => {
-                cb.addEventListener('change', function() {
-                    toggleCheck('theory', this.dataset.id);
-                    updateProgress();
-                    fireConfetti();
-                });
-            });
-        }
+  function renderYoutube(filter = '') {
+    const grid = document.getElementById('youtubeGrid');
+    const items = YOUTUBE_DATA.filter(t => t.title.toLowerCase().includes(filter) || t.channel.toLowerCase().includes(filter));
+    grid.innerHTML = items.map(item => `
+      <div class="card">
+        <div class="badge-cat">${item.cat}</div>
+        <div class="title">${item.title}</div>
+        <div class="video-meta"><i class="fab fa-youtube"></i> ${item.channel} · ${item.duration}</div>
+        <div style="margin-bottom:0.5rem;">
+          <a href="${item.video}" target="_blank" class="video-link"><i class="fab fa-youtube"></i> Watch</a>
+        </div>
+        <div class="actions">
+          <div class="check-wrap">
+            <input type="checkbox" class="youtube-cb" data-id="${item.id}" ${isChecked('youtube', item.id) ? 'checked' : ''} />
+            <span>Watched</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    document.querySelectorAll('.youtube-cb').forEach(cb => {
+      cb.addEventListener('change', function() {
+        toggleCheck('youtube', this.dataset.id);
+        updateProgress(); fireConfetti();
+      });
+    });
+  }
 
-        function renderYoutube() {
-            const grid = document.getElementById('youtubeGrid');
-            grid.innerHTML = YOUTUBE_DATA.map(item => `
-                <div class="card">
-                    <div class="badge-cat">${item.cat}</div>
-                    <div class="title">${item.title}</div>
-                    <div class="video-meta"><i class="fab fa-youtube"></i> ${item.channel} · ${item.duration}</div>
-                    <div style="margin-bottom:0.5rem;">
-                        <a href="${item.video}" target="_blank" class="video-link"><i class="fab fa-youtube"></i> Watch</a>
-                    </div>
-                    <div class="actions">
-                        <div class="check-wrap">
-                            <input type="checkbox" class="youtube-cb" data-id="${item.id}" ${isChecked('youtube', item.id) ? 'checked' : ''} />
-                            <span>Watched</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            document.querySelectorAll('.youtube-cb').forEach(cb => {
-                cb.addEventListener('change', function() {
-                    toggleCheck('youtube', this.dataset.id);
-                    updateProgress();
-                    fireConfetti();
-                });
-            });
-        }
+  function renderProjects(filter = '') {
+    const grid = document.getElementById('projectGrid');
+    const items = PROJECT_DATA.filter(t => t.title.toLowerCase().includes(filter) || t.desc.toLowerCase().includes(filter));
+    grid.innerHTML = items.map(item => `
+      <div class="card">
+        <div class="badge-cat">${item.cat}</div>
+        <div class="title">${item.title}</div>
+        <div class="desc">${item.desc}</div>
+        <div class="actions">
+          <div class="check-wrap">
+            <input type="checkbox" class="project-cb" data-id="${item.id}" ${isChecked('project', item.id) ? 'checked' : ''} />
+            <span>Done</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    document.querySelectorAll('.project-cb').forEach(cb => {
+      cb.addEventListener('change', function() {
+        toggleCheck('project', this.dataset.id);
+        updateProgress(); fireConfetti();
+      });
+    });
+  }
 
-        function renderProjects() {
-            const grid = document.getElementById('projectGrid');
-            grid.innerHTML = PROJECT_DATA.map(item => `
-                <div class="card">
-                    <div class="badge-cat">${item.cat}</div>
-                    <div class="title">${item.title}</div>
-                    <div class="desc">${item.desc}</div>
-                    <div class="actions">
-                        <div class="check-wrap">
-                            <input type="checkbox" class="project-cb" data-id="${item.id}" ${isChecked('project', item.id) ? 'checked' : ''} />
-                            <span>Done</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            document.querySelectorAll('.project-cb').forEach(cb => {
-                cb.addEventListener('change', function() {
-                    toggleCheck('project', this.dataset.id);
-                    updateProgress();
-                    fireConfetti();
-                });
-            });
-        }
+  function renderErrors() {
+    const grid = document.getElementById('errorGrid');
+    grid.innerHTML = ERROR_DATA.map(item => {
+      const sevClass = item.severity === 'high' ? 'sev-high' : item.severity === 'medium' ? 'sev-medium' : 'sev-low';
+      return `
+        <div class="card">
+          <div class="badge-cat">${item.severity.toUpperCase()} <span class="sev-tag ${sevClass}">${item.severity}</span>
+            <span class="spidey-badge"><i class="fas fa-spider"></i></span>
+          </div>
+          <div class="title">${item.title}</div>
+          <div class="desc"><strong>Cause:</strong> ${item.desc}</div>
+          <div class="desc" style="color:#fcd34d;"><strong>Fix:</strong> ${item.fix}</div>
+        </div>
+      `;
+    }).join('');
+  }
 
-        function renderErrors() {
-            const grid = document.getElementById('errorGrid');
-            grid.innerHTML = ERROR_DATA.map(item => {
-                const sevClass = item.severity === 'high' ? 'sev-high' : item.severity === 'medium' ? 'sev-medium' :
-                    'sev-low';
-                return `
-                    <div class="card">
-                        <div class="badge-cat">${item.severity.toUpperCase()} <span class="sev-tag ${sevClass}">${item.severity}</span></div>
-                        <div class="title">${item.title}</div>
-                        <div class="desc"><strong>Cause:</strong> ${item.desc}</div>
-                        <div class="desc" style="color:#fcd34d;"><strong>Fix:</strong> ${item.fix}</div>
-                    </div>
-                `;
-            }).join('');
-        }
+  function renderRoadmap() {
+    const container = document.getElementById('roadmapContainer');
+    let html = '';
+    for (let i = 0; i < ROADMAP_DATA.length; i++) {
+      const node = ROADMAP_DATA[i];
+      html += `<div class="roadmap-node">
+                <div class="node-icon"><i class="fas ${node.icon}"></i></div>
+                <div class="node-title">${node.title}</div>
+                <div class="node-desc">${node.desc}</div>
+              </div>`;
+      if (i < ROADMAP_DATA.length - 1) html += `<div class="roadmap-arrow"><i class="fas fa-arrow-right"></i></div>`;
+    }
+    container.innerHTML = `<div class="roadmap-row">${html}</div>`;
+  }
 
-        function renderRoadmap() {
-            const container = document.getElementById('roadmapContainer');
-            let html = '';
-            for (let i = 0; i < ROADMAP_DATA.length; i++) {
-                const node = ROADMAP_DATA[i];
-                html += `<div class="roadmap-node">
-                            <div class="node-icon"><i class="fas ${node.icon}"></i></div>
-                            <div class="node-title">${node.title}</div>
-                            <div class="node-desc">${node.desc}</div>
-                        </div>`;
-                if (i < ROADMAP_DATA.length - 1) {
-                    html += `<div class="roadmap-arrow"><i class="fas fa-arrow-right"></i></div>`;
-                }
-            }
-            container.innerHTML = `<div class="roadmap-row">${html}</div>`;
-        }
+  function renderStats() {
+    const grid = document.getElementById('statsGrid');
+    const tDone = getChecked('theory').length;
+    const yDone = getChecked('youtube').length;
+    const pDone = getChecked('project').length;
+    const total = THEORY_DATA.length + YOUTUBE_DATA.length + PROJECT_DATA.length;
+    const done = tDone + yDone + pDone;
+    const pct = total > 0 ? Math.round(done/total*100) : 0;
+    grid.innerHTML = `
+      <div class="stat-card"><div class="number">${done}</div><div class="label">Completed</div></div>
+      <div class="stat-card"><div class="number">${total}</div><div class="label">Total Items</div></div>
+      <div class="stat-card"><div class="number">${pct}%</div><div class="label">Progress</div></div>
+      <div class="stat-card"><div class="number">${getStreak()}</div><div class="label">Day Streak</div></div>
+      <div class="stat-card"><div class="number">${THEORY_DATA.length}</div><div class="label">Topics</div></div>
+      <div class="stat-card"><div class="number">${YOUTUBE_DATA.length}</div><div class="label">Videos</div></div>
+      <div class="stat-card"><div class="number">${PROJECT_DATA.length}</div><div class="label">Datasets</div></div>
+    `;
+  }
 
-        // ============================================================
-        //  TODAY'S PICK – date-based, stable
-        // ============================================================
-        function getTodaysPick() {
-            const today = new Date().toDateString();
-            let hash = 0;
-            for (let i = 0; i < today.length; i++) {
-                hash = ((hash << 5) - hash) + today.charCodeAt(i);
-                hash |= 0;
-            }
-            const index = Math.abs(hash) % ALL_ITEMS.length;
-            return ALL_ITEMS[index];
-        }
+  // ============================================================
+  // TODAY'S PICK (date-based)
+  // ============================================================
+  function getTodaysPick() {
+    const today = new Date().toDateString();
+    let hash = 0;
+    for (let i = 0; i < today.length; i++) { hash = ((hash << 5) - hash) + today.charCodeAt(i); hash |= 0; }
+    const idx = Math.abs(hash) % ALL_ITEMS.length;
+    return ALL_ITEMS[idx];
+  }
 
-        function updateTodayPick() {
-            const item = getTodaysPick();
-            document.getElementById('todayTitle').textContent = item.title;
-            document.getElementById('todayDesc').textContent = item.desc || (item.channel ? `From ${item.channel}` : '');
-            let link = '#';
-            if (item.video) link = item.video;
-            else if (item.id && item.id.startsWith('t')) link = 'https://www.geeksforgeeks.org/';
-            else link = '#';
-            document.getElementById('todayLink').href = link;
-        }
+  function updateTodayPick() {
+    const item = getTodaysPick();
+    document.getElementById('todayTitle').textContent = item.title;
+    document.getElementById('todayDesc').textContent = item.desc || (item.channel ? `From ${item.channel}` : '');
+    let link = '#';
+    if (item.video) link = item.video;
+    else if (item.id && item.id.startsWith('t')) link = 'https://www.geeksforgeeks.org/';
+    else link = '#';
+    document.getElementById('todayLink').href = link;
+  }
 
-        // ============================================================
-        //  START BUTTON
-        // ============================================================
-        document.getElementById('startBtn').addEventListener('click', function() {
-            const item = getTodaysPick();
-            if (item.video) {
-                window.open(item.video, '_blank');
-                fireConfetti();
-                document.getElementById('todayTitle').textContent = '🔥 You started!';
-                document.getElementById('todayDesc').textContent = `Opened: ${item.title}`;
-            } else {
-                alert(`Today's focus: ${item.title}\nGo to the "${item.cat || 'general'}" section and dive in!`);
-                fireConfetti();
-            }
-        });
+  // ============================================================
+  // START BUTTON
+  // ============================================================
+  document.getElementById('startBtn').addEventListener('click', function() {
+    const item = getTodaysPick();
+    if (item.video) {
+      window.open(item.video, '_blank');
+      fireConfetti();
+      document.getElementById('todayTitle').textContent = '🔥 You started!';
+      document.getElementById('todayDesc').textContent = `Opened: ${item.title}`;
+    } else {
+      alert(`Today's focus: ${item.title}\nGo to the "${item.cat || 'general'}" section and dive in!`);
+      fireConfetti();
+    }
+  });
 
-        // ============================================================
-        //  TABS
-        // ============================================================
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-                document.getElementById('panel-' + this.dataset.panel).classList.add('active');
-            });
-        });
+  // ============================================================
+  // SEARCH
+  // ============================================================
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const q = this.value.toLowerCase().trim();
+    renderTheory(q);
+    renderYoutube(q);
+    renderProjects(q);
+  });
 
-        // ============================================================
-        //  BOOT
-        // ============================================================
-        function init() {
-            updateStreak();
-            renderTheory();
-            renderYoutube();
-            renderProjects();
-            renderErrors();
-            renderRoadmap();
-            updateProgress();
-            updateTodayPick();
-        }
-        init();
-    </script>
+  // ============================================================
+  // NOTEPAD (auto-save)
+  // ============================================================
+  const notepad = document.getElementById('notepadContent');
+  notepad.value = localStorage.getItem('mlhub_notepad') || '';
+  notepad.addEventListener('input', function() {
+    localStorage.setItem('mlhub_notepad', this.value);
+  });
+
+  // ============================================================
+  // TABS
+  // ============================================================
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      const panelId = 'panel-' + this.dataset.panel;
+      document.getElementById(panelId).classList.add('active');
+      if (this.dataset.panel === 'stats') renderStats();
+    });
+  });
+
+  // ============================================================
+  // BOOT
+  // ============================================================
+  function init() {
+    updateStreak();
+    renderTheory();
+    renderYoutube();
+    renderProjects();
+    renderErrors();
+    renderRoadmap();
+    renderStats();
+    updateProgress();
+    updateTodayPick();
+  }
+  init();
+</script>
 </body>
 </html>
