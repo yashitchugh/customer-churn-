@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-  <title>🕷️ Spidey·ML</title>
+  <title>🕷️ Spidey·ML Ultimate</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
+    /* --- RESET & BASE --- */
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
       font-family: 'Inter', sans-serif;
@@ -31,7 +32,7 @@
       position: relative;
       overflow: hidden;
     }
-    /* Web background pattern */
+    /* --- Web background pattern (spider-web) --- */
     .app::before {
       content: '';
       position: absolute;
@@ -40,50 +41,39 @@
       width: 200%;
       height: 200%;
       background: radial-gradient(circle at 30% 40%, rgba(230,36,41,0.03) 0%, transparent 60%),
-                  repeating-linear-gradient(45deg, rgba(230,36,41,0.02) 0px, rgba(230,36,41,0.02) 2px, transparent 2px, transparent 10px);
+                  repeating-linear-gradient(45deg, rgba(230,36,41,0.02) 0px, rgba(230,36,41,0.02) 2px, transparent 2px, transparent 12px),
+                  repeating-linear-gradient(-45deg, rgba(230,36,41,0.02) 0px, rgba(230,36,41,0.02) 2px, transparent 2px, transparent 12px);
       pointer-events: none;
       z-index: 0;
     }
-    /* Animated spider */
+    /* --- Animated swinging spider --- */
     .spider-float {
       position: absolute;
       top: 10px;
       right: 10px;
       font-size: 2.2rem;
       color: #e62429;
-      animation: swing 4s ease-in-out infinite;
+      animation: swing 3.5s ease-in-out infinite;
       z-index: 1;
-      opacity: 0.7;
-      filter: drop-shadow(0 0 10px rgba(230,36,41,0.3));
+      opacity: 0.8;
+      filter: drop-shadow(0 0 15px rgba(230,36,41,0.4));
     }
     @keyframes swing {
-      0% { transform: rotate(-10deg) translateY(0); }
-      50% { transform: rotate(10deg) translateY(-8px); }
-      100% { transform: rotate(-10deg) translateY(0); }
+      0% { transform: rotate(-12deg) translateY(0); }
+      50% { transform: rotate(12deg) translateY(-10px); }
+      100% { transform: rotate(-12deg) translateY(0); }
     }
-    /* Web lines (CSS only) */
-    .web-lines {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      background: radial-gradient(circle at 80% 20%, rgba(230,36,41,0.05) 0%, transparent 50%);
+    /* --- Web slinger effect (on button) --- */
+    .web-slinger {
+      animation: web-pulse 2s infinite;
     }
-    .web-lines::after {
-      content: '';
-      position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 60%;
-      height: 60%;
-      background: repeating-linear-gradient(45deg, rgba(230,36,41,0.02) 0px, rgba(230,36,41,0.02) 1px, transparent 1px, transparent 8px);
-      transform: rotate(10deg);
+    @keyframes web-pulse {
+      0% { box-shadow: 0 0 15px rgba(230,36,41,0.2); }
+      50% { box-shadow: 0 0 50px rgba(230,36,41,0.7), 0 0 80px rgba(230,36,41,0.3); }
+      100% { box-shadow: 0 0 15px rgba(230,36,41,0.2); }
     }
 
-    /* ----- HEADER ----- */
+    /* --- HEADER --- */
     .header {
       display: flex;
       flex-wrap: wrap;
@@ -94,21 +84,17 @@
       position: relative;
       z-index: 2;
     }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .logo { display: flex; align-items: center; gap: 0.5rem; }
     .logo i {
       font-size: 1.8rem;
       color: #e62429;
       filter: drop-shadow(0 0 12px rgba(230,36,41,0.4));
-      animation: pulse-glow 2s infinite;
+      animation: glow-pulse 2s infinite;
     }
-    @keyframes pulse-glow {
-      0% { filter: drop-shadow(0 0 8px rgba(230,36,41,0.2)); }
+    @keyframes glow-pulse {
+      0% { filter: drop-shadow(0 0 5px rgba(230,36,41,0.2)); }
       50% { filter: drop-shadow(0 0 20px rgba(230,36,41,0.6)); }
-      100% { filter: drop-shadow(0 0 8px rgba(230,36,41,0.2)); }
+      100% { filter: drop-shadow(0 0 5px rgba(230,36,41,0.2)); }
     }
     .logo h1 {
       font-size: 1.3rem;
@@ -168,7 +154,7 @@
       border-radius: 4px; transition: width 0.4s;
     }
 
-    /* ----- START BUTTON (Web Slinger) ----- */
+    /* --- START BUTTON (Web Slinger) --- */
     .start-wrap {
       display: flex; justify-content: center; margin-bottom: 1.2rem; position: relative; z-index: 2;
     }
@@ -182,13 +168,8 @@
       width: 100%; justify-content: center;
     }
     .start-btn:hover { transform: scale(1.02); box-shadow: 0 0 50px rgba(230,36,41,0.5); }
-    @keyframes web-pulse {
-      0% { box-shadow: 0 0 15px rgba(230,36,41,0.2); }
-      50% { box-shadow: 0 0 40px rgba(230,36,41,0.6); }
-      100% { box-shadow: 0 0 15px rgba(230,36,41,0.2); }
-    }
 
-    /* ----- TODAY'S PICK (Daily Web) ----- */
+    /* --- TODAY'S PICK --- */
     .today-highlight {
       background: rgba(255,255,255,0.04);
       border: 1.5px solid rgba(230,36,41,0.3);
@@ -207,7 +188,7 @@
     }
     .today-highlight .link:hover { background: #f97316; }
 
-    /* ----- SEARCH ----- */
+    /* --- SEARCH --- */
     .search-box {
       display: flex; gap: 0.5rem; margin-bottom: 1rem; position: relative; z-index: 2;
     }
@@ -219,7 +200,7 @@
     .search-box input:focus { border-color: #e62429; }
     .search-box input::placeholder { color: #6b7280; }
 
-    /* ----- TABS ----- */
+    /* --- TABS --- */
     .tabs {
       display: flex; gap: 0.2rem; margin-bottom: 1rem;
       border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.3rem;
@@ -239,7 +220,7 @@
     .panel.active { display: block; }
     @keyframes fadeUp { 0% { opacity: 0; transform: translateY(6px); } 100% { opacity: 1; transform: translateY(0); } }
 
-    /* ----- CARDS (glass) ----- */
+    /* --- CARDS --- */
     .grid-2 {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 0.7rem;
@@ -271,6 +252,8 @@
       transition: 0.15s;
     }
     .card .resource-links a:hover { background: #e62429; color: #fff; border-color: #e62429; }
+    .card .video-meta { font-size: 0.55rem; color: #6b7280; margin-bottom: 0.2rem; }
+    .card .video-meta i { color: #e62429; }
     .card .actions {
       display: flex; justify-content: space-between; align-items: center;
       border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.4rem; margin-top: 0.1rem;
@@ -281,8 +264,44 @@
     .card .actions .check-wrap input[type="checkbox"] {
       width: 14px; height: 14px; accent-color: #e62429; cursor: pointer;
     }
+    .card .actions .detail-btn {
+      background: transparent; border: 1px solid rgba(255,255,255,0.08); color: #9ca3af;
+      padding: 0.05rem 0.5rem; border-radius: 40px; font-size: 0.55rem; font-weight: 600;
+      cursor: pointer; transition: 0.15s;
+    }
+    .card .actions .detail-btn:hover { background: #e62429; border-color: #e62429; color: #fff; }
 
-    /* ----- STATS ----- */
+    /* --- ERROR SEVERITY --- */
+    .sev-tag {
+      font-size: 0.45rem; font-weight: 700; padding: 0.05rem 0.4rem; border-radius: 40px; margin-left: 0.2rem;
+    }
+    .sev-high { background: #7f1d1d; color: #fca5a5; }
+    .sev-medium { background: #78350f; color: #fcd34d; }
+    .sev-low { background: #064e3b; color: #6ee7b7; }
+
+    /* --- ROADMAP --- */
+    .roadmap-container {
+      display: flex; flex-direction: column; gap: 0.8rem; padding: 0.3rem 0;
+    }
+    .roadmap-row {
+      display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+    }
+    .roadmap-node {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 0.6rem 1rem; flex: 1; min-width: 120px;
+      text-align: center; transition: 0.2s;
+    }
+    .roadmap-node:hover { border-color: #e62429; }
+    .roadmap-node .node-icon { font-size: 1.2rem; color: #e62429; }
+    .roadmap-node .node-title { font-weight: 700; font-size: 0.7rem; color: #f8fafc; }
+    .roadmap-node .node-desc { font-size: 0.55rem; color: #9ca3af; }
+    .roadmap-arrow { color: #e62429; font-size: 0.8rem; opacity: 0.5; }
+    @media (max-width: 500px) {
+      .roadmap-row { flex-direction: column; align-items: stretch; }
+      .roadmap-arrow { transform: rotate(90deg); text-align: center; }
+    }
+
+    /* --- STATS --- */
     .stats-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; margin: 0.5rem 0;
     }
@@ -293,7 +312,7 @@
     .stat-card .number { font-size: 1.6rem; font-weight: 900; color: #e62429; }
     .stat-card .label { font-size: 0.6rem; color: #9ca3af; margin-top: 0.1rem; }
 
-    /* ----- NOTEPAD ----- */
+    /* --- NOTEPAD --- */
     .notepad-area {
       background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
       border-radius: 14px; padding: 0.8rem; margin-top: 0.5rem;
@@ -305,18 +324,7 @@
     }
     .notepad-area textarea::placeholder { color: #6b7280; }
 
-    /* ----- ROADMAP (mini) ----- */
-    .roadmap-mini {
-      display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0;
-    }
-    .roadmap-mini .item {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 40px; padding: 0.15rem 0.7rem; font-size: 0.6rem;
-      color: #9ca3af; display: flex; align-items: center; gap: 0.3rem;
-    }
-    .roadmap-mini .item i { color: #e62429; }
-
-    /* ----- CONFETTI ----- */
+    /* --- CONFETTI --- */
     .confetti-container {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none; z-index: 9999; overflow: hidden;
@@ -354,14 +362,13 @@
 <div class="app" id="app">
   <!-- Animated Spider -->
   <div class="spider-float"><i class="fas fa-spider"></i></div>
-  <div class="web-lines"></div>
 
   <!-- HEADER -->
   <header class="header">
     <div class="logo">
       <i class="fas fa-spider"></i>
       <h1>Spidey·ML</h1>
-      <span class="badge">v2</span>
+      <span class="badge">Ultimate</span>
     </div>
     <div class="header-actions">
       <div class="streak-box"><i class="fas fa-fire"></i> <span id="streakDisplay">0</span></div>
@@ -373,9 +380,9 @@
     </div>
   </header>
 
-  <!-- START BUTTON (Web Slinger) -->
+  <!-- START BUTTON -->
   <div class="start-wrap">
-    <button class="start-btn" id="startBtn"><i class="fas fa-bolt"></i> Web Slinger – Start Today</button>
+    <button class="start-btn web-slinger" id="startBtn"><i class="fas fa-bolt"></i> Web Slinger – Start Today</button>
   </div>
 
   <!-- TODAY'S PICK -->
@@ -390,27 +397,32 @@
 
   <!-- SEARCH -->
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="🔍 Search topics, resources..." />
+    <input type="text" id="searchInput" placeholder="🔍 Search topics, videos, datasets..." />
   </div>
 
   <!-- TABS -->
   <div class="tabs">
     <button class="tab-btn active" data-panel="topics"><i class="fas fa-graduation-cap"></i> Topics</button>
-    <button class="tab-btn" data-panel="resources"><i class="fas fa-link"></i> All Links</button>
+    <button class="tab-btn" data-panel="videos"><i class="fab fa-youtube"></i> Videos</button>
+    <button class="tab-btn" data-panel="datasets"><i class="fas fa-database"></i> Datasets</button>
+    <button class="tab-btn" data-panel="errors"><i class="fas fa-bug"></i> Errors</button>
+    <button class="tab-btn" data-panel="roadmap"><i class="fas fa-map-signs"></i> Roadmap</button>
     <button class="tab-btn" data-panel="stats"><i class="fas fa-chart-pie"></i> Stats</button>
     <button class="tab-btn" data-panel="notepad"><i class="fas fa-pen"></i> Notes</button>
   </div>
 
   <!-- PANELS -->
   <div class="panel active" id="panel-topics"><div class="grid-2" id="topicsGrid"></div></div>
-  <div class="panel" id="panel-resources"><div class="grid-2" id="resourcesGrid"></div></div>
+  <div class="panel" id="panel-videos"><div class="grid-2" id="videosGrid"></div></div>
+  <div class="panel" id="panel-datasets"><div class="grid-2" id="datasetsGrid"></div></div>
+  <div class="panel" id="panel-errors"><div class="grid-2" id="errorsGrid"></div></div>
+  <div class="panel" id="panel-roadmap"><div class="roadmap-container" id="roadmapContainer"></div></div>
   <div class="panel" id="panel-stats">
     <div class="stats-grid" id="statsGrid"></div>
-    <div class="roadmap-mini" id="roadmapMini"></div>
   </div>
   <div class="panel" id="panel-notepad">
     <div class="notepad-area">
-      <textarea id="notepadContent" placeholder="📝 Jot down your thoughts, code snippets, or questions..."></textarea>
+      <textarea id="notepadContent" placeholder="📝 Jot down notes, code snippets, questions..."></textarea>
     </div>
   </div>
 
@@ -425,8 +437,10 @@
 
 <script>
   // ============================================================
-  //  DATA – All resources from the reading list
+  //  DATA – Full features restored
   // ============================================================
+
+  // --- TOPICS with new resource links ---
   const TOPICS = [
     {
       id: 't1',
@@ -509,8 +523,95 @@
     }
   ];
 
-  // Flatten all resources for the "All Links" tab
-  const ALL_RESOURCES = TOPICS.flatMap(t => t.resources.map(r => ({ ...r, topic: t.title, topicId: t.id })));
+  // --- YOUTUBE VIDEOS (ordered learning path) ---
+  const VIDEOS = [
+    { id: 'v1', title: 'Python for Data Science (freeCodeCamp)', cat: 'Foundation',
+      video: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI', channel: 'freeCodeCamp', duration: '~4h' },
+    { id: 'v2', title: 'SQL for Data Analytics (Alex The Analyst)', cat: 'Foundation',
+      video: 'https://www.youtube.com/watch?v=7S_tz1z_5bA', channel: 'Alex The Analyst', duration: '~3h' },
+    { id: 'v3', title: 'Logistic Regression (StatQuest)', cat: 'Core',
+      video: 'https://www.youtube.com/watch?v=yIYKR4sgzI8', channel: 'StatQuest', duration: '~10min' },
+    { id: 'v4', title: 'Decision Trees & Random Forest (StatQuest)', cat: 'Core',
+      video: 'https://www.youtube.com/watch?v=7VeUPuFGJHk', channel: 'StatQuest', duration: '~15min' },
+    { id: 'v5', title: 'XGBoost (StatQuest)', cat: 'Core',
+      video: 'https://www.youtube.com/watch?v=ZVFeW798-2I', channel: 'StatQuest', duration: '~12min' },
+    { id: 'v6', title: 'Feature Engineering (Kaggle)', cat: 'Core',
+      video: 'https://www.youtube.com/watch?v=0Wgt6ofPbOc', channel: 'Kaggle', duration: '~45min' },
+    { id: 'v7', title: 'Neural Networks (3B1B)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=aircAruvnKk', channel: '3Blue1Brown', duration: '~20min' },
+    { id: 'v8', title: 'CNNs (StatQuest)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=HGwBXDKFk9I', channel: 'StatQuest', duration: '~10min' },
+    { id: 'v9', title: 'Transformers (3B1B)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=eMlx5fFNoYc', channel: '3Blue1Brown', duration: '~16min' },
+    { id: 'v10', title: 'BERT (StatQuest)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=0MJRdVyQvRM', channel: 'StatQuest', duration: '~10min' },
+    { id: 'v11', title: 'RAG in 10 min (LangChain)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=wd7TZ4w1mSw', channel: 'LangChain', duration: '~10min' },
+    { id: 'v12', title: 'GPT (StatQuest)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=5vY2_5Gm_6g', channel: 'StatQuest', duration: '~8min' },
+    { id: 'v13', title: 'MLOps (Chip Huyen)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=06-AZXmwHjo', channel: 'Chip Huyen', duration: '~30min' },
+    { id: 'v14', title: 'Deploy ML with Flask (Krish Naik)', cat: 'Advanced',
+      video: 'https://www.youtube.com/watch?v=7q4NpP1L9cE', channel: 'Krish Naik', duration: '~2h' }
+  ];
+
+  // --- DATASETS (20) ---
+  const DATASETS = [
+    { id: 'd1', title: 'Titanic', cat: 'tabular', desc: 'Survival prediction – classic starter.' },
+    { id: 'd2', title: 'Iris', cat: 'tabular', desc: '3-species classification – quick win.' },
+    { id: 'd3', title: 'Boston Housing', cat: 'tabular', desc: 'House price prediction – regression.' },
+    { id: 'd4', title: 'Wine Quality', cat: 'tabular', desc: 'Wine score prediction – multiclass.' },
+    { id: 'd5', title: 'Breast Cancer (Wisconsin)', cat: 'tabular', desc: 'Diagnostic binary classification.' },
+    { id: 'd6', title: 'California Housing', cat: 'tabular', desc: 'Median house value – geospatial.' },
+    { id: 'd7', title: 'Forest Cover Type', cat: 'tabular', desc: 'Multiclass cartographic classification.' },
+    { id: 'd8', title: 'MNIST', cat: 'vision', desc: 'Handwritten digit recognition – CNN intro.' },
+    { id: 'd9', title: 'Fashion-MNIST', cat: 'vision', desc: 'Clothing classification – slightly harder.' },
+    { id: 'd10', title: 'CIFAR-10', cat: 'vision', desc: 'Object recognition – transfer learning.' },
+    { id: 'd11', title: 'IMDB Reviews', cat: 'nlp', desc: 'Sentiment analysis – NLP starter.' },
+    { id: 'd12', title: 'Spam/Ham', cat: 'nlp', desc: 'SMS classification – text preprocessing.' },
+    { id: 'd13', title: 'Twitter Sentiment', cat: 'nlp', desc: 'Real‑world tweet sentiment – BERT.' },
+    { id: 'd14', title: 'Stock Prices', cat: 'timeseries', desc: 'Forecast – ARIMA vs LSTM.' },
+    { id: 'd15', title: 'Air Quality', cat: 'timeseries', desc: 'PM2.5 forecasting – multivariate.' },
+    { id: 'd16', title: 'Human Activity Recognition', cat: 'timeseries', desc: 'Sensor data – 1D-CNN.' },
+    { id: 'd17', title: 'Customer Segmentation', cat: 'other', desc: 'Clustering – K-means, PCA.' },
+    { id: 'd18', title: 'Credit Card Fraud', cat: 'other', desc: 'Imbalanced classification – SMOTE.' },
+    { id: 'd19', title: 'COCO (subset)', cat: 'vision', desc: 'Object detection – YOLO.' },
+    { id: 'd20', title: 'KITTI', cat: 'vision', desc: 'Autonomous driving – point clouds.' }
+  ];
+
+  // --- ERRORS (with Spidey quotes) ---
+  const ERRORS = [
+    { id: 'e1', title: 'KeyError: column not found', severity: 'low', desc: 'Column typo or missing.',
+      fix: 'Print df.columns. "With great power comes great responsibility – check your spelling!"' },
+    { id: 'e2', title: 'ValueError: shapes not aligned', severity: 'high', desc: 'Matrix dimensions mismatch.',
+      fix: 'Use .shape. "Your friendly neighborhood debugger – check dimensions!"' },
+    { id: 'e3', title: 'CUDA Out of Memory', severity: 'high', desc: 'GPU ran out of RAM.',
+      fix: 'Reduce batch size or use gradient accumulation. "With great memory comes great responsibility – downsize!"' },
+    { id: 'e4', title: 'MemoryError (RAM)', severity: 'high', desc: 'Dataset too large for RAM.',
+      fix: 'Use chunksize or reduce dtype precision. "Spidey senses tingling – use a smaller chunk!"' },
+    { id: 'e5', title: 'ConvergenceWarning', severity: 'medium', desc: 'Model failed to converge.',
+      fix: 'Increase max_iter or scale features. "Persistence is key – keep iterating!"' },
+    { id: 'e6', title: 'AttributeError: module has no attr', severity: 'medium', desc: 'Typo or deprecated function.',
+      fix: 'Check library docs. "Your spidey senses – check the docs!"' },
+    { id: 'e7', title: 'UndefinedMetricWarning', severity: 'low', desc: 'F1 undefined due to no predictions.',
+      fix: 'Add zero_division=0 in f1_score. "Even heroes need a fallback – set zero_division."' }
+  ];
+
+  // --- ROADMAP ---
+  const ROADMAP = [
+    { icon: 'fa-code', title: 'Python & SQL', desc: 'Data wrangling' },
+    { icon: 'fa-chart-bar', title: 'Stats & EDA', desc: 'Explore & understand' },
+    { icon: 'fa-robot', title: 'Classical ML', desc: 'Regression, Trees, XGBoost' },
+    { icon: 'fa-microchip', title: 'Deep Learning', desc: 'CNN, RNN, Transfer' },
+    { icon: 'fa-language', title: 'NLP & LLMs', desc: 'BERT, RAG, Fine-tuning' },
+    { icon: 'fa-gears', title: 'MLOps & Deploy', desc: 'Ship & monitor' }
+  ];
+
+  // Combine all items for daily pick (topics resources + videos + datasets)
+  const ALL_RESOURCES = [
+    ...TOPICS.flatMap(t => t.resources.map(r => ({ ...r, topic: t.title, type: 'topic' }))),
+    ...VIDEOS.map(v => ({ label: v.title, url: v.video, topic: v.cat, type: 'video' }))
+  ];
 
   // ============================================================
   //  STATE MANAGEMENT
@@ -559,7 +660,8 @@
   }
 
   function updateProgress() {
-    const allIds = ALL_RESOURCES.map(r => r.url);
+    // Count all checkable items: topics resources + videos + datasets
+    const allIds = [...TOPICS.flatMap(t => t.resources.map(r => r.url)), ...VIDEOS.map(v => v.video), ...DATASETS.map(d => d.id)];
     const checked = getChecked('resource');
     const done = checked.filter(id => allIds.includes(id)).length;
     const total = allIds.length;
@@ -591,7 +693,7 @@
   }
 
   // ============================================================
-  //  RENDER
+  //  RENDER FUNCTIONS
   // ============================================================
   function renderTopics(filter = '') {
     const grid = document.getElementById('topicsGrid');
@@ -606,7 +708,7 @@
         </div>
         <div class="actions">
           <div class="check-wrap">
-            <input type="checkbox" class="resource-cb" data-url="${t.resources[0].url}" ${isChecked('resource', t.resources[0].url) ? 'checked' : ''} />
+            <input type="checkbox" class="resource-cb" data-id="${t.resources[0].url}" ${isChecked('resource', t.resources[0].url) ? 'checked' : ''} />
             <span>Read</span>
           </div>
         </div>
@@ -615,26 +717,92 @@
     attachCheckEvents();
   }
 
-  function renderAllResources(filter = '') {
-    const grid = document.getElementById('resourcesGrid');
-    const items = ALL_RESOURCES.filter(r => r.label.toLowerCase().includes(filter) || r.topic.toLowerCase().includes(filter));
-    grid.innerHTML = items.map(r => `
+  function renderVideos(filter = '') {
+    const grid = document.getElementById('videosGrid');
+    const items = VIDEOS.filter(v => v.title.toLowerCase().includes(filter) || v.channel.toLowerCase().includes(filter));
+    grid.innerHTML = items.map(v => `
       <div class="card">
-        <div class="badge-cat">${r.topic}</div>
-        <div class="title">${r.label}</div>
-        <div class="desc" style="font-size:0.6rem;color:#6b7280;">${r.url}</div>
-        <div style="margin:0.3rem 0;">
-          <a href="${r.url}" target="_blank" style="color:#60a5fa;font-size:0.7rem;text-decoration:none;background:rgba(255,255,255,0.04);padding:0.1rem 0.6rem;border-radius:40px;border:1px solid rgba(255,255,255,0.06);">Open Link</a>
+        <div class="badge-cat">${v.cat}</div>
+        <div class="title">${v.title}</div>
+        <div class="video-meta"><i class="fab fa-youtube"></i> ${v.channel} · ${v.duration}</div>
+        <div style="margin-bottom:0.4rem;">
+          <a href="${v.video}" target="_blank" style="color:#60a5fa;font-size:0.65rem;text-decoration:none;background:rgba(255,255,255,0.04);padding:0.1rem 0.6rem;border-radius:40px;border:1px solid rgba(255,255,255,0.06);"><i class="fab fa-youtube"></i> Watch</a>
         </div>
         <div class="actions">
           <div class="check-wrap">
-            <input type="checkbox" class="resource-cb" data-url="${r.url}" ${isChecked('resource', r.url) ? 'checked' : ''} />
-            <span>Read</span>
+            <input type="checkbox" class="resource-cb" data-id="${v.video}" ${isChecked('resource', v.video) ? 'checked' : ''} />
+            <span>Watched</span>
           </div>
         </div>
       </div>
     `).join('');
     attachCheckEvents();
+  }
+
+  function renderDatasets(filter = '') {
+    const grid = document.getElementById('datasetsGrid');
+    const items = DATASETS.filter(d => d.title.toLowerCase().includes(filter) || d.desc.toLowerCase().includes(filter));
+    grid.innerHTML = items.map(d => `
+      <div class="card">
+        <div class="badge-cat">${d.cat}</div>
+        <div class="title">${d.title}</div>
+        <div class="desc">${d.desc}</div>
+        <div class="actions">
+          <div class="check-wrap">
+            <input type="checkbox" class="resource-cb" data-id="${d.id}" ${isChecked('resource', d.id) ? 'checked' : ''} />
+            <span>Done</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    attachCheckEvents();
+  }
+
+  function renderErrors() {
+    const grid = document.getElementById('errorsGrid');
+    grid.innerHTML = ERRORS.map(e => {
+      const sevClass = e.severity === 'high' ? 'sev-high' : e.severity === 'medium' ? 'sev-medium' : 'sev-low';
+      return `
+        <div class="card">
+          <div class="badge-cat">${e.severity.toUpperCase()} <span class="sev-tag ${sevClass}">${e.severity}</span> <i class="fas fa-spider" style="color:#e62429;margin-left:0.3rem;"></i></div>
+          <div class="title">${e.title}</div>
+          <div class="desc"><strong>Cause:</strong> ${e.desc}</div>
+          <div class="desc" style="color:#fcd34d;"><strong>Fix:</strong> ${e.fix}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function renderRoadmap() {
+    const container = document.getElementById('roadmapContainer');
+    let html = '';
+    for (let i = 0; i < ROADMAP.length; i++) {
+      const node = ROADMAP[i];
+      html += `<div class="roadmap-node">
+                <div class="node-icon"><i class="fas ${node.icon}"></i></div>
+                <div class="node-title">${node.title}</div>
+                <div class="node-desc">${node.desc}</div>
+              </div>`;
+      if (i < ROADMAP.length - 1) html += `<div class="roadmap-arrow"><i class="fas fa-arrow-right"></i></div>`;
+    }
+    container.innerHTML = `<div class="roadmap-row">${html}</div>`;
+  }
+
+  function renderStats() {
+    const grid = document.getElementById('statsGrid');
+    const allIds = [...TOPICS.flatMap(t => t.resources.map(r => r.url)), ...VIDEOS.map(v => v.video), ...DATASETS.map(d => d.id)];
+    const checked = getChecked('resource');
+    const done = checked.filter(id => allIds.includes(id)).length;
+    const total = allIds.length;
+    const pct = total > 0 ? Math.round(done/total*100) : 0;
+    grid.innerHTML = `
+      <div class="stat-card"><div class="number">${done}</div><div class="label">Done</div></div>
+      <div class="stat-card"><div class="number">${total}</div><div class="label">Total</div></div>
+      <div class="stat-card"><div class="number">${pct}%</div><div class="label">Progress</div></div>
+      <div class="stat-card"><div class="number">${getStreak()}</div><div class="label">Streak</div></div>
+      <div class="stat-card"><div class="number">${TOPICS.length}</div><div class="label">Topics</div></div>
+      <div class="stat-card"><div class="number">${VIDEOS.length}</div><div class="label">Videos</div></div>
+    `;
   }
 
   function attachCheckEvents() {
@@ -645,32 +813,10 @@
   }
 
   function handleCheck(e) {
-    const url = this.dataset.url;
-    toggleCheck('resource', url);
+    const id = this.dataset.id;
+    toggleCheck('resource', id);
     updateProgress();
     fireConfetti();
-  }
-
-  function renderStats() {
-    const grid = document.getElementById('statsGrid');
-    const allIds = ALL_RESOURCES.map(r => r.url);
-    const checked = getChecked('resource');
-    const done = checked.filter(id => allIds.includes(id)).length;
-    const total = allIds.length;
-    const pct = total > 0 ? Math.round(done/total*100) : 0;
-    grid.innerHTML = `
-      <div class="stat-card"><div class="number">${done}</div><div class="label">Read</div></div>
-      <div class="stat-card"><div class="number">${total}</div><div class="label">Total</div></div>
-      <div class="stat-card"><div class="number">${pct}%</div><div class="label">Progress</div></div>
-      <div class="stat-card"><div class="number">${getStreak()}</div><div class="label">Day Streak</div></div>
-      <div class="stat-card"><div class="number">${TOPICS.length}</div><div class="label">Topics</div></div>
-      <div class="stat-card"><div class="number">${ALL_RESOURCES.length}</div><div class="label">Resources</div></div>
-    `;
-    // Roadmap mini
-    const roadmap = document.getElementById('roadmapMini');
-    roadmap.innerHTML = TOPICS.map(t => `
-      <span class="item"><i class="fas fa-check-circle" style="color:${isChecked('resource', t.resources[0]?.url) ? '#22c55e' : '#6b7280'}"></i> ${t.title}</span>
-    `).join('');
   }
 
   // ============================================================
@@ -687,7 +833,7 @@
   function updateTodayPick() {
     const pick = getTodaysPick();
     document.getElementById('todayTitle').textContent = pick.label;
-    document.getElementById('todayDesc').textContent = `From topic: ${pick.topic}`;
+    document.getElementById('todayDesc').textContent = pick.topic ? `From: ${pick.topic}` : '';
     document.getElementById('todayLink').href = pick.url;
   }
 
@@ -708,7 +854,8 @@
   document.getElementById('searchInput').addEventListener('input', function() {
     const q = this.value.toLowerCase().trim();
     renderTopics(q);
-    renderAllResources(q);
+    renderVideos(q);
+    renderDatasets(q);
   });
 
   // ============================================================
@@ -740,7 +887,10 @@
   function init() {
     updateStreak();
     renderTopics();
-    renderAllResources();
+    renderVideos();
+    renderDatasets();
+    renderErrors();
+    renderRoadmap();
     renderStats();
     updateProgress();
     updateTodayPick();
