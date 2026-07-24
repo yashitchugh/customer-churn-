@@ -3,135 +3,176 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-    <title>DS/ML Learning Hub · Yashit Chugh</title>
-
-    <!-- Font & Icons -->
+    <title>AI/DS Learning Engine</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
     <style>
-        /* ----- Reset & Base ----- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         body {
-            font-family: 'Inter', -apple-system, system-ui, sans-serif;
-            background: #f6f9fc;
-            color: #0b1a2e;
+            font-family: 'Inter', sans-serif;
+            background: #0b1120;
+            color: #e8edf5;
             padding: 1rem;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
         }
-        .app {
-            max-width: 1200px;
-            width: 100%;
-            background: #ffffff;
-            border-radius: 32px;
-            box-shadow: 0 20px 60px rgba(0, 20, 50, 0.08);
-            overflow: hidden;
-            padding: 1.5rem 1.5rem 2.5rem;
-            transition: all 0.2s;
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 8px;
         }
 
-        /* ----- Header ----- */
+        .app {
+            max-width: 1280px;
+            width: 100%;
+            background: #131e2f;
+            border-radius: 32px;
+            padding: 1.8rem 2rem 2.5rem;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* Header */
         .header {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
-            gap: 0.75rem;
+            gap: 1rem;
         }
-        .header h1 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
+        .logo-area {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
-        .header h1 i {
-            color: #2563eb;
-            font-size: 1.8rem;
+        .logo-area i {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #818cf8, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .header .badge {
-            background: #eef2ff;
-            color: #2563eb;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 0.3rem 0.9rem;
-            border-radius: 100px;
-            letter-spacing: 0.02em;
+        .logo-area h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(to right, #f8fafc, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .header-actions {
             display: flex;
-            gap: 0.6rem;
             align-items: center;
+            gap: 1rem;
             flex-wrap: wrap;
         }
-        .header-actions .progress-text {
+        .daily-btn {
+            background: rgba(79, 70, 229, 0.15);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            color: #a5b4fc;
+            padding: 0.5rem 1.2rem;
+            border-radius: 100px;
+            font-weight: 600;
             font-size: 0.8rem;
-            font-weight: 500;
-            color: #1e293b;
-            background: #f1f5f9;
-            padding: 0.3rem 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .daily-btn:hover {
+            background: #4f46e5;
+            color: #fff;
+            border-color: #4f46e5;
+        }
+        .progress-stats {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: #1e293b;
+            padding: 0.3rem 1.2rem 0.3rem 1.5rem;
             border-radius: 100px;
         }
+        .progress-stats span {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+        .progress-stats strong {
+            color: #e2e8f0;
+        }
+        .progress-bar-bg {
+            width: 100px;
+            height: 6px;
+            background: #334155;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #818cf8, #4f46e5);
+            border-radius: 4px;
+            transition: width 0.4s ease;
+        }
 
-        /* ----- Navigation (tabs) ----- */
+        /* Tabs */
         .tabs {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
+            gap: 0.5rem;
             margin-bottom: 2rem;
-            border-bottom: 2px solid #e9edf2;
+            border-bottom: 1px solid #1e293b;
             padding-bottom: 0.5rem;
         }
         .tab-btn {
             background: transparent;
             border: none;
-            padding: 0.6rem 1.2rem;
+            padding: 0.6rem 1.6rem;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #64748b;
             border-radius: 40px;
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-        }
-        .tab-btn i {
-            font-size: 0.9rem;
+            gap: 0.6rem;
         }
         .tab-btn:hover {
-            background: #f1f5f9;
-            color: #0b1a2e;
+            color: #e2e8f0;
+            background: #1e293b;
         }
         .tab-btn.active {
-            background: #2563eb;
+            background: #4f46e5;
             color: #fff;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
         }
 
-        /* ----- Panels ----- */
+        /* Panels */
         .panel {
             display: none;
-            animation: fade 0.25s ease;
+            animation: fadeUp 0.3s ease;
         }
         .panel.active {
             display: block;
         }
-        @keyframes fade {
+        @keyframes fadeUp {
             0% {
-                opacity: 0.6;
-                transform: translateY(6px);
+                opacity: 0;
+                transform: translateY(10px);
             }
             100% {
                 opacity: 1;
@@ -139,209 +180,375 @@
             }
         }
 
-        /* ----- Cards (topics / datasets) ----- */
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 1.8rem 0 1rem;
+        /* Filters */
+        .filter-bar {
             display: flex;
-            align-items: center;
-            gap: 0.6rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.8rem;
         }
-        .section-title i {
-            color: #2563eb;
+        .filter-btn {
+            background: #1e293b;
+            border: 1px solid transparent;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: 0.15s;
         }
+        .filter-btn:hover {
+            border-color: #4f46e5;
+            color: #e2e8f0;
+        }
+        .filter-btn.active {
+            background: #4f46e5;
+            color: #fff;
+            border-color: #4f46e5;
+        }
+
+        /* Grids */
         .grid-2 {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
         }
+
+        /* Cards */
         .card {
-            background: #fafcff;
-            border: 1px solid #e9edf2;
-            border-radius: 18px;
-            padding: 1.2rem 1.2rem 1rem;
-            transition: all 0.15s;
+            background: #1a2639;
+            border: 1px solid #273548;
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.2s;
             cursor: default;
+            position: relative;
         }
         .card:hover {
-            border-color: #b9c8e0;
-            background: #ffffff;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+            border-color: #4f46e5;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+        .card .badge-cat {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            background: #273548;
+            color: #94a3b8;
+            display: inline-block;
+            margin-bottom: 0.6rem;
         }
         .card .title {
-            font-weight: 600;
-            font-size: 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        .card .title .tag {
-            font-size: 0.6rem;
-            font-weight: 600;
-            background: #e9edf2;
-            padding: 0.15rem 0.7rem;
-            border-radius: 40px;
-            color: #334155;
-            letter-spacing: 0.02em;
+            margin-bottom: 0.3rem;
         }
         .card .desc {
-            font-size: 0.82rem;
-            color: #475569;
-            margin: 0.4rem 0 0.7rem;
-            line-height: 1.4;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-bottom: 1rem;
         }
         .card .links {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 0.5rem;
+            margin-bottom: 1rem;
         }
         .card .links a {
-            font-size: 0.75rem;
-            font-weight: 500;
+            font-size: 0.7rem;
+            font-weight: 600;
             text-decoration: none;
-            background: #f1f5f9;
-            padding: 0.2rem 0.9rem;
+            background: #273548;
+            padding: 0.3rem 1rem;
             border-radius: 40px;
-            color: #1e293b;
+            color: #cbd5e1;
             display: inline-flex;
             align-items: center;
-            gap: 0.35rem;
+            gap: 0.4rem;
             transition: 0.1s;
         }
         .card .links a i {
-            font-size: 0.7rem;
-            color: #2563eb;
+            color: #818cf8;
         }
         .card .links a:hover {
-            background: #e2e8f0;
+            background: #334155;
+            color: #fff;
         }
-        .card .checkbox-wrap {
+        .card .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #273548;
+            padding-top: 0.8rem;
+            margin-top: 0.2rem;
+        }
+        .card .actions .check-wrap {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-top: 0.7rem;
-            font-size: 0.8rem;
-            color: #475569;
-            border-top: 1px dashed #e2e8f0;
-            padding-top: 0.6rem;
+            font-size: 0.75rem;
+            color: #94a3b8;
         }
-        .card .checkbox-wrap input[type="checkbox"] {
-            width: 17px;
-            height: 17px;
-            accent-color: #2563eb;
+        .card .actions .check-wrap input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #4f46e5;
             cursor: pointer;
         }
-
-        /* ----- Project detail (steps) ----- */
-        .project-steps {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 1rem 1.3rem;
-            margin-top: 0.8rem;
-            border: 1px solid #e9edf2;
-        }
-        .project-steps summary {
+        .card .actions .detail-btn {
+            background: transparent;
+            border: 1px solid #334155;
+            color: #94a3b8;
+            padding: 0.25rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
             font-weight: 600;
             cursor: pointer;
-            color: #0b1a2e;
-            font-size: 0.9rem;
+            transition: 0.1s;
         }
-        .project-steps ol {
-            margin: 0.7rem 0 0.2rem 1.2rem;
-            font-size: 0.8rem;
-            color: #1e293b;
-            line-height: 1.7;
-        }
-        .project-steps ol li {
-            margin-bottom: 0.2rem;
+        .card .actions .detail-btn:hover {
+            background: #4f46e5;
+            border-color: #4f46e5;
+            color: #fff;
         }
 
-        /* ----- Footer / meta ----- */
-        .footer-note {
+        /* Daily Dose Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+        .modal-overlay.open {
+            display: flex;
+        }
+        .modal-box {
+            background: #1a2639;
+            border: 1px solid #334155;
+            border-radius: 32px;
+            max-width: 600px;
+            width: 100%;
+            padding: 2rem;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+            animation: fadeUp 0.25s ease;
+            position: relative;
+        }
+        .modal-box .close-modal {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+        .modal-box .close-modal:hover {
+            color: #fff;
+        }
+        .modal-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #a5b4fc, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .modal-box .modal-sub {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .modal-box .modal-body p {
+            background: #0f172a;
+            padding: 1.2rem;
+            border-radius: 16px;
+            border-left: 4px solid #4f46e5;
+            line-height: 1.7;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+        .modal-box .modal-body .tag {
+            display: inline-block;
+            background: #4f46e5;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            color: #fff;
+        }
+
+        /* Project Deep Dive (inside card or modal) - we'll use a detail modal */
+        .project-steps-list {
+            margin-top: 0.8rem;
+        }
+        .project-steps-list li {
+            list-style: none;
+            font-size: 0.8rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid #1e293b;
+            color: #cbd5e1;
+            display: flex;
+            gap: 0.8rem;
+            align-items: baseline;
+        }
+        .project-steps-list li i {
+            color: #818cf8;
+            width: 16px;
+            font-size: 0.7rem;
+            margin-top: 0.2rem;
+        }
+
+        /* Footer */
+        .footer {
             margin-top: 2.5rem;
-            border-top: 1px solid #e9edf2;
+            border-top: 1px solid #1e293b;
             padding-top: 1.2rem;
-            font-size: 0.75rem;
-            color: #64748b;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 0.5rem;
+            font-size: 0.75rem;
+            color: #475569;
         }
-        .footer-note a {
-            color: #2563eb;
+        .footer a {
+            color: #818cf8;
             text-decoration: none;
         }
 
-        /* ----- Responsive tweaks ----- */
         @media (max-width: 600px) {
             .app {
                 padding: 1rem;
             }
-            .header h1 {
-                font-size: 1.3rem;
+            .header {
+                flex-direction: column;
+                align-items: stretch;
             }
-            .tab-btn {
-                font-size: 0.75rem;
-                padding: 0.4rem 0.9rem;
+            .progress-stats {
+                justify-content: space-between;
+                width: 100%;
             }
             .grid-2 {
                 grid-template-columns: 1fr;
+            }
+            .tabs {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+            .tab-btn {
+                white-space: nowrap;
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
+
     <div class="app" id="app">
 
         <!-- HEADER -->
-        <div class="header">
-            <h1><i class="fas fa-brain"></i> ML·DS Hub</h1>
-            <div class="header-actions">
-                <span class="progress-text" id="progressDisplay"><i class="far fa-circle"></i> 0 / 0</span>
-                <span class="badge"><i class="fas fa-code"></i> Yashit Chugh</span>
+        <header class="header">
+            <div class="logo-area">
+                <i class="fas fa-microchip"></i>
+                <h1>DS·ML Engine</h1>
             </div>
-        </div>
+            <div class="header-actions">
+                <button class="daily-btn" id="dailyDoseBtn"><i class="fas fa-dice-d6"></i> Daily Dose</button>
+                <div class="progress-stats">
+                    <span><strong id="doneCount">0</strong> / <span id="totalCount">0</span></span>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" id="mainProgress"></div></div>
+                </div>
+            </div>
+        </header>
 
         <!-- TABS -->
-        <div class="tabs" id="tabContainer">
-            <button class="tab-btn active" data-panel="theory"><i class="fas fa-book-open"></i> Theory</button>
+        <div class="tabs">
+            <button class="tab-btn active" data-panel="theory"><i class="fas fa-graduation-cap"></i> Curriculum</button>
             <button class="tab-btn" data-panel="projects"><i class="fas fa-database"></i> Datasets</button>
         </div>
 
-        <!-- ============ PANEL 1: THEORY ============ -->
+        <!-- PANEL: THEORY -->
         <div class="panel active" id="panel-theory">
-            <div class="section-title"><i class="fas fa-graduation-cap"></i> Curated Learning Path</div>
+            <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600;"><i class="fas fa-layer-group"></i> Foundation</span>
+                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600;"><i class="fas fa-cogs"></i> Core</span>
+                <span style="background:#1e293b; padding:0.2rem 1.2rem; border-radius:40px; font-size:0.7rem; font-weight:600;"><i class="fas fa-rocket"></i> Advanced</span>
+            </div>
             <div class="grid-2" id="theoryGrid"></div>
         </div>
 
-        <!-- ============ PANEL 2: PROJECTS ============ -->
+        <!-- PANEL: PROJECTS -->
         <div class="panel" id="panel-projects">
-            <div class="section-title"><i class="fas fa-project-diagram"></i> 20 Datasets · Hands‑on</div>
+            <div class="filter-bar" id="filterBar">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="tabular">Tabular</button>
+                <button class="filter-btn" data-filter="vision">Vision</button>
+                <button class="filter-btn" data-filter="nlp">NLP</button>
+                <button class="filter-btn" data-filter="timeseries">Time Series</button>
+                <button class="filter-btn" data-filter="other">Other</button>
+            </div>
             <div class="grid-2" id="projectGrid"></div>
         </div>
 
         <!-- FOOTER -->
-        <div class="footer-note">
-            <span><i class="far fa-clock"></i> Last updated · July 2026</span>
-            <span>
-                <i class="fas fa-link"></i>
-                <a href="#" onclick="event.preventDefault()">GFG</a> ·
-                <a href="#" onclick="event.preventDefault()">StatQuest</a>
-            </span>
+        <div class="footer">
+            <span><i class="far fa-calendar-alt"></i> Built for Yashit · PIET CSE'28</span>
+            <span><i class="fas fa-sync-alt"></i> Progress auto-saved</span>
+        </div>
+    </div>
+
+    <!-- DAILY DOSE MODAL -->
+    <div class="modal-overlay" id="dailyModal">
+        <div class="modal-box">
+            <button class="close-modal" id="closeDailyModal">&times;</button>
+            <h2><i class="fas fa-dice-d6"></i> Daily Dose</h2>
+            <div class="modal-sub">Random concept to sharpen your edge.</div>
+            <div class="modal-body" id="dailyBody">
+                <p>Loading...</p>
+                <span class="tag">#random</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECT DETAIL MODAL -->
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal-box">
+            <button class="close-modal" id="closeProjectModal">&times;</button>
+            <h2 id="projectModalTitle">Project Name</h2>
+            <div class="modal-sub" id="projectModalDesc">Description</div>
+            <div class="modal-body">
+                <div style="font-weight:600; font-size:0.8rem; color:#94a3b8; margin-bottom:0.5rem;"><i class="fas fa-list-check"></i> Full ML Pipeline</div>
+                <ul class="project-steps-list" id="projectModalSteps"></ul>
+            </div>
         </div>
     </div>
 
     <script>
         // ============================================================
-        //  DATA
+        // DATA
         // ============================================================
         const THEORY_DATA = [{
             id: 't1',
-            title: 'Python for DS',
-            desc: 'Pandas, NumPy, Matplotlib, Seaborn – core data toolkit.',
+            title: 'Python & Data Toolkit',
+            cat: 'Foundation',
+            desc: 'Pandas, NumPy, Matplotlib, Seaborn.',
             links: [
                 { label: 'GFG', url: 'https://www.geeksforgeeks.org/python-programming-language/' },
                 { label: 'StatQuest', url: 'https://www.youtube.com/c/StatQuest' }
@@ -349,330 +556,461 @@
         }, {
             id: 't2',
             title: 'Statistics & Probability',
-            desc: 'Descriptive stats, distributions, hypothesis testing, Bayesian.',
+            cat: 'Foundation',
+            desc: 'Descriptive, distributions, hypothesis testing.',
             links: [
                 { label: 'GFG', url: 'https://www.geeksforgeeks.org/statistics/' },
                 { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=qBigTkBLU6g' }
             ]
         }, {
             id: 't3',
-            title: 'Machine Learning',
-            desc: 'Regression, classification, clustering, ensemble methods.',
+            title: 'Classical Machine Learning',
+            cat: 'Core',
+            desc: 'Regression, classification, clustering, ensembles.',
             links: [
                 { label: 'GFG', url: 'https://www.geeksforgeeks.org/machine-learning/' },
                 { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=Gv9_4yMHFhI' }
             ]
         }, {
             id: 't4',
+            title: 'Time Series Analysis',
+            cat: 'Core',
+            desc: 'ARIMA, SARIMA, Prophet, LSTMs.',
+            links: [
+                { label: 'GFG', url: 'https://www.geeksforgeeks.org/time-series-analysis/' },
+                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=8SQCY9b8K8E' }
+            ]
+        }, {
+            id: 't5',
             title: 'Deep Learning',
-            desc: 'ANN, CNNs, RNNs, LSTMs, transformers, attention.',
+            cat: 'Advanced',
+            desc: 'ANN, CNNs, RNNs, Transformers, Attention.',
             links: [
                 { label: 'GFG', url: 'https://www.geeksforgeeks.org/deep-learning/' },
                 { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=aircAruvnKk' }
             ]
         }, {
-            id: 't5',
-            title: 'NLP',
-            desc: 'Tokenization, embeddings, RNNs, transformers, BERT, GPT.',
+            id: 't6',
+            title: 'Natural Language Processing',
+            cat: 'Advanced',
+            desc: 'Tokenization, embeddings, BERT, GPT.',
             links: [
                 { label: 'GFG', url: 'https://www.geeksforgeeks.org/natural-language-processing-nlp/' },
                 { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=5YdXGGSiyRU' }
             ]
         }, {
-            id: 't6',
+            id: 't7',
             title: 'Generative AI & LLMs',
-            desc: 'Prompt engineering, fine‑tuning, RAG, GPT, Gemini.',
+            cat: 'Advanced',
+            desc: 'Prompt engineering, RAG, fine-tuning.',
             links: [
                 { label: 'GFG', url: 'https://www.geeksforgeeks.org/generative-ai/' },
                 { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=5vY2_5Gm_6g' }
             ]
         }, {
-            id: 't7',
+            id: 't8',
             title: 'ML Pipelines & MLOps',
-            desc: 'Data versioning, CI/CD, monitoring, Kubeflow, MLflow.',
+            cat: 'Advanced',
+            desc: 'DVC, MLflow, Kubeflow, monitoring.',
             links: [
                 { label: 'GFG', url: 'https://www.geeksforgeeks.org/mlops/' },
                 { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=6x8ZNCb4nSI' }
             ]
         }, {
-            id: 't8',
-            title: 'Dashboard & Viz',
-            desc: 'Power BI, Tableau, Dash, Streamlit, Plotly.',
+            id: 't9',
+            title: 'Data Visualization',
+            cat: 'Core',
+            desc: 'Dash, Streamlit, Power BI, Tableau.',
             links: [
                 { label: 'GFG', url: 'https://www.geeksforgeeks.org/data-visualization/' },
                 { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=5ZtrSR7zL9Y' }
             ]
         }, {
-            id: 't9',
+            id: 't10',
             title: 'Data Engineering',
-            desc: 'SQL, ETL, data warehousing, Spark, Kafka.',
+            cat: 'Advanced',
+            desc: 'SQL, ETL, Spark, Kafka.',
             links: [
                 { label: 'GFG', url: 'https://www.geeksforgeeks.org/data-engineering/' },
                 { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=2p5wQ3mF3dQ' }
             ]
-        }, {
-            id: 't10',
-            title: 'Time Series',
-            desc: 'ARIMA, SARIMA, Prophet, LSTM for forecasting.',
-            links: [
-                { label: 'GFG', url: 'https://www.geeksforgeeks.org/time-series-analysis/' },
-                { label: 'StatQuest', url: 'https://www.youtube.com/watch?v=8SQCY9b8K8E' }
-            ]
         }];
 
-        // 20 famous datasets with project steps
         const PROJECT_DATA = [{
             id: 'p1',
             title: 'Iris',
-            desc: 'Classic flower classification – 3 species.',
-            steps: ['EDA & pairplots', 'Train Logistic Regression / KNN', 'Evaluate accuracy & confusion matrix']
+            cat: 'tabular',
+            desc: 'Classic 3-species flower classification.',
+            steps: [
+                '1. EDA & pairplots to visualize feature relationships.',
+                '2. Train Logistic Regression, KNN, and Decision Tree.',
+                '3. Evaluate using accuracy, confusion matrix, and classification report.'
+            ]
         }, {
             id: 'p2',
             title: 'Titanic',
-            desc: 'Survival prediction – feature engineering classic.',
-            steps: ['Handle missing values', 'Feature engineering (title, family)', 'Try Random Forest & XGBoost']
+            cat: 'tabular',
+            desc: 'Predict survival with feature engineering.',
+            steps: [
+                '1. Handle missing values (Age, Cabin).',
+                '2. Feature engineering: Title, Family Size, Deck.',
+                '3. Compare Random Forest, XGBoost, and Logistic Regression.'
+            ]
         }, {
             id: 'p3',
             title: 'Boston Housing',
-            desc: 'Predict house prices (regression).',
-            steps: ['Correlation analysis', 'Linear Regression + Ridge/Lasso', 'RMSE & residual plots']
+            cat: 'tabular',
+            desc: 'Median home value prediction.',
+            steps: [
+                '1. Correlation analysis & feature selection.',
+                '2. Implement Linear, Ridge, and Lasso regression.',
+                '3. Evaluate using RMSE, MAE, and residual plots.'
+            ]
         }, {
             id: 'p4',
             title: 'MNIST',
+            cat: 'vision',
             desc: 'Handwritten digit recognition.',
-            steps: ['Flatten images', 'Train MLP / CNN', 'Visualize misclassifications']
+            steps: [
+                '1. Preprocess (normalize, flatten).',
+                '2. Build a simple MLP and a CNN.',
+                '3. Visualize misclassified examples.'
+            ]
         }, {
             id: 'p5',
-            title: 'Fashion‑MNIST',
-            desc: 'Clothing image classification – harder than MNIST.',
-            steps: ['CNN with dropout', 'Data augmentation', 'Compare with MNIST']
+            title: 'Fashion-MNIST',
+            cat: 'vision',
+            desc: 'Clothing classification (harder than MNIST).',
+            steps: [
+                '1. Use CNN with Dropout and BatchNorm.',
+                '2. Apply data augmentation (rotation, shift).',
+                '3. Compare performance with MNIST model.'
+            ]
         }, {
             id: 'p6',
-            title: 'CIFAR‑10',
-            desc: 'Small object recognition (10 classes).',
-            steps: ['Build ResNet‑style CNN', 'Use batch norm', 'Plot training/validation curves']
+            title: 'CIFAR-10',
+            cat: 'vision',
+            desc: '10-class object recognition.',
+            steps: [
+                '1. Build a ResNet-style CNN.',
+                '2. Implement learning rate scheduling.',
+                '3. Plot training/validation loss curves.'
+            ]
         }, {
             id: 'p7',
             title: 'Wine Quality',
-            desc: 'Predict wine quality (0–10).',
-            steps: ['Multiclass classification', 'SMOTE for imbalance', 'Try SVM & XGBoost']
+            cat: 'tabular',
+            desc: 'Predict wine quality score (0-10).',
+            steps: [
+                '1. Multiclass classification setup.',
+                '2. Handle imbalance using SMOTE.',
+                '3. Try SVM, Random Forest, and XGBoost.'
+            ]
         }, {
             id: 'p8',
             title: 'Breast Cancer (Wisconsin)',
-            desc: 'Binary classification – diagnostic.',
-            steps: ['PCA for visualization', 'Logistic Regression & Random Forest', 'ROC‑AUC analysis']
+            cat: 'tabular',
+            desc: 'Diagnostic binary classification.',
+            steps: [
+                '1. Apply PCA for 2D visualization.',
+                '2. Train Logistic Regression and Random Forest.',
+                '3. Analyze ROC-AUC and precision-recall curve.'
+            ]
         }, {
             id: 'p9',
             title: 'Spam / Ham',
-            desc: 'SMS spam classification.',
-            steps: ['TF‑IDF vectorization', 'Naïve Bayes', 'Precision / Recall']
+            cat: 'nlp',
+            desc: 'SMS text classification.',
+            steps: [
+                '1. Text preprocessing (lowercase, remove stopwords).',
+                '2. TF-IDF vectorization.',
+                '3. Naïve Bayes and SVM classifiers.'
+            ]
         }, {
             id: 'p10',
             title: 'IMDB Reviews',
-            desc: 'Sentiment analysis – positive/negative.',
-            steps: ['Word embeddings (Word2Vec)', 'LSTM / GRU', 'Attention layer']
+            cat: 'nlp',
+            desc: 'Sentiment analysis (positive/negative).',
+            steps: [
+                '1. Use pre-trained Word2Vec embeddings.',
+                '2. Build a Bidirectional LSTM/GRU model.',
+                '3. Add an attention layer for interpretability.'
+            ]
         }, {
             id: 'p11',
             title: 'Twitter Sentiment',
-            desc: 'Real‑world tweets sentiment.',
-            steps: ['Preprocess emojis/hashtags', 'BERT fine‑tuning', 'Confusion matrix']
+            cat: 'nlp',
+            desc: 'Real-world tweet sentiment.',
+            steps: [
+                '1. Preprocess emojis, mentions, and hashtags.',
+                '2. Fine-tune a DistilBERT model.',
+                '3. Evaluate with confusion matrix and F1-score.'
+            ]
         }, {
             id: 'p12',
-            title: 'Stock Prices (Yahoo)',
-            desc: 'Time series forecasting.',
-            steps: ['Dickey‑Fuller test', 'ARIMA / Prophet', 'Forecast vs actual']
+            title: 'Stock Prices',
+            cat: 'timeseries',
+            desc: 'Forecast closing prices.',
+            steps: [
+                '1. Check stationarity (ADF test).',
+                '2. Fit ARIMA/SARIMA model.',
+                '3. Compare with LSTM forecast.'
+            ]
         }, {
             id: 'p13',
             title: 'Air Quality',
-            desc: 'PM2.5 / pollutant forecasting.',
-            steps: ['Missing value imputation', 'LSTM for multivariate TS', 'MAE / RMSE']
+            cat: 'timeseries',
+            desc: 'PM2.5 pollutant forecasting.',
+            steps: [
+                '1. Impute missing values using interpolation.',
+                '2. Multivariate LSTM (use weather data).',
+                '3. Evaluate using RMSE and MAE.'
+            ]
         }, {
             id: 'p14',
             title: 'Credit Card Fraud',
+            cat: 'other',
             desc: 'Highly imbalanced fraud detection.',
-            steps: ['SMOTE / ADASYN', 'Random Forest / XGBoost', 'Precision‑Recall curve']
+            steps: [
+                '1. Handle class imbalance (SMOTE, ADASYN).',
+                '2. Train Random Forest and XGBoost.',
+                '3. Focus on Precision-Recall AUC.'
+            ]
         }, {
             id: 'p15',
             title: 'Customer Segmentation',
-            desc: 'Unsupervised clustering of customers.',
-            steps: ['K‑means / DBSCAN', 'Elbow method + silhouette', 'Visualize clusters (PCA)']
+            cat: 'other',
+            desc: 'Unsupervised customer clustering.',
+            steps: [
+                '1. Scale features using StandardScaler.',
+                '2. K-means with Elbow & Silhouette analysis.',
+                '3. Visualize clusters with PCA.'
+            ]
         }, {
             id: 'p16',
             title: 'California Housing',
+            cat: 'tabular',
             desc: 'Median house value prediction.',
-            steps: ['Geospatial EDA', 'XGBoost + hyperopt', 'SHAP interpretation']
+            steps: [
+                '1. Geospatial EDA (latitude/longitude plots).',
+                '2. Train XGBoost with Hyperopt tuning.',
+                '3. Interpret model using SHAP values.'
+            ]
         }, {
             id: 'p17',
             title: 'Forest Cover Type',
+            cat: 'tabular',
             desc: 'Multiclass cartographic classification.',
-            steps: ['Feature scaling', 'Random Forest', 'Class‑wise F1']
+            steps: [
+                '1. Feature scaling (MinMax).',
+                '2. Random Forest with class_weight.',
+                '3. Compute class-wise F1-score.'
+            ]
         }, {
             id: 'p18',
             title: 'Human Activity Recognition',
-            desc: 'Sensor (accelerometer) data.',
-            steps: ['Time‑domain features', 'LSTM / 1D‑CNN', 'Confusion matrix']
+            cat: 'timeseries',
+            desc: 'Sensor data (accelerometer).',
+            steps: [
+                '1. Extract time-domain features (mean, std).',
+                '2. Build 1D-CNN and LSTM.',
+                '3. Compare confusion matrices.'
+            ]
         }, {
             id: 'p19',
             title: 'COCO (subset)',
+            cat: 'vision',
             desc: 'Object detection / segmentation.',
-            steps: ['Use YOLO / Detectron2', 'mAP evaluation', 'Visualize bounding boxes']
+            steps: [
+                '1. Use YOLOv8 or Detectron2.',
+                '2. Train on a subset (person, car, etc.).',
+                '3. Evaluate using mAP and visualize bounding boxes.'
+            ]
         }, {
             id: 'p20',
             title: 'KITTI',
-            desc: 'Autonomous driving – stereo / LiDAR.',
-            steps: ['3D point cloud visualization', 'Object detection (PointNet)', 'Awareness of sensor data']
+            cat: 'vision',
+            desc: 'Autonomous driving (LiDAR/stereo).',
+            steps: [
+                '1. Explore 3D point cloud data.',
+                '2. Implement PointNet or similar.',
+                '3. Understand sensor fusion concepts.'
+            ]
         }];
 
+        // Daily dose phrases
+        const DAILY_DOSES = [
+            { concept: "Bias-Variance Tradeoff", desc: "High bias (underfitting) vs High variance (overfitting). Use cross-validation and regularization to find the sweet spot." },
+            { concept: "Gradient Descent", desc: "Optimization algorithm to minimize loss. Variants: Batch, Stochastic (SGD), Mini-batch. Learning rate is key." },
+            { concept: "Attention is All You Need", desc: "Transformers use self-attention to weigh input tokens. No RNNs. Parallelizable and state-of-the-art for NLP." },
+            { concept: "Confusion Matrix", desc: "A table to evaluate classification. TN, FP, FN, TP. Derives metrics: Precision, Recall, F1, Accuracy." },
+            { concept: "Principal Component Analysis (PCA)", desc: "Unsupervised dimensionality reduction. Finds orthogonal axes of maximum variance." },
+            { concept: "Regularization (L1/L2)", desc: "L1 (Lasso) yields sparse features. L2 (Ridge) shrinks weights evenly. Prevents overfitting." },
+            { concept: "Cross-Validation", desc: "K-Fold CV splits data into K folds. Trains K times, each on K-1 folds, validates on the held-out fold. Reduces variance." },
+            { concept: "Feature Engineering", desc: "Creating new features from raw data. Log transforms, polynomial features, domain-specific interactions." },
+            { concept: "LLM Fine-Tuning", desc: "Adapting pre-trained models (like Llama, GPT) to specific tasks using instruction tuning or PEFT (LoRA)." },
+            { concept: "MLOps Lifecycle", desc: "Data versioning, model registry, CI/CD, monitoring (drift detection), and retraining pipelines." }
+        ];
+
         // ============================================================
-        //  RENDER
+        // STATE MANAGEMENT
+        // ============================================================
+        function getChecked(prefix) {
+            try { return JSON.parse(localStorage.getItem('mlhub_' + prefix)) || []; } catch (e) { return []; }
+        }
+
+        function setChecked(prefix, arr) {
+            localStorage.setItem('mlhub_' + prefix, JSON.stringify(arr));
+        }
+
+        function toggleCheck(prefix, id) {
+            let arr = getChecked(prefix);
+            if (arr.includes(id)) arr = arr.filter(x => x !== id);
+            else arr.push(id);
+            setChecked(prefix, arr);
+            return arr;
+        }
+
+        function isChecked(prefix, id) {
+            return getChecked(prefix).includes(id);
+        }
+
+        // ============================================================
+        // RENDER FUNCTIONS
         // ============================================================
         const theoryGrid = document.getElementById('theoryGrid');
         const projectGrid = document.getElementById('projectGrid');
-        const progressDisplay = document.getElementById('progressDisplay');
 
-        // helper to build card HTML
-        function buildTheoryCard(item) {
-            const linksHtml = item.links.map(l =>
-                `<a href="${l.url}" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> ${l.label}</a>`
-            ).join('');
-            return `
-                <div class="card" data-id="${item.id}">
-                    <div class="title">${item.title} <span class="tag">theory</span></div>
-                    <div class="desc">${item.desc}</div>
-                    <div class="links">${linksHtml}</div>
-                    <div class="checkbox-wrap">
-                        <input type="checkbox" class="theory-check" data-id="${item.id}" />
-                        <span>Mark as read</span>
+        function renderTheory() {
+            theoryGrid.innerHTML = THEORY_DATA.map(item => `
+                    <div class="card" data-id="${item.id}">
+                        <div class="badge-cat">${item.cat}</div>
+                        <div class="title">${item.title}</div>
+                        <div class="desc">${item.desc}</div>
+                        <div class="links">
+                            ${item.links.map(l => `<a href="${l.url}" target="_blank"><i class="fas fa-arrow-up-right-from-square"></i> ${l.label}</a>`).join('')}
+                        </div>
+                        <div class="actions">
+                            <div class="check-wrap">
+                                <input type="checkbox" class="theory-cb" data-id="${item.id}" ${isChecked('theory', item.id) ? 'checked' : ''} />
+                                <span>Completed</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            `;
-        }
+                `).join('');
 
-        function buildProjectCard(item) {
-            const stepsHtml = item.steps.map((s, i) => `<li>${i+1}. ${s}</li>`).join('');
-            return `
-                <div class="card" data-id="${item.id}">
-                    <div class="title">${item.title} <span class="tag">dataset</span></div>
-                    <div class="desc">${item.desc}</div>
-                    <div class="project-steps">
-                        <details>
-                            <summary><i class="fas fa-list-check"></i> Project steps</summary>
-                            <ol>${stepsHtml}</ol>
-                        </details>
-                    </div>
-                    <div class="checkbox-wrap">
-                        <input type="checkbox" class="project-check" data-id="${item.id}" />
-                        <span>Completed</span>
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderAll() {
-            theoryGrid.innerHTML = THEORY_DATA.map(buildTheoryCard).join('');
-            projectGrid.innerHTML = PROJECT_DATA.map(buildProjectCard).join('');
-            // attach events after render
-            attachCheckEvents();
-            updateProgress();
-            restoreStates();
-        }
-
-        // ============================================================
-        //  PERSISTENCE (localStorage)
-        // ============================================================
-        function saveState(key, value) {
-            try {
-                localStorage.setItem('mlhub_' + key, JSON.stringify(value));
-            } catch (_) {}
-        }
-
-        function loadState(key, fallback) {
-            try {
-                const raw = localStorage.getItem('mlhub_' + key);
-                return raw ? JSON.parse(raw) : fallback;
-            } catch (_) { return fallback; }
-        }
-
-        function getCheckedIds(prefix) {
-            const stored = loadState(prefix + '_checked', []);
-            return stored;
-        }
-
-        function setCheckedIds(prefix, ids) {
-            saveState(prefix + '_checked', ids);
-        }
-
-        function restoreStates() {
-            // theory
-            const theoryDone = getCheckedIds('theory');
-            document.querySelectorAll('.theory-check').forEach(cb => {
-                cb.checked = theoryDone.includes(cb.dataset.id);
-            });
-            // projects
-            const projDone = getCheckedIds('project');
-            document.querySelectorAll('.project-check').forEach(cb => {
-                cb.checked = projDone.includes(cb.dataset.id);
-            });
-            updateProgress();
-        }
-
-        function attachCheckEvents() {
-            // Theory checkboxes
-            document.querySelectorAll('.theory-check').forEach(cb => {
-                cb.addEventListener('change', function(e) {
-                    const id = this.dataset.id;
-                    let arr = getCheckedIds('theory');
-                    if (this.checked) {
-                        if (!arr.includes(id)) arr.push(id);
-                    } else {
-                        arr = arr.filter(x => x !== id);
-                    }
-                    setCheckedIds('theory', arr);
+            document.querySelectorAll('.theory-cb').forEach(cb => {
+                cb.addEventListener('change', function() {
+                    toggleCheck('theory', this.dataset.id);
                     updateProgress();
                 });
             });
-            // Project checkboxes
-            document.querySelectorAll('.project-check').forEach(cb => {
-                cb.addEventListener('change', function(e) {
-                    const id = this.dataset.id;
-                    let arr = getCheckedIds('project');
-                    if (this.checked) {
-                        if (!arr.includes(id)) arr.push(id);
-                    } else {
-                        arr = arr.filter(x => x !== id);
-                    }
-                    setCheckedIds('project', arr);
+        }
+
+        function renderProjects(filter = 'all') {
+            const filtered = filter === 'all' ? PROJECT_DATA : PROJECT_DATA.filter(p => p.cat === filter);
+            projectGrid.innerHTML = filtered.map(item => `
+                    <div class="card" data-id="${item.id}" data-cat="${item.cat}">
+                        <div class="badge-cat">${item.cat}</div>
+                        <div class="title">${item.title}</div>
+                        <div class="desc">${item.desc}</div>
+                        <div class="actions">
+                            <div class="check-wrap">
+                                <input type="checkbox" class="project-cb" data-id="${item.id}" ${isChecked('project', item.id) ? 'checked' : ''} />
+                                <span>Done</span>
+                            </div>
+                            <button class="detail-btn" data-id="${item.id}"><i class="fas fa-chevron-circle-right"></i> Pipeline</button>
+                        </div>
+                    </div>
+                `).join('');
+
+            document.querySelectorAll('.project-cb').forEach(cb => {
+                cb.addEventListener('change', function() {
+                    toggleCheck('project', this.dataset.id);
                     updateProgress();
+                });
+            });
+
+            document.querySelectorAll('.detail-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.dataset.id;
+                    const project = PROJECT_DATA.find(p => p.id === id);
+                    if (project) openProjectModal(project);
                 });
             });
         }
 
         function updateProgress() {
-            const theoryDone = getCheckedIds('theory').length;
-            const projDone = getCheckedIds('project').length;
+            const theoryDone = getChecked('theory').length;
+            const projDone = getChecked('project').length;
             const total = THEORY_DATA.length + PROJECT_DATA.length;
             const done = theoryDone + projDone;
-            progressDisplay.innerHTML = `<i class="fas fa-check-circle"></i> ${done} / ${total}`;
+            document.getElementById('doneCount').textContent = done;
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('mainProgress').style.width = (done / total * 100) + '%';
         }
 
         // ============================================================
-        //  TAB SWITCHING
+        // MODALS
         // ============================================================
+        const dailyModal = document.getElementById('dailyModal');
+        const projectModal = document.getElementById('projectModal');
+
+        document.getElementById('dailyDoseBtn').addEventListener('click', () => {
+            const dose = DAILY_DOSES[Math.floor(Math.random() * DAILY_DOSES.length)];
+            document.getElementById('dailyBody').innerHTML = `
+                    <p><strong>${dose.concept}</strong><br><br>${dose.desc}</p>
+                    <span class="tag"><i class="fas fa-lightbulb"></i> Today's Insight</span>
+                `;
+            dailyModal.classList.add('open');
+        });
+
+        document.getElementById('closeDailyModal').addEventListener('click', () => dailyModal.classList.remove('open'));
+        document.getElementById('closeProjectModal').addEventListener('click', () => projectModal.classList.remove('open'));
+
+        dailyModal.addEventListener('click', (e) => {
+            if (e.target === dailyModal) dailyModal.classList.remove('open');
+        });
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) projectModal.classList.remove('open');
+        });
+
+        function openProjectModal(project) {
+            document.getElementById('projectModalTitle').textContent = project.title;
+            document.getElementById('projectModalDesc').textContent = project.desc;
+            document.getElementById('projectModalSteps').innerHTML = project.steps.map(s =>
+                `<li><i class="fas fa-check-circle"></i> ${s.replace(/^\d+\.\s*/, '')}</li>`
+            ).join('');
+            projectModal.classList.add('open');
+        }
+
+        // ============================================================
+        // FILTERS & TABS
+        // ============================================================
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderProjects(this.dataset.filter);
+            });
+        });
+
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                // deactivate all
                 document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
-                const panelId = this.dataset.panel;
                 document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-                document.getElementById('panel-' + panelId).classList.add('active');
+                document.getElementById('panel-' + this.dataset.panel).classList.add('active');
             });
         });
 
         // ============================================================
-        //  BOOT
+        // BOOT
         // ============================================================
-        renderAll();
+        renderTheory();
+        renderProjects('all');
+        updateProgress();
     </script>
+
 </body>
 </html>
