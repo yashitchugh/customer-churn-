@@ -146,8 +146,7 @@
             color: var(--text-secondary);
             margin-bottom: 6px;
         }
-        .onboarding-box input,
-        .onboarding-box select {
+        .onboarding-box input {
             width: 100%;
             padding: 14px 16px;
             border-radius: var(--radius-sm);
@@ -160,12 +159,7 @@
             outline: none;
             margin-bottom: 12px;
         }
-        .onboarding-box select {
-            appearance: none;
-            cursor: pointer;
-        }
-        .onboarding-box input:focus,
-        .onboarding-box select:focus {
+        .onboarding-box input:focus {
             border-color: var(--accent-cyan);
             box-shadow: 0 0 0 3px rgba(99, 179, 236, 0.15);
         }
@@ -180,6 +174,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
+            margin-top: 8px;
         }
         .onboarding-box .btn-primary:hover {
             transform: translateY(-2px);
@@ -195,7 +190,7 @@
         }
         .onboarding-box .level-picker button {
             flex: 1;
-            padding: 10px 6px;
+            padding: 12px 6px;
             border: 2px solid var(--border-subtle);
             border-radius: var(--radius-sm);
             background: var(--bg-input);
@@ -204,19 +199,22 @@
             font-size: 13px;
             cursor: pointer;
             transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .onboarding-box .level-picker button .emoji {
+            font-size: 22px;
         }
         .onboarding-box .level-picker button.active {
             border-color: var(--accent-cyan);
             color: var(--accent-cyan);
-            background: rgba(99, 179, 236, 0.1);
+            background: rgba(99, 179, 236, 0.12);
+            box-shadow: 0 0 0 1px var(--accent-cyan);
         }
         .onboarding-box .level-picker button:hover {
             border-color: var(--text-secondary);
-        }
-        .onboarding-box .level-picker button .emoji {
-            display: block;
-            font-size: 20px;
-            margin-bottom: 2px;
         }
 
         /* ============================================================
@@ -445,12 +443,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .dash-stat .num.rose {
-            background: linear-gradient(135deg, var(--accent-rose), #d45a72);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
         .dash-stat .lbl {
             font-size: 10px;
             color: var(--text-muted);
@@ -497,7 +489,7 @@
             transition: var(--transition);
             flex-shrink: 0;
         }
-        .daily-challenge .dc-btn:hover {
+        .daily-challenge .dc-btn:hover:not(.done) {
             transform: scale(1.04);
         }
         .daily-challenge .dc-btn.done {
@@ -588,7 +580,7 @@
         }
 
         /* ============================================================
-           Topic Cards (Learn tab)
+           Topic Cards
            ============================================================ */
         .topic-card {
             background: var(--bg-card);
@@ -850,6 +842,92 @@
         }
 
         /* ============================================================
+           Roadmap Full
+           ============================================================ */
+        .roadmap-full-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition);
+            margin-bottom: 10px;
+        }
+        .roadmap-full-item.active {
+            border-color: var(--accent-cyan);
+        }
+        .roadmap-full-item .rfi-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .roadmap-full-item .rfi-status {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .roadmap-full-item .rfi-info {
+            flex: 1;
+        }
+        .roadmap-full-item .rfi-info .rfi-title {
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .roadmap-full-item .rfi-info .rfi-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        .roadmap-full-item .rfi-badge {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 40px;
+            flex-shrink: 0;
+        }
+        .roadmap-full-item .rfi-badge.done {
+            color: var(--accent-green);
+            background: rgba(92, 219, 158, 0.12);
+        }
+        .roadmap-full-item .rfi-badge.active {
+            color: var(--accent-cyan);
+            background: rgba(99, 179, 236, 0.12);
+        }
+        .roadmap-full-item .rfi-badge.pending {
+            color: var(--text-muted);
+            background: var(--bg-input);
+        }
+        .roadmap-progress-bar {
+            margin-top: 16px;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            border: 1px solid var(--border-subtle);
+        }
+        .roadmap-progress-bar .rpb-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+        .roadmap-progress-bar .rpb-track {
+            height: 6px;
+            background: var(--bg-input);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .roadmap-progress-bar .rpb-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+        .roadmap-progress-bar .rpb-label {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
            Commitment
            ============================================================ */
         .pledge-box {
@@ -922,7 +1000,7 @@
             background: linear-gradient(135deg, var(--accent-green), #3bb87c);
             color: #fff;
         }
-        .signature-section .sig-actions .btn-submit-sig:hover {
+        .signature-section .sig-actions .btn-submit-sig:hover:not(:disabled) {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(92, 219, 158, 0.3);
         }
@@ -1060,27 +1138,6 @@
             margin-top: 2px;
             font-weight: 500;
         }
-        .btn-reset {
-            width: 100%;
-            padding: 14px;
-            border: 1.5px solid var(--accent-rose);
-            background: rgba(232, 115, 138, 0.08);
-            color: var(--accent-rose);
-            border-radius: var(--radius-sm);
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-top: 6px;
-        }
-        .btn-reset:hover {
-            background: rgba(232, 115, 138, 0.18);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(232, 115, 138, 0.2);
-        }
-        .btn-reset:active {
-            transform: scale(0.97);
-        }
 
         /* Achievements */
         .achievement-grid {
@@ -1116,6 +1173,31 @@
         }
 
         /* ============================================================
+           Reset Button
+           ============================================================ */
+        .btn-reset {
+            width: 100%;
+            padding: 14px;
+            border: 1.5px solid var(--accent-rose);
+            background: rgba(232, 115, 138, 0.08);
+            color: var(--accent-rose);
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 6px;
+        }
+        .btn-reset:hover {
+            background: rgba(232, 115, 138, 0.18);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(232, 115, 138, 0.2);
+        }
+        .btn-reset:active {
+            transform: scale(0.97);
+        }
+
+        /* ============================================================
            Toast
            ============================================================ */
         #toast {
@@ -1143,6 +1225,38 @@
             opacity: 1;
             transform: translateX(-50%) translateY(0);
             pointer-events: auto;
+        }
+
+        /* ============================================================
+           PWA Install Banner
+           ============================================================ */
+        .pwa-install-banner {
+            display: none;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            padding: 10px 14px;
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            align-items: center;
+            justify-content: space-between;
+        }
+        .pwa-install-banner.show {
+            display: flex;
+        }
+        .pwa-install-banner button {
+            background: var(--accent-cyan);
+            border: none;
+            color: #0b1120;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .pwa-install-banner button:hover {
+            transform: scale(1.03);
         }
 
         /* ============================================================
@@ -1209,40 +1323,6 @@
                 border-radius: var(--radius-lg) var(--radius-lg) 0 0;
             }
         }
-
-        /* ============================================================
-           PWA Install Banner
-           ============================================================ */
-        .pwa-install-banner {
-            display: none;
-            background: var(--bg-card);
-            border-radius: var(--radius-sm);
-            padding: 10px 14px;
-            border: 1px solid var(--border-subtle);
-            margin-bottom: 10px;
-            font-size: 12px;
-            color: var(--text-secondary);
-            align-items: center;
-            justify-content: space-between;
-        }
-        .pwa-install-banner.show {
-            display: flex;
-        }
-        .pwa-install-banner button {
-            background: var(--accent-cyan);
-            border: none;
-            color: #0b1120;
-            font-weight: 700;
-            padding: 6px 16px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-        .pwa-install-banner button:hover {
-            transform: scale(1.03);
-        }
-
-        /* Utility */
         .mt-2 {
             margin-top: 8px;
         }
@@ -1294,7 +1374,7 @@
                     <button data-level="moderate"><span class="emoji">🚀</span> Moderate</button>
                     <button data-level="advanced"><span class="emoji">🏆</span> Advanced</button>
                 </div>
-                <button class="btn-primary" id="onboardBtn">Start Learning →</button>
+                <button class="btn-primary" id="onboardBtn">🚀 Start Learning</button>
             </div>
         </div>
 
@@ -1335,32 +1415,27 @@
         <!-- ===== TAB 1: DASHBOARD ===== -->
         <div class="tab-panel active" id="panel-tab1">
             <div class="section-title">🏠 Dashboard</div>
-
-            <!-- Quick stats -->
             <div class="dash-grid">
                 <div class="dash-stat"><div class="num" id="dashProgress">0%</div><div class="lbl">Progress</div></div>
                 <div class="dash-stat"><div class="num green" id="dashDone">0</div><div class="lbl">Done</div></div>
                 <div class="dash-stat"><div class="num amber" id="dashStreak">0</div><div class="lbl">Day streak</div></div>
             </div>
 
-            <!-- Daily Challenge -->
             <div class="daily-challenge" id="dailyChallenge">
                 <div class="dc-icon">⚡</div>
                 <div class="dc-info">
                     <div class="dc-title" id="dcTitle">Daily Challenge</div>
                     <div class="dc-desc" id="dcDesc">Complete 3 steps today to keep your streak!</div>
                 </div>
-                <button class="dc-btn" id="dcBtn">Start</button>
+                <button class="dc-btn" id="dcBtn">Complete</button>
             </div>
 
-            <!-- Roadmap Preview -->
             <div class="roadmap-preview" id="roadmapPreview">
                 <div class="rp-title">🗺️ Your Roadmap <span style="font-size:12px;color:var(--text-muted);font-weight:400;" id="rpLevelLabel">Beginner</span></div>
                 <div class="rp-steps" id="rpSteps"></div>
                 <div class="rp-more">👆 Tap the Roadmap tab for full view</div>
             </div>
 
-            <!-- Achievements -->
             <div class="section-title" style="margin-top:6px;">🏅 Achievements</div>
             <div class="achievement-grid" id="achievementGrid"></div>
         </div>
@@ -1370,13 +1445,10 @@
             <div class="section-title">📚 Learn <span class="badge-count" id="topicCount">0/0</span></div>
             <div class="section-sub" id="levelSubtitle">🌱 Beginner — building your foundation</div>
             <div id="topicsContainer"></div>
-
             <div class="section-title">🎬 Videos <span class="badge-count" id="videoCount">0/0</span></div>
             <div class="item-list" id="videosContainer"></div>
-
             <div class="section-title">📊 Datasets <span class="badge-count" id="datasetCount">0/0</span></div>
             <div class="item-list" id="datasetsContainer"></div>
-
             <div class="section-title">🐞 Debugging <span class="badge-count" id="debugCount">0</span></div>
             <div class="debug-grid" id="debugContainer"></div>
         </div>
@@ -1437,7 +1509,6 @@
             <button data-tab="tab5"><span class="tab-icon">📊</span> Stats</button>
         </nav>
 
-        <!-- Toast -->
         <div id="toast"></div>
     </div>
 
@@ -1446,7 +1517,6 @@
         // DATA — Level-based educational content
         // =====================================================================
 
-        // Each topic has: id, title, category, level, steps, resources
         const TOPICS_DATA = [{
             id: 't-python',
             title: 'Python for Data Science',
@@ -1557,7 +1627,6 @@
             resources: [{ label: 'MLflow', url: 'https://mlflow.org/' }]
         }];
 
-        // Videos with level tags
         const VIDEOS_DATA = [
             { id: 'v-py-basics', title: 'Python for Data Science (fCC)', url: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI',
                 level: 'beginner' },
@@ -1585,7 +1654,6 @@
                 level: 'advanced' }
         ];
 
-        // Datasets with level tags
         const DATASETS_DATA = [
             { id: 'd-titanic', title: 'Titanic', url: 'https://www.kaggle.com/c/titanic', level: 'beginner' },
             { id: 'd-iris', title: 'Iris', url: 'https://www.kaggle.com/datasets/uciml/iris', level: 'beginner' },
@@ -1611,7 +1679,6 @@
                 level: 'advanced' }
         ];
 
-        // Debug tips with level
         const DEBUG_DATA = [
             { name: 'KeyError', tip: 'Check dictionary keys; use .get() or in operator.', level: 'beginner' },
             { name: 'ValueError', tip: 'Ensure data types match; reshape arrays.', level: 'beginner' },
@@ -1621,7 +1688,6 @@
             { name: 'Hallucination (LLM)', tip: 'Use RAG, system prompts, and fact-checking.', level: 'advanced' }
         ];
 
-        // Roadmap milestones per level
         const ROADMAP_DATA = {
             beginner: [
                 { title: 'Python Foundations', desc: 'Master Python basics, data types, and control flow.' },
@@ -1649,7 +1715,6 @@
             ]
         };
 
-        // Daily challenges
         const CHALLENGES = [
             { title: 'Complete 3 steps today', desc: 'Finish 3 learning steps to keep your streak alive!', target: 3 },
             { title: 'Watch 1 video', desc: 'Watch a tutorial video from your current level.', target: 1 },
@@ -1658,7 +1723,6 @@
             { title: 'Review your notes', desc: 'Write down 3 things you learned this week.', target: 1 },
         ];
 
-        // Achievements
         const ACHIEVEMENTS = [
             { id: 'a-first', icon: '🌟', name: 'First Step', desc: 'Complete your first topic step', check: s => s
                     .totalStepsDone >= 1 },
@@ -1710,7 +1774,6 @@
                     const parsed = JSON.parse(raw);
                     const def = getDefaultState();
                     for (const k in def) { if (!(k in parsed)) parsed[k] = def[k]; }
-                    // Ensure topics structure
                     for (const t of TOPICS_DATA) {
                         if (!parsed.topics[t.id]) parsed.topics[t.id] = t.steps.map(() => false);
                         else if (parsed.topics[t.id].length !== t.steps.length) {
@@ -1750,22 +1813,6 @@
             return { done, total, pct: total ? Math.round((done / total) * 100) : 0 };
         }
 
-        function getLevelProgress(level) {
-            const data = getFilteredData(level);
-            let total = 0,
-                done = 0;
-            for (const t of data.topics) {
-                const p = getTopicProgress(t.id);
-                total += p.total;
-                done += p.done;
-            }
-            for (const v of data.videos) { total++;
-                done += state.videos[v.id] ? 1 : 0; }
-            for (const d of data.datasets) { total++;
-                done += state.datasets[d.id] ? 1 : 0; }
-            return { done, total, pct: total ? Math.round((done / total) * 100) : 0 };
-        }
-
         function getGlobalStats() {
             let totalSteps = 0,
                 doneSteps = 0;
@@ -1799,8 +1846,7 @@
                     return adv.length > 0;
                 })()
             };
-            const unlocked = ACHIEVEMENTS.filter(a => a.check(ctx)).map(a => a.id);
-            return unlocked;
+            return ACHIEVEMENTS.filter(a => a.check(ctx)).map(a => a.id);
         }
 
         function updateAchievements() {
@@ -1816,6 +1862,18 @@
             const challenge = CHALLENGES[idx];
             const done = state.challengeDone && state.challengeDate === today;
             return { ...challenge, done, idx };
+        }
+
+        function renderSVGProgress(pct, size = 38, stroke = 4) {
+            const radius = (size - stroke) / 2;
+            const circum = 2 * Math.PI * radius;
+            const offset = circum - (pct / 100) * circum;
+            return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+            <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="#1c2a44" stroke-width="${stroke}"/>
+            <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="#63b3ec" stroke-width="${stroke}"
+              stroke-dasharray="${circum}" stroke-dashoffset="${offset}" stroke-linecap="round"/>
+            <text x="${size/2}" y="${size/2+4}" text-anchor="middle" font-size="${size*0.28}" font-weight="700" fill="#e8edf5">${pct}%</text>
+          </svg>`;
         }
 
         // =====================================================================
@@ -1839,7 +1897,6 @@
             }
             if (!state.lastActive) { state.lastActive = today;
                 state.streak = 1; }
-            // Reset daily challenge if new day
             if (state.challengeDate !== today) {
                 state.challengeDone = false;
                 state.challengeDate = today;
@@ -1859,7 +1916,6 @@
             document.getElementById('dashProgress').textContent = stats.pct + '%';
             document.getElementById('dashDone').textContent = stats.doneItems;
 
-            // Daily challenge
             const dc = getDailyChallenge();
             document.getElementById('dcTitle').textContent = '⚡ ' + dc.title;
             document.getElementById('dcDesc').textContent = dc.desc;
@@ -1867,28 +1923,25 @@
             if (dc.done) {
                 btn.textContent = '✅ Done';
                 btn.className = 'dc-btn done';
+                btn.onclick = null;
             } else {
-                btn.textContent = 'Start';
+                btn.textContent = '✅ Complete';
                 btn.className = 'dc-btn';
                 btn.onclick = function() {
-                    // Check if user has completed the target number of steps today
                     const today = new Date().toISOString().split('T')[0];
-                    const stepsToday = state.lastActive === today ? state.streak : 0; // simplified
-                    // Actually, let's just let them mark it done
                     state.challengeDone = true;
                     state.challengeDate = today;
+                    // Boost streak as reward
+                    state.streak = (state.streak || 0) + 1;
                     saveState();
                     renderDashboard();
                     updateStreak();
-                    showToast('🎉 Challenge completed! +1 streak bonus');
                     updateAchievements();
+                    showToast('🎉 Challenge completed! +1 streak bonus');
                 };
             }
 
-            // Roadmap preview
             renderRoadmapPreview();
-
-            // Achievements
             renderAchievements();
         }
 
@@ -1900,7 +1953,6 @@
 
             const milestones = ROADMAP_DATA[level] || [];
             const stats = getGlobalStats();
-            // Determine which milestones are done based on progress
             const totalSteps = stats.doneSteps;
             const doneCount = Math.min(Math.floor(totalSteps / 2), milestones.length);
 
@@ -1932,7 +1984,7 @@
         }
 
         // =====================================================================
-        // RENDER: Learn (filtered by level)
+        // RENDER: Learn
         // =====================================================================
 
         function renderLearn() {
@@ -1985,7 +2037,6 @@
             tContainer.innerHTML = tHtml;
             document.getElementById('topicCount').textContent = `${doneSteps}/${totalSteps}`;
 
-            // Attach events for topics
             tContainer.querySelectorAll('[data-toggle]').forEach(header => {
                 header.addEventListener('click', function(e) {
                     if (e.target.closest('input') || e.target.closest('a')) return;
@@ -2004,7 +2055,6 @@
                         .steps.map(() => false);
                     state.topics[topicId][stepIdx] = this.checked;
                     saveState();
-                    // Re-render topic card
                     const card = this.closest('.topic-card');
                     const topic = TOPICS_DATA.find(t => t.id === topicId);
                     if (topic) {
@@ -2016,13 +2066,9 @@
                         const label = this.closest('label');
                         if (label) label.classList.toggle('done', this.checked);
                     }
-                    // Update counts and stats
-                    updateAllCounts();
-                    updateStats();
                     updateStreak();
                     renderDashboard();
                     updateAchievements();
-                    // Re-render roadmap preview
                     renderRoadmapPreview();
                 });
             });
@@ -2049,8 +2095,6 @@
                     saveState();
                     const titleEl = this.closest('.item-row').querySelector('.item-title');
                     if (titleEl) titleEl.classList.toggle('done', this.checked);
-                    updateAllCounts();
-                    updateStats();
                     updateStreak();
                     renderDashboard();
                     updateAchievements();
@@ -2080,8 +2124,6 @@
                     saveState();
                     const titleEl = this.closest('.item-row').querySelector('.item-title');
                     if (titleEl) titleEl.classList.toggle('done', this.checked);
-                    updateAllCounts();
-                    updateStats();
                     updateStreak();
                     renderDashboard();
                     updateAchievements();
@@ -2102,30 +2144,6 @@
             document.getElementById('debugCount').textContent = data.debug.length;
         }
 
-        function renderSVGProgress(pct, size = 38, stroke = 4) {
-            const radius = (size - stroke) / 2;
-            const circum = 2 * Math.PI * radius;
-            const offset = circum - (pct / 100) * circum;
-            return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
-            <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="#1c2a44" stroke-width="${stroke}"/>
-            <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="#63b3ec" stroke-width="${stroke}"
-              stroke-dasharray="${circum}" stroke-dashoffset="${offset}" stroke-linecap="round"/>
-            <text x="${size/2}" y="${size/2+4}" text-anchor="middle" font-size="${size*0.28}" font-weight="700" fill="#e8edf5">${pct}%</text>
-          </svg>`;
-        }
-
-        function updateAllCounts() {
-            // Already handled in renderLearn
-        }
-
-        function updateStats() {
-            const stats = getGlobalStats();
-            document.getElementById('statCompleted').textContent = stats.doneItems;
-            document.getElementById('statRemaining').textContent = stats.totalItems - stats.doneItems;
-            document.getElementById('statProgress').textContent = stats.pct + '%';
-            document.getElementById('statSteps').textContent = stats.doneSteps;
-        }
-
         // =====================================================================
         // RENDER: Roadmap Full
         // =====================================================================
@@ -2141,36 +2159,35 @@
             const totalSteps = stats.doneSteps;
             const doneCount = Math.min(Math.floor(totalSteps / 2), milestones.length);
 
-            let html = '<div style="display:flex;flex-direction:column;gap:12px;">';
+            let html = '';
             milestones.forEach((m, i) => {
                 const isDone = i < doneCount;
                 const isActive = i === doneCount && !isDone;
                 const status = isDone ? '✅' : (isActive ? '⏳' : '⬜');
-                html += `<div style="background:var(--bg-card);border-radius:var(--radius-md);padding:14px 16px;border:1px solid ${isActive ? 'var(--accent-cyan)' : 'var(--border-subtle)'};transition:var(--transition);">
-              <div style="display:flex;align-items:center;gap:12px;">
-                <span style="font-size:20px;">${status}</span>
-                <div style="flex:1;">
-                  <div style="font-weight:600;font-size:15px;color:${isDone ? 'var(--text-muted)' : 'var(--text-primary)'};${isDone ? 'text-decoration:line-through;' : ''}">${i+1}. ${m.title}</div>
-                  <div style="font-size:13px;color:var(--text-secondary);margin-top:2px;">${m.desc}</div>
+                const badgeClass = isDone ? 'done' : (isActive ? 'active' : 'pending');
+                const badgeText = isDone ? '✓ DONE' : (isActive ? 'IN PROGRESS' : 'PENDING');
+                html += `<div class="roadmap-full-item ${isActive ? 'active' : ''}">
+              <div class="rfi-header">
+                <span class="rfi-status">${status}</span>
+                <div class="rfi-info">
+                  <div class="rfi-title" style="${isDone ? 'color:var(--text-muted);text-decoration:line-through;' : ''}">${i+1}. ${m.title}</div>
+                  <div class="rfi-desc">${m.desc}</div>
                 </div>
-                ${isActive ? '<span style="font-size:12px;color:var(--accent-cyan);font-weight:600;">IN PROGRESS</span>' : ''}
-                ${isDone ? '<span style="font-size:12px;color:var(--accent-green);font-weight:600;">✓ DONE</span>' : ''}
+                <span class="rfi-badge ${badgeClass}">${badgeText}</span>
               </div>
             </div>`;
             });
-            html += '</div>';
 
-            // Progress bar
             const pct = Math.round((doneCount / milestones.length) * 100);
-            html += `<div style="margin-top:16px;background:var(--bg-card);border-radius:var(--radius-md);padding:14px 16px;border:1px solid var(--border-subtle);">
-            <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:6px;">
+            html += `<div class="roadmap-progress-bar">
+            <div class="rpb-row">
               <span>Roadmap progress</span>
               <span>${pct}%</span>
             </div>
-            <div style="height:6px;background:var(--bg-input);border-radius:10px;overflow:hidden;">
-              <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-purple));border-radius:10px;transition:width 0.5s;"></div>
+            <div class="rpb-track">
+              <div class="rpb-fill" style="width:${pct}%;"></div>
             </div>
-            <div style="margin-top:8px;font-size:12px;color:var(--text-muted);">${doneCount}/${milestones.length} milestones completed</div>
+            <div class="rpb-label">${doneCount}/${milestones.length} milestones completed</div>
           </div>`;
 
             container.innerHTML = html;
@@ -2332,13 +2349,11 @@
                         const level = state.level;
                         const streak = state.streak;
                         const lastActive = state.lastActive;
-                        const apiKey = state.apiKey || '';
                         state = getDefaultState();
                         state.name = name;
                         state.level = level;
                         state.streak = streak;
                         state.lastActive = lastActive;
-                        state.apiKey = apiKey;
                         for (const t of TOPICS_DATA) { state.topics[t.id] = t.steps.map(() => false); }
                         for (const v of VIDEOS_DATA) { state.videos[v.id] = false; }
                         for (const d of DATASETS_DATA) { state.datasets[d.id] = false; }
@@ -2348,7 +2363,6 @@
                         state.achievements = [];
                         state.challengeDone = false;
                         saveState();
-                        // Re-render everything
                         renderAll();
                         showToast('🔄 All progress reset');
                     }
@@ -2393,7 +2407,6 @@
                 Object.keys(panels).forEach(key => {
                     panels[key].classList.toggle('active', key === tabId);
                 });
-                // Refresh content when switching tabs
                 if (tabId === 'tab1') renderDashboard();
                 if (tabId === 'tab2') renderLearn();
                 if (tabId === 'tab3') renderRoadmapFull();
@@ -2416,10 +2429,7 @@
                     saveState();
                     container.querySelectorAll('button').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    // Re-render learn and roadmap
-                    renderLearn();
-                    renderRoadmapFull();
-                    renderDashboard();
+                    renderAll();
                     showToast(`Switched to ${level} level 🎯`);
                 });
             });
@@ -2459,7 +2469,6 @@
                 showToast('🎉 Thank you for installing!');
             });
 
-            // Service worker
             try {
                 const swCode = `
               self.addEventListener('install', e => {
@@ -2506,10 +2515,8 @@
                 overlay.classList.add('hidden');
                 document.getElementById('userNameDisplay').textContent = state.name;
                 document.getElementById('pledgeName').textContent = state.name;
-                // Ensure level is set
                 if (!state.level) state.level = 'beginner';
                 saveState();
-                // Set level selector
                 document.querySelectorAll('#levelSelector button').forEach(b => {
                     b.classList.toggle('active', b.dataset.level === state.level);
                 });
@@ -2522,15 +2529,17 @@
 
             function complete() {
                 const name = input.value.trim();
-                if (!name) { input.style.borderColor = 'var(--accent-rose)';
-                    showToast('Please enter your name'); return; }
+                if (!name) {
+                    input.style.borderColor = 'var(--accent-rose)';
+                    showToast('Please enter your name');
+                    return;
+                }
                 state.name = name;
                 state.level = selectedLevel;
                 saveState();
                 overlay.classList.add('hidden');
                 document.getElementById('userNameDisplay').textContent = name;
                 document.getElementById('pledgeName').textContent = name;
-                // Set level selector
                 document.querySelectorAll('#levelSelector button').forEach(b => {
                     b.classList.toggle('active', b.dataset.level === state.level);
                 });
@@ -2545,6 +2554,18 @@
         }
 
         // =====================================================================
+        // STATS
+        // =====================================================================
+
+        function updateStats() {
+            const stats = getGlobalStats();
+            document.getElementById('statCompleted').textContent = stats.doneItems;
+            document.getElementById('statRemaining').textContent = stats.totalItems - stats.doneItems;
+            document.getElementById('statProgress').textContent = stats.pct + '%';
+            document.getElementById('statSteps').textContent = stats.doneSteps;
+        }
+
+        // =====================================================================
         // RENDER ALL
         // =====================================================================
 
@@ -2554,20 +2575,16 @@
             renderRoadmapFull();
             updateStats();
             updateCommitStatus();
-            // Update level selector
             document.querySelectorAll('#levelSelector button').forEach(b => {
                 b.classList.toggle('active', b.dataset.level === state.level);
             });
-            // Update user name
             if (state.name) {
                 document.getElementById('userNameDisplay').textContent = state.name;
                 document.getElementById('pledgeName').textContent = state.name;
             }
-            // Update streak
             document.getElementById('streakDisplay').textContent = state.streak;
             document.getElementById('dashStreak').textContent = state.streak;
             document.getElementById('statStreak').textContent = state.streak;
-            // Achievements
             updateAchievements();
         }
 
@@ -2576,7 +2593,6 @@
         // =====================================================================
 
         function init() {
-            // Ensure state structure
             for (const t of TOPICS_DATA) {
                 if (!state.topics[t.id]) state.topics[t.id] = t.steps.map(() => false);
             }
@@ -2586,7 +2602,6 @@
             if (!state.level) state.level = 'beginner';
             saveState();
 
-            // Initialize all components
             initSignature();
             initNotepad();
             initSettings();
@@ -2595,13 +2610,9 @@
             initOnboarding();
             initPWA();
 
-            // Update streak on load
             updateStreak();
-
-            // Render everything
             renderAll();
 
-            // Visibility change for streak
             document.addEventListener('visibilitychange', function() {
                 if (document.visibilityState === 'visible') {
                     updateStreak();
