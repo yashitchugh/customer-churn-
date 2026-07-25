@@ -487,49 +487,91 @@
         .splash-logo {
             width: 120px;
             height: 120px;
-            border-radius: 32px;
+            border-radius: 28px;
             background: var(--accent-gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 56px;
+            font-size: 48px;
             font-weight: 700;
             color: #fff;
             box-shadow: 0 0 60px rgba(79, 140, 255, 0.3);
             animation: splashPulse 2s ease-in-out infinite;
             position: relative;
+            font-family: var(--font-mono);
+            letter-spacing: -2px;
         }
 
         .splash-logo::before {
             content: '';
             position: absolute;
             inset: -8px;
-            border-radius: 40px;
+            border-radius: 34px;
             background: var(--accent-gradient);
             opacity: 0.2;
             filter: blur(20px);
             animation: splashGlow 2s ease-in-out infinite alternate;
         }
 
+        .splash-logo .chip-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 28px;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 60%);
+            position: relative;
+        }
+
+        .splash-logo .chip-icon::after {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border: 2px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.05);
+        }
+
+        .splash-logo .chip-text {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            background: linear-gradient(to bottom, #fff, rgba(255,255,255,0.7));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            z-index: 2;
+        }
+
+        .splash-logo .chip-dots {
+            position: absolute;
+            display: grid;
+            grid-template-columns: repeat(4, 6px);
+            gap: 6px;
+            bottom: 16px;
+            right: 16px;
+        }
+
+        .splash-logo .chip-dots span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .splash-logo .chip-dots span:nth-child(1) { background: rgba(255,255,255,0.4); }
+        .splash-logo .chip-dots span:nth-child(4) { background: rgba(255,255,255,0.4); }
+
         @keyframes splashPulse {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.04);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
         }
 
         @keyframes splashGlow {
-            0% {
-                opacity: 0.15;
-                transform: scale(0.96);
-            }
-            100% {
-                opacity: 0.35;
-                transform: scale(1.1);
-            }
+            0% { opacity: 0.15; transform: scale(0.96); }
+            100% { opacity: 0.35; transform: scale(1.1); }
         }
 
         .splash-particle {
@@ -543,14 +585,8 @@
         }
 
         @keyframes particleFloat {
-            0% {
-                transform: translate(0, 0) scale(0);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translate(var(--tx), var(--ty)) scale(0);
-                opacity: 0;
-            }
+            0% { transform: translate(0, 0) scale(0); opacity: 0.8; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
         }
 
         .splash-title {
@@ -1510,6 +1546,36 @@
             opacity: 1;
         }
 
+        /* ---------- Install Button (floating) ---------- */
+        #installBtn {
+            position: fixed;
+            bottom: calc(var(--nav-height) + 20px + var(--safe-bottom));
+            right: 20px;
+            z-index: 150;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            border: none;
+            color: #fff;
+            font-size: 28px;
+            box-shadow: 0 4px 24px rgba(79, 140, 255, 0.4);
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            touch-action: manipulation;
+        }
+
+        #installBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 32px rgba(79, 140, 255, 0.5);
+        }
+        #installBtn:active {
+            transform: scale(0.92);
+        }
+
         /* ---------- Responsive ---------- */
         @media (min-width: 600px) {
             #app {
@@ -1600,13 +1666,8 @@
         }
 
         @keyframes firePulse {
-            0%,
-            100% {
-                transform: scale(1) rotate(0deg);
-            }
-            50% {
-                transform: scale(1.12) rotate(-3deg);
-            }
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.12) rotate(-3deg); }
         }
 
         /* ---------- XP pop ---------- */
@@ -1626,18 +1687,9 @@
         }
 
         @keyframes xpPop {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-            30% {
-                opacity: 1;
-                transform: translate(-50%, -60%) scale(1.2);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -100%) scale(1);
-            }
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            30% { opacity: 1; transform: translate(-50%, -60%) scale(1.2); }
+            100% { opacity: 0; transform: translate(-50%, -100%) scale(1); }
         }
 
         /* ---------- Misc ---------- */
@@ -1857,10 +1909,19 @@
         </nav>
     </div>
 
+    <!-- ---------- INSTALL BUTTON (floating) ---------- -->
+    <button id="installBtn" aria-label="Install App">📲</button>
+
     <!-- ---------- SPLASH ---------- -->
     <div id="splash">
         <div class="splash-logo">
-            <span>🧠</span>
+            <div class="chip-icon">
+                <span class="chip-text">AI</span>
+                <div class="chip-dots">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+            </div>
             <div class="splash-particle" style="--tx:-40px;--ty:-50px;animation-delay:0.1s;"></div>
             <div class="splash-particle" style="--tx:50px;--ty:-30px;animation-delay:0.4s;"></div>
             <div class="splash-particle" style="--tx:-30px;--ty:40px;animation-delay:0.7s;"></div>
@@ -1962,11 +2023,8 @@
     <script type="module">
         // ============================================================
         // ML Engineer OS — Main Application
-        // Version 1.0 — Offline First · PWA · Glassmorphism · MD3
+        // Version 1.1 — Offline First · PWA · Glassmorphism · MD3
         // ============================================================
-
-        // ---------- Imports (self-contained) ----------
-        // All code is in this single module for simplicity and reliability.
 
         // ---------- Constants ----------
         const LEVELS = [
@@ -1990,330 +2048,192 @@
             { text: "In the middle of difficulty lies opportunity.", author: "Albert Einstein" },
         ];
 
-        const TOPICS = [{
-            id: 'python',
-            category: 'Foundations',
-            emoji: '🐍',
-            name: 'Python for Data Science',
-            difficulty: 'Beginner',
-            estimatedTime: '4 hours',
-            prerequisites: 'None',
-            overview: 'Python is the foundation of modern data science and machine learning. This topic covers essential Python concepts for data manipulation and analysis.',
-            theory: 'Python is a high-level, interpreted programming language known for its simplicity and readability. In data science, Python is used for data cleaning, exploration, visualization, and building machine learning models. Key libraries include NumPy, Pandas, Matplotlib, and Scikit-learn.',
-            resources: [
-                { name: 'Python.org', url: 'https://python.org' },
-                { name: 'W3Schools Python', url: 'https://w3schools.com/python' },
-            ],
-            videos: [
-                { name: 'Python for Beginners (3h)', url: 'https://youtu.be/kqtD5dpn9C8' },
-            ],
-            datasets: ['Titanic', 'Iris'],
-            miniProject: 'Build a simple data analysis script that loads a CSV file and computes basic statistics.',
-            xp: 50,
-        }, {
-            id: 'numpy',
-            category: 'Foundations',
-            emoji: '🔢',
-            name: 'NumPy',
-            difficulty: 'Beginner',
-            estimatedTime: '3 hours',
-            prerequisites: 'Python',
-            overview: 'NumPy is the fundamental package for scientific computing in Python. It provides powerful array operations and mathematical functions.',
-            theory: 'NumPy (Numerical Python) provides support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays. It is the foundation for many other data science libraries.',
-            resources: [
-                { name: 'NumPy Docs', url: 'https://numpy.org/doc/' },
-                { name: 'NumPy Quickstart', url: 'https://numpy.org/doc/stable/user/quickstart.html' },
-            ],
-            videos: [
-                { name: 'NumPy Tutorial (2h)', url: 'https://youtu.be/QUT1VHiLmmI' },
-            ],
-            datasets: ['Iris', 'MNIST'],
-            miniProject: 'Create a NumPy array and perform element-wise operations, broadcasting, and aggregation.',
-            xp: 40,
-        }, {
-            id: 'pandas',
-            category: 'Foundations',
-            emoji: '🐼',
-            name: 'Pandas',
-            difficulty: 'Beginner',
-            estimatedTime: '4 hours',
-            prerequisites: 'Python, NumPy',
-            overview: 'Pandas is the go-to library for data manipulation and analysis in Python. It provides DataFrame structures for handling tabular data.',
-            theory: 'Pandas provides fast, flexible, and expressive data structures designed to make working with "relational" or "labeled" data both easy and intuitive. The primary data structures are Series (1D) and DataFrame (2D).',
-            resources: [
-                { name: 'Pandas Docs', url: 'https://pandas.pydata.org/docs/' },
-                { name: 'Pandas Cheat Sheet', url: 'https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf' },
-            ],
-            videos: [
-                { name: 'Pandas Tutorial (3h)', url: 'https://youtu.be/vmEHCJofslg' },
-            ],
-            datasets: ['Titanic', 'Boston Housing', 'Air Quality'],
-            miniProject: 'Load a dataset, clean missing values, perform group by operations, and create a summary report.',
-            xp: 45,
-        }, {
-            id: 'visualization',
-            category: 'Foundations',
-            emoji: '📊',
-            name: 'Data Visualization',
-            difficulty: 'Beginner',
-            estimatedTime: '3 hours',
-            prerequisites: 'Python, Pandas',
-            overview: 'Visualizing data is crucial for understanding patterns, communicating insights, and making data-driven decisions.',
-            theory: 'Data visualization is the graphical representation of information and data. Using visual elements like charts, graphs, and maps, visualization tools provide an accessible way to see and understand trends, outliers, and patterns in data.',
-            resources: [
-                { name: 'Matplotlib Docs', url: 'https://matplotlib.org/' },
-                { name: 'Seaborn Docs', url: 'https://seaborn.pydata.org/' },
-            ],
-            videos: [
-                { name: 'Data Visualization with Python', url: 'https://youtu.be/q7bo_J8x_dw' },
-            ],
-            datasets: ['Titanic', 'Iris', 'Stock Prices'],
-            miniProject: 'Create a dashboard with multiple plots showing different aspects of a dataset.',
-            xp: 40,
-        }, {
-            id: 'statistics',
-            category: 'Foundations',
-            emoji: '📈',
-            name: 'Statistics for ML',
-            difficulty: 'Beginner',
-            estimatedTime: '5 hours',
-            prerequisites: 'None',
-            overview: 'Statistics is the foundation of machine learning. Understanding descriptive and inferential statistics is essential for building robust models.',
-            theory: 'Statistics involves collecting, analyzing, interpreting, and presenting data. Key concepts include mean, median, mode, variance, standard deviation, correlation, hypothesis testing, and probability distributions.',
-            resources: [
-                { name: 'Khan Academy Statistics', url: 'https://khanacademy.org/math/statistics-probability' },
-                { name: 'StatQuest', url: 'https://youtube.com/c/StatQuest' },
-            ],
-            videos: [
-                { name: 'Statistics for Data Science (4h)', url: 'https://youtu.be/xxpc-HPKN28' },
-            ],
-            datasets: ['Titanic', 'Iris', 'Boston Housing'],
-            miniProject: 'Perform exploratory data analysis with statistical summaries and hypothesis tests.',
-            xp: 50,
-        }, {
-            id: 'probability',
-            category: 'Foundations',
-            emoji: '🎲',
-            name: 'Probability',
-            difficulty: 'Beginner',
-            estimatedTime: '4 hours',
-            prerequisites: 'Statistics',
-            overview: 'Probability theory is the mathematical framework for uncertainty. It is essential for understanding machine learning algorithms.',
-            theory: 'Probability is the measure of the likelihood that an event will occur. Key concepts include random variables, probability distributions (discrete and continuous), Bayes theorem, and expectation. Probability is the basis for many ML algorithms including Naive Bayes, Bayesian inference, and probabilistic models.',
-            resources: [
-                { name: 'Probability Basics', url: 'https://statlect.com/fundamentals-of-probability' },
-            ],
-            videos: [
-                { name: 'Probability Tutorial (3h)', url: 'https://youtu.be/uzkc-qNVoOk' },
-            ],
-            datasets: ['Titanic', 'IMDB Reviews'],
-            miniProject: 'Compute probabilities from a dataset and apply Bayes theorem to a classification problem.',
-            xp: 45,
-        }, {
-            id: 'linear_algebra',
-            category: 'Foundations',
-            emoji: '📐',
-            name: 'Linear Algebra',
-            difficulty: 'Intermediate',
-            estimatedTime: '6 hours',
-            prerequisites: 'None',
-            overview: 'Linear algebra is the language of machine learning. Matrices, vectors, and linear transformations are used everywhere in ML.',
-            theory: 'Linear algebra is the branch of mathematics concerning linear equations, linear functions, and their representations through matrices and vector spaces. It is fundamental to machine learning algorithms including linear regression, PCA, SVMs, and neural networks.',
-            resources: [
-                { name: '3Blue1Brown Essence of LA', url: 'https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab' },
-                { name: 'LA for ML', url: 'https://www.deeplearningbook.org/contents/linear_algebra.html' },
-            ],
-            videos: [
-                { name: 'Linear Algebra for ML (5h)', url: 'https://youtu.be/kjBOesZCoqc' },
-            ],
-            datasets: ['MNIST', 'CIFAR-10'],
-            miniProject: 'Implement matrix operations and use them to solve a system of linear equations.',
-            xp: 60,
-        }, {
-            id: 'feature_engineering',
-            category: 'Machine Learning',
-            emoji: '⚙️',
-            name: 'Feature Engineering',
-            difficulty: 'Intermediate',
-            estimatedTime: '5 hours',
-            prerequisites: 'Python, Pandas, Statistics',
-            overview: 'Feature engineering is the process of using domain knowledge to create features that make machine learning algorithms work better.',
-            theory: 'Feature engineering involves selecting, manipulating, and transforming raw data into features that can be used in machine learning. Techniques include handling missing values, encoding categorical variables, scaling, binning, feature extraction, and creating interaction features.',
-            resources: [
-                { name: 'Feature Engineering Guide', url: 'https://www.kaggle.com/learn/feature-engineering' },
-            ],
-            videos: [
-                { name: 'Feature Engineering Tutorial', url: 'https://youtu.be/HB3UZKSac9A' },
-            ],
-            datasets: ['Titanic', 'Credit Card Fraud', 'Air Quality'],
-            miniProject: 'Build a preprocessing pipeline that transforms raw data into clean, engineered features.',
-            xp: 55,
-        }, {
-            id: 'machine_learning',
-            category: 'Machine Learning',
-            emoji: '🤖',
-            name: 'Machine Learning Fundamentals',
-            difficulty: 'Intermediate',
-            estimatedTime: '8 hours',
-            prerequisites: 'Python, Pandas, Statistics, Linear Algebra',
-            overview: 'Machine learning is the science of getting computers to learn and act like humans do, without being explicitly programmed.',
-            theory: 'Machine learning algorithms build a mathematical model based on sample data (training data) to make predictions or decisions without being explicitly programmed. Key paradigms include supervised learning (classification, regression), unsupervised learning (clustering, dimensionality reduction), and reinforcement learning.',
-            resources: [
-                { name: 'Scikit-learn Docs', url: 'https://scikit-learn.org/' },
-                { name: 'ML Cheat Sheet', url: 'https://scikit-learn.org/stable/tutorial/machine_learning_map/' },
-            ],
-            videos: [
-                { name: 'Machine Learning by Andrew Ng', url: 'https://youtu.be/jGwO_UgTS7I' },
-            ],
-            datasets: ['Titanic', 'Iris', 'Boston Housing', 'MNIST'],
-            miniProject: 'Build and evaluate a classification model (e.g., Logistic Regression or Random Forest).',
-            xp: 70,
-        }, {
-            id: 'deep_learning',
-            category: 'Deep Learning',
-            emoji: '🧠',
-            name: 'Deep Learning',
-            difficulty: 'Advanced',
-            estimatedTime: '10 hours',
-            prerequisites: 'Machine Learning, Linear Algebra, Python',
-            overview: 'Deep learning is a subset of machine learning that uses neural networks with many layers to model complex patterns in data.',
-            theory: 'Deep learning uses artificial neural networks with multiple layers (deep networks) to progressively extract higher-level features from raw input. Key architectures include Multi-Layer Perceptrons (MLPs), Convolutional Neural Networks (CNNs), and Recurrent Neural Networks (RNNs).',
-            resources: [
-                { name: 'Deep Learning Book', url: 'https://www.deeplearningbook.org/' },
-                { name: 'PyTorch Docs', url: 'https://pytorch.org/docs/' },
-            ],
-            videos: [
-                { name: 'Deep Learning by Ian Goodfellow', url: 'https://youtu.be/azOmkz8bO4A' },
-            ],
-            datasets: ['MNIST', 'CIFAR-10', 'Fashion MNIST'],
-            miniProject: 'Build a neural network to classify images from MNIST or Fashion MNIST.',
-            xp: 80,
-        }, {
-            id: 'computer_vision',
-            category: 'Deep Learning',
-            emoji: '👁️',
-            name: 'Computer Vision',
-            difficulty: 'Advanced',
-            estimatedTime: '8 hours',
-            prerequisites: 'Deep Learning, Python, Linear Algebra',
-            overview: 'Computer vision is the field of AI that enables computers to interpret and understand the visual world.',
-            theory: 'Computer vision uses deep learning to analyze and understand images and videos. Key tasks include image classification, object detection, segmentation, and image generation. Convolutional Neural Networks (CNNs) are the backbone of modern computer vision.',
-            resources: [
-                { name: 'CS231n Stanford', url: 'https://cs231n.github.io/' },
-                { name: 'OpenCV', url: 'https://opencv.org/' },
-            ],
-            videos: [
-                { name: 'CS231n Lectures', url: 'https://youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC' },
-            ],
-            datasets: ['CIFAR-10', 'MNIST', 'COCO', 'KITTI'],
-            miniProject: 'Build an image classifier using a CNN on CIFAR-10 or MNIST.',
-            xp: 80,
-        }, {
-            id: 'nlp',
-            category: 'NLP & LLMs',
-            emoji: '💬',
-            name: 'Natural Language Processing',
-            difficulty: 'Advanced',
-            estimatedTime: '8 hours',
-            prerequisites: 'Deep Learning, Python',
-            overview: 'NLP is the field of AI that focuses on the interaction between computers and humans through natural language.',
-            theory: 'NLP enables computers to understand, interpret, and generate human language. Key tasks include text classification, sentiment analysis, named entity recognition, machine translation, and question answering. Modern NLP uses transformer-based models like BERT and GPT.',
-            resources: [
-                { name: 'Hugging Face', url: 'https://huggingface.co/' },
-                { name: 'NLP with Python', url: 'https://www.nltk.org/' },
-            ],
-            videos: [
-                { name: 'NLP Course by Hugging Face', url: 'https://youtu.be/1dZLs1yAgWM' },
-            ],
-            datasets: ['IMDB Reviews', 'SMS Spam', 'Sentiment140'],
-            miniProject: 'Build a text classifier for sentiment analysis on IMDB reviews.',
-            xp: 75,
-        }, {
-            id: 'transformers',
-            category: 'NLP & LLMs',
-            emoji: '🔄',
-            name: 'Transformers & LLMs',
-            difficulty: 'Advanced',
-            estimatedTime: '10 hours',
-            prerequisites: 'NLP, Deep Learning',
-            overview: 'Transformers are the architecture behind modern LLMs. They have revolutionized NLP and are the foundation of models like GPT, BERT, and T5.',
-            theory: 'The Transformer architecture uses self-attention mechanisms to process sequences in parallel, overcoming the limitations of RNNs. Key concepts include attention, multi-head attention, positional encoding, and the encoder-decoder structure. Large Language Models (LLMs) are transformers scaled to billions of parameters.',
-            resources: [
-                { name: 'Attention is All You Need', url: 'https://arxiv.org/abs/1706.03762' },
-                { name: 'Hugging Face Transformers', url: 'https://huggingface.co/docs/transformers' },
-            ],
-            videos: [
-                { name: 'Transformers Explained', url: 'https://youtu.be/wjZofJX0v4M' },
-            ],
-            datasets: ['IMDB Reviews', 'SMS Spam'],
-            miniProject: 'Fine-tune a BERT model for text classification on a custom dataset.',
-            xp: 85,
-        }, {
-            id: 'mlops',
-            category: 'MLOps',
-            emoji: '🚀',
-            name: 'MLOps',
-            difficulty: 'Advanced',
-            estimatedTime: '6 hours',
-            prerequisites: 'Machine Learning, Python, Docker',
-            overview: 'MLOps (Machine Learning Operations) is the practice of applying DevOps principles to machine learning systems.',
-            theory: 'MLOps encompasses the entire ML lifecycle from data preparation to model training, deployment, monitoring, and maintenance. It includes CI/CD for ML, model versioning, experiment tracking, and infrastructure automation.',
-            resources: [
-                { name: 'MLOps Guide', url: 'https://ml-ops.org/' },
-                { name: 'Docker Docs', url: 'https://docs.docker.com/' },
-            ],
-            videos: [
-                { name: 'MLOps Tutorial', url: 'https://youtu.be/6hOegfx72Jg' },
-            ],
-            datasets: ['Titanic', 'Iris'],
-            miniProject: 'Containerize a ML model using Docker and create a simple API for inference.',
-            xp: 70,
-        }, {
-            id: 'data_engineering',
-            category: 'Data Engineering',
-            emoji: '🏗️',
-            name: 'Data Engineering',
-            difficulty: 'Intermediate',
-            estimatedTime: '6 hours',
-            prerequisites: 'Python, SQL',
-            overview: 'Data engineering is the practice of designing and building systems for collecting, storing, and analyzing data at scale.',
-            theory: 'Data engineering involves building data pipelines, data warehouses, and data lakes. Key tools include SQL, Apache Spark, Kafka, Airflow, and cloud platforms. Data engineers ensure that data is reliable, accessible, and ready for analysis.',
-            resources: [
-                { name: 'Data Engineering Guide', url: 'https://datacamp.com/courses/data-engineering' },
-                { name: 'Apache Spark Docs', url: 'https://spark.apache.org/docs/' },
-            ],
-            videos: [
-                { name: 'Data Engineering for Beginners', url: 'https://youtu.be/phWxJjG5pGg' },
-            ],
-            datasets: ['Titanic', 'Stock Prices', 'Air Quality'],
-            miniProject: 'Build a data pipeline that extracts, transforms, and loads (ETL) data from a CSV file into a database.',
-            xp: 60,
-        }, {
-            id: 'sql',
-            category: 'Data Engineering',
-            emoji: '🗄️',
-            name: 'SQL',
-            difficulty: 'Beginner',
-            estimatedTime: '4 hours',
-            prerequisites: 'None',
-            overview: 'SQL (Structured Query Language) is the standard language for interacting with relational databases.',
-            theory: 'SQL is used to query, manipulate, and manage data in relational databases. Key operations include SELECT, INSERT, UPDATE, DELETE, JOIN, GROUP BY, and subqueries. SQL is essential for data extraction and analysis.',
-            resources: [
-                { name: 'SQL Tutorial', url: 'https://w3schools.com/sql/' },
-                { name: 'PostgreSQL Docs', url: 'https://postgresql.org/docs/' },
-            ],
-            videos: [
-                { name: 'SQL for Data Science (4h)', url: 'https://youtu.be/7S_tz1z_5bA' },
-            ],
-            datasets: ['Titanic', 'Iris'],
-            miniProject: 'Write SQL queries to extract insights from a database (e.g., sales data, customer data).',
-            xp: 40,
-        }, ];
+        // Ordered topics (learning path)
+        const TOPICS = [
+            { id: 'python', category: 'Foundations', emoji: '🐍', name: 'Python for Data Science', difficulty: 'Beginner',
+                estimatedTime: '4 hours', prerequisites: 'None',
+                overview: 'Python is the foundation of modern data science and machine learning. This topic covers essential Python concepts for data manipulation and analysis.',
+                theory: 'Python is a high-level, interpreted programming language known for its simplicity and readability. In data science, Python is used for data cleaning, exploration, visualization, and building machine learning models. Key libraries include NumPy, Pandas, Matplotlib, and Scikit-learn.',
+                resources: [{ name: 'Python.org', url: 'https://python.org' }, { name: 'W3Schools Python',
+                    url: 'https://w3schools.com/python' }],
+                videos: [{ name: 'Python for Beginners (3h)', url: 'https://youtu.be/kqtD5dpn9C8' }],
+                datasets: ['Titanic', 'Iris'],
+                miniProject: 'Build a simple data analysis script that loads a CSV file and computes basic statistics.',
+                xp: 50, order: 10
+            },
+            { id: 'numpy', category: 'Foundations', emoji: '🔢', name: 'NumPy', difficulty: 'Beginner',
+                estimatedTime: '3 hours', prerequisites: 'Python',
+                overview: 'NumPy is the fundamental package for scientific computing in Python. It provides powerful array operations and mathematical functions.',
+                theory: 'NumPy (Numerical Python) provides support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays. It is the foundation for many other data science libraries.',
+                resources: [{ name: 'NumPy Docs', url: 'https://numpy.org/doc/' }, { name: 'NumPy Quickstart',
+                    url: 'https://numpy.org/doc/stable/user/quickstart.html' }],
+                videos: [{ name: 'NumPy Tutorial (2h)', url: 'https://youtu.be/QUT1VHiLmmI' }],
+                datasets: ['Iris', 'MNIST'],
+                miniProject: 'Create a NumPy array and perform element-wise operations, broadcasting, and aggregation.',
+                xp: 40, order: 20
+            },
+            { id: 'pandas', category: 'Foundations', emoji: '🐼', name: 'Pandas', difficulty: 'Beginner',
+                estimatedTime: '4 hours', prerequisites: 'Python, NumPy',
+                overview: 'Pandas is the go-to library for data manipulation and analysis in Python. It provides DataFrame structures for handling tabular data.',
+                theory: 'Pandas provides fast, flexible, and expressive data structures designed to make working with "relational" or "labeled" data both easy and intuitive. The primary data structures are Series (1D) and DataFrame (2D).',
+                resources: [{ name: 'Pandas Docs', url: 'https://pandas.pydata.org/docs/' }, { name: 'Pandas Cheat Sheet',
+                    url: 'https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf' }],
+                videos: [{ name: 'Pandas Tutorial (3h)', url: 'https://youtu.be/vmEHCJofslg' }],
+                datasets: ['Titanic', 'Boston Housing', 'Air Quality'],
+                miniProject: 'Load a dataset, clean missing values, perform group by operations, and create a summary report.',
+                xp: 45, order: 30
+            },
+            { id: 'visualization', category: 'Foundations', emoji: '📊', name: 'Data Visualization',
+                difficulty: 'Beginner', estimatedTime: '3 hours', prerequisites: 'Python, Pandas',
+                overview: 'Visualizing data is crucial for understanding patterns, communicating insights, and making data-driven decisions.',
+                theory: 'Data visualization is the graphical representation of information and data. Using visual elements like charts, graphs, and maps, visualization tools provide an accessible way to see and understand trends, outliers, and patterns in data.',
+                resources: [{ name: 'Matplotlib Docs', url: 'https://matplotlib.org/' }, { name: 'Seaborn Docs',
+                    url: 'https://seaborn.pydata.org/' }],
+                videos: [{ name: 'Data Visualization with Python', url: 'https://youtu.be/q7bo_J8x_dw' }],
+                datasets: ['Titanic', 'Iris', 'Stock Prices'],
+                miniProject: 'Create a dashboard with multiple plots showing different aspects of a dataset.',
+                xp: 40, order: 40
+            },
+            { id: 'statistics', category: 'Foundations', emoji: '📈', name: 'Statistics for ML', difficulty: 'Beginner',
+                estimatedTime: '5 hours', prerequisites: 'None',
+                overview: 'Statistics is the foundation of machine learning. Understanding descriptive and inferential statistics is essential for building robust models.',
+                theory: 'Statistics involves collecting, analyzing, interpreting, and presenting data. Key concepts include mean, median, mode, variance, standard deviation, correlation, hypothesis testing, and probability distributions.',
+                resources: [{ name: 'Khan Academy Statistics', url: 'https://khanacademy.org/math/statistics-probability' },
+                { name: 'StatQuest', url: 'https://youtube.com/c/StatQuest' }],
+                videos: [{ name: 'Statistics for Data Science (4h)', url: 'https://youtu.be/xxpc-HPKN28' }],
+                datasets: ['Titanic', 'Iris', 'Boston Housing'],
+                miniProject: 'Perform exploratory data analysis with statistical summaries and hypothesis tests.',
+                xp: 50, order: 50
+            },
+            { id: 'probability', category: 'Foundations', emoji: '🎲', name: 'Probability', difficulty: 'Beginner',
+                estimatedTime: '4 hours', prerequisites: 'Statistics',
+                overview: 'Probability theory is the mathematical framework for uncertainty. It is essential for understanding machine learning algorithms.',
+                theory: 'Probability is the measure of the likelihood that an event will occur. Key concepts include random variables, probability distributions (discrete and continuous), Bayes theorem, and expectation. Probability is the basis for many ML algorithms including Naive Bayes, Bayesian inference, and probabilistic models.',
+                resources: [{ name: 'Probability Basics', url: 'https://statlect.com/fundamentals-of-probability' }],
+                videos: [{ name: 'Probability Tutorial (3h)', url: 'https://youtu.be/uzkc-qNVoOk' }],
+                datasets: ['Titanic', 'IMDB Reviews'],
+                miniProject: 'Compute probabilities from a dataset and apply Bayes theorem to a classification problem.',
+                xp: 45, order: 60
+            },
+            { id: 'linear_algebra', category: 'Foundations', emoji: '📐', name: 'Linear Algebra',
+                difficulty: 'Intermediate', estimatedTime: '6 hours', prerequisites: 'None',
+                overview: 'Linear algebra is the language of machine learning. Matrices, vectors, and linear transformations are used everywhere in ML.',
+                theory: 'Linear algebra is the branch of mathematics concerning linear equations, linear functions, and their representations through matrices and vector spaces. It is fundamental to machine learning algorithms including linear regression, PCA, SVMs, and neural networks.',
+                resources: [{ name: '3Blue1Brown Essence of LA',
+                    url: 'https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab' }, { name: 'LA for ML',
+                    url: 'https://www.deeplearningbook.org/contents/linear_algebra.html' }],
+                videos: [{ name: 'Linear Algebra for ML (5h)', url: 'https://youtu.be/kjBOesZCoqc' }],
+                datasets: ['MNIST', 'CIFAR-10'],
+                miniProject: 'Implement matrix operations and use them to solve a system of linear equations.',
+                xp: 60, order: 70
+            },
+            { id: 'feature_engineering', category: 'Machine Learning', emoji: '⚙️', name: 'Feature Engineering',
+                difficulty: 'Intermediate', estimatedTime: '5 hours', prerequisites: 'Python, Pandas, Statistics',
+                overview: 'Feature engineering is the process of using domain knowledge to create features that make machine learning algorithms work better.',
+                theory: 'Feature engineering involves selecting, manipulating, and transforming raw data into features that can be used in machine learning. Techniques include handling missing values, encoding categorical variables, scaling, binning, feature extraction, and creating interaction features.',
+                resources: [{ name: 'Feature Engineering Guide', url: 'https://www.kaggle.com/learn/feature-engineering' }],
+                videos: [{ name: 'Feature Engineering Tutorial', url: 'https://youtu.be/HB3UZKSac9A' }],
+                datasets: ['Titanic', 'Credit Card Fraud', 'Air Quality'],
+                miniProject: 'Build a preprocessing pipeline that transforms raw data into clean, engineered features.',
+                xp: 55, order: 80
+            },
+            { id: 'machine_learning', category: 'Machine Learning', emoji: '🤖', name: 'Machine Learning Fundamentals',
+                difficulty: 'Intermediate', estimatedTime: '8 hours',
+                prerequisites: 'Python, Pandas, Statistics, Linear Algebra',
+                overview: 'Machine learning is the science of getting computers to learn and act like humans do, without being explicitly programmed.',
+                theory: 'Machine learning algorithms build a mathematical model based on sample data (training data) to make predictions or decisions without being explicitly programmed. Key paradigms include supervised learning (classification, regression), unsupervised learning (clustering, dimensionality reduction), and reinforcement learning.',
+                resources: [{ name: 'Scikit-learn Docs', url: 'https://scikit-learn.org/' }, { name: 'ML Cheat Sheet',
+                    url: 'https://scikit-learn.org/stable/tutorial/machine_learning_map/' }],
+                videos: [{ name: 'Machine Learning by Andrew Ng', url: 'https://youtu.be/jGwO_UgTS7I' }],
+                datasets: ['Titanic', 'Iris', 'Boston Housing', 'MNIST'],
+                miniProject: 'Build and evaluate a classification model (e.g., Logistic Regression or Random Forest).',
+                xp: 70, order: 90
+            },
+            { id: 'deep_learning', category: 'Deep Learning', emoji: '🧠', name: 'Deep Learning',
+                difficulty: 'Advanced', estimatedTime: '10 hours',
+                prerequisites: 'Machine Learning, Linear Algebra, Python',
+                overview: 'Deep learning is a subset of machine learning that uses neural networks with many layers to model complex patterns in data.',
+                theory: 'Deep learning uses artificial neural networks with multiple layers (deep networks) to progressively extract higher-level features from raw input. Key architectures include Multi-Layer Perceptrons (MLPs), Convolutional Neural Networks (CNNs), and Recurrent Neural Networks (RNNs).',
+                resources: [{ name: 'Deep Learning Book', url: 'https://www.deeplearningbook.org/' }, { name: 'PyTorch Docs',
+                    url: 'https://pytorch.org/docs/' }],
+                videos: [{ name: 'Deep Learning by Ian Goodfellow', url: 'https://youtu.be/azOmkz8bO4A' }],
+                datasets: ['MNIST', 'CIFAR-10', 'Fashion MNIST'],
+                miniProject: 'Build a neural network to classify images from MNIST or Fashion MNIST.',
+                xp: 80, order: 100
+            },
+            { id: 'computer_vision', category: 'Deep Learning', emoji: '👁️', name: 'Computer Vision',
+                difficulty: 'Advanced', estimatedTime: '8 hours', prerequisites: 'Deep Learning, Python, Linear Algebra',
+                overview: 'Computer vision is the field of AI that enables computers to interpret and understand the visual world.',
+                theory: 'Computer vision uses deep learning to analyze and understand images and videos. Key tasks include image classification, object detection, segmentation, and image generation. Convolutional Neural Networks (CNNs) are the backbone of modern computer vision.',
+                resources: [{ name: 'CS231n Stanford', url: 'https://cs231n.github.io/' }, { name: 'OpenCV',
+                    url: 'https://opencv.org/' }],
+                videos: [{ name: 'CS231n Lectures',
+                    url: 'https://youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC' }],
+                datasets: ['CIFAR-10', 'MNIST', 'COCO', 'KITTI'],
+                miniProject: 'Build an image classifier using a CNN on CIFAR-10 or MNIST.',
+                xp: 80, order: 110
+            },
+            { id: 'nlp', category: 'NLP & LLMs', emoji: '💬', name: 'Natural Language Processing',
+                difficulty: 'Advanced', estimatedTime: '8 hours', prerequisites: 'Deep Learning, Python',
+                overview: 'NLP is the field of AI that focuses on the interaction between computers and humans through natural language.',
+                theory: 'NLP enables computers to understand, interpret, and generate human language. Key tasks include text classification, sentiment analysis, named entity recognition, machine translation, and question answering. Modern NLP uses transformer-based models like BERT and GPT.',
+                resources: [{ name: 'Hugging Face', url: 'https://huggingface.co/' }, { name: 'NLP with Python',
+                    url: 'https://www.nltk.org/' }],
+                videos: [{ name: 'NLP Course by Hugging Face', url: 'https://youtu.be/1dZLs1yAgWM' }],
+                datasets: ['IMDB Reviews', 'SMS Spam', 'Sentiment140'],
+                miniProject: 'Build a text classifier for sentiment analysis on IMDB reviews.',
+                xp: 75, order: 120
+            },
+            { id: 'transformers', category: 'NLP & LLMs', emoji: '🔄', name: 'Transformers & LLMs',
+                difficulty: 'Advanced', estimatedTime: '10 hours', prerequisites: 'NLP, Deep Learning',
+                overview: 'Transformers are the architecture behind modern LLMs. They have revolutionized NLP and are the foundation of models like GPT, BERT, and T5.',
+                theory: 'The Transformer architecture uses self-attention mechanisms to process sequences in parallel, overcoming the limitations of RNNs. Key concepts include attention, multi-head attention, positional encoding, and the encoder-decoder structure. Large Language Models (LLMs) are transformers scaled to billions of parameters.',
+                resources: [{ name: 'Attention is All You Need', url: 'https://arxiv.org/abs/1706.03762' },
+                { name: 'Hugging Face Transformers', url: 'https://huggingface.co/docs/transformers' }],
+                videos: [{ name: 'Transformers Explained', url: 'https://youtu.be/wjZofJX0v4M' }],
+                datasets: ['IMDB Reviews', 'SMS Spam'],
+                miniProject: 'Fine-tune a BERT model for text classification on a custom dataset.',
+                xp: 85, order: 130
+            },
+            { id: 'mlops', category: 'MLOps', emoji: '🚀', name: 'MLOps', difficulty: 'Advanced',
+                estimatedTime: '6 hours', prerequisites: 'Machine Learning, Python, Docker',
+                overview: 'MLOps (Machine Learning Operations) is the practice of applying DevOps principles to machine learning systems.',
+                theory: 'MLOps encompasses the entire ML lifecycle from data preparation to model training, deployment, monitoring, and maintenance. It includes CI/CD for ML, model versioning, experiment tracking, and infrastructure automation.',
+                resources: [{ name: 'MLOps Guide', url: 'https://ml-ops.org/' }, { name: 'Docker Docs',
+                    url: 'https://docs.docker.com/' }],
+                videos: [{ name: 'MLOps Tutorial', url: 'https://youtu.be/6hOegfx72Jg' }],
+                datasets: ['Titanic', 'Iris'],
+                miniProject: 'Containerize a ML model using Docker and create a simple API for inference.',
+                xp: 70, order: 140
+            },
+            { id: 'data_engineering', category: 'Data Engineering', emoji: '🏗️', name: 'Data Engineering',
+                difficulty: 'Intermediate', estimatedTime: '6 hours', prerequisites: 'Python, SQL',
+                overview: 'Data engineering is the practice of designing and building systems for collecting, storing, and analyzing data at scale.',
+                theory: 'Data engineering involves building data pipelines, data warehouses, and data lakes. Key tools include SQL, Apache Spark, Kafka, Airflow, and cloud platforms. Data engineers ensure that data is reliable, accessible, and ready for analysis.',
+                resources: [{ name: 'Data Engineering Guide', url: 'https://datacamp.com/courses/data-engineering' },
+                { name: 'Apache Spark Docs', url: 'https://spark.apache.org/docs/' }],
+                videos: [{ name: 'Data Engineering for Beginners', url: 'https://youtu.be/phWxJjG5pGg' }],
+                datasets: ['Titanic', 'Stock Prices', 'Air Quality'],
+                miniProject: 'Build a data pipeline that extracts, transforms, and loads (ETL) data from a CSV file into a database.',
+                xp: 60, order: 150
+            },
+            { id: 'sql', category: 'Data Engineering', emoji: '🗄️', name: 'SQL', difficulty: 'Beginner',
+                estimatedTime: '4 hours', prerequisites: 'None',
+                overview: 'SQL (Structured Query Language) is the standard language for interacting with relational databases.',
+                theory: 'SQL is used to query, manipulate, and manage data in relational databases. Key operations include SELECT, INSERT, UPDATE, DELETE, JOIN, GROUP BY, and subqueries. SQL is essential for data extraction and analysis.',
+                resources: [{ name: 'SQL Tutorial', url: 'https://w3schools.com/sql/' }, { name: 'PostgreSQL Docs',
+                    url: 'https://postgresql.org/docs/' }],
+                videos: [{ name: 'SQL for Data Science (4h)', url: 'https://youtu.be/7S_tz1z_5bA' }],
+                datasets: ['Titanic', 'Iris'],
+                miniProject: 'Write SQL queries to extract insights from a database (e.g., sales data, customer data).',
+                xp: 40, order: 160
+            },
+        ];
 
         // ---------- State ----------
         const state = {
             user: { name: 'AI Engineer', level: 0, xp: 0, streak: 0, lastActive: null, pledgeSigned: false,
-            pledgeSignature: null },
+                pledgeSignature: null },
             topics: [],
             notes: [],
             progress: {},
@@ -2424,10 +2344,13 @@
                 if (user) state.user = user;
                 // Load topics progress
                 const topics = await getAllData('topics');
-                if (topics.length) state.topics = topics;
-                else {
-                    // Initialize topics
+                if (topics.length) {
+                    state.topics = topics;
+                } else {
+                    // Initialize topics with order
                     state.topics = TOPICS.map(t => ({ ...t, completed: false, progress: 0, notes: '' }));
+                    // Sort by order
+                    state.topics.sort((a, b) => (a.order || 999) - (b.order || 999));
                     for (const t of state.topics) await storeData('topics', t);
                 }
                 // Load notes
@@ -2453,11 +2376,12 @@
                     Object.assign(state, saved);
                 } else {
                     state.topics = TOPICS.map(t => ({ ...t, completed: false, progress: 0, notes: '' }));
+                    state.topics.sort((a, b) => (a.order || 999) - (b.order || 999));
                 }
             }
-            // Ensure topics are synced
             if (state.topics.length === 0) {
                 state.topics = TOPICS.map(t => ({ ...t, completed: false, progress: 0, notes: '' }));
+                state.topics.sort((a, b) => (a.order || 999) - (b.order || 999));
             }
             updateUI();
         }
@@ -2470,7 +2394,6 @@
                 for (const [date, p] of Object.entries(state.progress)) {
                     await storeData('progress', { date, ...p });
                 }
-                // Bookmarks
                 await clearStore('bookmarks');
                 for (const id of state.bookmarks) {
                     await storeData('bookmarks', { id });
@@ -2493,7 +2416,6 @@
             if (newLevel > state.user.level) {
                 state.user.level = newLevel;
                 showToast(`🎉 Level Up! You're now a ${LEVELS[newLevel].name}!`);
-                // Trigger level up animation
             }
             saveState();
             updateUI();
@@ -2874,7 +2796,6 @@
                 ` : ''}
               `;
 
-            // Complete button
             const btn = document.getElementById('topicDetailComplete');
             if (topic.completed) {
                 btn.textContent = '✅ Completed';
@@ -3025,13 +2946,11 @@
             state.currentPage = pageId;
             document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
             document.querySelector(`.nav-item[data-page="${pageId}"]`)?.classList.add('active');
-            // Update content
             if (pageId === 'page-home') updateHome();
             if (pageId === 'page-learn') updateLearn();
             if (pageId === 'page-notebook') updateNotebook();
             if (pageId === 'page-progress') updateProgress();
             if (pageId === 'page-profile') updateProfile();
-            // Scroll to top
             page?.scrollTo(0, 0);
         }
 
@@ -3077,7 +2996,6 @@
         function finishOnboarding() {
             document.getElementById('onboarding').classList.remove('active');
             document.getElementById('onboarding').style.display = 'none';
-            // Check if pledge is signed
             if (state.user.pledgeSigned && state.user.pledgeSignature) {
                 showApp();
             } else {
@@ -3180,7 +3098,6 @@
             document.getElementById('splash').classList.add('hidden');
             document.getElementById('app').style.display = 'flex';
             navigateTo('page-home');
-            // Ensure onboarding is hidden
             document.getElementById('onboarding').classList.remove('active');
             document.getElementById('onboarding').style.display = 'none';
             document.getElementById('pledge').classList.remove('active');
@@ -3198,7 +3115,6 @@
                     clearInterval(interval);
                     setTimeout(() => {
                         document.getElementById('splash').classList.add('hidden');
-                        // Check if user has been onboarded
                         const onboarded = lsGet('onboarded', false);
                         if (!onboarded) {
                             document.getElementById('onboarding').style.display = 'flex';
@@ -3214,6 +3130,36 @@
                 }
             }, 120);
         }
+
+        // ---------- PWA Install ----------
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installBtn').style.display = 'flex';
+        });
+
+        document.getElementById('installBtn').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const result = await deferredPrompt.userChoice;
+                if (result.outcome === 'accepted') {
+                    console.log('User accepted install');
+                    document.getElementById('installBtn').style.display = 'none';
+                } else {
+                    console.log('User dismissed install');
+                }
+                deferredPrompt = null;
+            } else {
+                showToast('Install not available. Try using Chrome on Android.');
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            document.getElementById('installBtn').style.display = 'none';
+            showToast('🎉 ML Engineer OS installed!');
+        });
 
         // ---------- Event Listeners ----------
         function setupEventListeners() {
@@ -3252,7 +3198,6 @@
             document.getElementById('newNoteBtn').addEventListener('click', () => openNoteEditor(null));
             document.getElementById('noteEditorBack').addEventListener('click', closeNoteEditor);
             document.getElementById('noteEditorSave').addEventListener('click', saveNote);
-            // Ctrl+S save
             document.addEventListener('keydown', (e) => {
                 if ((e.ctrlKey || e.metaKey) && e.key === 's') {
                     if (document.getElementById('noteEditor').classList.contains('active')) {
@@ -3334,6 +3279,7 @@
                         state.user = { name: 'AI Engineer', level: 0, xp: 0, streak: 0, lastActive: null,
                             pledgeSigned: false, pledgeSignature: null };
                         state.topics = TOPICS.map(t => ({ ...t, completed: false, progress: 0, notes: '' }));
+                        state.topics.sort((a, b) => (a.order || 999) - (b.order || 999));
                         state.notes = [];
                         state.progress = {};
                         state.bookmarks = [];
@@ -3348,7 +3294,7 @@
             });
 
             document.getElementById('profileAbout').addEventListener('click', () => {
-                showToast('🧠 ML Engineer OS v1.0 · Offline AI Career Companion');
+                showToast('🧠 ML Engineer OS v1.1 · Offline AI Career Companion');
             });
 
             // Reset progress button in Learn
@@ -3362,7 +3308,6 @@
                 }
             });
 
-            // Handle page visibility for streak
             document.addEventListener('visibilitychange', () => {
                 if (!document.hidden) {
                     updateStreak();
@@ -3370,7 +3315,6 @@
                 }
             });
 
-            // Keyboard shortcuts
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     if (document.getElementById('topic-detail').classList.contains('active')) closeTopicDetail();
@@ -3386,7 +3330,6 @@
             setupEventListeners();
             setupSearch();
 
-            // Handle back button for topic detail
             window.addEventListener('popstate', () => {
                 if (document.getElementById('topic-detail').classList.contains('active')) {
                     closeTopicDetail();
@@ -3395,19 +3338,15 @@
                 }
             });
 
-            // Start splash
             runSplash();
-
-            // Update streak on load
             updateStreak();
 
-            // Update UI periodically
             setInterval(() => {
                 updateStreak();
                 updateUI();
             }, 60000);
 
-            console.log('🧠 ML Engineer OS v1.0 loaded');
+            console.log('🧠 ML Engineer OS v1.1 loaded');
             console.log(`📚 ${state.topics.length} topics, ${state.notes.length} notes, ${state.user.xp} XP`);
         }
 
@@ -3421,7 +3360,7 @@
         // ---------- Start ----------
         init();
 
-        // Expose some functions for debugging
+        // Expose for debugging
         window.__MLOS = { state, saveState, loadState, addXP, completeTopic, showToast };
 
         console.log('🚀 ML Engineer OS initialized');
