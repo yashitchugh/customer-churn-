@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#070b17" />
-    <meta name="description" content="ML Engineer OS - The Offline AI Career Companion" />
-    <link rel="manifest" href="manifest.json" />
-    <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
-    <title>ML Engineer OS</title>
+    <meta name="description" content="Chugh Sahab Lagge Raho - The Offline AI Career Companion" />
+    <link rel="manifest" id="dynamicManifest" href="blob:https://yashitchugh.github.io/ml-engineer-os/...">
+    <link rel="icon" id="dynamicFavicon" href="data:image/svg+xml,...">
+    <title>Chugh Sahab Lagge Raho</title>
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
     <style>
         /* ============================================================
-           ML Engineer OS — Complete Design System v2.1
+           Chugh Sahab Lagge Raho — Complete Design System v3.0
            Premium · Dark · Glassmorphism · MD3 · Animated
            ============================================================ */
 
@@ -1839,7 +1840,7 @@
         <div id="page-learn" class="page">
             <div class="learn-header">
                 <h1>📚 Learn</h1>
-                <button class="btn btn-sm btn-outline" id="resetProgressBtn" style="padding:6px 12px; font-size:12px;">Reset</button>
+                <button class="btn btn-sm btn-outline" id="resetProgressBtn" style="padding:6px 12px; font-size:12px;">Reset Progress</button>
             </div>
             <div class="search-input-wrap">
                 <span class="search-icon">🔍</span>
@@ -1928,11 +1929,6 @@
                     <span class="pmi-text">Import Backup</span>
                     <span class="pmi-arrow">›</span>
                 </div>
-                <div class="profile-menu-item" id="profileReset">
-                    <span class="pmi-icon">🗑️</span>
-                    <span class="pmi-text">Reset All Data</span>
-                    <span class="pmi-arrow">›</span>
-                </div>
                 <div class="profile-menu-item" id="profileAbout">
                     <span class="pmi-icon">ℹ️</span>
                     <span class="pmi-text">About</span>
@@ -1940,7 +1936,7 @@
                 </div>
             </div>
             <div style="margin-top:20px; text-align:center; font-size:12px; color:var(--text-muted);">
-                ML Engineer OS v2.1 · Offline AI Career Companion
+                Chugh Sahab Lagge Raho v3.0 · Offline AI Career Companion
             </div>
         </div>
 
@@ -1971,23 +1967,6 @@
         </nav>
     </div>
 
-    <!-- ---------- MODAL (Reset Confirmation) ---------- -->
-    <div class="modal-overlay" id="resetModal">
-        <div class="modal-box">
-            <h2>⚠️ Reset All Progress?</h2>
-            <p>
-                This will delete all your XP, completed topics, streak, notes, and settings.<br />
-                <strong>Think twice!</strong> Every journey has setbacks, but starting over is a chance to build stronger.
-                <br /><br />
-                <em style="color:var(--gold);">"The expert in anything was once a beginner."</em>
-            </p>
-            <div class="modal-actions">
-                <button class="btn btn-outline" id="resetCancel">Cancel</button>
-                <button class="btn btn-primary" id="resetConfirm">Yes, Reset Everything</button>
-            </div>
-        </div>
-    </div>
-
     <!-- ---------- SPLASH ---------- -->
     <div id="splash">
         <div class="splash-logo">
@@ -2004,7 +1983,7 @@
             <div class="splash-particle" style="--tx:40px;--ty:50px;animation-delay:1.0s;"></div>
             <div class="splash-particle" style="--tx:-50px;--ty:-20px;animation-delay:1.3s;"></div>
         </div>
-        <div class="splash-title">ML Engineer OS</div>
+        <div class="splash-title">Chugh Sahab Lagge Raho</div>
         <div class="splash-sub">The Offline AI Career Companion</div>
         <div class="splash-loader"><div class="splash-loader-bar" id="splashBar"></div></div>
     </div>
@@ -2015,7 +1994,7 @@
             <div class="onboarding-slide active" data-index="0">
                 <div class="onboarding-icon">🧠</div>
                 <h2>Your AI Career OS</h2>
-                <p>ML Engineer OS is your personal operating system for mastering AI, Machine Learning, and Data Engineering — all offline.</p>
+                <p>Chugh Sahab Lagge Raho is your personal operating system for mastering AI, Machine Learning, and Data Engineering — all offline.</p>
             </div>
             <div class="onboarding-slide" data-index="1">
                 <div class="onboarding-icon">🎯</div>
@@ -2098,9 +2077,50 @@
     ============================================================ -->
     <script type="module">
         // ============================================================
-        // ML Engineer OS — Main Application v2.1
+        // Chugh Sahab Lagge Raho — Main Application v3.0
         // Premium · Offline First · PWA · Vibe-Driven
         // ============================================================
+
+        // ---------- PWA: Dynamic Manifest & Favicon (Self-Contained) ----------
+        (function setupPWA() {
+            // Create manifest as a Blob URL
+            const manifest = {
+                name: "Chugh Sahab Lagge Raho",
+                short_name: "CSLR",
+                description: "The Offline AI Career Companion",
+                start_url: ".",
+                display: "standalone",
+                background_color: "#070b17",
+                theme_color: "#070b17",
+                icons: [{
+                    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='64' fill='%234f8cff'/%3E%3Ctext x='256' y='340' font-family='Inter, sans-serif' font-size='220' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E",
+                    sizes: "512x512",
+                    type: "image/svg+xml",
+                    purpose: "any maskable"
+                }, {
+                    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='32' fill='%234f8cff'/%3E%3Ctext x='96' y='128' font-family='Inter, sans-serif' font-size='82' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E",
+                    sizes: "192x192",
+                    type: "image/svg+xml",
+                    purpose: "any maskable"
+                }]
+            };
+
+            const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+            const manifestURL = URL.createObjectURL(blob);
+            document.getElementById('dynamicManifest').href = manifestURL;
+
+            // Favicon as inline SVG
+            const faviconSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="%234f8cff"/><text x="32" y="44" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="white" text-anchor="middle">AI</text></svg>`;
+            const faviconBlob = new Blob([faviconSVG], { type: 'image/svg+xml' });
+            const faviconURL = URL.createObjectURL(faviconBlob);
+            document.getElementById('dynamicFavicon').href = faviconURL;
+
+            // Also set as favicon link
+            const link = document.createElement('link');
+            link.rel = 'icon';
+            link.href = faviconURL;
+            document.head.appendChild(link);
+        })();
 
         // ---------- Constants ----------
         const LEVELS = [
@@ -3130,7 +3150,7 @@
                 saveState();
                 document.getElementById('pledge').classList.remove('active');
                 showApp();
-                showToast('📜 Pledge signed! Welcome to ML Engineer OS.');
+                showToast('📜 Pledge signed! Welcome to Chugh Sahab Lagge Raho.');
             });
         }
 
@@ -3171,10 +3191,6 @@
                 }
             }, 120);
         }
-
-        // ---------- PWA Install (fixed: let browser handle it) ----------
-        // We no longer prevent default, so the browser will show its own prompt.
-        // The floating install button is removed.
 
         // ---------- Event Listeners ----------
         function setupEventListeners() {
@@ -3239,7 +3255,7 @@
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `mlos_backup_${new Date().toISOString().split('T')[0]}.json`;
+                a.download = `csr_backup_${new Date().toISOString().split('T')[0]}.json`;
                 a.click();
                 URL.revokeObjectURL(url);
                 showToast('💾 Backup exported');
@@ -3272,47 +3288,57 @@
                 input.click();
             });
 
-            // Reset: show custom modal
-            document.getElementById('profileReset').addEventListener('click', () => {
-                document.getElementById('resetModal').classList.add('active');
-            });
-
-            document.getElementById('resetCancel').addEventListener('click', () => {
-                document.getElementById('resetModal').classList.remove('active');
-            });
-
-            document.getElementById('resetConfirm').addEventListener('click', () => {
-                document.getElementById('resetModal').classList.remove('active');
-                // Perform reset
-                localStorage.clear();
-                indexedDB.deleteDatabase(DB_NAME);
-                state.user = { name: 'AI Engineer', level: 0, xp: 0, streak: 0, lastActive: null,
-                    pledgeSigned: false, pledgeSignature: null };
-                state.topics = TOPICS.map(t => ({ ...t, completed: false, progress: 0, notes: '' }));
-                state.topics.sort((a, b) => (a.order || 999) - (b.order || 999));
-                state.notes = [];
-                state.progress = {};
-                state.bookmarks = [];
-                lsSet('onboarded', false);
-                saveState().then(() => {
-                    updateUI();
-                    showToast('🗑️ All data reset. A fresh start awaits! 💪');
-                    location.reload();
-                });
-            });
-
+            // About: Enhanced with story
             document.getElementById('profileAbout').addEventListener('click', () => {
-                showToast('🧠 ML Engineer OS v2.1 · Offline AI Career Companion');
+                const aboutHTML = `
+                    <div style="padding:4px 0;">
+                        <h3 style="font-size:18px; margin-bottom:8px;">🧠 Chugh Sahab Lagge Raho</h3>
+                        <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">
+                            <strong>Version 3.0</strong> · Offline AI Career Companion
+                        </p>
+                        <div style="margin-top:12px; padding:14px; background:var(--bg-glass); border-radius:var(--radius-md); border-left:3px solid var(--accent);">
+                            <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">
+                                <em>"This app was born from a simple belief: <strong>everyone deserves a clear path to mastery</strong>. 
+                                We saw too many aspiring AI engineers get lost in the noise — endless tutorials, scattered resources, no sense of progress. 
+                                So we built a <strong>career operating system</strong> that organizes the chaos, celebrates every small win, 
+                                and keeps you moving forward — even when motivation fades."</em>
+                            </p>
+                        </div>
+                        <p style="color:var(--text-muted); font-size:13px; margin-top:12px;">
+                            ⚡ Built with ❤️ for those who refuse to give up. <br />
+                            <span style="color:var(--accent);">#ChughSahabLaggeRaho</span>
+                        </p>
+                    </div>
+                `;
+                // Show in a custom modal or toast with more space
+                showToast('📖 About: Chugh Sahab Lagge Raho v3.0');
+                // Use a better display: create a temporary modal
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed; inset: 0; z-index: 9999;
+                    background: rgba(0,0,0,0.7); backdrop-filter: blur(12px);
+                    display: flex; align-items: center; justify-content: center;
+                    padding: 20px; animation: fadeIn 300ms ease;
+                `;
+                modal.innerHTML = `
+                    <div style="max-width:400px; width:100%; background:var(--bg-secondary); border-radius:var(--radius-xl); padding:28px 24px; border:1px solid var(--bg-glass-border); box-shadow:var(--shadow-card);">
+                        ${aboutHTML}
+                        <button class="btn btn-primary btn-block" style="margin-top:16px;" id="aboutCloseBtn">Close</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                document.getElementById('aboutCloseBtn').addEventListener('click', () => modal.remove());
+                modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
             });
 
-            // Reset progress button in Learn
+            // Reset progress button in Learn (only resets topic progress, not full data)
             document.getElementById('resetProgressBtn').addEventListener('click', () => {
                 if (confirm('Reset all topic progress? This will not reset your XP or streak.')) {
                     state.topics.forEach(t => { t.completed = false;
                         t.progress = 0; });
                     saveState();
                     updateUI();
-                    showToast('🔄 Progress reset');
+                    showToast('🔄 Progress reset. You can start fresh!');
                 }
             });
 
@@ -3326,9 +3352,6 @@
                     if (document.getElementById('topic-detail').classList.contains('active')) closeTopicDetail();
                     if (document.getElementById('noteEditor').classList.contains('active')) closeNoteEditor();
                     if (document.getElementById('bottomSheet').classList.contains('active')) closeBottomSheet();
-                    if (document.getElementById('resetModal').classList.contains('active')) {
-                        document.getElementById('resetModal').classList.remove('active');
-                    }
                 }
             });
         }
@@ -3346,7 +3369,7 @@
             updateStreak();
             setInterval(() => { updateStreak();
                 updateUI(); }, 60000);
-            console.log('🧠 ML Engineer OS v2.1 loaded');
+            console.log('🧠 Chugh Sahab Lagge Raho v3.0 loaded');
         }
 
         // ---------- Service Worker ----------
@@ -3357,8 +3380,8 @@
         }
 
         init();
-        window.__MLOS = { state, saveState, loadState, addXP, completeTopic, showToast };
-        console.log('🚀 ML Engineer OS v2.1 initialized');
+        window.__CSLR = { state, saveState, loadState, addXP, completeTopic, showToast };
+        console.log('🚀 Chugh Sahab Lagge Raho v3.0 initialized');
     </script>
 
 </body>
