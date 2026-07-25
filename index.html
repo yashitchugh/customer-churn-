@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#070b17" />
     <meta name="description" content="Chugh Sahab Lagge Raho - The Offline AI Career Companion" />
-    <link rel="manifest" id="dynamicManifest" href="blob:https://yashitchugh.github.io/ml-engineer-os/...">
-    <link rel="icon" id="dynamicFavicon" href="data:image/svg+xml,...">
+    <!-- PERMANENT CUSTOM FAVICON & MANIFEST (inline data URIs) to avoid browser default -->
+    <link rel="icon" id="favicon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f8cff'/%3E%3Ctext x='32' y='44' font-family='Inter%2C sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E" />
+    <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Chugh%20Sahab%20Lagge%20Raho%22%2C%22short_name%22%3A%22CSLR%22%2C%22description%22%3A%22The%20Offline%20AI%20Career%20Companion%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23070b17%22%2C%22theme_color%22%3A%22%23070b17%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D'http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg'%2520viewBox%253D'0%25200%252064%252064'%253E%253Crect%2520width%253D'64'%2520height%253D'64'%2520rx%253D'14'%2520fill%253D'%25234f8cff'%252F%253E%253Ctext%2520x%253D'32'%2520y%253D'44'%2520font-family%253D'Inter%252C%2520sans-serif'%2520font-size%253D'28'%2520font-weight%253D'700'%2520fill%253D'white'%2520text-anchor%253D'middle'%253EAI%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%2264x64%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D" />
+
     <title>Chugh Sahab Lagge Raho</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,7 +17,7 @@
 
     <style>
         /* ============================================================
-           Chugh Sahab Lagge Raho — Complete Design System v3.4
+           Chugh Sahab Lagge Raho — Complete Design System v3.6
            Premium · Dark · Glassmorphism · MD3 · Animated
            ============================================================ */
 
@@ -161,7 +163,7 @@
             align-items: center;
             justify-content: space-around;
             height: var(--nav-height);
-            padding: 0 8px;
+            padding: 0 4px;
             padding-bottom: calc(4px + var(--safe-bottom));
             background: rgba(7, 11, 23, 0.85);
             backdrop-filter: blur(28px) saturate(1.5);
@@ -170,6 +172,7 @@
             flex-shrink: 0;
             position: relative;
             z-index: 100;
+            gap: 2px;
         }
 
         .nav-item {
@@ -178,29 +181,30 @@
             align-items: center;
             justify-content: center;
             gap: 1px;
-            padding: 4px 12px;
+            padding: 4px 8px;
             border: none;
             background: none;
             color: var(--text-muted);
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 500;
             cursor: pointer;
             transition: color var(--transition-fast);
             position: relative;
-            min-width: 52px;
+            min-width: 44px;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
         }
 
         .nav-item .nav-icon {
-            font-size: 22px;
+            font-size: 20px;
             line-height: 1;
             transition: transform var(--transition-fast);
         }
         .nav-item .nav-label {
-            font-size: 9px;
+            font-size: 8px;
             letter-spacing: 0.03em;
             font-weight: 600;
+            text-transform: uppercase;
         }
         .nav-item.active {
             color: var(--accent);
@@ -214,7 +218,7 @@
             top: -1px;
             left: 50%;
             transform: translateX(-50%) scaleX(0);
-            width: 28px;
+            width: 24px;
             height: 3px;
             border-radius: 0 0 6px 6px;
             background: var(--accent-gradient);
@@ -229,10 +233,10 @@
             right: 2px;
             background: #ef4444;
             color: #fff;
-            font-size: 8px;
+            font-size: 7px;
             font-weight: 700;
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -244,6 +248,7 @@
             transform: scale(1);
         }
 
+        /* ---------- Glass Card ---------- */
         .glass-card {
             background: var(--bg-glass);
             backdrop-filter: blur(16px) saturate(1.3);
@@ -262,6 +267,7 @@
             transform: scale(0.98);
         }
 
+        /* ---------- Buttons ---------- */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -321,6 +327,7 @@
             min-height: 36px;
         }
 
+        /* ---------- Utilities ---------- */
         .flex {
             display: flex;
         }
@@ -410,11 +417,6 @@
         }
         .font-semibold {
             font-weight: 600;
-        }
-        .truncate {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
         .relative {
             position: relative;
@@ -1177,7 +1179,7 @@
             margin-top: 2px;
         }
 
-        /* ---------- LEARN PAGE (No Search) ---------- */
+        /* ---------- LEARN PAGE (no search) ---------- */
         .learn-header {
             padding: 16px 0 8px;
             display: flex;
@@ -1645,7 +1647,6 @@
             font-size: 22px;
         }
 
-        /* Calendar on top */
         .calendar-section {
             margin-top: 12px;
             order: -1;
@@ -1916,6 +1917,93 @@
             margin-top: 6px;
         }
 
+        /* ---------- QUOTES PAGE ---------- */
+        .quotes-header {
+            padding: 16px 0 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .quotes-header .back-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0 4px;
+            transition: color var(--transition-fast);
+            touch-action: manipulation;
+        }
+        .quotes-header .back-btn:hover {
+            color: var(--text-primary);
+        }
+        .quotes-header h1 {
+            font-size: 22px;
+            flex: 1;
+        }
+        .quotes-list {
+            padding: 8px 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .quote-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-lg);
+            padding: 18px 20px;
+            transition: all var(--transition-fast);
+            border-left: 3px solid var(--accent);
+        }
+        .quote-card:hover {
+            transform: translateX(4px);
+            background: var(--bg-card-hover);
+        }
+        .quote-card .quote-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            font-style: italic;
+        }
+        .quote-card .quote-text::before {
+            content: '"';
+            color: var(--accent);
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .quote-card .quote-text::after {
+            content: '"';
+            color: var(--accent);
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .quote-card .quote-author {
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+            text-align: right;
+        }
+        .quote-card .quote-author span {
+            font-weight: 400;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        .quote-card .quote-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .quote-card .quote-tags .tag {
+            font-size: 10px;
+            padding: 2px 10px;
+            border-radius: 20px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            border: 1px solid rgba(79, 140, 255, 0.08);
+        }
+
         /* ---------- Bottom Sheet ---------- */
         .bottom-sheet-overlay {
             position: fixed;
@@ -2119,6 +2207,12 @@
                 font-size: 12px;
                 padding: 8px 12px;
             }
+            .nav-item .nav-label {
+                font-size: 7px;
+            }
+            .nav-item .nav-icon {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -2223,7 +2317,6 @@
                     <button class="btn btn-sm btn-primary" id="addTrackBtn" style="padding:6px 12px; font-size:12px;">+ Add Track</button>
                 </div>
             </div>
-            <!-- Search bar REMOVED -->
             <div id="pathListContainer" style="flex:1; overflow-y:auto; padding-bottom:12px;"></div>
         </div>
 
@@ -2262,7 +2355,6 @@
                 </div>
             </div>
 
-            <!-- Calendar (on top of badges) -->
             <div class="calendar-section">
                 <div class="heatmap-header">
                     <span class="month-label" id="heatmapMonth">January 2026</span>
@@ -2280,7 +2372,6 @@
                 </div>
             </div>
 
-            <!-- Badges Section (below calendar) -->
             <div class="badges-section">
                 <div class="badges-title">🏅 Badges Earned</div>
                 <div class="badges-grid" id="badgesGrid"></div>
@@ -2289,6 +2380,15 @@
             <div style="margin-top:12px; font-size:13px; color:var(--text-secondary); text-align:center;" id="progressSummary">
                 Keep going! You're building momentum.
             </div>
+        </div>
+
+        <!-- QUOTES -->
+        <div id="page-quotes" class="page">
+            <div class="quotes-header">
+                <button class="back-btn" id="quotesBackBtn">‹</button>
+                <h1>💬 Engineer Wisdom</h1>
+            </div>
+            <div class="quotes-list" id="quotesList"></div>
         </div>
 
         <!-- PROFILE -->
@@ -2335,7 +2435,7 @@
                 </div>
             </div>
             <div style="margin-top:20px; text-align:center; font-size:12px; color:var(--text-muted);">
-                Chugh Sahab Lagge Raho v3.4 · Offline AI Career Companion
+                Chugh Sahab Lagge Raho v3.6 · Offline AI Career Companion
             </div>
         </div>
 
@@ -2350,9 +2450,13 @@
                 <span class="nav-label">Learn</span>
                 <span class="nav-badge" id="learnBadge">0</span>
             </button>
+            <button class="nav-item" data-page="page-quotes">
+                <span class="nav-icon">💬</span>
+                <span class="nav-label">Quotes</span>
+            </button>
             <button class="nav-item" data-page="page-notebook">
                 <span class="nav-icon">📓</span>
-                <span class="nav-label">Notebook</span>
+                <span class="nav-label">Notes</span>
                 <span class="nav-badge" id="noteBadge">0</span>
             </button>
             <button class="nav-item" data-page="page-progress">
@@ -2540,59 +2644,9 @@
     ============================================================ -->
     <script type="module">
         // ============================================================
-        // Chugh Sahab Lagge Raho — Main Application v3.4
+        // Chugh Sahab Lagge Raho — Main Application v3.6
         // Premium · Offline First · PWA · Fully Customizable
         // ============================================================
-
-        // ---------- PWA: Dynamic Manifest & Favicon ----------
-        (function setupPWA() {
-            const icon192 = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
-                <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#4f8cff"/><stop offset="100%" stop-color="#7c6aff"/>
-                </linearGradient></defs>
-                <rect width="192" height="192" rx="36" fill="url(#g)"/>
-                <rect x="10" y="10" width="172" height="172" rx="26" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
-                <text x="96" y="122" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="white" text-anchor="middle" letter-spacing="3">AI</text>
-                <circle cx="140" cy="40" r="4" fill="rgba(255,255,255,0.15)"/>
-                <circle cx="155" cy="40" r="4" fill="rgba(255,255,255,0.15)"/>
-                <circle cx="140" cy="55" r="4" fill="rgba(255,255,255,0.15)"/>
-            </svg>`;
-            const icon512 = icon192.replace('192', '512').replace('72', '180').replace('122', '320').replace('36', '96').replace(
-                '26', '68');
-
-            const manifest = {
-                name: "Chugh Sahab Lagge Raho",
-                short_name: "CSLR",
-                description: "The Offline AI Career Companion",
-                start_url: ".",
-                display: "standalone",
-                background_color: "#070b17",
-                theme_color: "#070b17",
-                icons: [
-                    { src: "data:image/svg+xml," + encodeURIComponent(icon192), sizes: "192x192",
-                        type: "image/svg+xml", purpose: "any maskable" },
-                    { src: "data:image/svg+xml," + encodeURIComponent(icon512), sizes: "512x512",
-                        type: "image/svg+xml", purpose: "any maskable" }
-                ]
-            };
-            const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-            document.getElementById('dynamicManifest').href = URL.createObjectURL(blob);
-
-            const faviconSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                <rect width="64" height="64" rx="14" fill="url(#fg)"/>
-                <defs><linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#4f8cff"/><stop offset="100%" stop-color="#7c6aff"/>
-                </linearGradient></defs>
-                <text x="32" y="44" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" fill="white" text-anchor="middle">AI</text>
-            </svg>`;
-            const faviconBlob = new Blob([faviconSVG], { type: 'image/svg+xml' });
-            const faviconURL = URL.createObjectURL(faviconBlob);
-            document.getElementById('dynamicFavicon').href = faviconURL;
-            const link = document.createElement('link');
-            link.rel = 'icon';
-            link.href = faviconURL;
-            document.head.appendChild(link);
-        })();
 
         // ---------- Constants ----------
         const LEVELS = [
@@ -2620,7 +2674,52 @@
             "The first AI chatbot, ELIZA, was developed in the 1960s.",
         ];
 
-        // Default topics (16)
+        // ---------- Great Engineers Quotes ----------
+        const ENGINEER_QUOTES = [
+            { text: "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+                author: "Martin Fowler", role: "Software Engineer", tags: ["Coding", "Readability"] },
+            { text: "First, solve the problem. Then, write the code.", author: "John Johnson",
+                role: "Software Engineer", tags: ["Problem Solving"] },
+            { text: "Premature optimization is the root of all evil.", author: "Donald Knuth",
+                role: "Computer Scientist", tags: ["Optimization", "Performance"] },
+            { text: "The only way to go fast is to go well.", author: "Robert C. Martin (Uncle Bob)",
+                role: "Software Engineer", tags: ["Quality", "Craftsmanship"] },
+            { text: "Simplicity is the ultimate sophistication.", author: "Leonardo da Vinci", role: "Engineer & Artist",
+                tags: ["Simplicity", "Design"] },
+            { text: "Any sufficiently advanced technology is indistinguishable from magic.", author: "Arthur C. Clarke",
+                role: "Science Fiction Writer & Engineer", tags: ["Technology", "Innovation"] },
+            { text: "The best way to predict the future is to invent it.", author: "Alan Kay",
+                role: "Computer Scientist", tags: ["Innovation", "Future"] },
+            { text: "Talk is cheap. Show me the code.", author: "Linus Torvalds", role: "Software Engineer",
+                tags: ["Coding", "Action"] },
+            { text: "In God we trust; all others must bring data.", author: "W. Edwards Deming",
+                role: "Engineer & Statistician", tags: ["Data", "Evidence"] },
+            { text: "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.",
+                author: "Antoine de Saint-Exupéry", role: "Aviator & Engineer", tags: ["Simplicity", "Design"] },
+            { text: "The computer was born to solve problems that did not exist before.", author: "Bill Gates",
+                role: "Software Engineer", tags: ["Innovation", "Technology"] },
+            { text: "It's not a bug – it's an undocumented feature.", author: "Anonymous",
+                role: "Software Engineer", tags: ["Humor", "Coding"] },
+            { text: "If debugging is the process of removing bugs, then programming must be the process of putting them in.",
+                author: "Edsger Dijkstra", role: "Computer Scientist", tags: ["Debugging", "Coding"] },
+            { text: "Software is a great combination of artistry and engineering.", author: "Bill Gates",
+                role: "Software Engineer", tags: ["Art", "Engineering"] },
+            { text: "Data is the new oil.", author: "Clive Humby", role: "Data Scientist", tags: ["Data"] },
+            { text: "Everything should be made as simple as possible, but not simpler.", author: "Albert Einstein",
+                role: "Scientist & Engineer", tags: ["Simplicity", "Design"] },
+            { text: "The most dangerous phrase in the language is 'We've always done it this way.'",
+                author: "Grace Hopper", role: "Computer Scientist & Engineer", tags: ["Innovation", "Change"] },
+            { text: "A good programmer is someone who always looks both ways before crossing a one-way street.",
+                author: "Doug Linder", role: "Software Engineer", tags: ["Coding", "Careful"] },
+            { text: "The only true wisdom is in knowing you know nothing.", author: "Socrates",
+                role: "Philosopher (honorary engineer)", tags: ["Wisdom", "Learning"] },
+            { text: "Testing leads to failure, and failure leads to understanding.", author: "Burt Rutan",
+                role: "Aerospace Engineer", tags: ["Testing", "Failure"] },
+            { text: "Make it work, make it right, make it fast.", author: "Kent Beck", role: "Software Engineer",
+                tags: ["Coding", "Process"] },
+        ];
+
+        // Default topics (16) - same as before
         const DEFAULT_TOPICS = [
             { id: 'python', category: 'Foundations', emoji: '🐍', name: 'Python for Data Science', difficulty: 'Beginner',
                 estimatedTime: '4 hours', prerequisites: 'None',
@@ -2998,6 +3097,7 @@
             updateNavBadges();
             updatePledgeUI();
             updateBadges();
+            updateQuotes();
         }
 
         function updatePledgeUI() {
@@ -3036,6 +3136,21 @@
                 <div class="badge-item ${b.condition ? 'unlocked' : 'locked'}">
                     <div class="badge-icon">${b.icon}</div>
                     <div class="badge-name">${b.condition ? b.name : '🔒'}</div>
+                </div>
+            `).join('');
+        }
+
+        // ---- QUOTES ----
+        function updateQuotes() {
+            const container = document.getElementById('quotesList');
+            const shuffled = [...ENGINEER_QUOTES].sort(() => Math.random() - 0.5);
+            container.innerHTML = shuffled.map(q => `
+                <div class="quote-card">
+                    <div class="quote-text">${q.text}</div>
+                    <div class="quote-author">— ${q.author} <span>${q.role}</span></div>
+                    <div class="quote-tags">
+                        ${q.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
+                    </div>
                 </div>
             `).join('');
         }
@@ -3201,7 +3316,6 @@
                 });
             });
 
-            // Delete buttons for custom tracks
             container.querySelectorAll('.tr-delete').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -3252,7 +3366,6 @@
             document.getElementById('pStatsXP').textContent = totalXP;
             document.getElementById('pStatsStreak').textContent = streak;
 
-            // Calendar
             const now = new Date();
             const year = now.getFullYear();
             const month = now.getMonth();
@@ -3289,7 +3402,6 @@
                 }
             });
 
-            // Today label
             document.getElementById('todayLabel').textContent = `Today ${today}`;
 
             const totalDays = Object.keys(state.progress).length;
@@ -3345,7 +3457,6 @@
 
             const body = document.getElementById('topicDetailBody');
 
-            // Build custom resources HTML
             let customResourcesHTML = '';
             if (topic.customResources && topic.customResources.length > 0) {
                 customResourcesHTML = topic.customResources.map((item, idx) => `
@@ -3357,7 +3468,6 @@
                 `).join('');
             }
 
-            // Build PDFs HTML
             let pdfsHTML = '';
             if (topic.pdfs && topic.pdfs.length > 0) {
                 pdfsHTML = topic.pdfs.map((pdf, idx) => `
@@ -3369,7 +3479,6 @@
                 `).join('');
             }
 
-            // Build custom projects HTML
             let customProjectsHTML = '';
             if (topic.customProjects && topic.customProjects.length > 0) {
                 customProjectsHTML = topic.customProjects.map((item, idx) => `
@@ -3427,7 +3536,6 @@
                   </div>
                 ` : ''}
 
-                <!-- Custom Resources -->
                 <div class="section">
                   <h3>🔗 Custom Resources</h3>
                   <div id="customResourcesList">
@@ -3439,7 +3547,6 @@
                   </div>
                 </div>
 
-                <!-- PDF Upload -->
                 <div class="section">
                   <h3>📄 PDF Documents</h3>
                   <div id="pdfsList">
@@ -3454,7 +3561,6 @@
                   </div>
                 </div>
 
-                <!-- Custom Projects -->
                 <div class="section">
                   <h3>📁 Custom Projects</h3>
                   <div id="customProjectsList">
@@ -3466,7 +3572,6 @@
                   </div>
                 </div>
 
-                <!-- Track Notes (Notepad) -->
                 <div class="section">
                   <h3>📝 Track Notes</h3>
                   <div class="track-notes-area">
@@ -3493,9 +3598,7 @@
                 ` : ''}
               `;
 
-            // ---- Event listeners for custom add/remove ----
-
-            // Add Resource
+            // Event listeners
             document.getElementById('addResourceBtn').onclick = () => {
                 const input = document.getElementById('newResourceInput');
                 const url = input.value.trim();
@@ -3508,7 +3611,6 @@
                 showToast('✅ Resource added');
             };
 
-            // Add Project
             document.getElementById('addProjectBtn').onclick = () => {
                 const input = document.getElementById('newProjectInput');
                 const proj = input.value.trim();
@@ -3521,7 +3623,6 @@
                 showToast('✅ Project added');
             };
 
-            // PDF Upload
             document.getElementById('pdfUploadInput').onchange = (e) => {
                 const file = e.target.files[0];
                 if (!file) return;
@@ -3551,7 +3652,6 @@
                 e.target.value = '';
             };
 
-            // Save Track Notes
             document.getElementById('saveTrackNotesBtn').onclick = () => {
                 const notes = document.getElementById('trackNotesTextarea').value;
                 topic.trackNotes = notes;
@@ -3559,7 +3659,6 @@
                 showToast('✅ Track notes saved');
             };
 
-            // Remove handlers (delegated)
             body.querySelectorAll('.ci-remove').forEach(btn => {
                 btn.onclick = () => {
                     const type = btn.dataset.type;
@@ -3575,7 +3674,6 @@
                 };
             });
 
-            // PDF remove
             body.querySelectorAll('.pdf-remove').forEach(btn => {
                 btn.onclick = () => {
                     const idx = parseInt(btn.dataset.idx);
@@ -3588,7 +3686,6 @@
                 };
             });
 
-            // Complete button
             const completeBtn = document.getElementById('topicDetailComplete');
             if (topic.completed) {
                 completeBtn.textContent = '✅ Completed';
@@ -3601,7 +3698,6 @@
                 completeBtn.onclick = () => completeTopic(id);
             }
 
-            // Delete Track button (only for custom tracks)
             const deleteBtn = document.getElementById('topicDetailDelete');
             if (topic.id && topic.id.startsWith('custom_')) {
                 deleteBtn.style.display = '';
@@ -3750,6 +3846,7 @@
             if (pageId === 'page-home') updateHome();
             if (pageId === 'page-roadmap') updateRoadmap();
             if (pageId === 'page-learn') updateLearn();
+            if (pageId === 'page-quotes') updateQuotes();
             if (pageId === 'page-notebook') updateNotebook();
             if (pageId === 'page-progress') updateProgress();
             if (pageId === 'page-profile') updateProfile();
@@ -4031,14 +4128,15 @@
                 });
             });
 
+            // Back buttons
             document.getElementById('roadmapBackBtn').addEventListener('click', () => navigateTo('page-home'));
+            document.getElementById('quotesBackBtn').addEventListener('click', () => navigateTo('page-home'));
             document.getElementById('learnRoadmapBtn').addEventListener('click', () => navigateTo('page-roadmap'));
 
             document.getElementById('addTrackBtn').addEventListener('click', openAddTrackModal);
             document.getElementById('addTrackCancel').addEventListener('click', closeAddTrackModal);
             document.getElementById('addTrackConfirm').addEventListener('click', createTrack);
 
-            // Delete track modal
             document.getElementById('deleteTrackCancel').addEventListener('click', () => {
                 document.getElementById('deleteTrackModal').classList.remove('active');
             });
@@ -4145,7 +4243,7 @@
                     <div style="padding:4px 0;">
                         <h3 style="font-size:18px; margin-bottom:8px;">🧠 Chugh Sahab Lagge Raho</h3>
                         <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">
-                            <strong>Version 3.4</strong> · Offline AI Career Companion
+                            <strong>Version 3.6</strong> · Offline AI Career Companion
                         </p>
                         <div style="margin-top:12px; padding:14px; background:var(--bg-glass); border-radius:var(--radius-md); border-left:3px solid var(--accent);">
                             <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">
@@ -4220,7 +4318,7 @@
             updateStreak();
             setInterval(() => { updateStreak();
                 updateUI(); }, 60000);
-            console.log('🧠 Chugh Sahab Lagge Raho v3.4 loaded');
+            console.log('🧠 Chugh Sahab Lagge Raho v3.6 loaded');
         }
 
         // ---------- Service Worker ----------
@@ -4232,7 +4330,7 @@
 
         init();
         window.__CSLR = { state, saveState, loadState, addXP, completeTopic, showToast };
-        console.log('🚀 Chugh Sahab Lagge Raho v3.4 initialized');
+        console.log('🚀 Chugh Sahab Lagge Raho v3.6 initialized');
     </script>
 
 </body>
