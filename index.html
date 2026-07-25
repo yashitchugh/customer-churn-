@@ -15,7 +15,7 @@
 
     <style>
         /* ============================================================
-           Chugh Sahab Lagge Raho — Complete Design System v3.3
+           Chugh Sahab Lagge Raho — Complete Design System v3.4
            Premium · Dark · Glassmorphism · MD3 · Animated
            ============================================================ */
 
@@ -302,6 +302,14 @@
         }
         .btn-outline:hover {
             background: var(--accent-dim);
+        }
+        .btn-danger {
+            background: #ef4444;
+            color: #fff;
+            border: none;
+        }
+        .btn-danger:hover {
+            background: #dc2626;
         }
         .btn-block {
             width: 100%;
@@ -808,7 +816,7 @@
         }
         .progress-ring .progress {
             stroke: var(--accent-gradient-2);
-            transition: stroke-dashoffset 600ms ease;
+            transition: none;
             filter: drop-shadow(0 0 8px rgba(79, 140, 255, 0.3));
         }
         .progress-ring .center-text {
@@ -851,8 +859,6 @@
             text-transform: uppercase;
             letter-spacing: 0.04em;
         }
-
-        /* Removed focus-card */
 
         .quick-stats {
             display: grid;
@@ -1171,7 +1177,7 @@
             margin-top: 2px;
         }
 
-        /* ---------- LEARN PAGE ---------- */
+        /* ---------- LEARN PAGE (No Search) ---------- */
         .learn-header {
             padding: 16px 0 8px;
             display: flex;
@@ -1184,39 +1190,6 @@
         .learn-header-actions {
             display: flex;
             gap: 8px;
-        }
-
-        .search-input-wrap {
-            position: relative;
-            margin: 8px 0 12px;
-        }
-        .search-input-wrap input {
-            width: 100%;
-            padding: 12px 16px 12px 44px;
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            background: var(--bg-glass);
-            backdrop-filter: blur(8px);
-            color: var(--text-primary);
-            font-size: 15px;
-            font-family: var(--font);
-            outline: none;
-            transition: border var(--transition-fast);
-        }
-        .search-input-wrap input::placeholder {
-            color: var(--text-muted);
-        }
-        .search-input-wrap input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.15);
-        }
-        .search-input-wrap .search-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 18px;
-            color: var(--text-muted);
         }
 
         #pathListContainer .path-category {
@@ -1271,6 +1244,20 @@
         #pathListContainer .topic-row .tr-status {
             font-size: 14px;
             color: var(--text-muted);
+        }
+        #pathListContainer .topic-row .tr-delete {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0 4px;
+            transition: color var(--transition-fast);
+            opacity: 0.4;
+        }
+        #pathListContainer .topic-row .tr-delete:hover {
+            color: #ef4444;
+            opacity: 1;
         }
         #pathListContainer .topic-row.completed {
             border-color: var(--green);
@@ -1376,7 +1363,7 @@
             text-decoration: underline;
         }
 
-        /* Custom resources & projects */
+        /* Custom items */
         .custom-item {
             display: flex;
             align-items: center;
@@ -1422,9 +1409,11 @@
             display: flex;
             gap: 8px;
             margin-top: 8px;
+            flex-wrap: wrap;
         }
-        .add-custom-form input {
+        .add-custom-form input[type="text"] {
             flex: 1;
+            min-width: 120px;
             padding: 8px 12px;
             border-radius: var(--radius-sm);
             border: 1px solid var(--bg-glass-border);
@@ -1434,16 +1423,89 @@
             font-family: var(--font);
             outline: none;
         }
-        .add-custom-form input::placeholder {
+        .add-custom-form input[type="text"]::placeholder {
             color: var(--text-muted);
         }
-        .add-custom-form input:focus {
+        .add-custom-form input[type="text"]:focus {
             border-color: var(--accent);
         }
         .add-custom-form .btn {
             padding: 8px 16px;
             min-height: 36px;
             font-size: 13px;
+        }
+        .add-custom-form .file-input-wrap {
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+        }
+        .add-custom-form .file-input-wrap input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        /* PDF items */
+        .pdf-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-sm);
+            margin-bottom: 6px;
+            border-left: 2px solid var(--rose);
+        }
+        .pdf-item .pdf-icon {
+            font-size: 20px;
+            width: 28px;
+            text-align: center;
+        }
+        .pdf-item .pdf-name {
+            flex: 1;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .pdf-item .pdf-remove {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0 4px;
+            transition: color var(--transition-fast);
+        }
+        .pdf-item .pdf-remove:hover {
+            color: #ef4444;
+        }
+
+        /* Track Notes (Notepad) */
+        .track-notes-area {
+            margin-top: 8px;
+        }
+        .track-notes-area textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--bg-glass-border);
+            background: var(--bg-glass);
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: var(--font);
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+        }
+        .track-notes-area textarea:focus {
+            border-color: var(--accent);
+        }
+        .track-notes-area textarea::placeholder {
+            color: var(--text-muted);
         }
 
         .topic-detail-footer {
@@ -1454,9 +1516,14 @@
             gap: 12px;
             background: rgba(7, 11, 23, 0.8);
             backdrop-filter: blur(12px);
+            flex-wrap: wrap;
         }
         .topic-detail-footer .btn {
             flex: 1;
+            min-width: 100px;
+        }
+        .topic-detail-footer .btn-danger {
+            flex: 0.6;
         }
 
         /* ---------- Notebook ---------- */
@@ -1577,11 +1644,37 @@
         .progress-header h1 {
             font-size: 22px;
         }
+
+        /* Calendar on top */
+        .calendar-section {
+            margin-top: 12px;
+            order: -1;
+        }
+        .calendar-section .heatmap-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+        .calendar-section .heatmap-header .month-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .calendar-section .heatmap-header .today-label {
+            font-size: 11px;
+            color: var(--accent);
+            font-weight: 600;
+            background: var(--accent-dim);
+            padding: 2px 12px;
+            border-radius: 20px;
+        }
+
         .heatmap {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 4px;
-            padding: 12px 0;
+            padding: 8px 0;
         }
         .heatmap-day {
             aspect-ratio: 1;
@@ -1591,6 +1684,11 @@
             cursor: pointer;
             position: relative;
             min-height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: var(--text-muted);
         }
         .heatmap-day:hover {
             transform: scale(1.15);
@@ -1615,6 +1713,19 @@
             background: var(--accent);
             box-shadow: 0 0 12px rgba(79, 140, 255, 0.3);
         }
+        .heatmap-day.today {
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 16px rgba(251, 191, 36, 0.2);
+            border-radius: 6px;
+        }
+        .heatmap-day.today.level-0 {
+            background: rgba(251, 191, 36, 0.1);
+        }
+        .heatmap-day .day-num {
+            font-size: 8px;
+            opacity: 0.5;
+        }
+
         .heatmap-legend {
             display: flex;
             align-items: center;
@@ -1644,6 +1755,7 @@
         .heatmap-legend .legend-swatch.l5 {
             background: var(--accent);
         }
+
         .progress-stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -1668,11 +1780,19 @@
         }
 
         /* Badges */
+        .badges-section {
+            margin-top: 16px;
+        }
+        .badges-section .badges-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
         .badges-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 12px;
             padding-bottom: 8px;
         }
         .badge-item {
@@ -1994,6 +2114,11 @@
             .roadmap-step .step-card .sc-top .sc-name {
                 font-size: 13px;
             }
+            .topic-detail-footer .btn {
+                min-width: 80px;
+                font-size: 12px;
+                padding: 8px 12px;
+            }
         }
     </style>
 </head>
@@ -2049,8 +2174,6 @@
                 </div>
             </div>
 
-            <!-- Today's Focus removed -->
-
             <div class="quick-stats">
                 <div class="quick-stat">
                     <div class="qs-value" id="qsHours">0</div>
@@ -2100,10 +2223,7 @@
                     <button class="btn btn-sm btn-primary" id="addTrackBtn" style="padding:6px 12px; font-size:12px;">+ Add Track</button>
                 </div>
             </div>
-            <div class="search-input-wrap">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" placeholder="Search topics..." />
-            </div>
+            <!-- Search bar REMOVED -->
             <div id="pathListContainer" style="flex:1; overflow-y:auto; padding-bottom:12px;"></div>
         </div>
 
@@ -2142,16 +2262,11 @@
                 </div>
             </div>
 
-            <!-- Badges Section -->
-            <div style="margin-top:16px;">
-                <h3 style="font-size:15px; font-weight:600; color:var(--text-secondary); margin-bottom:4px;">🏅 Badges Earned</h3>
-                <div class="badges-grid" id="badgesGrid"></div>
-            </div>
-
-            <div style="margin-top:16px;">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                    <span style="font-size:13px; font-weight:600; color:var(--text-secondary);">Monthly Activity</span>
-                    <span style="font-size:11px; color:var(--text-muted);" id="heatmapMonth">January 2026</span>
+            <!-- Calendar (on top of badges) -->
+            <div class="calendar-section">
+                <div class="heatmap-header">
+                    <span class="month-label" id="heatmapMonth">January 2026</span>
+                    <span class="today-label" id="todayLabel">Today</span>
                 </div>
                 <div class="heatmap" id="heatmap"></div>
                 <div class="heatmap-legend">
@@ -2164,6 +2279,13 @@
                     <span>More</span>
                 </div>
             </div>
+
+            <!-- Badges Section (below calendar) -->
+            <div class="badges-section">
+                <div class="badges-title">🏅 Badges Earned</div>
+                <div class="badges-grid" id="badgesGrid"></div>
+            </div>
+
             <div style="margin-top:12px; font-size:13px; color:var(--text-secondary); text-align:center;" id="progressSummary">
                 Keep going! You're building momentum.
             </div>
@@ -2213,7 +2335,7 @@
                 </div>
             </div>
             <div style="margin-top:20px; text-align:center; font-size:12px; color:var(--text-muted);">
-                Chugh Sahab Lagge Raho v3.3 · Offline AI Career Companion
+                Chugh Sahab Lagge Raho v3.4 · Offline AI Career Companion
             </div>
         </div>
 
@@ -2285,6 +2407,23 @@
             <div class="modal-actions" style="margin-top:16px;">
                 <button class="btn btn-outline" id="addTrackCancel">Cancel</button>
                 <button class="btn btn-primary" id="addTrackConfirm">Create Track</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------- DELETE TRACK WARNING MODAL ---------- -->
+    <div class="modal-overlay" id="deleteTrackModal">
+        <div class="modal-box">
+            <h2>⚠️ Delete Track?</h2>
+            <p style="font-size:14px; color:var(--text-secondary); margin-bottom:12px;">
+                Are you sure you want to delete "<strong id="deleteTrackName"></strong>"?<br>
+                This will permanently remove the track and all its associated data (notes, resources, projects, PDFs).
+                <br><br>
+                <span style="color:var(--rose);">This action cannot be undone.</span>
+            </p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="deleteTrackCancel">Cancel</button>
+                <button class="btn btn-danger" id="deleteTrackConfirm">Delete</button>
             </div>
         </div>
     </div>
@@ -2369,6 +2508,7 @@
         <div class="topic-detail-body" id="topicDetailBody"></div>
         <div class="topic-detail-footer">
             <button class="btn btn-primary" id="topicDetailComplete">✅ Mark Complete</button>
+            <button class="btn btn-danger" id="topicDetailDelete">🗑️ Delete Track</button>
         </div>
     </div>
 
@@ -2400,27 +2540,25 @@
     ============================================================ -->
     <script type="module">
         // ============================================================
-        // Chugh Sahab Lagge Raho — Main Application v3.3
-        // Premium · Offline First · PWA · Customizable
+        // Chugh Sahab Lagge Raho — Main Application v3.4
+        // Premium · Offline First · PWA · Fully Customizable
         // ============================================================
 
         // ---------- PWA: Dynamic Manifest & Favicon ----------
         (function setupPWA() {
-            // Enhanced icon with gradient and chip design
             const icon192 = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
                 <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#4f8cff"/><stop offset="100%" stop-color="#7c6aff"/>
                 </linearGradient></defs>
                 <rect width="192" height="192" rx="36" fill="url(#g)"/>
                 <rect x="10" y="10" width="172" height="172" rx="26" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
-                <rect x="20" y="20" width="152" height="152" rx="16" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
                 <text x="96" y="122" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="800" fill="white" text-anchor="middle" letter-spacing="3">AI</text>
                 <circle cx="140" cy="40" r="4" fill="rgba(255,255,255,0.15)"/>
                 <circle cx="155" cy="40" r="4" fill="rgba(255,255,255,0.15)"/>
                 <circle cx="140" cy="55" r="4" fill="rgba(255,255,255,0.15)"/>
             </svg>`;
-            const icon512 = icon192.replace('192', '512').replace('72', '180').replace('122', '320').replace('36', '96').replace('26',
-                '68').replace('152', '452').replace('16', '68');
+            const icon512 = icon192.replace('192', '512').replace('72', '180').replace('122', '320').replace('36', '96').replace(
+                '26', '68');
 
             const manifest = {
                 name: "Chugh Sahab Lagge Raho",
@@ -2491,28 +2629,28 @@
                 resources: [{ name: 'Python.org', url: 'https://python.org' }],
                 videos: [{ name: 'Python for Beginners (3h)', url: 'https://youtu.be/kqtD5dpn9C8' }],
                 datasets: ['Titanic', 'Iris'], miniProject: 'Build a simple data analysis script...', xp: 50, order: 10,
-                customResources: [], customProjects: [] },
+                customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'numpy', category: 'Foundations', emoji: '🔢', name: 'NumPy', difficulty: 'Beginner',
                 estimatedTime: '3 hours', prerequisites: 'Python',
                 overview: 'NumPy is the fundamental package for scientific computing...', theory: 'NumPy provides support for large, multi-dimensional arrays...',
                 resources: [{ name: 'NumPy Docs', url: 'https://numpy.org/doc/' }],
                 videos: [{ name: 'NumPy Tutorial (2h)', url: 'https://youtu.be/QUT1VHiLmmI' }],
                 datasets: ['Iris', 'MNIST'], miniProject: 'Create a NumPy array...', xp: 40, order: 20,
-                customResources: [], customProjects: [] },
+                customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'pandas', category: 'Foundations', emoji: '🐼', name: 'Pandas', difficulty: 'Beginner',
                 estimatedTime: '4 hours', prerequisites: 'Python, NumPy',
                 overview: 'Pandas is the go-to library for data manipulation...', theory: 'Pandas provides fast, flexible data structures...',
                 resources: [{ name: 'Pandas Docs', url: 'https://pandas.pydata.org/docs/' }],
                 videos: [{ name: 'Pandas Tutorial (3h)', url: 'https://youtu.be/vmEHCJofslg' }],
                 datasets: ['Titanic', 'Boston Housing'], miniProject: 'Load a dataset, clean missing values...', xp: 45,
-                order: 30, customResources: [], customProjects: [] },
+                order: 30, customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'visualization', category: 'Foundations', emoji: '📊', name: 'Data Visualization',
                 difficulty: 'Beginner', estimatedTime: '3 hours', prerequisites: 'Python, Pandas',
                 overview: 'Visualizing data is crucial for understanding patterns...', theory: 'Data visualization is the graphical representation of information...',
                 resources: [{ name: 'Matplotlib Docs', url: 'https://matplotlib.org/' }],
                 videos: [{ name: 'Data Visualization with Python', url: 'https://youtu.be/q7bo_J8x_dw' }],
                 datasets: ['Titanic', 'Iris'], miniProject: 'Create a dashboard with multiple plots...', xp: 40,
-                order: 40, customResources: [], customProjects: [] },
+                order: 40, customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'statistics', category: 'Foundations', emoji: '📈', name: 'Statistics for ML', difficulty: 'Beginner',
                 estimatedTime: '5 hours', prerequisites: 'None',
                 overview: 'Statistics is the foundation of machine learning...', theory: 'Statistics involves collecting, analyzing, interpreting data...',
@@ -2520,14 +2658,14 @@
                     url: 'https://khanacademy.org/math/statistics-probability' }],
                 videos: [{ name: 'Statistics for Data Science (4h)', url: 'https://youtu.be/xxpc-HPKN28' }],
                 datasets: ['Titanic', 'Iris'], miniProject: 'Perform exploratory data analysis...', xp: 50, order: 50,
-                customResources: [], customProjects: [] },
+                customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'probability', category: 'Foundations', emoji: '🎲', name: 'Probability', difficulty: 'Beginner',
                 estimatedTime: '4 hours', prerequisites: 'Statistics',
                 overview: 'Probability theory is the mathematical framework for uncertainty...', theory: 'Probability is the measure of the likelihood of an event...',
                 resources: [{ name: 'Probability Basics', url: 'https://statlect.com/fundamentals-of-probability' }],
                 videos: [{ name: 'Probability Tutorial (3h)', url: 'https://youtu.be/uzkc-qNVoOk' }],
                 datasets: ['Titanic'], miniProject: 'Compute probabilities from a dataset...', xp: 45, order: 60,
-                customResources: [], customProjects: [] },
+                customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'linear_algebra', category: 'Foundations', emoji: '📐', name: 'Linear Algebra',
                 difficulty: 'Intermediate', estimatedTime: '6 hours', prerequisites: 'None',
                 overview: 'Linear algebra is the language of machine learning...', theory: 'Linear algebra is the branch of mathematics concerning linear equations...',
@@ -2535,7 +2673,7 @@
                     url: 'https://youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab' }],
                 videos: [{ name: 'Linear Algebra for ML (5h)', url: 'https://youtu.be/kjBOesZCoqc' }],
                 datasets: ['MNIST'], miniProject: 'Implement matrix operations...', xp: 60, order: 70,
-                customResources: [], customProjects: [] },
+                customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'feature_engineering', category: 'Machine Learning', emoji: '⚙️', name: 'Feature Engineering',
                 difficulty: 'Intermediate', estimatedTime: '5 hours', prerequisites: 'Python, Pandas, Statistics',
                 overview: 'Feature engineering is the process of using domain knowledge...', theory: 'Feature engineering involves selecting, manipulating, transforming raw data...',
@@ -2543,7 +2681,7 @@
                     url: 'https://www.kaggle.com/learn/feature-engineering' }],
                 videos: [{ name: 'Feature Engineering Tutorial', url: 'https://youtu.be/HB3UZKSac9A' }],
                 datasets: ['Titanic', 'Credit Card Fraud'], miniProject: 'Build a preprocessing pipeline...', xp: 55,
-                order: 80, customResources: [], customProjects: [] },
+                order: 80, customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'machine_learning', category: 'Machine Learning', emoji: '🤖', name: 'Machine Learning Fundamentals',
                 difficulty: 'Intermediate', estimatedTime: '8 hours',
                 prerequisites: 'Python, Pandas, Statistics, Linear Algebra',
@@ -2551,7 +2689,7 @@
                 resources: [{ name: 'Scikit-learn Docs', url: 'https://scikit-learn.org/' }],
                 videos: [{ name: 'Machine Learning by Andrew Ng', url: 'https://youtu.be/jGwO_UgTS7I' }],
                 datasets: ['Titanic', 'Iris', 'MNIST'], miniProject: 'Build and evaluate a classification model...',
-                xp: 70, order: 90, customResources: [], customProjects: [] },
+                xp: 70, order: 90, customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'deep_learning', category: 'Deep Learning', emoji: '🧠', name: 'Deep Learning',
                 difficulty: 'Advanced', estimatedTime: '10 hours',
                 prerequisites: 'Machine Learning, Linear Algebra, Python',
@@ -2560,7 +2698,7 @@
                 resources: [{ name: 'Deep Learning Book', url: 'https://www.deeplearningbook.org/' }],
                 videos: [{ name: 'Deep Learning by Ian Goodfellow', url: 'https://youtu.be/azOmkz8bO4A' }],
                 datasets: ['MNIST', 'CIFAR-10'], miniProject: 'Build a neural network to classify images...', xp: 80,
-                order: 100, customResources: [], customProjects: [] },
+                order: 100, customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'computer_vision', category: 'Deep Learning', emoji: '👁️', name: 'Computer Vision',
                 difficulty: 'Advanced', estimatedTime: '8 hours',
                 prerequisites: 'Deep Learning, Python, Linear Algebra',
@@ -2570,7 +2708,7 @@
                 videos: [{ name: 'CS231n Lectures',
                     url: 'https://youtube.com/playlist?list=PLkt2uSq6rBVctENoVBg1TpCC7OQi31AlC' }],
                 datasets: ['CIFAR-10', 'COCO'], miniProject: 'Build an image classifier using a CNN...', xp: 80,
-                order: 110, customResources: [], customProjects: [] },
+                order: 110, customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'nlp', category: 'NLP & LLMs', emoji: '💬', name: 'Natural Language Processing',
                 difficulty: 'Advanced', estimatedTime: '8 hours', prerequisites: 'Deep Learning, Python',
                 overview: 'NLP is the field of AI that focuses on interaction between computers and humans through language.',
@@ -2578,14 +2716,14 @@
                 resources: [{ name: 'Hugging Face', url: 'https://huggingface.co/' }],
                 videos: [{ name: 'NLP Course by Hugging Face', url: 'https://youtu.be/1dZLs1yAgWM' }],
                 datasets: ['IMDB Reviews', 'SMS Spam'], miniProject: 'Build a text classifier for sentiment analysis...',
-                xp: 75, order: 120, customResources: [], customProjects: [] },
+                xp: 75, order: 120, customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'transformers', category: 'NLP & LLMs', emoji: '🔄', name: 'Transformers & LLMs',
                 difficulty: 'Advanced', estimatedTime: '10 hours', prerequisites: 'NLP, Deep Learning',
                 overview: 'Transformers are the architecture behind modern LLMs...', theory: 'The Transformer architecture uses self-attention mechanisms...',
                 resources: [{ name: 'Attention is All You Need', url: 'https://arxiv.org/abs/1706.03762' }],
                 videos: [{ name: 'Transformers Explained', url: 'https://youtu.be/wjZofJX0v4M' }],
                 datasets: ['IMDB Reviews'], miniProject: 'Fine-tune a BERT model...', xp: 85, order: 130,
-                customResources: [], customProjects: [] },
+                customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'mlops', category: 'MLOps', emoji: '🚀', name: 'MLOps', difficulty: 'Advanced',
                 estimatedTime: '6 hours', prerequisites: 'Machine Learning, Python, Docker',
                 overview: 'MLOps is the practice of applying DevOps principles to machine learning systems.',
@@ -2593,7 +2731,7 @@
                 resources: [{ name: 'MLOps Guide', url: 'https://ml-ops.org/' }],
                 videos: [{ name: 'MLOps Tutorial', url: 'https://youtu.be/6hOegfx72Jg' }],
                 datasets: ['Titanic'], miniProject: 'Containerize a ML model using Docker...', xp: 70, order: 140,
-                customResources: [], customProjects: [] },
+                customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'data_engineering', category: 'Data Engineering', emoji: '🏗️', name: 'Data Engineering',
                 difficulty: 'Intermediate', estimatedTime: '6 hours', prerequisites: 'Python, SQL',
                 overview: 'Data engineering is the practice of designing and building systems for collecting and analyzing data at scale.',
@@ -2602,7 +2740,7 @@
                     url: 'https://datacamp.com/courses/data-engineering' }],
                 videos: [{ name: 'Data Engineering for Beginners', url: 'https://youtu.be/phWxJjG5pGg' }],
                 datasets: ['Titanic', 'Stock Prices'], miniProject: 'Build a data pipeline that extracts, transforms, and loads data...',
-                xp: 60, order: 150, customResources: [], customProjects: [] },
+                xp: 60, order: 150, customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
             { id: 'sql', category: 'Data Engineering', emoji: '🗄️', name: 'SQL', difficulty: 'Beginner',
                 estimatedTime: '4 hours', prerequisites: 'None',
                 overview: 'SQL is the standard language for interacting with relational databases.',
@@ -2610,7 +2748,7 @@
                 resources: [{ name: 'SQL Tutorial', url: 'https://w3schools.com/sql/' }],
                 videos: [{ name: 'SQL for Data Science (4h)', url: 'https://youtu.be/7S_tz1z_5bA' }],
                 datasets: ['Titanic'], miniProject: 'Write SQL queries to extract insights...', xp: 40, order: 160,
-                customResources: [], customProjects: [] },
+                customResources: [], customProjects: [], pdfs: [], trackNotes: '' },
         ];
 
         // ---------- State ----------
@@ -2686,6 +2824,16 @@
                 const tx = db.transaction(store, 'readwrite');
                 const obj = tx.objectStore(store);
                 const req = obj.clear();
+                req.onsuccess = () => resolve();
+                req.onerror = () => reject(req.error);
+            });
+        }
+
+        function deleteFromStore(store, key) {
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction(store, 'readwrite');
+                const obj = tx.objectStore(store);
+                const req = obj.delete(key);
                 req.onsuccess = () => resolve();
                 req.onerror = () => reject(req.error);
             });
@@ -2868,9 +3016,7 @@
             const container = document.getElementById('badgesGrid');
             const completed = state.topics.filter(t => t.completed).length;
             const total = state.topics.length;
-            const badges = [];
 
-            // Badge definitions
             const badgeDefs = [
                 { id: 'first_step', name: 'First Step', icon: '👣', condition: completed >= 1 },
                 { id: 'pythonic', name: 'Pythonic', icon: '🐍', condition: state.topics.find(t => t.id === 'python' && t
@@ -2886,15 +3032,10 @@
                 { id: 'xp_2000', name: '2000 XP', icon: '🏆', condition: state.user.xp >= 2000 },
             ];
 
-            for (const badge of badgeDefs) {
-                const unlocked = badge.condition;
-                badges.push({ ...badge, unlocked });
-            }
-
-            container.innerHTML = badges.map(b => `
-                <div class="badge-item ${b.unlocked ? 'unlocked' : 'locked'}">
+            container.innerHTML = badgeDefs.map(b => `
+                <div class="badge-item ${b.condition ? 'unlocked' : 'locked'}">
                     <div class="badge-icon">${b.icon}</div>
-                    <div class="badge-name">${b.unlocked ? b.name : '🔒'}</div>
+                    <div class="badge-name">${b.condition ? b.name : '🔒'}</div>
                 </div>
             `).join('');
         }
@@ -2942,7 +3083,6 @@
             document.getElementById('qsTopicsMonth').textContent = monthTopics;
             document.getElementById('qsStreak').textContent = state.user.streak;
 
-            // Learning Path Preview
             const nextTopics = state.topics.filter(t => !t.completed).slice(0, 5);
             const scroll = document.getElementById('pathScroll');
             if (nextTopics.length === 0) {
@@ -2961,7 +3101,6 @@
                 });
             }
 
-            // Dynamic Fact
             const fact = FACTS[Math.floor(Math.random() * FACTS.length)];
             document.getElementById('factText').textContent = fact;
 
@@ -3024,19 +3163,10 @@
             });
         }
 
-        // ---- LEARN ----
+        // ---- LEARN (no search) ----
         function updateLearn() {
             const container = document.getElementById('pathListContainer');
-            const search = document.getElementById('searchInput').value.toLowerCase().trim();
-
             let filtered = state.topics;
-            if (search) {
-                filtered = filtered.filter(t =>
-                    t.name.toLowerCase().includes(search) ||
-                    t.category.toLowerCase().includes(search) ||
-                    t.overview.toLowerCase().includes(search)
-                );
-            }
 
             let html = '';
             let currentCategory = '';
@@ -3047,6 +3177,7 @@
                 }
                 const status = t.completed ? '✅' : `${t.progress}%`;
                 const cls = t.completed ? 'completed' : '';
+                const isCustom = t.id && t.id.startsWith('custom_');
                 html += `
                     <div class="topic-row ${cls}" data-id="${t.id}">
                       <span class="tr-emoji">${t.emoji}</span>
@@ -3055,14 +3186,33 @@
                         <div class="tr-meta">${t.difficulty} · ${t.estimatedTime} ${t.completed ? '· Complete' : ''}</div>
                       </div>
                       <div class="tr-status">${status}</div>
+                      ${isCustom ? `<button class="tr-delete" data-id="${t.id}" title="Delete track">✕</button>` : ''}
                     </div>
                   `;
             }
             if (!html) html =
-                `<div style="text-align:center; padding:40px 0; color:var(--text-muted);">🔍 No topics found for "${search}"</div>`;
+                `<div style="text-align:center; padding:40px 0; color:var(--text-muted);">📚 No topics found</div>`;
             container.innerHTML = html;
+
             container.querySelectorAll('.topic-row').forEach(el => {
-                el.addEventListener('click', () => openTopicDetail(el.dataset.id));
+                el.addEventListener('click', () => {
+                    const id = el.dataset.id;
+                    if (id) openTopicDetail(id);
+                });
+            });
+
+            // Delete buttons for custom tracks
+            container.querySelectorAll('.tr-delete').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = btn.dataset.id;
+                    const topic = state.topics.find(t => t.id === id);
+                    if (topic) {
+                        document.getElementById('deleteTrackName').textContent = topic.name;
+                        document.getElementById('deleteTrackModal').dataset.id = id;
+                        document.getElementById('deleteTrackModal').classList.add('active');
+                    }
+                });
             });
         }
 
@@ -3102,11 +3252,13 @@
             document.getElementById('pStatsXP').textContent = totalXP;
             document.getElementById('pStatsStreak').textContent = streak;
 
+            // Calendar
             const now = new Date();
             const year = now.getFullYear();
             const month = now.getMonth();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
             const firstDay = new Date(year, month, 1).getDay();
+            const today = now.getDate();
 
             const heatmap = document.getElementById('heatmap');
             document.getElementById('heatmapMonth').textContent = `${now.toLocaleString('default', { month: 'long' })} ${year}`;
@@ -3119,7 +3271,10 @@
                 const xp = dayData ? (dayData.xpEarned || 0) : 0;
                 let level = 0;
                 if (xp > 0) level = Math.min(5, Math.ceil(xp / 20));
-                html += `<div class="heatmap-day level-${level}" data-date="${dateStr}" data-xp="${xp}"></div>`;
+                const isToday = d === today;
+                html += `<div class="heatmap-day level-${level} ${isToday ? 'today' : ''}" data-date="${dateStr}" data-xp="${xp}">
+                            ${isToday ? '<span class="day-num">●</span>' : ''}
+                        </div>`;
             }
             heatmap.innerHTML = html;
 
@@ -3133,6 +3288,9 @@
                     });
                 }
             });
+
+            // Today label
+            document.getElementById('todayLabel').textContent = `Today ${today}`;
 
             const totalDays = Object.keys(state.progress).length;
             const activeDays = Object.values(state.progress).filter(d => (d.xpEarned || 0) > 0).length;
@@ -3187,7 +3345,7 @@
 
             const body = document.getElementById('topicDetailBody');
 
-            // Build custom resources & projects HTML
+            // Build custom resources HTML
             let customResourcesHTML = '';
             if (topic.customResources && topic.customResources.length > 0) {
                 customResourcesHTML = topic.customResources.map((item, idx) => `
@@ -3199,6 +3357,19 @@
                 `).join('');
             }
 
+            // Build PDFs HTML
+            let pdfsHTML = '';
+            if (topic.pdfs && topic.pdfs.length > 0) {
+                pdfsHTML = topic.pdfs.map((pdf, idx) => `
+                    <div class="pdf-item">
+                        <span class="pdf-icon">📄</span>
+                        <span class="pdf-name">${pdf.name}</span>
+                        <button class="pdf-remove" data-idx="${idx}">✕</button>
+                    </div>
+                `).join('');
+            }
+
+            // Build custom projects HTML
             let customProjectsHTML = '';
             if (topic.customProjects && topic.customProjects.length > 0) {
                 customProjectsHTML = topic.customProjects.map((item, idx) => `
@@ -3268,6 +3439,21 @@
                   </div>
                 </div>
 
+                <!-- PDF Upload -->
+                <div class="section">
+                  <h3>📄 PDF Documents</h3>
+                  <div id="pdfsList">
+                    ${pdfsHTML || '<p style="color:var(--text-muted); font-size:13px;">No PDFs uploaded yet.</p>'}
+                  </div>
+                  <div class="add-custom-form">
+                    <div class="file-input-wrap">
+                      <button class="btn btn-sm btn-outline" style="cursor:pointer;">📎 Choose PDF</button>
+                      <input type="file" id="pdfUploadInput" accept=".pdf,application/pdf" />
+                    </div>
+                    <span style="font-size:11px; color:var(--text-muted); align-self:center;">Max 5MB</span>
+                  </div>
+                </div>
+
                 <!-- Custom Projects -->
                 <div class="section">
                   <h3>📁 Custom Projects</h3>
@@ -3280,8 +3466,17 @@
                   </div>
                 </div>
 
+                <!-- Track Notes (Notepad) -->
                 <div class="section">
-                  <h3>📝 Progress</h3>
+                  <h3>📝 Track Notes</h3>
+                  <div class="track-notes-area">
+                    <textarea id="trackNotesTextarea" placeholder="Write your notes for this track...">${topic.trackNotes || ''}</textarea>
+                  </div>
+                  <button class="btn btn-sm btn-primary" id="saveTrackNotesBtn" style="margin-top:8px;">💾 Save Notes</button>
+                </div>
+
+                <div class="section">
+                  <h3>📊 Progress</h3>
                   <div style="display:flex; align-items:center; gap:12px;">
                     <div style="flex:1; height:6px; border-radius:10px; background:rgba(255,255,255,0.06); overflow:hidden;">
                       <div style="width:${topic.progress}%; height:100%; border-radius:10px; background:var(--accent-gradient); transition:width 600ms ease;"></div>
@@ -3298,7 +3493,9 @@
                 ` : ''}
               `;
 
-            // Event listeners for custom add/remove
+            // ---- Event listeners for custom add/remove ----
+
+            // Add Resource
             document.getElementById('addResourceBtn').onclick = () => {
                 const input = document.getElementById('newResourceInput');
                 const url = input.value.trim();
@@ -3311,6 +3508,7 @@
                 showToast('✅ Resource added');
             };
 
+            // Add Project
             document.getElementById('addProjectBtn').onclick = () => {
                 const input = document.getElementById('newProjectInput');
                 const proj = input.value.trim();
@@ -3321,6 +3519,44 @@
                 saveState();
                 renderTopicDetail(id);
                 showToast('✅ Project added');
+            };
+
+            // PDF Upload
+            document.getElementById('pdfUploadInput').onchange = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                if (file.size > 5 * 1024 * 1024) {
+                    showToast('❌ File too large. Max 5MB.');
+                    return;
+                }
+                if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+                    showToast('❌ Please select a PDF file.');
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    if (!topic.pdfs) topic.pdfs = [];
+                    topic.pdfs.push({
+                        name: file.name,
+                        data: ev.target.result,
+                        size: file.size,
+                        uploadedAt: Date.now()
+                    });
+                    saveState();
+                    renderTopicDetail(id);
+                    showToast('✅ PDF uploaded: ' + file.name);
+                };
+                reader.onerror = () => showToast('❌ Failed to read PDF');
+                reader.readAsDataURL(file);
+                e.target.value = '';
+            };
+
+            // Save Track Notes
+            document.getElementById('saveTrackNotesBtn').onclick = () => {
+                const notes = document.getElementById('trackNotesTextarea').value;
+                topic.trackNotes = notes;
+                saveState();
+                showToast('✅ Track notes saved');
             };
 
             // Remove handlers (delegated)
@@ -3339,6 +3575,20 @@
                 };
             });
 
+            // PDF remove
+            body.querySelectorAll('.pdf-remove').forEach(btn => {
+                btn.onclick = () => {
+                    const idx = parseInt(btn.dataset.idx);
+                    if (topic.pdfs) {
+                        topic.pdfs.splice(idx, 1);
+                        saveState();
+                        renderTopicDetail(id);
+                        showToast('PDF removed');
+                    }
+                };
+            });
+
+            // Complete button
             const completeBtn = document.getElementById('topicDetailComplete');
             if (topic.completed) {
                 completeBtn.textContent = '✅ Completed';
@@ -3350,11 +3600,39 @@
                 completeBtn.style.opacity = '1';
                 completeBtn.onclick = () => completeTopic(id);
             }
+
+            // Delete Track button (only for custom tracks)
+            const deleteBtn = document.getElementById('topicDetailDelete');
+            if (topic.id && topic.id.startsWith('custom_')) {
+                deleteBtn.style.display = '';
+                deleteBtn.onclick = () => {
+                    document.getElementById('deleteTrackName').textContent = topic.name;
+                    document.getElementById('deleteTrackModal').dataset.id = id;
+                    document.getElementById('deleteTrackModal').classList.add('active');
+                };
+            } else {
+                deleteBtn.style.display = 'none';
+            }
         }
 
         function closeTopicDetail() {
             document.getElementById('topic-detail').classList.remove('active');
             state.currentTopicId = null;
+        }
+
+        // ---------- Delete Track ----------
+        function confirmDeleteTrack() {
+            const modal = document.getElementById('deleteTrackModal');
+            const id = modal.dataset.id;
+            if (!id) return;
+            const idx = state.topics.findIndex(t => t.id === id);
+            if (idx === -1) return;
+            state.topics.splice(idx, 1);
+            saveState();
+            modal.classList.remove('active');
+            closeTopicDetail();
+            updateUI();
+            showToast('🗑️ Track deleted');
         }
 
         // ---------- Notes ----------
@@ -3476,16 +3754,6 @@
             if (pageId === 'page-progress') updateProgress();
             if (pageId === 'page-profile') updateProfile();
             page?.scrollTo(0, 0);
-        }
-
-        // ---------- Search ----------
-        function setupSearch() {
-            const input = document.getElementById('searchInput');
-            let timeout;
-            input.addEventListener('input', () => {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => updateLearn(), 200);
-            });
         }
 
         // ---------- Onboarding ----------
@@ -3641,7 +3909,7 @@
                     <span style="font-size:12px; color:var(--text-muted); margin-top:4px;">✍️ Your signature</span>
                 `;
                 dateDisplay.textContent = 'Signed on ' + new Date(state.user.pledgeDate || Date.now()).toLocaleDateString(
-                'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
                 document.getElementById('pledgeSignNowBtn').textContent = '✍️ Re-sign Pledge';
                 document.getElementById('pledgeSignNowBtn').onclick = () => {
                     modal.classList.remove('active');
@@ -3720,7 +3988,6 @@
 
             if (!name) { showToast('Please enter a track name'); return; }
 
-            // Generate unique ID
             const id = 'custom_' + Date.now();
             const newTopic = {
                 id,
@@ -3743,6 +4010,8 @@
                 notes: '',
                 customResources: [],
                 customProjects: [],
+                pdfs: [],
+                trackNotes: '',
             };
 
             state.topics.push(newTopic);
@@ -3762,14 +4031,23 @@
                 });
             });
 
-            // Roadmap navigation
             document.getElementById('roadmapBackBtn').addEventListener('click', () => navigateTo('page-home'));
             document.getElementById('learnRoadmapBtn').addEventListener('click', () => navigateTo('page-roadmap'));
 
-            // Add Track
             document.getElementById('addTrackBtn').addEventListener('click', openAddTrackModal);
             document.getElementById('addTrackCancel').addEventListener('click', closeAddTrackModal);
             document.getElementById('addTrackConfirm').addEventListener('click', createTrack);
+
+            // Delete track modal
+            document.getElementById('deleteTrackCancel').addEventListener('click', () => {
+                document.getElementById('deleteTrackModal').classList.remove('active');
+            });
+            document.getElementById('deleteTrackConfirm').addEventListener('click', confirmDeleteTrack);
+            document.getElementById('deleteTrackModal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    document.getElementById('deleteTrackModal').classList.remove('active');
+                }
+            });
 
             document.getElementById('onboardingNext').addEventListener('click', nextOnboarding);
             document.getElementById('onboardingSkip').addEventListener('click', finishOnboarding);
@@ -3862,13 +4140,12 @@
                 input.click();
             });
 
-            // About modal
             document.getElementById('profileAbout').addEventListener('click', () => {
                 const aboutHTML = `
                     <div style="padding:4px 0;">
                         <h3 style="font-size:18px; margin-bottom:8px;">🧠 Chugh Sahab Lagge Raho</h3>
                         <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">
-                            <strong>Version 3.3</strong> · Offline AI Career Companion
+                            <strong>Version 3.4</strong> · Offline AI Career Companion
                         </p>
                         <div style="margin-top:12px; padding:14px; background:var(--bg-glass); border-radius:var(--radius-md); border-left:3px solid var(--accent);">
                             <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">
@@ -3902,7 +4179,6 @@
                 modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
             });
 
-            // Pledge View
             document.getElementById('pledgeViewBtn').addEventListener('click', openPledgeView);
             document.getElementById('pledgeViewClose').addEventListener('click', closePledgeView);
             document.getElementById('pledgeViewModal').addEventListener('click', (e) => {
@@ -3921,10 +4197,12 @@
                     if (document.getElementById('bottomSheet').classList.contains('active')) closeBottomSheet();
                     if (document.getElementById('pledgeViewModal').classList.contains('active')) closePledgeView();
                     if (document.getElementById('addTrackModal').classList.contains('active')) closeAddTrackModal();
+                    if (document.getElementById('deleteTrackModal').classList.contains('active')) {
+                        document.getElementById('deleteTrackModal').classList.remove('active');
+                    }
                 }
             });
 
-            // Close modals on overlay click
             document.getElementById('addTrackModal').addEventListener('click', (e) => {
                 if (e.target === e.currentTarget) closeAddTrackModal();
             });
@@ -3934,7 +4212,6 @@
         async function init() {
             await loadState();
             setupEventListeners();
-            setupSearch();
             window.addEventListener('popstate', () => {
                 if (document.getElementById('topic-detail').classList.contains('active')) closeTopicDetail();
                 else if (document.getElementById('noteEditor').classList.contains('active')) closeNoteEditor();
@@ -3943,7 +4220,7 @@
             updateStreak();
             setInterval(() => { updateStreak();
                 updateUI(); }, 60000);
-            console.log('🧠 Chugh Sahab Lagge Raho v3.3 loaded');
+            console.log('🧠 Chugh Sahab Lagge Raho v3.4 loaded');
         }
 
         // ---------- Service Worker ----------
@@ -3955,7 +4232,7 @@
 
         init();
         window.__CSLR = { state, saveState, loadState, addXP, completeTopic, showToast };
-        console.log('🚀 Chugh Sahab Lagge Raho v3.3 initialized');
+        console.log('🚀 Chugh Sahab Lagge Raho v3.4 initialized');
     </script>
 
 </body>
