@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <meta name="theme-color" content="#070b17" />
     <meta name="description" content="Chugh Sahab Lagge Raho - The Offline AI Career Companion" />
-    <!-- PERMANENT CUSTOM FAVICON & MANIFEST (inline data URIs) to avoid browser default -->
-    <link rel="icon" id="favicon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234f8cff'/%3E%3Ctext x='32' y='44' font-family='Inter%2C sans-serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E" />
-    <link rel="manifest" href="data:application/json,%7B%22name%22%3A%22Chugh%20Sahab%20Lagge%20Raho%22%2C%22short_name%22%3A%22CSLR%22%2C%22description%22%3A%22The%20Offline%20AI%20Career%20Companion%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23070b17%22%2C%22theme_color%22%3A%22%23070b17%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%253D'http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg'%2520viewBox%253D'0%25200%252064%252064'%253E%253Crect%2520width%253D'64'%2520height%253D'64'%2520rx%253D'14'%2520fill%253D'%25234f8cff'%252F%253E%253Ctext%2520x%253D'32'%2520y%253D'44'%2520font-family%253D'Inter%252C%2520sans-serif'%2520font-size%253D'28'%2520font-weight%253D'700'%2520fill%253D'white'%2520text-anchor%253D'middle'%253EAI%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%2264x64%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D" />
+    <!-- Dynamic manifest & icons will be injected by JavaScript -->
+    <link rel="manifest" id="dynamicManifest">
+    <link rel="icon" id="dynamicFavicon">
+    <link rel="apple-touch-icon" id="dynamicAppleIcon">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <title>Chugh Sahab Lagge Raho</title>
 
@@ -17,7 +20,7 @@
 
     <style>
         /* ============================================================
-           Chugh Sahab Lagge Raho — Complete Design System v3.6
+           Chugh Sahab Lagge Raho — Complete Design System v3.7
            Premium · Dark · Glassmorphism · MD3 · Animated
            ============================================================ */
 
@@ -2435,7 +2438,7 @@
                 </div>
             </div>
             <div style="margin-top:20px; text-align:center; font-size:12px; color:var(--text-muted);">
-                Chugh Sahab Lagge Raho v3.6 · Offline AI Career Companion
+                Chugh Sahab Lagge Raho v3.7 · Offline AI Career Companion
             </div>
         </div>
 
@@ -2644,9 +2647,150 @@
     ============================================================ -->
     <script type="module">
         // ============================================================
-        // Chugh Sahab Lagge Raho — Main Application v3.6
+        // Chugh Sahab Lagge Raho — Main Application v3.7
         // Premium · Offline First · PWA · Fully Customizable
         // ============================================================
+
+        // ---------- APP LOGO GENERATION (PWA Icon - like Reclaim) ----------
+        function generateAppLogo() {
+            const size = 512;
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            // Dark background
+            const bg = ctx.createRadialGradient(256, 256, 0, 256, 256, 512);
+            bg.addColorStop(0, '#1e293b');
+            bg.addColorStop(1, '#070b17');
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 0, size, size);
+
+            // Glow effect
+            const glow = ctx.createRadialGradient(256, 200, 20, 256, 200, 180);
+            glow.addColorStop(0, 'rgba(79, 140, 255, 0.3)');
+            glow.addColorStop(0.5, 'rgba(79, 140, 255, 0.1)');
+            glow.addColorStop(1, 'rgba(79, 140, 255, 0)');
+            ctx.fillStyle = glow;
+            ctx.fillRect(0, 0, size, size);
+
+            // Chip background
+            const chipGrad = ctx.createLinearGradient(100, 100, 412, 412);
+            chipGrad.addColorStop(0, '#4f8cff');
+            chipGrad.addColorStop(1, '#7c6aff');
+            ctx.shadowColor = 'rgba(79, 140, 255, 0.5)';
+            ctx.shadowBlur = 60;
+            ctx.beginPath();
+            ctx.roundRect(80, 80, 352, 352, 48);
+            ctx.fillStyle = chipGrad;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // Inner border
+            ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.roundRect(96, 96, 320, 320, 32);
+            ctx.stroke();
+
+            // Dot pattern (like a chip)
+            const dotColor = 'rgba(255,255,255,0.12)';
+            for (let row = 0; row < 6; row++) {
+                for (let col = 0; col < 6; col++) {
+                    const x = 140 + col * 42;
+                    const y = 140 + row * 42;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 6, 0, Math.PI * 2);
+                    ctx.fillStyle = dotColor;
+                    ctx.fill();
+                }
+            }
+
+            // Corner dots (brighter)
+            const cornerDots = [
+                [150, 150],
+                [362, 150],
+                [150, 362],
+                [362, 362]
+            ];
+            cornerDots.forEach(([x, y]) => {
+                ctx.beginPath();
+                ctx.arc(x, y, 10, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255,255,255,0.2)';
+                ctx.fill();
+            });
+
+            // "AI" text
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = 'rgba(255,255,255,0.1)';
+            ctx.shadowBlur = 30;
+            ctx.font = 'bold 180px Inter, system-ui, sans-serif';
+            ctx.fillStyle = 'white';
+            ctx.fillText('AI', 256, 286);
+            ctx.shadowBlur = 0;
+
+            // Subtle text shadow
+            ctx.fillStyle = 'rgba(255,255,255,0.03)';
+            ctx.fillText('AI', 256, 290);
+
+            return canvas.toDataURL('image/png');
+        }
+
+        // Polyfill for roundRect if needed
+        if (!CanvasRenderingContext2D.prototype.roundRect) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+                if (r > w / 2) r = w / 2;
+                if (r > h / 2) r = h / 2;
+                this.moveTo(x + r, y);
+                this.arcTo(x + w, y, x + w, y + h, r);
+                this.arcTo(x + w, y + h, x, y + h, r);
+                this.arcTo(x, y + h, x, y, r);
+                this.arcTo(x, y, x + w, y, r);
+                return this;
+            };
+        }
+
+        // ---------- PWA Setup (like Reclaim) ----------
+        function setupPWA() {
+            const logoDataUrl = generateAppLogo();
+
+            // Favicon
+            const faviconLink = document.getElementById('dynamicFavicon');
+            faviconLink.rel = 'icon';
+            faviconLink.href = logoDataUrl;
+
+            // Apple touch icon
+            const appleIcon = document.getElementById('dynamicAppleIcon');
+            appleIcon.rel = 'apple-touch-icon';
+            appleIcon.href = logoDataUrl;
+
+            // Manifest
+            const manifest = {
+                name: 'Chugh Sahab Lagge Raho',
+                short_name: 'CSLR',
+                description: 'The Offline AI Career Companion',
+                start_url: '/',
+                display: 'standalone',
+                background_color: '#070b17',
+                theme_color: '#070b17',
+                icons: [{
+                    src: logoDataUrl,
+                    sizes: '512x512',
+                    type: 'image/png',
+                    purpose: 'any maskable'
+                }]
+            };
+
+            const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+            const manifestURL = URL.createObjectURL(manifestBlob);
+            const manifestLink = document.getElementById('dynamicManifest');
+            manifestLink.rel = 'manifest';
+            manifestLink.href = manifestURL;
+        }
+
+        // Run PWA setup immediately
+        setupPWA();
 
         // ---------- Constants ----------
         const LEVELS = [
@@ -2719,7 +2863,7 @@
                 tags: ["Coding", "Process"] },
         ];
 
-        // Default topics (16) - same as before
+        // Default topics (16)
         const DEFAULT_TOPICS = [
             { id: 'python', category: 'Foundations', emoji: '🐍', name: 'Python for Data Science', difficulty: 'Beginner',
                 estimatedTime: '4 hours', prerequisites: 'None',
@@ -4128,7 +4272,6 @@
                 });
             });
 
-            // Back buttons
             document.getElementById('roadmapBackBtn').addEventListener('click', () => navigateTo('page-home'));
             document.getElementById('quotesBackBtn').addEventListener('click', () => navigateTo('page-home'));
             document.getElementById('learnRoadmapBtn').addEventListener('click', () => navigateTo('page-roadmap'));
@@ -4243,7 +4386,7 @@
                     <div style="padding:4px 0;">
                         <h3 style="font-size:18px; margin-bottom:8px;">🧠 Chugh Sahab Lagge Raho</h3>
                         <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">
-                            <strong>Version 3.6</strong> · Offline AI Career Companion
+                            <strong>Version 3.7</strong> · Offline AI Career Companion
                         </p>
                         <div style="margin-top:12px; padding:14px; background:var(--bg-glass); border-radius:var(--radius-md); border-left:3px solid var(--accent);">
                             <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">
@@ -4318,7 +4461,7 @@
             updateStreak();
             setInterval(() => { updateStreak();
                 updateUI(); }, 60000);
-            console.log('🧠 Chugh Sahab Lagge Raho v3.6 loaded');
+            console.log('🧠 Chugh Sahab Lagge Raho v3.7 loaded');
         }
 
         // ---------- Service Worker ----------
@@ -4330,7 +4473,7 @@
 
         init();
         window.__CSLR = { state, saveState, loadState, addXP, completeTopic, showToast };
-        console.log('🚀 Chugh Sahab Lagge Raho v3.6 initialized');
+        console.log('🚀 Chugh Sahab Lagge Raho v3.7 initialized');
     </script>
 
 </body>
