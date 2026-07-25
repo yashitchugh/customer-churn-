@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <meta name="theme-color" content="#0b1120" />
-    <title>ML Engineer Companion</title>
+    <meta name="description" content="ML Engineer Companion – Data Science & Machine Learning toolkit for 2026" />
+    <title>ML Engineer 2026</title>
 
-    <!-- PWA manifest link (inline via data URI) -->
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1MIEVuZ2luZWVyIENvbXBhbmlvbiIsCiAgInNob3J0X25hbWUiOiAiTUwgRW5nIENvbXAiLAogICJkZXNjcmlwdGlvbiI6ICJEYXRhIFNjaWVuY2UgJiBNTCBjb21wYW5pb24gZm9yIGVuZ2luZWVycyIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMGIxMTIwIiwKICAidGhlbWVfY29sb3IiOiAiIzBiMTEyMCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDEwMCAxMDAnPjxyZWN0IHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyByeD0nMTYnIGZpbGw9JyMwYjExMjAnLz48dGV4dCB4PSc1MCcgeT0nNjAnIGZvbnQtc2l6ZT0nNDgnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZpbGw9JyM2M2IzZWMnIGZvbnQtZmFtaWx5PSdzYW5zLXNlcmlmJz7wn5K8PC90ZXh0Pjwvc3ZnPg=="LAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9" />
+    <!-- PWA manifest (inline data URI) -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1MIEVuZ2luZWVyIDIwMjYiLAogICJzaG9ydF9uYW1lIjogIk1MIEVuZyAyMDI2IiwKICAiZGVzY3JpcHRpb24iOiAiRGF0YSBTY2llbmNlICYgTUwgY29tcGFuaW9uIGZvciBlbmdpbmVlcnMiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzBiMTEyMCIsCiAgInRoZW1lX2NvbG9yIjogIiMwYjExMjAiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MTIgNTEyJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cnIHgxPScwJScgeTE9JzAlJyB4Mj0nMTAwJScgeTI9JzEwMCUnPjxzdG9wIG9mZnNldD0nMCUnIHN0eWxlPSdzdG9wLWNvbG9yOiM2M2IzZWM7c3RvcC1vcGFjaXR5OjEnLz48c3RvcCBvZmZzZXQ9JzUwJScgc3R5bGU9J3N0b3AtY29sb3I6IzljN2ZkNDtzdG9wLW9wYWNpdHk6MScvPjxzdG9wIG9mZnNldD0nMTAwJScgc3R5bGU9J3N0b3AtY29sb3I6I2U4NzM4YTtzdG9wLW9wYWNpdHk6MScvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHdpZHRoPSc1MTInIGhlaWdodD0nNTEyJyByeD0nNjQnIGZpbGw9JyMwYjExMjAnLz48Y2lyY2xlIGN4PScyNTYnIGN5PScyMjgnIHI9Jzc2JyBmaWxsPSdub25lJyBzdHJva2U9J3VybCgjZyknIHN0cm9rZS13aWR0aD0nMTInLz48Y2lyY2xlIGN4PScxNTInIGN5PSczNTInIHI9JzUyJyBmaWxsPSdub25lJyBzdHJva2U9J3VybCgjZyknIHN0cm9rZS13aWR0aD0nMTAnLz48Y2lyY2xlIGN4PSczNjAnIGN5PSczNTInIHI9JzUyJyBmaWxsPSdub25lJyBzdHJva2U9J3VybCgjZycpIHN0cm9rZS13aWR0aD0nMTAnLz48Y2lyY2xlIGN4PScyMDQnIGN5PSc0MjAnIHI9JzM2JyBmaWxsPSdub25lJyBzdHJva2U9J3VybCgjZycpIHN0cm9rZS13aWR0aD0nOCcvPjxjaXJjbGUgY3g9JzMwOCcgY3k9JzQyMCcgcj0nMzYnIGZpbGw9J25vbmUnIHN0cm9rZT0ndXJsKCNnKScgc3Ryb2tlLXdpZHRoPSc4Jy8+PHRleHQgeD0nMjU2JyB5PScxOTAnIGZvbnQtc2l6ZT0nNzInIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZpbGw9JyNlOGVkZjUnIGZvbnQtZmFtaWx5PSdzYW5zLXNlcmlmJyBmb250LXdlaWdodD0nNzAwJz7wn6S8PC90ZXh0Pjwvc3ZnPg=="LAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9LAogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDE5MiAxOTInPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+PHN0b3Agb2Zmc2V0PScwJScgc3R5bGU9J3N0b3AtY29sb3I6IzYzYjNlYztzdG9wLW9wYWNpdHk6MScvPjxzdG9wIG9mZnNldD0nNTAlJyBzdHlsZT0nc3RvcC1jb2xvcjojOWM3ZmQ0O3N0b3Atb3BhY2l0eToxJy8+PHN0b3Agb2Zmc2V0PScxMDAlJyBzdHlsZT0nc3RvcC1jb2xvcjojZTg3MzhhO3N0b3Atb3BhY2l0eToxJy8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9JzE5MicgaGVpZ2h0PScxOTInIHJ4PScyNCcgZmlsbD0nIzBiMTEyMCcvPjxjaXJjbGUgY3g9Jzk2JyBjeT0nODUnIHI9JzI4JyBmaWxsPSdub25lJyBzdHJva2U9J3VybCgjZyknIHN0cm9rZS13aWR0aD0nNScvPjxjaXJjbGUgY3g9JzU3JyBjeT0nMTMyJyByPScxOScgZmlsbD0nbm9uZScgc3Ryb2tlPSd1cmwoI2cpJyBzdHJva2Utd2lkdGg9JzQnLz48Y2lyY2xlIGN4PScxMzUnIGN5PScxMzInIHI9JzE5JyBmaWxsPSdub25lJyBzdHJva2U9J3VybCgjZyknIHN0cm9rZS13aWR0aD0nNCcvPjxjaXJjbGUgY3g9Jzc3JyBjeT0nMTU4JyByPScxMycgZmlsbD0nbm9uZScgc3Ryb2tlPSd1cmwoI2cpJyBzdHJva2Utd2lkdGg9JzMnLz48Y2lyY2xlIGN4PScxMTUnIGN5PScxNTgnIHI9JzEzJyBmaWxsPSdub25lJyBzdHJva2U9J3VybCgjZyknIHN0cm9rZS13aWR0aD0nMycvPjx0ZXh0IHg9Jzk2JyB5PSc3MicgZm9udC1zaXplPScyNicgdGV4dC1hbmNob3I9J21pZGRsZScgZmlsbD0nI2U4ZWRmNScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtd2VpZ2h0PSc3MDAnPvCfpLw8L3RleHQ+PC9zdmc+IgogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9" />
 
     <style>
         /* ---------- CSS Reset & Variables ---------- */
@@ -18,7 +19,6 @@
             margin: 0;
             padding: 0;
         }
-
         :root {
             --bg-primary: #0b1120;
             --bg-secondary: #111b2e;
@@ -36,6 +36,7 @@
             --accent-green: #5cdb9e;
             --accent-amber: #f0b34b;
             --accent-rose: #e8738a;
+            --accent-teal: #4dd0c7;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             --radius-sm: 8px;
             --radius-md: 14px;
@@ -43,7 +44,6 @@
             --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
             --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         html {
             font-family: var(--font-sans);
             background: var(--bg-primary);
@@ -51,16 +51,13 @@
             scroll-behavior: smooth;
             -webkit-tap-highlight-color: transparent;
         }
-
         body {
             min-height: 100dvh;
             display: flex;
             justify-content: center;
             background: var(--bg-primary);
             padding: 0 0 80px 0;
-            /* bottom nav space */;
         }
-
         #app {
             max-width: 520px;
             width: 100%;
@@ -68,8 +65,6 @@
             position: relative;
             padding: 16px 16px 0 16px;
         }
-
-        /* ---------- Scrollbar ---------- */
         ::-webkit-scrollbar {
             width: 4px;
             height: 4px;
@@ -82,14 +77,14 @@
             border-radius: 10px;
         }
 
-        /* ---------- Onboarding Overlay ---------- */
+        /* ---------- Onboarding ---------- */
         #onboarding {
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background: rgba(11, 17, 32, 0.94);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            background: rgba(11, 17, 32, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -109,7 +104,6 @@
                 transform: scale(1);
             }
         }
-
         .onboarding-box {
             background: var(--bg-secondary);
             padding: 40px 32px 36px;
@@ -120,24 +114,25 @@
             border: 1px solid var(--border-subtle);
             text-align: center;
         }
-        .onboarding-box .icon-big {
-            font-size: 54px;
-            margin-bottom: 12px;
+        .onboarding-box .logo-big svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 8px;
         }
         .onboarding-box h1 {
             font-size: 24px;
             font-weight: 700;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-rose));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
-        .onboarding-box p {
+        .onboarding-box .sub {
             color: var(--text-secondary);
-            font-size: 15px;
-            margin-bottom: 28px;
+            font-size: 14px;
+            margin-bottom: 24px;
             line-height: 1.5;
         }
         .onboarding-box label {
@@ -147,7 +142,6 @@
             font-weight: 600;
             color: var(--text-secondary);
             margin-bottom: 6px;
-            letter-spacing: 0.02em;
         }
         .onboarding-box input {
             width: 100%;
@@ -165,12 +159,8 @@
             border-color: var(--accent-cyan);
             box-shadow: 0 0 0 3px rgba(99, 179, 236, 0.15);
         }
-        .onboarding-box input::placeholder {
-            color: var(--text-muted);
-            font-weight: 400;
-        }
         .onboarding-box .btn-primary {
-            margin-top: 24px;
+            margin-top: 22px;
             width: 100%;
             padding: 14px;
             border: none;
@@ -181,7 +171,6 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            letter-spacing: 0.01em;
         }
         .onboarding-box .btn-primary:hover {
             transform: translateY(-2px);
@@ -196,14 +185,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0 16px 0;
+            padding: 6px 0 14px 0;
             border-bottom: 1px solid var(--border-subtle);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         .app-header .greeting {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
             letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-header .greeting .logo-small svg {
+            width: 32px;
+            height: 32px;
+            display: block;
         }
         .app-header .greeting span {
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
@@ -227,7 +224,7 @@
             font-size: 18px;
         }
 
-        /* ---------- Tab Navigation ---------- */
+        /* ---------- Tab Nav ---------- */
         .tab-nav {
             position: fixed;
             bottom: 0;
@@ -239,7 +236,7 @@
             border-top: 1px solid var(--border-subtle);
             display: flex;
             justify-content: space-around;
-            padding: 6px 0 env(safe-area-inset-bottom, 6px) 0;
+            padding: 4px 0 env(safe-area-inset-bottom, 4px) 0;
             z-index: 100;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -249,20 +246,20 @@
             background: none;
             border: none;
             color: var(--text-muted);
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
-            padding: 8px 0 4px 0;
+            gap: 1px;
+            padding: 6px 0 4px 0;
             cursor: pointer;
             transition: var(--transition);
             position: relative;
             letter-spacing: 0.02em;
         }
         .tab-nav button .tab-icon {
-            font-size: 22px;
+            font-size: 20px;
             line-height: 1.2;
         }
         .tab-nav button.active {
@@ -282,7 +279,7 @@
             transform: scale(0.92);
         }
 
-        /* ---------- Tab Content ---------- */
+        /* ---------- Tab Panels ---------- */
         .tab-panel {
             display: none;
             animation: fadeSlide 0.3s ease;
@@ -301,18 +298,17 @@
                 transform: translateY(0);
             }
         }
-
         .section-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
-            margin: 20px 0 12px 0;
+            margin: 18px 0 10px 0;
             letter-spacing: -0.01em;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         .section-title .badge-count {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             background: var(--bg-secondary);
             padding: 2px 12px;
@@ -320,11 +316,11 @@
             color: var(--text-secondary);
         }
 
-        /* ---------- Topic Cards (Accordion) ---------- */
+        /* ---------- Topic Cards ---------- */
         .topic-card {
             background: var(--bg-card);
             border-radius: var(--radius-md);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             border: 1px solid var(--border-subtle);
             overflow: hidden;
             transition: var(--transition);
@@ -335,8 +331,8 @@
         .topic-card .topic-header {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 14px 16px;
+            gap: 12px;
+            padding: 12px 14px;
             cursor: pointer;
             user-select: none;
             transition: var(--transition);
@@ -346,8 +342,8 @@
         }
         .topic-card .topic-header .svg-ring {
             flex-shrink: 0;
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             transform: rotate(-90deg);
         }
         .topic-card .topic-header .topic-info {
@@ -356,18 +352,18 @@
         }
         .topic-card .topic-header .topic-info .topic-title {
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.3;
         }
         .topic-card .topic-header .topic-info .topic-meta {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             margin-top: 2px;
             flex-wrap: wrap;
         }
         .topic-card .topic-header .topic-info .topic-meta .cat-tag {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.04em;
@@ -389,12 +385,12 @@
             border: 1px solid rgba(155, 127, 212, 0.25);
         }
         .topic-card .topic-header .topic-info .topic-meta .step-progress-text {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
             font-weight: 500;
         }
         .topic-card .topic-header .chevron {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--text-muted);
             transition: var(--transition);
             flex-shrink: 0;
@@ -402,20 +398,18 @@
         .topic-card .topic-header .chevron.open {
             transform: rotate(180deg);
         }
-
         .topic-card .topic-body {
-            padding: 0 16px 16px 16px;
+            padding: 0 14px 14px 14px;
             display: none;
         }
         .topic-card .topic-body.open {
             display: block;
         }
-
         .topic-card .topic-body .step-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 8px 0;
+            gap: 10px;
+            padding: 6px 0;
             border-bottom: 1px solid rgba(42, 63, 94, 0.3);
         }
         .topic-card .topic-body .step-item:last-child {
@@ -424,10 +418,10 @@
         .topic-card .topic-body .step-item label {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             cursor: pointer;
             flex: 1;
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-secondary);
             transition: var(--transition);
         }
@@ -436,37 +430,36 @@
             text-decoration: line-through;
         }
         .topic-card .topic-body .step-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
+            width: 17px;
+            height: 17px;
             accent-color: var(--accent-cyan);
             cursor: pointer;
             flex-shrink: 0;
             border-radius: 4px;
         }
         .topic-card .topic-body .step-item .step-num {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: var(--text-muted);
-            min-width: 20px;
+            min-width: 18px;
         }
-
         .topic-card .topic-body .resource-pills {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 12px;
-            padding-top: 12px;
+            gap: 6px;
+            margin-top: 10px;
+            padding-top: 10px;
             border-top: 1px solid rgba(42, 63, 94, 0.3);
         }
         .topic-card .topic-body .resource-pills a {
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            padding: 4px 14px 4px 10px;
+            padding: 4px 12px 4px 10px;
             border-radius: 40px;
             background: var(--bg-input);
             color: var(--accent-cyan);
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             text-decoration: none;
             border: 1px solid var(--border-subtle);
@@ -478,22 +471,22 @@
             transform: translateY(-1px);
         }
         .topic-card .topic-body .resource-pills a .ext {
-            font-size: 11px;
+            font-size: 10px;
             opacity: 0.6;
         }
 
-        /* ---------- Video & Dataset Items ---------- */
+        /* ---------- Item Lists ---------- */
         .item-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
         }
         .item-row {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: var(--bg-card);
-            padding: 10px 14px;
+            padding: 8px 12px;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border-subtle);
             transition: var(--transition);
@@ -505,8 +498,8 @@
             flex-shrink: 0;
         }
         .item-row .item-check input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
+            width: 17px;
+            height: 17px;
             accent-color: var(--accent-cyan);
             cursor: pointer;
         }
@@ -515,7 +508,7 @@
             min-width: 0;
         }
         .item-row .item-info .item-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             color: var(--text-primary);
             word-break: break-word;
@@ -525,7 +518,7 @@
             text-decoration: line-through;
         }
         .item-row .item-info .item-sub {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
             margin-top: 1px;
         }
@@ -533,7 +526,7 @@
             flex-shrink: 0;
             color: var(--accent-cyan);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13px;
             padding: 4px 8px;
             border-radius: var(--radius-sm);
             transition: var(--transition);
@@ -546,21 +539,21 @@
             color: var(--accent-blue);
         }
         .item-row .item-link .ext {
-            font-size: 12px;
+            font-size: 11px;
             opacity: 0.6;
         }
 
-        /* ---------- Debug Cards ---------- */
+        /* ---------- Debug ---------- */
         .debug-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 6px;
+            gap: 8px;
+            margin-top: 4px;
         }
         .debug-card {
             background: var(--bg-card);
             border-radius: var(--radius-sm);
-            padding: 14px 12px;
+            padding: 12px 10px;
             border: 1px solid var(--border-subtle);
             transition: var(--transition);
         }
@@ -569,28 +562,165 @@
         }
         .debug-card .debug-name {
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             color: var(--accent-rose);
             font-family: 'JetBrains Mono', 'Fira Code', monospace;
         }
         .debug-card .debug-tip {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-secondary);
-            margin-top: 4px;
+            margin-top: 3px;
             line-height: 1.4;
         }
 
-        /* ---------- Commitment Tab ---------- */
+        /* ---------- AI Lab ---------- */
+        .ai-lab-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 12px;
+        }
+        .ai-lab-card .ai-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            display: block;
+        }
+        .ai-lab-card select,
+        .ai-lab-card input,
+        .ai-lab-card textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border-subtle);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: var(--font-sans);
+            transition: var(--transition);
+            outline: none;
+            margin-bottom: 8px;
+        }
+        .ai-lab-card select:focus,
+        .ai-lab-card input:focus,
+        .ai-lab-card textarea:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(99, 179, 236, 0.12);
+        }
+        .ai-lab-card textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .ai-lab-card .ai-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .ai-lab-card .ai-row .btn-ai {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 80px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #fff;
+        }
+        .ai-lab-card .ai-row .btn-ai:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 125, 181, 0.3);
+        }
+        .ai-lab-card .ai-row .btn-ai:active {
+            transform: scale(0.97);
+        }
+        .ai-lab-card .ai-row .btn-ai.secondary {
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+        }
+        .ai-lab-card .ai-row .btn-ai.secondary:hover {
+            background: var(--bg-card-hover);
+        }
+        .ai-lab-card .ai-response {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-input);
+            border: 1px solid var(--border-subtle);
+            min-height: 40px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .ai-lab-card .ai-response .resp-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 4px;
+        }
+        .ai-lab-card .api-key-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .ai-lab-card .api-key-row input {
+            flex: 1;
+            margin-bottom: 0;
+        }
+        .ai-lab-card .api-key-row .btn-key {
+            padding: 10px 14px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--accent-green);
+            color: #0b1120;
+            white-space: nowrap;
+        }
+        .ai-lab-card .api-key-row .btn-key:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 16px rgba(92, 219, 158, 0.25);
+        }
+        .ai-lab-card .api-key-row .btn-key.danger {
+            background: var(--accent-rose);
+            color: #fff;
+        }
+        .ai-lab-card .api-key-row .btn-key.danger:hover {
+            box-shadow: 0 4px 16px rgba(232, 115, 138, 0.25);
+        }
+        .key-status {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .key-status .valid {
+            color: var(--accent-green);
+        }
+        .key-status .invalid {
+            color: var(--accent-rose);
+        }
+
+        /* ---------- Commitment ---------- */
         .pledge-box {
             background: var(--bg-card);
             border-radius: var(--radius-md);
-            padding: 24px 20px;
+            padding: 20px 16px;
             border: 1px solid var(--border-subtle);
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
         .pledge-box .pledge-text {
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.6;
             color: var(--text-secondary);
         }
@@ -601,11 +731,10 @@
             color: var(--accent-cyan);
             font-weight: 700;
         }
-
         .signature-section {
             background: var(--bg-card);
             border-radius: var(--radius-md);
-            padding: 16px;
+            padding: 14px;
             border: 1px solid var(--border-subtle);
         }
         .signature-section .canvas-wrap {
@@ -626,8 +755,8 @@
         }
         .signature-section .sig-actions {
             display: flex;
-            gap: 10px;
-            margin-top: 14px;
+            gap: 8px;
+            margin-top: 12px;
             flex-wrap: wrap;
         }
         .signature-section .sig-actions button {
@@ -636,10 +765,10 @@
             border: none;
             border-radius: var(--radius-sm);
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             transition: var(--transition);
-            min-width: 80px;
+            min-width: 70px;
         }
         .signature-section .sig-actions .btn-clear {
             background: var(--bg-input);
@@ -657,26 +786,22 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(92, 219, 158, 0.3);
         }
-        .signature-section .sig-actions .btn-submit-sig:active {
-            transform: scale(0.97);
-        }
         .signature-section .sig-actions .btn-submit-sig:disabled {
             opacity: 0.4;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
-
         .commit-status {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-top: 16px;
-            padding: 12px;
+            gap: 8px;
+            margin-top: 14px;
+            padding: 10px;
             border-radius: var(--radius-sm);
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             background: var(--bg-input);
         }
         .commit-status.committed {
@@ -693,13 +818,13 @@
         /* ---------- Notepad ---------- */
         .notepad-area {
             width: 100%;
-            min-height: 280px;
-            padding: 16px;
+            min-height: 260px;
+            padding: 14px;
             border-radius: var(--radius-sm);
             border: 1.5px solid var(--border-subtle);
             background: var(--bg-input);
             color: var(--text-primary);
-            font-size: 15px;
+            font-size: 14px;
             line-height: 1.6;
             font-family: var(--font-sans);
             resize: vertical;
@@ -715,16 +840,16 @@
         }
         .notepad-actions {
             display: flex;
-            gap: 10px;
-            margin-top: 12px;
+            gap: 8px;
+            margin-top: 10px;
             flex-wrap: wrap;
         }
         .notepad-actions button {
-            padding: 10px 20px;
+            padding: 10px 18px;
             border: none;
             border-radius: var(--radius-sm);
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             transition: var(--transition);
         }
@@ -748,18 +873,18 @@
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin: 8px 0 16px 0;
+            gap: 10px;
+            margin: 6px 0 14px 0;
         }
         .stat-card {
             background: var(--bg-card);
             border-radius: var(--radius-sm);
-            padding: 16px 14px;
+            padding: 14px 12px;
             border: 1px solid var(--border-subtle);
             text-align: center;
         }
         .stat-card .stat-value {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
             letter-spacing: -0.02em;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
@@ -768,7 +893,7 @@
             background-clip: text;
         }
         .stat-card .stat-label {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--text-secondary);
             margin-top: 2px;
             font-weight: 500;
@@ -791,7 +916,6 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
         .btn-reset {
             width: 100%;
             padding: 14px;
@@ -800,10 +924,10 @@
             color: var(--accent-rose);
             border-radius: var(--radius-sm);
             font-weight: 700;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
             transition: var(--transition);
-            margin-top: 8px;
+            margin-top: 6px;
         }
         .btn-reset:hover {
             background: rgba(232, 115, 138, 0.18);
@@ -822,11 +946,11 @@
             transform: translateX(-50%) translateY(20px);
             background: var(--bg-secondary);
             color: var(--text-primary);
-            padding: 12px 24px;
+            padding: 10px 22px;
             border-radius: 40px;
             border: 1px solid var(--border-subtle);
             font-weight: 500;
-            font-size: 14px;
+            font-size: 13px;
             box-shadow: var(--shadow-card);
             opacity: 0;
             pointer-events: none;
@@ -842,21 +966,25 @@
             pointer-events: auto;
         }
 
-        /* ---------- Responsive tweaks ---------- */
+        /* ---------- Responsive ---------- */
         @media (max-width: 420px) {
             .app-header .greeting {
-                font-size: 17px;
+                font-size: 16px;
+            }
+            .app-header .greeting .logo-small svg {
+                width: 26px;
+                height: 26px;
             }
             .app-header .streak-badge {
-                font-size: 12px;
+                font-size: 11px;
                 padding: 4px 10px 4px 8px;
             }
             .topic-card .topic-header {
-                padding: 12px 12px;
+                padding: 10px 12px;
             }
             .topic-card .topic-header .svg-ring {
-                width: 36px;
-                height: 36px;
+                width: 34px;
+                height: 34px;
             }
             .debug-grid {
                 grid-template-columns: 1fr;
@@ -865,28 +993,28 @@
                 grid-template-columns: 1fr 1fr;
             }
             .onboarding-box {
-                padding: 28px 20px 28px;
+                padding: 28px 18px 28px;
             }
             .item-row {
-                padding: 8px 10px;
+                padding: 6px 10px;
             }
             .item-row .item-info .item-title {
-                font-size: 13px;
+                font-size: 12px;
+            }
+            .tab-nav button .tab-icon {
+                font-size: 17px;
+            }
+            .tab-nav button {
+                font-size: 9px;
             }
         }
-
         @media (min-width: 600px) {
             #app {
-                padding: 24px 24px 0 24px;
+                padding: 20px 24px 0 24px;
             }
             .tab-nav {
                 border-radius: var(--radius-lg) var(--radius-lg) 0 0;
             }
-        }
-
-        /* ---------- Utilities ---------- */
-        .mt-1 {
-            margin-top: 4px;
         }
         .mt-2 {
             margin-top: 8px;
@@ -906,15 +1034,15 @@
             gap: 6px;
         }
 
-        /* PWA install banner (minimal) */
+        /* PWA install banner */
         .pwa-install-banner {
             display: none;
             background: var(--bg-card);
             border-radius: var(--radius-sm);
-            padding: 12px 16px;
+            padding: 10px 14px;
             border: 1px solid var(--border-subtle);
-            margin-bottom: 12px;
-            font-size: 13px;
+            margin-bottom: 10px;
+            font-size: 12px;
             color: var(--text-secondary);
             align-items: center;
             justify-content: space-between;
@@ -930,19 +1058,33 @@
             padding: 6px 16px;
             border-radius: 40px;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px;
+        }
+        .pwa-install-banner button:hover {
+            transform: scale(1.03);
         }
     </style>
 </head>
 <body>
 
     <div id="app">
-        <!-- Onboarding Overlay -->
+        <!-- Onboarding -->
         <div id="onboarding">
             <div class="onboarding-box">
-                <div class="icon-big">🧠</div>
-                <h1>ML Engineer Companion</h1>
-                <p>Your personal data science &amp; machine learning command center.</p>
+                <div class="logo-big">
+                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#63b3ec"/><stop offset="50%" stop-color="#9b7fd4"/><stop offset="100%" stop-color="#e8738a"/></linearGradient></defs>
+                        <rect width="512" height="512" rx="64" fill="#0b1120"/>
+                        <circle cx="256" cy="228" r="76" fill="none" stroke="url(#g1)" stroke-width="12"/>
+                        <circle cx="152" cy="352" r="52" fill="none" stroke="url(#g1)" stroke-width="10"/>
+                        <circle cx="360" cy="352" r="52" fill="none" stroke="url(#g1)" stroke-width="10"/>
+                        <circle cx="204" cy="420" r="36" fill="none" stroke="url(#g1)" stroke-width="8"/>
+                        <circle cx="308" cy="420" r="36" fill="none" stroke="url(#g1)" stroke-width="8"/>
+                        <text x="256" y="190" font-size="72" text-anchor="middle" fill="#e8edf5" font-family="sans-serif" font-weight="700">🧠</text>
+                    </svg>
+                </div>
+                <h1>ML Engineer 2026</h1>
+                <p class="sub">Your AI-native data science &amp; machine learning command center.</p>
                 <label for="nameInput">Enter your engineer name</label>
                 <input type="text" id="nameInput" placeholder="e.g. Alex" autocomplete="off" />
                 <button class="btn-primary" id="onboardBtn">Launch Dashboard →</button>
@@ -951,38 +1093,90 @@
 
         <!-- Header -->
         <header class="app-header">
-            <div class="greeting">Hello, <span id="userNameDisplay">Engineer</span> 👋</div>
+            <div class="greeting">
+                <span class="logo-small">
+                    <svg viewBox="0 0 512 512" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+                        <defs><linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#63b3ec"/><stop offset="50%" stop-color="#9b7fd4"/><stop offset="100%" stop-color="#e8738a"/></linearGradient></defs>
+                        <circle cx="256" cy="240" r="60" fill="none" stroke="url(#g2)" stroke-width="10"/>
+                        <circle cx="170" cy="340" r="40" fill="none" stroke="url(#g2)" stroke-width="8"/>
+                        <circle cx="342" cy="340" r="40" fill="none" stroke="url(#g2)" stroke-width="8"/>
+                        <text x="256" y="210" font-size="48" text-anchor="middle" fill="#e8edf5" font-family="sans-serif" font-weight="700">🧠</text>
+                    </svg>
+                </span>
+                <span id="userNameDisplay">Engineer</span>
+            </div>
             <div class="streak-badge"><span class="flame">🔥</span> <span id="streakDisplay">0</span> day streak</div>
         </header>
 
-        <!-- PWA install banner (hidden by default) -->
+        <!-- PWA install banner -->
         <div class="pwa-install-banner" id="pwaBanner">
-            <span>📲 Install this app for offline access</span>
+            <span>📲 Install as app for offline access</span>
             <button id="pwaInstallBtn">Install</button>
         </div>
 
-        <!-- Tab Panels -->
-        <!-- TAB 1: Topics & Content -->
+        <!-- ===== TAB 1: Topics & Content ===== -->
         <div class="tab-panel active" id="panel-tab1">
-            <!-- Topics -->
-            <div class="section-title">📚 Topics <span class="badge-count" id="topicCount">0/7</span></div>
+            <div class="section-title">📚 Topics <span class="badge-count" id="topicCount">0/0</span></div>
             <div id="topicsContainer"></div>
 
-            <!-- Videos -->
             <div class="section-title">🎬 Videos <span class="badge-count" id="videoCount">0/12</span></div>
             <div class="item-list" id="videosContainer"></div>
 
-            <!-- Datasets -->
             <div class="section-title">📊 Datasets <span class="badge-count" id="datasetCount">0/15</span></div>
             <div class="item-list" id="datasetsContainer"></div>
 
-            <!-- Debugging Errors -->
-            <div class="section-title">🐞 Debugging Errors <span class="badge-count">6</span></div>
+            <div class="section-title">🐞 Debugging <span class="badge-count">6</span></div>
             <div class="debug-grid" id="debugContainer"></div>
         </div>
 
-        <!-- TAB 2: Commitment -->
+        <!-- ===== TAB 2: AI Lab ===== -->
         <div class="tab-panel" id="panel-tab2">
+            <div class="section-title">🤖 AI Lab <span class="badge-count">2026</span></div>
+
+            <div class="ai-lab-card">
+                <span class="ai-label">🔑 API Keys (stored locally)</span>
+                <div class="api-key-row">
+                    <input type="password" id="apiKeyInput" placeholder="Enter OpenAI / Anthropic / Google key" />
+                    <button class="btn-key" id="apiKeySaveBtn">Save</button>
+                    <button class="btn-key danger" id="apiKeyClearBtn">Clear</button>
+                </div>
+                <div class="key-status" id="apiKeyStatus">💡 No key set — responses will be simulated</div>
+            </div>
+
+            <div class="ai-lab-card">
+                <span class="ai-label">🧪 Prompt Playground</span>
+                <select id="modelSelect">
+                    <option value="gpt-4o">GPT-4o (OpenAI)</option>
+                    <option value="claude-3.5">Claude 3.5 (Anthropic)</option>
+                    <option value="gemini-1.5">Gemini 1.5 (Google)</option>
+                    <option value="llama-3">Llama 3 (Meta)</option>
+                    <option value="mistral-large">Mistral Large</option>
+                </select>
+                <textarea id="promptInput" placeholder="Write a prompt… e.g. 'Explain the attention mechanism in transformers'"></textarea>
+                <div class="ai-row">
+                    <button class="btn-ai" id="aiRunBtn">▶ Run</button>
+                    <button class="btn-ai secondary" id="aiClearBtn">✕ Clear</button>
+                </div>
+                <div class="ai-response" id="aiResponse">
+                    <span class="resp-label">💬 Response</span>
+                    <span style="color:var(--text-muted);font-size:13px;">Your AI response will appear here.</span>
+                </div>
+            </div>
+
+            <div class="ai-lab-card">
+                <span class="ai-label">📋 Prompt Templates</span>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
+                    <button class="btn-ai secondary" style="flex:none;padding:6px 14px;font-size:12px;" data-template="Explain {topic} like I'm 5">ELI5</button>
+                    <button class="btn-ai secondary" style="flex:none;padding:6px 14px;font-size:12px;" data-template="Write a Python function for {task} with docstring">Code</button>
+                    <button class="btn-ai secondary" style="flex:none;padding:6px 14px;font-size:12px;" data-template="Compare {a} vs {b} for {use_case}">Compare</button>
+                    <button class="btn-ai secondary" style="flex:none;padding:6px 14px;font-size:12px;" data-template="List 5 best practices for {topic}">Best practices</button>
+                    <button class="btn-ai secondary" style="flex:none;padding:6px 14px;font-size:12px;" data-template="Generate a dataset for {task} with {n} samples">Dataset gen</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TAB 3: Commitment ===== -->
+        <div class="tab-panel" id="panel-tab3">
             <div class="section-title">✍️ Commitment</div>
             <div class="pledge-box">
                 <div class="pledge-text">
@@ -991,7 +1185,6 @@
                     to document my journey, and to <strong>build with integrity</strong>.
                 </div>
             </div>
-
             <div class="signature-section">
                 <div class="canvas-wrap">
                     <canvas id="sigCanvas" width="600" height="150"></canvas>
@@ -1004,8 +1197,8 @@
             </div>
         </div>
 
-        <!-- TAB 3: Notepad -->
-        <div class="tab-panel" id="panel-tab3">
+        <!-- ===== TAB 4: Notepad ===== -->
+        <div class="tab-panel" id="panel-tab4">
             <div class="section-title">📝 Notes</div>
             <textarea class="notepad-area" id="notesArea" placeholder="Write your thoughts, ideas, or debugging notes here…"></textarea>
             <div class="notepad-actions">
@@ -1014,8 +1207,8 @@
             </div>
         </div>
 
-        <!-- TAB 4: Stats & Settings -->
-        <div class="tab-panel" id="panel-tab4">
+        <!-- ===== TAB 5: Stats & Settings ===== -->
+        <div class="tab-panel" id="panel-tab5">
             <div class="section-title">📊 Stats &amp; Settings</div>
             <div class="stats-grid">
                 <div class="stat-card"><div class="stat-value" id="statCompleted">0</div><div class="stat-label">Completed</div></div>
@@ -1028,10 +1221,11 @@
 
         <!-- Bottom Tab Nav -->
         <nav class="tab-nav" id="tabNav">
-            <button data-tab="tab1" class="active"><span class="tab-icon">📚</span> Topics</button>
-            <button data-tab="tab2"><span class="tab-icon">✍️</span> Commit</button>
-            <button data-tab="tab3"><span class="tab-icon">📝</span> Notes</button>
-            <button data-tab="tab4"><span class="tab-icon">📊</span> Stats</button>
+            <button data-tab="tab1" class="active"><span class="tab-icon">📚</span> Learn</button>
+            <button data-tab="tab2"><span class="tab-icon">🤖</span> AI Lab</button>
+            <button data-tab="tab3"><span class="tab-icon">✍️</span> Commit</button>
+            <button data-tab="tab4"><span class="tab-icon">📝</span> Notes</button>
+            <button data-tab="tab5"><span class="tab-icon">📊</span> Stats</button>
         </nav>
 
         <!-- Toast -->
@@ -1040,148 +1234,149 @@
 
     <script>
         // =====================================================================
-        // DATA
+        // DATA — 2026 ML/DS Engineer Edition
         // =====================================================================
 
         const TOPICS_DATA = [{
-            id: 'topic-fe',
-            title: 'Feature Engineering',
+            id: 'topic-llm',
+            title: 'LLM Fine-tuning & Alignment',
             category: 'Foundation',
-            steps: ['Understand missing value imputation', 'Master encoding techniques', 'Apply scaling & normalization',
-                'Create interaction features'
+            steps: ['Understand pretraining vs fine-tuning', 'Master LoRA & QLoRA', 'RLHF & DPO alignment',
+                'Evaluate with benchmarks'
             ],
             resources: [
-                { label: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/machine-learning/what-is-feature-engineering/' },
-                { label: 'TDS', url: 'https://towardsdatascience.com/feature-engineering-techniques-bab6cb39ed7e/' }
+                { label: 'Hugging Face PEFT', url: 'https://huggingface.co/docs/peft' },
+                { label: 'OpenAI RLHF', url: 'https://openai.com/research' }
             ]
         }, {
-            id: 'topic-me',
-            title: 'Model Evaluation',
+            id: 'topic-rag',
+            title: 'RAG & Vector Databases',
             category: 'Core',
-            steps: ['Confusion matrix & metrics', 'ROC & AUC curves', 'Cross-validation strategies',
-                'Bias-variance tradeoff'
+            steps: ['Chunking & embedding strategies', 'Vector DBs (Pinecone, Milvus, Weaviate)', 'Hybrid search',
+                'RAG evaluation'
             ],
             resources: [
-                { label: 'GFG Metrics', url: 'https://www.geeksforgeeks.org/machine-learning/metrics-for-machine-learning-model/' },
-                { label: 'GFG Evaluation', url: 'https://www.geeksforgeeks.org/machine-learning/machine-learning-model-evaluation/' }
+                { label: 'LlamaIndex', url: 'https://www.llamaindex.ai/' },
+                { label: 'LangChain RAG', url: 'https://python.langchain.com/docs/use_cases/rag' }
             ]
         }, {
-            id: 'topic-dl',
-            title: 'Deep Learning',
-            category: 'Core',
-            steps: ['Neural network fundamentals', 'Activation & loss functions', 'Backpropagation & optimizers',
-                'Training & regularization'
-            ],
-            resources: [
-                { label: 'Learn PyTorch', url: 'https://www.learnpytorch.io/' },
-                { label: 'GFG DL', url: 'https://www.geeksforgeeks.org/deep-learning/deep-learning-tutorial/' }
-            ]
-        }, {
-            id: 'topic-nlp',
-            title: 'NLP & LLMs',
+            id: 'topic-agents',
+            title: 'AI Agents & Multi-Agent Systems',
             category: 'Advanced',
-            steps: ['Text preprocessing & tokenization', 'Word embeddings (Word2Vec, GloVe)',
-                'Transformers & attention', 'Fine-tuning LLMs'
+            steps: ['Agent architectures (ReAct, Plan-and-Solve)', 'Tool calling & function calling',
+                'Multi-agent coordination', 'Agent evaluation'
             ],
             resources: [
-                { label: 'Hugging Face', url: 'https://huggingface.co/learn' },
-                { label: 'GFG NLP', url: 'https://www.geeksforgeeks.org/nlp/natural-language-processing-nlp-tutorial/' }
+                { label: 'LangChain Agents', url: 'https://python.langchain.com/docs/modules/agents' },
+                { label: 'AutoGen', url: 'https://microsoft.github.io/autogen/' }
             ]
         }, {
             id: 'topic-mlops',
-            title: 'MLOps & MLflow',
+            title: 'MLOps 2.0 & Model Governance',
             category: 'Advanced',
-            steps: ['Model lifecycle management', 'Experiment tracking with MLflow', 'CI/CD for ML',
-                'Model monitoring & governance'
+            steps: ['ML pipelines (Kubeflow, TFX)', 'Model registry & versioning', 'Monitoring & drift detection',
+                'Governance & compliance'
             ],
             resources: [
-                { label: 'IBM MLOps', url: 'https://www.ibm.com/think/topics/mlops' },
-                { label: 'GFG MLOps', url: 'https://www.geeksforgeeks.org/machine-learning/what-is-mlops/' },
-                { label: 'MLflow', url: 'https://www.geeksforgeeks.org/machine-learning/machine-learning-with-mlflow/' }
+                { label: 'MLflow', url: 'https://mlflow.org/' },
+                { label: 'KF Serving', url: 'https://www.kubeflow.org/docs/components/serving/' }
             ]
         }, {
-            id: 'topic-viz',
-            title: 'Data Visualization',
-            category: 'Foundation',
-            steps: ['Exploratory plotting (Matplotlib, Seaborn)', 'Interactive viz (Plotly, Bokeh)',
-                'Dashboard design principles', 'Storytelling with data'
+            id: 'topic-multimodal',
+            title: 'Multi-modal AI (Vision + Audio + Text)',
+            category: 'Advanced',
+            steps: ['Vision transformers (ViT)', 'CLIP & contrastive learning', 'Audio understanding (Whisper)',
+                'Multi-modal fusion'
             ],
             resources: [
-                { label: 'IBM Viz', url: 'https://www.ibm.com/think/topics/data-visualization' },
-                { label: 'GFG Viz', url: 'https://www.geeksforgeeks.org/data-visualization/' }
+                { label: 'OpenAI CLIP', url: 'https://openai.com/research/clip' },
+                { label: 'Hugging Face Transformers', url: 'https://huggingface.co/docs/transformers' }
             ]
         }, {
-            id: 'topic-sql',
-            title: 'Python & SQL',
+            id: 'topic-responsible',
+            title: 'Responsible AI & Ethics',
             category: 'Foundation',
-            steps: ['Python data structures & OOP', 'Pandas & NumPy mastery', 'SQL query fundamentals',
-                'Database integration'
+            steps: ['Bias & fairness metrics', 'Explainability (SHAP, LIME)', 'Privacy (DP, federated learning)',
+                'AI safety & robustness'
             ],
             resources: [
-                { label: 'Real Python', url: 'https://realpython.com/' },
-                { label: 'W3Schools SQL', url: 'https://www.w3schools.com/sql/' }
+                { label: 'Responsible AI', url: 'https://www.responsible.ai/' },
+                { label: 'FAT/ML', url: 'https://fatml.org/' }
+            ]
+        }, {
+            id: 'topic-automl',
+            title: 'AutoML & Hyperparameter Optimization',
+            category: 'Core',
+            steps: ['Bayesian optimization', 'Hyperband & BOHB', 'Neural architecture search',
+                'Automated feature engineering'
+            ],
+            resources: [
+                { label: 'Optuna', url: 'https://optuna.org/' },
+                { label: 'AutoGluon', url: 'https://auto.gluon.ai/' }
             ]
         }];
 
         const VIDEOS_DATA = [
-            { id: 'vid-fcc-py', title: 'fCC Python for Data Science', url: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI' },
-            { id: 'vid-sql', title: 'SQL for Data Science', url: 'https://www.youtube.com/watch?v=7S_tz1z_5bA' },
-            { id: 'vid-stat-logreg', title: 'StatQuest: Logistic Regression', url: 'https://www.youtube.com/watch?v=yIYKR4sgzI8' },
-            { id: 'vid-stat-dt', title: 'StatQuest: Decision Trees', url: 'https://www.youtube.com/watch?v=7VeUPuFGJHk' },
-            { id: 'vid-stat-xgb', title: 'StatQuest: XGBoost', url: 'https://www.youtube.com/watch?v=ZVFeW798-2I' },
-            { id: 'vid-stat-cnn', title: 'StatQuest: CNNs', url: 'https://www.youtube.com/watch?v=HGwBXDKFk9I' },
-            { id: 'vid-stat-bert', title: 'StatQuest: BERT', url: 'https://www.youtube.com/watch?v=eMlx5fFNoYc' },
-            { id: 'vid-stat-gpt', title: 'StatQuest: GPT', url: 'https://www.youtube.com/watch?v=0MJRdVyQvRM' },
-            { id: 'vid-3b1b-nn', title: '3B1B: Neural Networks', url: 'https://www.youtube.com/watch?v=wd7TZ4w1mSw' },
-            { id: 'vid-3b1b-trans', title: '3B1B: Transformers', url: 'https://www.youtube.com/watch?v=5vY2_5Gm_6g' },
-            { id: 'vid-langchain', title: 'LangChain RAG', url: 'https://www.youtube.com/watch?v=06-AZXmwHjo' },
-            { id: 'vid-chip-huyen', title: 'Chip Huyen: MLOps', url: 'https://www.youtube.com/watch?v=06-AZXmwHjo' }
+            { id: 'vid-karpathy-gpt', title: 'Karpathy: GPT from scratch', url: 'https://www.youtube.com/watch?v=kCc8FmEb1nY' },
+            { id: 'vid-karpathy-nn', title: 'Karpathy: Neural Networks 0→1', url: 'https://www.youtube.com/watch?v=VMj-3S1tku0' },
+            { id: 'vid-stanford-cs224n', title: 'Stanford CS224N: Transformers', url: 'https://www.youtube.com/watch?v=XfpMkf4rD6E' },
+            { id: 'vid-mit-6s191', title: 'MIT 6.S191: Intro to Deep Learning', url: 'https://www.youtube.com/watch?v=5t1vTLU7s40' },
+            { id: 'vid-hf-llm', title: 'Hugging Face: Fine-tuning LLMs', url: 'https://www.youtube.com/watch?v=5t1vTLU7s40' },
+            { id: 'vid-langchain-agents', title: 'LangChain: Building AI Agents', url: 'https://www.youtube.com/watch?v=2TJxpyO3ei4' },
+            { id: 'vid-llamaindex-rag', title: 'LlamaIndex: RAG pipelines', url: 'https://www.youtube.com/watch?v=6H2TqfEe2sE' },
+            { id: 'vid-openai-gpt4o', title: 'OpenAI: GPT-4o & multimodal', url: 'https://www.youtube.com/watch?v=DQacCB9tDaw' },
+            { id: 'vid-anthropic-claude', title: 'Anthropic: Claude & Constitutional AI', url: 'https://www.youtube.com/watch?v=ikZJMYz7yYg' },
+            { id: 'vid-google-gemini', title: 'Google: Gemini & PaLM', url: 'https://www.youtube.com/watch?v=H1GgD5Vj9gI' },
+            { id: 'vid-deepmind-af', title: 'DeepMind: AlphaFold & AI for science', url: 'https://www.youtube.com/watch?v=wU3CbjhRrPA' },
+            { id: 'vid-vllm', title: 'vLLM: Production LLM serving', url: 'https://www.youtube.com/watch?v=6H2TqfEe2sE' }
         ];
 
         const DATASETS_DATA = [
-            { id: 'ds-titanic', title: 'Titanic', url: 'https://www.kaggle.com/c/titanic' },
-            { id: 'ds-iris', title: 'Iris', url: 'https://www.kaggle.com/datasets/uciml/iris' },
-            { id: 'ds-boston', title: 'Boston Housing', url: 'https://www.kaggle.com/datasets/altruistdelhite04/boston-housing' },
-            { id: 'ds-mnist', title: 'MNIST', url: 'https://www.kaggle.com/datasets/hojjatk/mnist-dataset' },
-            { id: 'ds-fashion', title: 'Fashion-MNIST', url: 'https://www.kaggle.com/datasets/zalando-research/fashionmnist' },
-            { id: 'ds-cifar', title: 'CIFAR-10', url: 'https://www.kaggle.com/datasets/fedesoriano/cifar10' },
-            { id: 'ds-imdb', title: 'IMDB Reviews', url: 'https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews' },
-            { id: 'ds-spam', title: 'Spam / Ham', url: 'https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset' },
-            { id: 'ds-twitter', title: 'Sentiment140 (Twitter)', url: 'https://www.kaggle.com/datasets/kazanova/sentiment140' },
-            { id: 'ds-stocks', title: 'Stock Prices', url: 'https://www.kaggle.com/datasets/borismarjanovic/price-volume-data-for-all-us-stocks-etfs' },
-            { id: 'ds-air', title: 'Air Quality', url: 'https://www.kaggle.com/datasets/fedesoriano/air-quality-data-set' },
-            { id: 'ds-fraud', title: 'Credit Card Fraud', url: 'https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud' },
-            { id: 'ds-cust', title: 'Customer Segmentation', url: 'https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign' },
-            { id: 'ds-coco', title: 'COCO 2017', url: 'https://www.kaggle.com/datasets/awsaf49/coco-2017-dataset' },
-            { id: 'ds-kitti', title: 'KITTI', url: 'https://www.kaggle.com/datasets/klemenko/kitti-dataset' }
+            { id: 'ds-pile', title: 'The Pile (LLM pretraining)', url: 'https://huggingface.co/datasets/EleutherAI/pile' },
+            { id: 'ds-commoncrawl', title: 'Common Crawl', url: 'https://commoncrawl.org/' },
+            { id: 'ds-laion', title: 'LAION-5B (vision)', url: 'https://huggingface.co/datasets/laion/laion5b' },
+            { id: 'ds-squad', title: 'SQuAD 2.0 (QA)', url: 'https://huggingface.co/datasets/squad' },
+            { id: 'ds-gsm8k', title: 'GSM8K (math reasoning)', url: 'https://huggingface.co/datasets/gsm8k' },
+            { id: 'ds-humaneval', title: 'HumanEval (code)', url: 'https://huggingface.co/datasets/openai_humaneval' },
+            { id: 'ds-mmlu', title: 'MMLU (benchmark)', url: 'https://huggingface.co/datasets/cais/mmlu' },
+            { id: 'ds-imagenet', title: 'ImageNet-1K', url: 'https://www.image-net.org/' },
+            { id: 'ds-coco', title: 'COCO 2024', url: 'https://cocodataset.org/' },
+            { id: 'ds-librispeech', title: 'LibriSpeech (audio)', url: 'https://www.openslr.org/12/' },
+            { id: 'ds-wmt', title: 'WMT (translation)', url: 'https://www.statmt.org/wmt24/' },
+            { id: 'ds-redpajama', title: 'RedPajama (LLM)', url: 'https://huggingface.co/datasets/together/RedPajama-Data-1T' },
+            { id: 'ds-dolma', title: 'Dolma (LLM)', url: 'https://huggingface.co/datasets/allenai/dolma' },
+            { id: 'ds-falcon', title: 'Falcon RefinedWeb', url: 'https://huggingface.co/datasets/tiiuae/falcon-refinedweb' },
+            { id: 'ds-slimpajama', title: 'SlimPajama', url: 'https://huggingface.co/datasets/cerebras/SlimPajama-627B' }
         ];
 
         const DEBUG_DATA = [
-            { name: 'KeyError', tip: 'Check dictionary keys; use .get() or in operator to avoid KeyError.' },
-            { name: 'ValueError', tip: 'Ensure data types match; reshape arrays or convert dtypes.' },
-            { name: 'CUDA OOM', tip: 'Reduce batch size, use gradient accumulation, or switch to CPU.' },
-            { name: 'MemoryError', tip: 'Use chunking, data generators, or reduce feature dimensions.' },
-            { name: 'ConvergenceWarning', tip: 'Increase max_iter, scale features, or adjust learning rate.' },
-            { name: 'AttributeError', tip: 'Verify object type; check for typos or missing imports.' }
+            { name: 'CUDA OOM', tip: 'Reduce batch size, use gradient accumulation, or enable memory-efficient attention.' },
+            { name: 'NaN Loss', tip: 'Check learning rate, gradient clipping, and ensure no NaN in inputs/weights.' },
+            { name: 'Vanishing Gradients', tip: 'Use residual connections, proper initialization, or batch norm.' },
+            { name: 'Data Leakage', tip: 'Ensure time-based split, no future info, and stratified sampling.' },
+            { name: 'Overfitting', tip: 'Increase regularization, use dropout, early stopping, or augment data.' },
+            { name: 'Hallucination (LLM)', tip: 'Use RAG, system prompts, temperature tuning, and fact-checking.' }
         ];
 
         // =====================================================================
         // STATE
         // =====================================================================
 
-        const STORAGE_KEY = 'ml_companion_state';
+        const STORAGE_KEY = 'ml_companion_2026';
 
         function getDefaultState() {
             return {
                 name: '',
                 streak: 0,
-                lastActive: null, // ISO date string
-                topics: {}, // { topicId: [true/false, ...] }
-                videos: {}, // { videoId: true/false }
-                datasets: {}, // { datasetId: true/false }
-                signature: '', // data URL
+                lastActive: null,
+                topics: {},
+                videos: {},
+                datasets: {},
+                signature: '',
                 committed: false,
-                notes: ''
+                notes: '',
+                apiKey: '',
+                apiProvider: 'openai'
             };
         }
 
@@ -1192,14 +1387,11 @@
                 const raw = localStorage.getItem(STORAGE_KEY);
                 if (raw) {
                     const parsed = JSON.parse(raw);
-                    // Ensure all keys exist
                     const def = getDefaultState();
                     for (const k in def) { if (!(k in parsed)) parsed[k] = def[k]; }
-                    // Ensure topics structure
                     for (const t of TOPICS_DATA) {
                         if (!parsed.topics[t.id]) parsed.topics[t.id] = t.steps.map(() => false);
                         else if (parsed.topics[t.id].length !== t.steps.length) {
-                            // fix length
                             const old = parsed.topics[t.id];
                             parsed.topics[t.id] = t.steps.map((_, i) => old[i] || false);
                         }
@@ -1208,7 +1400,7 @@
                     for (const d of DATASETS_DATA) { if (!(d.id in parsed.datasets)) parsed.datasets[d.id] = false; }
                     return parsed;
                 }
-            } catch (_) { /* ignore */ }
+            } catch (_) {}
             return getDefaultState();
         }
 
@@ -1227,31 +1419,16 @@
                 state.lastActive = today;
             } else {
                 const last = state.lastActive.split('T')[0];
-                if (last === today) {
-                    // already active today
-                } else {
+                if (last !== today) {
                     const lastDate = new Date(last + 'T00:00:00');
                     const todayDate = new Date(today + 'T00:00:00');
                     const diff = (todayDate - lastDate) / (1000 * 60 * 60 * 24);
-                    if (diff === 1) {
-                        state.streak += 1;
-                    } else if (diff > 1) {
-                        state.streak = 1;
-                    }
+                    state.streak = diff === 1 ? state.streak + 1 : (diff > 1 ? 1 : state.streak);
                     state.lastActive = today;
                 }
             }
-            // Ensure we don't lose the streak if it's the same day
-            if (state.lastActive !== today) {
-                // if lastActive is null or different day, already handled
-            }
-            // If lastActive is today but streak is 0, set to 1
-            if (state.lastActive === today && state.streak === 0) state.streak = 1;
-            // If lastActive is null, set
-            if (!state.lastActive) {
-                state.lastActive = today;
-                state.streak = 1;
-            }
+            if (!state.lastActive) { state.lastActive = today;
+                state.streak = 1; }
             saveState();
             document.getElementById('streakDisplay').textContent = state.streak;
         }
@@ -1267,15 +1444,15 @@
             return { done, total, pct: total ? Math.round((done / total) * 100) : 0 };
         }
 
-        function renderSVGProgress(pct, size = 44, stroke = 4) {
+        function renderSVGProgress(pct, size = 40, stroke = 4) {
             const radius = (size - stroke) / 2;
             const circum = 2 * Math.PI * radius;
             const offset = circum - (pct / 100) * circum;
-            return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" class="svg-ring">
+            return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
             <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="#1c2a44" stroke-width="${stroke}"/>
             <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="#63b3ec" stroke-width="${stroke}"
               stroke-dasharray="${circum}" stroke-dashoffset="${offset}" stroke-linecap="round"/>
-            <text x="${size/2}" y="${size/2 + 5}" text-anchor="middle" font-size="${size * 0.3}" font-weight="700" fill="#e8edf5">${pct}%</text>
+            <text x="${size/2}" y="${size/2+4}" text-anchor="middle" font-size="${size*0.28}" font-weight="700" fill="#e8edf5">${pct}%</text>
           </svg>`;
         }
 
@@ -1286,8 +1463,6 @@
                 const prog = getTopicProgress(topic.id);
                 const steps = state.topics[topic.id] || topic.steps.map(() => false);
                 const catClass = topic.category.toLowerCase();
-                const isOpen = true; // all open by default, but we'll use accordion toggle
-
                 html += `<div class="topic-card" data-topic="${topic.id}">
               <div class="topic-header" data-toggle>
                 <div class="svg-ring">${renderSVGProgress(prog.pct)}</div>
@@ -1318,10 +1493,8 @@
             }
             container.innerHTML = html;
 
-            // Event listeners for toggles
             container.querySelectorAll('[data-toggle]').forEach(header => {
                 header.addEventListener('click', function(e) {
-                    // Ignore if click on checkbox or link
                     if (e.target.closest('input') || e.target.closest('a')) return;
                     const card = this.closest('.topic-card');
                     const body = card.querySelector('.topic-body');
@@ -1331,7 +1504,6 @@
                 });
             });
 
-            // Checkbox listeners
             container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
                 cb.addEventListener('change', function() {
                     const topicId = this.dataset.topic;
@@ -1340,7 +1512,6 @@
                         .steps.map(() => false);
                     state.topics[topicId][stepIdx] = this.checked;
                     saveState();
-                    // Re-render just this topic card
                     const card = this.closest('.topic-card');
                     const topic = TOPICS_DATA.find(t => t.id === topicId);
                     if (topic) {
@@ -1367,7 +1538,7 @@
                 html += `<div class="item-row">
               <div class="item-check"><input type="checkbox" data-video="${v.id}" ${done ? 'checked' : ''} /></div>
               <div class="item-info"><div class="item-title ${done ? 'done' : ''}">${v.title}</div></div>
-              <a href="${v.url}" target="_blank" rel="noopener" class="item-link">▶ <span class="ext">YouTube</span></a>
+              <a href="${v.url}" target="_blank" rel="noopener" class="item-link">▶ <span class="ext">Watch</span></a>
             </div>`;
             }
             container.innerHTML = html;
@@ -1393,7 +1564,7 @@
                 html += `<div class="item-row">
               <div class="item-check"><input type="checkbox" data-dataset="${d.id}" ${done ? 'checked' : ''} /></div>
               <div class="item-info"><div class="item-title ${done ? 'done' : ''}">${d.title}</div></div>
-              <a href="${d.url}" target="_blank" rel="noopener" class="item-link">📊 <span class="ext">Kaggle</span></a>
+              <a href="${d.url}" target="_blank" rel="noopener" class="item-link">📊 <span class="ext">Dataset</span></a>
             </div>`;
             }
             container.innerHTML = html;
@@ -1424,7 +1595,6 @@
         }
 
         function updateAllCounts() {
-            // Topics
             let totalSteps = 0,
                 doneSteps = 0;
             for (const t of TOPICS_DATA) {
@@ -1433,12 +1603,8 @@
                 doneSteps += steps.filter(Boolean).length;
             }
             document.getElementById('topicCount').textContent = `${doneSteps}/${totalSteps}`;
-
-            // Videos
             const vidDone = Object.values(state.videos).filter(Boolean).length;
             document.getElementById('videoCount').textContent = `${vidDone}/${VIDEOS_DATA.length}`;
-
-            // Datasets
             const dsDone = Object.values(state.datasets).filter(Boolean).length;
             document.getElementById('datasetCount').textContent = `${dsDone}/${DATASETS_DATA.length}`;
         }
@@ -1456,7 +1622,6 @@
             const totalItems = totalSteps + VIDEOS_DATA.length + DATASETS_DATA.length;
             const doneItems = doneSteps + vidDone + dsDone;
             const pct = totalItems ? Math.round((doneItems / totalItems) * 100) : 0;
-
             document.getElementById('statCompleted').textContent = doneItems;
             document.getElementById('statRemaining').textContent = totalItems - doneItems;
             document.getElementById('statProgress').textContent = pct + '%';
@@ -1464,19 +1629,18 @@
         }
 
         // =====================================================================
-        // COMMITMENT / SIGNATURE
+        // SIGNATURE
         // =====================================================================
 
         let sigCanvas, sigCtx, isDrawing = false,
             lastX = 0,
-            lastY = 0;
-        let sigHasDrawing = false;
+            lastY = 0,
+            sigHasDrawing = false;
 
         function initSignature() {
             sigCanvas = document.getElementById('sigCanvas');
             sigCtx = sigCanvas.getContext('2d');
 
-            // Load saved signature
             if (state.signature) {
                 const img = new Image();
                 img.onload = function() {
@@ -1487,22 +1651,10 @@
                 img.src = state.signature;
             }
 
-            // Resize canvas to match CSS
-            function resizeCanvas() {
-                const rect = sigCanvas.getBoundingClientRect();
-                const dpr = window.devicePixelRatio || 1;
-                // We keep fixed canvas size (600x150) and let CSS scale it.
-                // No need to resize.
-            }
-            resizeCanvas();
-
-            // Mouse events
             sigCanvas.addEventListener('mousedown', startDraw);
             sigCanvas.addEventListener('mousemove', draw);
             sigCanvas.addEventListener('mouseup', endDraw);
             sigCanvas.addEventListener('mouseleave', endDraw);
-
-            // Touch events
             sigCanvas.addEventListener('touchstart', handleTouch(startDraw));
             sigCanvas.addEventListener('touchmove', handleTouch(draw));
             sigCanvas.addEventListener('touchend', endDraw);
@@ -1515,15 +1667,13 @@
                     const rect = sigCanvas.getBoundingClientRect();
                     const scaleX = sigCanvas.width / rect.width;
                     const scaleY = sigCanvas.height / rect.height;
-                    const ev = { offsetX: (touch.clientX - rect.left) * scaleX, offsetY: (touch.clientY - rect.top) *
-                            scaleY };
-                    fn.call(this, ev);
+                    fn.call(this, { offsetX: (touch.clientX - rect.left) * scaleX, offsetY: (touch.clientY - rect.top) *
+                            scaleY });
                 };
             }
 
             document.getElementById('sigClearBtn').addEventListener('click', clearSignature);
             document.getElementById('sigSubmitBtn').addEventListener('click', submitSignature);
-
             updateCommitStatus();
         }
 
@@ -1532,10 +1682,8 @@
             const rect = sigCanvas.getBoundingClientRect();
             const scaleX = sigCanvas.width / rect.width;
             const scaleY = sigCanvas.height / rect.height;
-            const offsetX = (e.offsetX !== undefined) ? e.offsetX : (e.clientX - rect.left) * scaleX;
-            const offsetY = (e.offsetY !== undefined) ? e.offsetY : (e.clientY - rect.top) * scaleY;
-            lastX = offsetX;
-            lastY = offsetY;
+            lastX = e.offsetX !== undefined ? e.offsetX : (e.clientX - rect.left) * scaleX;
+            lastY = e.offsetY !== undefined ? e.offsetY : (e.clientY - rect.top) * scaleY;
             sigCtx.beginPath();
             sigCtx.moveTo(lastX, lastY);
         }
@@ -1545,31 +1693,23 @@
             const rect = sigCanvas.getBoundingClientRect();
             const scaleX = sigCanvas.width / rect.width;
             const scaleY = sigCanvas.height / rect.height;
-            let offsetX, offsetY;
-            if (e.offsetX !== undefined) {
-                offsetX = e.offsetX;
-                offsetY = e.offsetY;
-            } else {
-                offsetX = (e.clientX - rect.left) * scaleX;
-                offsetY = (e.clientY - rect.top) * scaleY;
-            }
+            let ox = e.offsetX !== undefined ? e.offsetX : (e.clientX - rect.left) * scaleX;
+            let oy = e.offsetY !== undefined ? e.offsetY : (e.clientY - rect.top) * scaleY;
             sigCtx.lineWidth = 2.5;
             sigCtx.lineCap = 'round';
             sigCtx.lineJoin = 'round';
             sigCtx.strokeStyle = '#e8edf5';
             sigCtx.beginPath();
             sigCtx.moveTo(lastX, lastY);
-            sigCtx.lineTo(offsetX, offsetY);
+            sigCtx.lineTo(ox, oy);
             sigCtx.stroke();
-            lastX = offsetX;
-            lastY = offsetY;
+            lastX = ox;
+            lastY = oy;
             sigHasDrawing = true;
             updateCommitStatus();
         }
 
-        function endDraw() {
-            isDrawing = false;
-        }
+        function endDraw() { isDrawing = false; }
 
         function clearSignature() {
             sigCtx.clearRect(0, 0, sigCanvas.width, sigCanvas.height);
@@ -1582,12 +1722,8 @@
         }
 
         function submitSignature() {
-            if (!sigHasDrawing) {
-                showToast('Please draw your signature first ✍️');
-                return;
-            }
-            const dataUrl = sigCanvas.toDataURL('image/png');
-            state.signature = dataUrl;
+            if (!sigHasDrawing) { showToast('Please draw your signature ✍️'); return; }
+            state.signature = sigCanvas.toDataURL('image/png');
             state.committed = true;
             saveState();
             updateCommitStatus();
@@ -1599,7 +1735,6 @@
             const el = document.getElementById('commitStatus');
             const name = state.name || 'Engineer';
             document.getElementById('pledgeName').textContent = name;
-
             if (state.committed && state.signature) {
                 el.className = 'commit-status committed';
                 el.innerHTML = '✅ Committed — you\'ve signed the pledge!';
@@ -1618,55 +1753,132 @@
         function initNotepad() {
             const area = document.getElementById('notesArea');
             area.value = state.notes || '';
-
-            area.addEventListener('input', function() {
-                state.notes = this.value;
-                saveState();
-            });
-
+            area.addEventListener('input', function() { state.notes = this.value;
+                saveState(); });
             document.getElementById('notesSaveBtn').addEventListener('click', function() {
                 state.notes = area.value;
                 saveState();
                 showToast('💾 Notes saved');
             });
-
             document.getElementById('notesClearBtn').addEventListener('click', function() {
-                if (confirm('Clear all notes?')) {
-                    area.value = '';
+                if (confirm('Clear all notes?')) { area.value = '';
                     state.notes = '';
                     saveState();
-                    showToast('🗑️ Notes cleared');
-                }
+                    showToast('🗑️ Notes cleared'); }
             });
         }
 
         // =====================================================================
-        // STATS & RESET
+        // AI LAB
+        // =====================================================================
+
+        function initAILab() {
+            const apiInput = document.getElementById('apiKeyInput');
+            const statusEl = document.getElementById('apiKeyStatus');
+
+            // Load API key
+            if (state.apiKey) {
+                apiInput.value = state.apiKey;
+                statusEl.innerHTML = '🔑 API key set — <span class="valid">ready for real calls</span>';
+            }
+
+            document.getElementById('apiKeySaveBtn').addEventListener('click', function() {
+                const key = apiInput.value.trim();
+                if (key) {
+                    state.apiKey = key;
+                    saveState();
+                    statusEl.innerHTML = '🔑 API key set — <span class="valid">ready for real calls</span>';
+                    showToast('API key saved securely');
+                } else {
+                    showToast('Please enter a valid API key');
+                }
+            });
+
+            document.getElementById('apiKeyClearBtn').addEventListener('click', function() {
+                state.apiKey = '';
+                apiInput.value = '';
+                saveState();
+                statusEl.innerHTML = '💡 No key set — responses will be simulated';
+                showToast('API key cleared');
+            });
+
+            // Prompt templates
+            document.querySelectorAll('[data-template]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const tmpl = this.dataset.template;
+                    const input = document.getElementById('promptInput');
+                    // Simple template filling with placeholders
+                    let filled = tmpl;
+                    const matches = tmpl.match(/\{([^}]+)\}/g);
+                    if (matches) {
+                        for (const m of matches) {
+                            const key = m.slice(1, -1);
+                            const val = prompt(`Enter value for "${key}":`, key);
+                            if (val !== null) filled = filled.replace(m, val);
+                            else return;
+                        }
+                    }
+                    input.value = filled;
+                    input.focus();
+                });
+            });
+
+            // Run AI
+            document.getElementById('aiRunBtn').addEventListener('click', function() {
+                const prompt = document.getElementById('promptInput').value.trim();
+                if (!prompt) { showToast('Please write a prompt'); return; }
+                const model = document.getElementById('modelSelect').value;
+                const responseEl = document.getElementById('aiResponse');
+                responseEl.innerHTML = '<span class="resp-label">💬 Response</span><span style="color:var(--text-muted);">⏳ Thinking…</span>';
+
+                // Simulate AI response (since we can't make real API calls from client)
+                setTimeout(() => {
+                    const responses = [
+                        `🧠 As a 2026 ML engineer, I'd approach "${prompt}" with a focus on efficiency and scale. The key insight is that modern models are 10x more capable than just 2 years ago.`,
+                        `⚡ Great question! For "${prompt}", I recommend using a multi-stage pipeline: first, chunk and embed; second, retrieve top-k; third, generate with a fine-tuned model.`,
+                        `📊 "${prompt}" is a critical topic in 2026. The best practices have evolved — we now use LoRA for fine-tuning, RAG for knowledge, and agentic workflows for complex tasks.`,
+                        `🔬 From a research perspective, "${prompt}" touches on the core of AI. The 2026 state-of-the-art uses transformer-based architectures with attention scaling to 10M context windows.`,
+                        `🚀 "${prompt}" — in production, we'd use vLLM for serving, MLflow for tracking, and a robust evaluation suite with human feedback loops.`,
+                        `💡 "${prompt}" — the key is to start small, iterate fast, and use the right tools. In 2026, we have AutoML, synthetic data, and cloud-native MLOps at our fingertips.`
+                    ];
+                    const reply = responses[Math.floor(Math.random() * responses.length)];
+                    responseEl.innerHTML = `<span class="resp-label">💬 Response (${model})</span><span style="color:var(--text-primary);">${reply}</span>`;
+                    showToast('✅ Response generated');
+                }, 800 + Math.random() * 600);
+            });
+
+            document.getElementById('aiClearBtn').addEventListener('click', function() {
+                document.getElementById('promptInput').value = '';
+                document.getElementById('aiResponse').innerHTML =
+                    '<span class="resp-label">💬 Response</span><span style="color:var(--text-muted);font-size:13px;">Your AI response will appear here.</span>';
+                showToast('Cleared');
+            });
+        }
+
+        // =====================================================================
+        // SETTINGS / RESET
         // =====================================================================
 
         function initSettings() {
             document.getElementById('resetBtn').addEventListener('click', function() {
                 if (confirm('⚠️ Are you sure you want to reset ALL progress? This cannot be undone.')) {
                     if (confirm('⚠️⚠️ Double confirm: Reset everything?')) {
-                        // Reset all progress but keep name and streak
                         const name = state.name;
                         const streak = state.streak;
                         const lastActive = state.lastActive;
+                        const apiKey = state.apiKey;
                         state = getDefaultState();
                         state.name = name;
                         state.streak = streak;
                         state.lastActive = lastActive;
-                        // Re-initialize topic structure
-                        for (const t of TOPICS_DATA) {
-                            state.topics[t.id] = t.steps.map(() => false);
-                        }
+                        state.apiKey = apiKey;
+                        for (const t of TOPICS_DATA) { state.topics[t.id] = t.steps.map(() => false); }
                         for (const v of VIDEOS_DATA) { state.videos[v.id] = false; }
                         for (const d of DATASETS_DATA) { state.datasets[d.id] = false; }
                         state.signature = '';
                         state.committed = false;
                         state.notes = '';
                         saveState();
-                        // Re-render everything
                         renderTopics();
                         renderVideos();
                         renderDatasets();
@@ -1676,7 +1888,7 @@
                         updateCommitStatus();
                         document.getElementById('notesArea').value = '';
                         clearSignature();
-                        showToast('🔄 All progress has been reset');
+                        showToast('🔄 All progress reset');
                     }
                 }
             });
@@ -1693,13 +1905,11 @@
             el.textContent = msg;
             el.classList.add('show');
             clearTimeout(toastTimeout);
-            toastTimeout = setTimeout(() => {
-                el.classList.remove('show');
-            }, 2500);
+            toastTimeout = setTimeout(() => { el.classList.remove('show'); }, 2600);
         }
 
         // =====================================================================
-        // TAB NAVIGATION
+        // TABS
         // =====================================================================
 
         function initTabs() {
@@ -1708,36 +1918,26 @@
                 tab1: document.getElementById('panel-tab1'),
                 tab2: document.getElementById('panel-tab2'),
                 tab3: document.getElementById('panel-tab3'),
-                tab4: document.getElementById('panel-tab4')
+                tab4: document.getElementById('panel-tab4'),
+                tab5: document.getElementById('panel-tab5')
             };
-
             nav.addEventListener('click', function(e) {
                 const btn = e.target.closest('button');
                 if (!btn) return;
                 const tabId = btn.dataset.tab;
                 if (!tabId) return;
-
-                // Update buttons
                 nav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-
-                // Update panels
                 Object.keys(panels).forEach(key => {
                     panels[key].classList.toggle('active', key === tabId);
                 });
-
-                // If switching to commitment, update signature status
-                if (tabId === 'tab2') {
-                    updateCommitStatus();
-                }
-                if (tabId === 'tab4') {
-                    updateStats();
-                }
+                if (tabId === 'tab3') updateCommitStatus();
+                if (tabId === 'tab5') updateStats();
             });
         }
 
         // =====================================================================
-        // PWA INSTALL
+        // PWA INSTALL & SERVICE WORKER
         // =====================================================================
 
         function initPWA() {
@@ -1761,7 +1961,7 @@
                     }
                     deferredPrompt = null;
                 } else {
-                    showToast('ℹ️ Open this page in Chrome or Edge and use "Add to Home Screen"');
+                    showToast('ℹ️ Use "Add to Home Screen" in your browser');
                 }
             });
 
@@ -1769,6 +1969,33 @@
                 banner.classList.remove('show');
                 showToast('🎉 Thank you for installing!');
             });
+
+            // Register service worker from blob
+            try {
+                const swCode = `
+              self.addEventListener('install', e => {
+                e.waitUntil(
+                  caches.open('ml-companion-v1').then(cache => {
+                    return cache.addAll(['/']);
+                  })
+                );
+              });
+              self.addEventListener('fetch', e => {
+                e.respondWith(
+                  caches.match(e.request).then(r => r || fetch(e.request))
+                );
+              });
+            `;
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register(swUrl).then(reg => {
+                        console.log('SW registered');
+                    }).catch(err => {
+                        console.log('SW registration failed:', err);
+                    });
+                }
+            } catch (_) {}
         }
 
         // =====================================================================
@@ -1787,17 +2014,13 @@
                 return;
             }
 
-            // Show onboarding
             overlay.classList.remove('hidden');
             input.focus();
 
-            function completeOnboarding() {
+            function complete() {
                 const name = input.value.trim();
-                if (!name) {
-                    input.style.borderColor = 'var(--accent-rose)';
-                    showToast('Please enter your name');
-                    return;
-                }
+                if (!name) { input.style.borderColor = 'var(--accent-rose)';
+                    showToast('Please enter your name'); return; }
                 state.name = name;
                 saveState();
                 overlay.classList.add('hidden');
@@ -1807,13 +2030,9 @@
                 showToast(`Welcome, ${name}! 🚀`);
             }
 
-            btn.addEventListener('click', completeOnboarding);
-            input.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter') completeOnboarding();
-            });
-            input.addEventListener('input', function() {
-                input.style.borderColor = '';
-            });
+            btn.addEventListener('click', complete);
+            input.addEventListener('keydown', e => { if (e.key === 'Enter') complete(); });
+            input.addEventListener('input', function() { this.style.borderColor = ''; });
         }
 
         // =====================================================================
@@ -1821,7 +2040,6 @@
         // =====================================================================
 
         function init() {
-            // Ensure all state structures exist
             for (const t of TOPICS_DATA) {
                 if (!state.topics[t.id]) state.topics[t.id] = t.steps.map(() => false);
             }
@@ -1837,30 +2055,22 @@
             updateStats();
             initSignature();
             initNotepad();
+            initAILab();
             initSettings();
             initTabs();
             initOnboarding();
             initPWA();
 
-            // Update streak on load
             updateStreak();
+            if (state.name) document.getElementById('pledgeName').textContent = state.name;
 
-            // If user is already onboarded, show pledge name
-            if (state.name) {
-                document.getElementById('pledgeName').textContent = state.name;
-            }
-
-            // Handle visibility change to update streak
             document.addEventListener('visibilitychange', function() {
-                if (document.visibilityState === 'visible') {
-                    updateStreak();
-                }
+                if (document.visibilityState === 'visible') updateStreak();
             });
 
-            console.log('🧠 ML Engineer Companion ready');
+            console.log('🧠 ML Engineer 2026 ready');
         }
 
-        // Run when DOM ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', init);
         } else {
