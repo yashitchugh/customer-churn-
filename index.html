@@ -1478,7 +1478,7 @@
                 <h1>ML Engineer 2026</h1>
                 <p class="sub">Your personalized AI learning journey starts here.</p>
                 <label for="nameInput">What's your name?</label>
-                <input type="text" id="nameInput" placeholder="e.g. Alex" autocomplete="off" />
+                <input type="text" id="nameInput" placeholder="e.g. Alex" autocomplete="off" value="" />
                 <label>Choose your starting level</label>
                 <div class="level-picker" id="onboardLevelPicker">
                     <button data-level="beginner" class="active"><span class="emoji">🌱</span> Beginner</button>
@@ -2684,6 +2684,8 @@
             const picker = document.getElementById('onboardLevelPicker');
 
             let selectedLevel = 'beginner';
+
+            // Level picker click – toggle active class
             picker.querySelectorAll('button').forEach(b => {
                 b.addEventListener('click', function() {
                     picker.querySelectorAll('button').forEach(x => x.classList.remove('active'));
@@ -2692,12 +2694,14 @@
                 });
             });
 
+            // If user already has a name, hide onboarding and render
             if (state.name && state.name.trim().length > 0) {
                 overlay.classList.add('hidden');
                 document.getElementById('userNameDisplay').textContent = state.name;
                 document.getElementById('pledgeName').textContent = state.name;
                 if (!state.level) state.level = 'beginner';
                 saveState();
+                // Sync level selector
                 document.querySelectorAll('#levelSelector button').forEach(b => {
                     b.classList.toggle('active', b.dataset.level === state.level);
                 });
@@ -2705,9 +2709,11 @@
                 return;
             }
 
+            // Show onboarding
             overlay.classList.remove('hidden');
             input.focus();
 
+            // Complete function
             function complete() {
                 const name = input.value.trim();
                 if (!name) {
@@ -2721,6 +2727,7 @@
                 overlay.classList.add('hidden');
                 document.getElementById('userNameDisplay').textContent = name;
                 document.getElementById('pledgeName').textContent = name;
+                // Sync level selector
                 document.querySelectorAll('#levelSelector button').forEach(b => {
                     b.classList.toggle('active', b.dataset.level === state.level);
                 });
@@ -2729,15 +2736,16 @@
                 showToast(`Welcome, ${name}! 🚀 Let's learn ${selectedLevel} level`);
             }
 
-            // Replace button to avoid duplicate listeners
-            const newBtn = btn.cloneNode(true);
-            btn.parentNode.replaceChild(newBtn, btn);
-            newBtn.addEventListener('click', complete);
-
+            // Attach click listener to button
+            btn.addEventListener('click', complete);
+            // Enter key on input
             input.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') complete();
             });
-            input.addEventListener('input', function() { this.style.borderColor = ''; });
+            // Reset border on input
+            input.addEventListener('input', function() {
+                this.style.borderColor = '';
+            });
         }
 
         // =====================================================================
@@ -2781,6 +2789,7 @@
         // =====================================================================
 
         function init() {
+            // Ensure state structure
             for (const t of TOPICS_DATA) {
                 if (!state.topics[t.id]) state.topics[t.id] = t.steps.map(() => false);
             }
@@ -2791,6 +2800,7 @@
             if (!state.activity) state.activity = {};
             saveState();
 
+            // Initialize all components
             initSignature();
             initNotepad();
             initSettings();
@@ -2802,6 +2812,7 @@
             updateStreak();
             renderAll();
 
+            // Visibility change – refresh stats
             document.addEventListener('visibilitychange', function() {
                 if (document.visibilityState === 'visible') {
                     updateStreak();
@@ -2811,7 +2822,7 @@
                 }
             });
 
-            console.log('🧠 ML Engineer 2026 — complete with heatmap & fixed onboarding');
+            console.log('🧠 ML Engineer 2026 — fully functional, onboarding fixed');
         }
 
         if (document.readyState === 'loading') {
