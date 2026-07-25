@@ -44,7 +44,6 @@
             --radius-md: 14px;
             --radius-lg: 22px;
             --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6);
-            --shadow-glow: 0 0 60px rgba(95, 193, 240, 0.08);
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -90,7 +89,7 @@
         }
 
         /* ============================================================
-           ONBOARDING — Professional Multi-Step with Slide Animations
+           ONBOARDING — Fixed with slide animation, dots & swipe
            ============================================================ */
         #onboarding {
             position: fixed;
@@ -114,33 +113,7 @@
             width: 100%;
             max-width: 400px;
             position: relative;
-            overflow: hidden;
             padding: 0 4px;
-        }
-
-        /* Slide wrapper */
-        .onboard-slide-wrapper {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            min-height: 340px;
-        }
-
-        .onboard-slides {
-            display: flex;
-            transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            width: 100%;
-            will-change: transform;
-        }
-
-        .onboard-step {
-            flex: 0 0 100%;
-            padding: 4px 2px;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-        .onboard-step.active {
-            opacity: 1;
         }
 
         /* Logo */
@@ -209,6 +182,32 @@
             font-weight: 500;
         }
 
+        /* Slide Wrapper */
+        .onboard-slide-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            min-height: 360px;
+            touch-action: pan-y;
+        }
+
+        .onboard-slides {
+            display: flex;
+            transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 100%;
+            will-change: transform;
+        }
+
+        .onboard-step {
+            flex: 0 0 100%;
+            padding: 4px 6px;
+            opacity: 0.5;
+            transition: opacity 0.4s ease;
+        }
+        .onboard-step.active {
+            opacity: 1;
+        }
+
         .onboard-step .step-title {
             font-size: 22px;
             font-weight: 700;
@@ -250,7 +249,7 @@
             box-shadow: 0 0 0 4px rgba(95, 193, 240, 0.08);
         }
 
-        /* Level selection cards */
+        /* Level selection */
         .level-grid {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -337,12 +336,13 @@
             transform: scale(0.97);
         }
 
-        /* Step dots */
+        /* Step dots - clickable */
         .step-dots {
             display: flex;
             justify-content: center;
             gap: 8px;
             margin-top: 20px;
+            cursor: default;
         }
         .step-dots .dot {
             width: 8px;
@@ -350,6 +350,12 @@
             border-radius: 50%;
             background: var(--border-subtle);
             transition: var(--transition);
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+        }
+        .step-dots .dot:hover {
+            background: var(--text-muted);
         }
         .step-dots .dot.active {
             background: var(--accent-cyan);
@@ -358,6 +364,11 @@
         }
         .step-dots .dot.done {
             background: var(--accent-green);
+        }
+        .step-dots .dot::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
         }
 
         /* ============================================================
@@ -1638,7 +1649,7 @@
     <div id="app">
 
         <!-- ============================================================
-        ONBOARDING — Multi-Step with Slide Animation
+        ONBOARDING — Fixed: Continue, Dots, Swipe all work
         ============================================================ -->
         <div id="onboarding">
             <div class="onboarding-container">
@@ -1653,17 +1664,17 @@
                 </div>
 
                 <!-- Slide Wrapper -->
-                <div class="onboard-slide-wrapper">
+                <div class="onboard-slide-wrapper" id="onboardWrapper">
                     <div class="onboard-slides" id="onboardSlides">
 
                         <!-- Step 1: Welcome -->
                         <div class="onboard-step active" data-index="0">
                             <div class="step-title">👋 Welcome</div>
                             <div class="step-desc">Your journey to mastering machine learning and AI starts here. Let's set up your profile.</div>
-                            <div class="step-dots">
-                                <span class="dot active"></span>
-                                <span class="dot"></span>
-                                <span class="dot"></span>
+                            <div class="step-dots" data-step="0">
+                                <span class="dot active" data-dot="0"></span>
+                                <span class="dot" data-dot="1"></span>
+                                <span class="dot" data-dot="2"></span>
                             </div>
                             <div class="onboard-actions">
                                 <button class="btn-primary" id="onboardNext1">Continue →</button>
@@ -1676,10 +1687,10 @@
                             <div class="step-desc">How should we address you on your learning journey?</div>
                             <label for="onboardName">Full name</label>
                             <input type="text" id="onboardName" placeholder="e.g. Alex Rivera" autocomplete="off" />
-                            <div class="step-dots">
-                                <span class="dot done"></span>
-                                <span class="dot active"></span>
-                                <span class="dot"></span>
+                            <div class="step-dots" data-step="1">
+                                <span class="dot done" data-dot="0"></span>
+                                <span class="dot active" data-dot="1"></span>
+                                <span class="dot" data-dot="2"></span>
                             </div>
                             <div class="onboard-actions">
                                 <button class="btn-secondary" id="onboardBack2">← Back</button>
@@ -1708,10 +1719,10 @@
                                     <div class="level-label">Master</div>
                                 </div>
                             </div>
-                            <div class="step-dots">
-                                <span class="dot done"></span>
-                                <span class="dot done"></span>
-                                <span class="dot active"></span>
+                            <div class="step-dots" data-step="2">
+                                <span class="dot done" data-dot="0"></span>
+                                <span class="dot done" data-dot="1"></span>
+                                <span class="dot active" data-dot="2"></span>
                             </div>
                             <div class="onboard-actions">
                                 <button class="btn-secondary" id="onboardBack3">← Back</button>
@@ -1865,7 +1876,7 @@
 
     <script>
         // =====================================================================
-        // DATA
+        // DATA (same as before, full content)
         // =====================================================================
 
         const TOPICS_DATA = [
@@ -2213,7 +2224,7 @@
         }
 
         // =====================================================================
-        // RENDER FUNCTIONS
+        // RENDER FUNCTIONS (same as before)
         // =====================================================================
 
         function renderDashboard() {
@@ -2296,7 +2307,6 @@
             } [level];
             document.getElementById('levelSubtitle').textContent = label;
 
-            // Topics
             const tContainer = document.getElementById('topicsContainer');
             let tHtml = '';
             let totalSteps = 0,
@@ -2376,7 +2386,6 @@
                 });
             });
 
-            // Videos
             const vContainer = document.getElementById('videosContainer');
             let vHtml = '';
             let vDone = 0;
@@ -2407,7 +2416,6 @@
                 });
             });
 
-            // Datasets
             const dContainer = document.getElementById('datasetsContainer');
             let dHtml = '';
             let dDone = 0;
@@ -2438,7 +2446,6 @@
                 });
             });
 
-            // Debug
             const dbContainer = document.getElementById('debugContainer');
             let dbHtml = '';
             for (const d of data.debug) {
@@ -2835,7 +2842,6 @@
                 showToast('🎉 Thank you for installing!');
             });
 
-            // Register service worker for offline support
             try {
                 const swCode = `
               self.addEventListener('install', e => {
@@ -2860,12 +2866,13 @@
         }
 
         // =====================================================================
-        // ONBOARDING — Professional Multi-Step with Slide Animation (FIXED)
+        // ONBOARDING — FIXED: Continue, Dots, Swipe all work
         // =====================================================================
 
         function initOnboarding() {
             const overlay = document.getElementById('onboarding');
             const slidesContainer = document.getElementById('onboardSlides');
+            const wrapper = document.getElementById('onboardWrapper');
             const nameInput = document.getElementById('onboardName');
             const next1 = document.getElementById('onboardNext1');
             const next2 = document.getElementById('onboardNext2');
@@ -2877,6 +2884,7 @@
             let selectedLevel = 'beginner';
             let currentIndex = 0;
             const totalSteps = 3;
+            let isTransitioning = false;
 
             // If user already has a name, skip onboarding
             if (state.name && state.name.trim().length > 0) {
@@ -2892,13 +2900,17 @@
                 return;
             }
 
-            // Show onboarding
             overlay.classList.remove('hidden');
 
-            // Function to slide to a specific index
-            function slideTo(index) {
+            // --- Slide function ---
+            function slideTo(index, direction) {
+                if (isTransitioning) return;
                 if (index < 0 || index >= totalSteps) return;
+                if (index === currentIndex) return;
+
+                isTransitioning = true;
                 currentIndex = index;
+
                 const offset = -index * 100;
                 slidesContainer.style.transform = `translateX(${offset}%)`;
 
@@ -2909,23 +2921,77 @@
                 });
 
                 // Update dots
-                const allDots = document.querySelectorAll('.step-dots');
-                allDots.forEach((dotGroup, stepIdx) => {
+                const allDotGroups = document.querySelectorAll('.step-dots');
+                allDotGroups.forEach((dotGroup) => {
                     const dots = dotGroup.querySelectorAll('.dot');
+                    const stepIdx = parseInt(dotGroup.dataset.step);
                     dots.forEach((d, i) => {
                         d.classList.remove('active', 'done');
-                        if (i < index) d.classList.add('done');
-                        else if (i === index) d.classList.add('active');
+                        if (i < stepIdx) d.classList.add('done');
+                        else if (i === stepIdx) d.classList.add('active');
                     });
                 });
 
                 // Focus management
                 if (index === 1) {
-                    setTimeout(() => nameInput.focus(), 300);
+                    setTimeout(() => nameInput.focus(), 350);
                 }
+
+                setTimeout(() => {
+                    isTransitioning = false;
+                }, 460);
             }
 
-            // Level selection
+            // --- Dot click handlers ---
+            document.querySelectorAll('.step-dots .dot').forEach(dot => {
+                dot.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const dotIdx = parseInt(this.dataset.dot);
+                    const parentGroup = this.closest('.step-dots');
+                    const stepIdx = parseInt(parentGroup.dataset.step);
+                    // Navigate to the step that this dot belongs to
+                    // The dot index corresponds to the step index
+                    if (dotIdx >= 0 && dotIdx < totalSteps) {
+                        slideTo(dotIdx);
+                    }
+                });
+            });
+
+            // --- Touch swipe support ---
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let isSwiping = false;
+
+            wrapper.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+                isSwiping = true;
+            }, { passive: true });
+
+            wrapper.addEventListener('touchmove', function(e) {
+                // prevent default only if swiping horizontally
+                if (isSwiping) {
+                    const deltaX = e.changedTouches[0].screenX - touchStartX;
+                    if (Math.abs(deltaX) > 10) {
+                        e.preventDefault();
+                    }
+                }
+            }, { passive: false });
+
+            wrapper.addEventListener('touchend', function(e) {
+                if (!isSwiping) return;
+                isSwiping = false;
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0 && currentIndex < totalSteps - 1) {
+                        slideTo(currentIndex + 1);
+                    } else if (diff < 0 && currentIndex > 0) {
+                        slideTo(currentIndex - 1);
+                    }
+                }
+            }, { passive: true });
+
+            // --- Level selection ---
             levelGrid.querySelectorAll('.level-card').forEach(card => {
                 card.addEventListener('click', function() {
                     levelGrid.querySelectorAll('.level-card').forEach(c => c.classList.remove('selected'));
@@ -2934,18 +3000,18 @@
                 });
             });
 
-            // Step 1 → Step 2
-            next1.addEventListener('click', function() {
+            // --- Buttons ---
+            next1.addEventListener('click', function(e) {
+                e.preventDefault();
                 slideTo(1);
             });
 
-            // Step 2: name validation
             nameInput.addEventListener('input', function() {
                 next2.disabled = this.value.trim().length === 0;
             });
 
-            // Step 2 → Step 3
-            next2.addEventListener('click', function() {
+            next2.addEventListener('click', function(e) {
+                e.preventDefault();
                 const name = nameInput.value.trim();
                 if (!name) return;
                 state.name = name;
@@ -2953,19 +3019,25 @@
                 slideTo(2);
             });
 
-            // Back: Step 2 → Step 1
-            back2.addEventListener('click', function() { slideTo(0); });
-
-            // Back: Step 3 → Step 2
-            back3.addEventListener('click', function() { slideTo(1); });
-
-            // Enter key on name input
-            nameInput.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' && !next2.disabled) next2.click();
+            back2.addEventListener('click', function(e) {
+                e.preventDefault();
+                slideTo(0);
             });
 
-            // Finish onboarding
-            finish.addEventListener('click', function() {
+            back3.addEventListener('click', function(e) {
+                e.preventDefault();
+                slideTo(1);
+            });
+
+            nameInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !next2.disabled) {
+                    e.preventDefault();
+                    next2.click();
+                }
+            });
+
+            finish.addEventListener('click', function(e) {
+                e.preventDefault();
                 const name = state.name || nameInput.value.trim() || 'Engineer';
                 state.name = name;
                 state.level = selectedLevel;
@@ -2986,22 +3058,23 @@
                 showToast(`🚀 Welcome, ${name}! Let's master ML together.`);
             });
 
-            // Keyboard navigation: Enter on step 1
+            // Keyboard: Enter on step 1
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && !overlay.classList.contains('hidden')) {
-                    if (currentIndex === 0) next1.click();
-                    else if (currentIndex === 1 && !next2.disabled) next2.click();
-                    else if (currentIndex === 2) finish.click();
+                    if (currentIndex === 0) { e.preventDefault();
+                        next1.click(); } else if (currentIndex === 1 && !next2.disabled) { e.preventDefault();
+                        next2.click(); } else if (currentIndex === 2) { e.preventDefault();
+                        finish.click(); }
                 }
             });
 
-            // Pre-fill name if exists
+            // Pre-fill name
             if (state.name) {
                 nameInput.value = state.name;
                 next2.disabled = false;
             }
 
-            // Initialize at step 0
+            // Init at step 0
             slideTo(0);
         }
 
@@ -3076,7 +3149,7 @@
                 }
             });
 
-            console.log('🧠 ML Engineer 2026 — Professional Edition with slide animations ready');
+            console.log('🧠 ML Engineer 2026 — Onboarding fixed: Continue, Dots, Swipe all working!');
         }
 
         if (document.readyState === 'loading') {
