@@ -1779,7 +1779,7 @@
         <div id="page-home" class="page active">
             <div class="home-header">
                 <div>
-                    <div class="home-greeting" id="greeting">Good Morning, <strong id="userName">AI Engineer</strong></div>
+                    <div class="home-greeting" id="greeting">Good Morning, <strong id="userName">Engineer</strong></div>
                 </div>
                 <div class="level-badge" id="levelBadge">
                     <span class="lb-icon">🚀</span>
@@ -1930,7 +1930,7 @@
             <div class="profile-header">
                 <div class="profile-avatar" id="profileAvatar">AI</div>
                 <div>
-                    <div class="profile-name" id="profileName">AI Engineer</div>
+                    <div class="profile-name" id="profileName">Engineer</div>
                     <div class="profile-level" id="profileLevel">Level 1 · AI Student</div>
                 </div>
             </div>
@@ -2011,7 +2011,7 @@
             <div id="pledgeViewContent">
                 <div style="padding:16px; background:var(--bg-glass); border-radius:var(--radius-md); border-left:3px solid var(--accent); margin-bottom:16px;">
                     <p style="color:var(--text-secondary); font-size:15px; line-height:1.8; font-style:italic;">
-                        "I promise that I will study consistently, complete my learning journey, and become the best AI Engineer I can be."
+                        "I promise that I will study consistently, complete my learning journey, and become the best Engineer I can be."
                     </p>
                 </div>
                 <div id="pledgeSignatureDisplay" style="text-align:center; padding:12px; background:rgba(0,0,0,0.2); border-radius:var(--radius-sm); min-height:80px; display:flex; align-items:center; justify-content:center; flex-direction:column;">
@@ -2062,7 +2062,7 @@
             <div class="onboarding-slide" data-index="2">
                 <div class="onboarding-icon">🔥</div>
                 <h2>Stay Consistent</h2>
-                <p>Daily missions, streaks, and a progress heatmap keep you motivated. Every day is a step toward becoming an AI Engineer.</p>
+                <p>Daily missions, streaks, and a progress heatmap keep you motivated. Every day is a step toward becoming an Engineer.</p>
             </div>
         </div>
         <div class="onboarding-dots" id="onboardingDots">
@@ -2079,10 +2079,10 @@
     <!-- ---------- PLEDGE (Signing) ---------- -->
     <div id="pledge">
         <div class="pledge-card glass-card">
-            <h2>📜 The AI Engineer Pledge</h2>
+            <h2>📜 The Engineer Pledge</h2>
             <p style="color:var(--text-secondary); font-size:14px; margin-top:4px;">Sign with your finger to commit.</p>
             <div class="pledge-text">
-                "I promise that I will study consistently, complete my learning journey, and become the best AI Engineer I can be."
+                "I promise that I will study consistently, complete my learning journey, and become the best Engineer I can be."
             </div>
             <div class="pledge-canvas-wrap">
                 <canvas id="signatureCanvas" height="120"></canvas>
@@ -2435,7 +2435,7 @@
 
         // ---------- State ----------
         const state = {
-            user: { name: 'AI Engineer', level: 0, xp: 0, streak: 0, lastActive: null, pledgeSigned: false,
+            user: { name: 'Engineer', level: 0, xp: 0, streak: 0, lastActive: null, pledgeSigned: false,
                 pledgeSignature: null, pledgeDate: null },
             topics: [],
             notes: [],
@@ -2539,7 +2539,7 @@
                 state.progress = progress.reduce((acc, p) => { acc[p.date] = p; return acc; }, {});
                 const bookmarks = await getAllData('bookmarks');
                 state.bookmarks = bookmarks.map(b => b.id);
-                const name = lsGet('userName', 'AI Engineer');
+                const name = lsGet('userName', 'Engineer');
                 if (name) state.user.name = name;
                 const pledgeSig = lsGet('pledgeSignature', null);
                 if (pledgeSig) {
@@ -3471,7 +3471,7 @@
                         <div style="margin-top:12px; padding:14px; background:var(--bg-glass); border-radius:var(--radius-md); border-left:3px solid var(--accent);">
                             <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">
                                 <em>"This app was born from a simple belief: <strong>everyone deserves a clear path to mastery</strong>. 
-                                We saw too many aspiring AI engineers get lost in the noise — endless tutorials, scattered resources, no sense of progress. 
+                                We saw too many aspiring Engineers get lost in the noise — endless tutorials, scattered resources, no sense of progress. 
                                 So we built a <strong>career operating system</strong> that organizes the chaos, celebrates every small win, 
                                 and keeps you moving forward — even when motivation fades."</em>
                             </p>
