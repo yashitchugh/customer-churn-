@@ -15,7 +15,7 @@
 
     <style>
         /* ============================================================
-           ML Engineer OS — Complete Design System v2.0
+           ML Engineer OS — Complete Design System v2.1
            Premium · Dark · Glassmorphism · MD3 · Animated
            ============================================================ */
 
@@ -744,7 +744,7 @@
             flex: 1;
         }
 
-        /* ---------- HOME PAGE (Redesigned) ---------- */
+        /* ---------- HOME PAGE ---------- */
         .home-header {
             padding: 16px 0 8px;
             display: flex;
@@ -778,7 +778,6 @@
             font-size: 16px;
         }
 
-        /* Progress Ring */
         .progress-ring-wrap {
             display: flex;
             align-items: center;
@@ -853,7 +852,6 @@
             letter-spacing: 0.04em;
         }
 
-        /* Today's Focus */
         .focus-card {
             margin-top: 16px;
             padding: 18px 20px;
@@ -920,7 +918,6 @@
             background: rgba(255, 255, 255, 0.9);
         }
 
-        /* Quick Stats Row */
         .quick-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -948,7 +945,6 @@
             letter-spacing: 0.04em;
         }
 
-        /* Learning Path Preview (horizontal scroll) */
         .path-preview {
             margin-top: 16px;
         }
@@ -1020,7 +1016,6 @@
             background: var(--accent-dim);
         }
 
-        /* Quote & Fact */
         .daily-fact {
             margin-top: 16px;
             padding: 14px 18px;
@@ -1035,7 +1030,7 @@
             color: var(--text-primary);
         }
 
-        /* ---------- LEARN PAGE (Path view) ---------- */
+        /* ---------- LEARN PAGE ---------- */
         .learn-header {
             padding: 16px 0 8px;
             display: flex;
@@ -1045,6 +1040,7 @@
         .learn-header h1 {
             font-size: 22px;
         }
+
         .search-input-wrap {
             position: relative;
             margin: 8px 0 12px;
@@ -1078,13 +1074,7 @@
             color: var(--text-muted);
         }
 
-        .path-list {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            padding-bottom: 12px;
-        }
-        .path-list .path-category {
+        #pathListContainer .path-category {
             font-size: 12px;
             font-weight: 600;
             color: var(--text-muted);
@@ -1093,7 +1083,8 @@
             padding: 12px 0 4px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
-        .path-list .topic-row {
+
+        #pathListContainer .topic-row {
             display: flex;
             align-items: center;
             gap: 14px;
@@ -1103,43 +1094,44 @@
             border: 1px solid var(--bg-glass-border);
             cursor: pointer;
             transition: all var(--transition-fast);
+            margin-bottom: 6px;
         }
-        .path-list .topic-row:hover {
+        #pathListContainer .topic-row:hover {
             background: var(--bg-card-hover);
             transform: translateX(4px);
         }
-        .path-list .topic-row:active {
+        #pathListContainer .topic-row:active {
             transform: scale(0.98);
         }
-        .path-list .topic-row .tr-emoji {
+        #pathListContainer .topic-row .tr-emoji {
             font-size: 22px;
             width: 36px;
             text-align: center;
         }
-        .path-list .topic-row .tr-info {
+        #pathListContainer .topic-row .tr-info {
             flex: 1;
             min-width: 0;
         }
-        .path-list .topic-row .tr-info .tr-name {
+        #pathListContainer .topic-row .tr-info .tr-name {
             font-size: 14px;
             font-weight: 500;
         }
-        .path-list .topic-row .tr-info .tr-meta {
+        #pathListContainer .topic-row .tr-info .tr-meta {
             font-size: 11px;
             color: var(--text-muted);
             display: flex;
             gap: 10px;
             margin-top: 2px;
         }
-        .path-list .topic-row .tr-status {
+        #pathListContainer .topic-row .tr-status {
             font-size: 14px;
             color: var(--text-muted);
         }
-        .path-list .topic-row.completed {
+        #pathListContainer .topic-row.completed {
             border-color: var(--green);
             background: var(--green-dim);
         }
-        .path-list .topic-row.completed .tr-status {
+        #pathListContainer .topic-row.completed .tr-status {
             color: var(--green);
         }
 
@@ -1606,33 +1598,57 @@
             opacity: 1;
         }
 
-        /* ---------- Install Button ---------- */
-        #installBtn {
+        /* ---------- Custom Modal (Reset) ---------- */
+        .modal-overlay {
             position: fixed;
-            bottom: calc(var(--nav-height) + 20px + var(--safe-bottom));
-            right: 20px;
-            z-index: 150;
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--accent-gradient);
-            border: none;
-            color: #fff;
-            font-size: 28px;
-            box-shadow: 0 4px 24px rgba(79, 140, 255, 0.4);
-            cursor: pointer;
+            inset: 0;
+            z-index: 600;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
             display: none;
             align-items: center;
             justify-content: center;
-            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-            touch-action: manipulation;
+            padding: 20px;
         }
-        #installBtn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 32px rgba(79, 140, 255, 0.5);
+        .modal-overlay.active {
+            display: flex;
         }
-        #installBtn:active {
-            transform: scale(0.92);
+        .modal-box {
+            max-width: 400px;
+            width: 100%;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-xl);
+            padding: 28px 24px;
+            border: 1px solid var(--bg-glass-border);
+            box-shadow: var(--shadow-card);
+            animation: modalIn 300ms cubic-bezier(0.2, 0.0, 0.0, 1) forwards;
+        }
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .modal-box h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .modal-box p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .modal-box .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .modal-box .modal-actions .btn {
+            flex: 1;
         }
 
         /* ---------- Utilities ---------- */
@@ -1679,6 +1695,25 @@
                 opacity: 0;
                 transform: translate(-50%, -100%) scale(1);
             }
+        }
+
+        .chip {
+            padding: 4px 12px;
+            border-radius: 16px;
+            background: var(--bg-glass);
+            border: 1px solid var(--bg-glass-border);
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        .chip.accent {
+            background: var(--accent-dim);
+            border-color: rgba(79, 140, 255, 0.12);
+            color: var(--accent);
+        }
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
         }
 
         @media (min-width: 600px) {
@@ -1730,7 +1765,6 @@
                 </div>
             </div>
 
-            <!-- Progress Ring + Mini Stats -->
             <div class="progress-ring-wrap">
                 <div class="progress-ring" id="progressRing">
                     <svg viewBox="0 0 100 100" width="100" height="100">
@@ -1763,7 +1797,6 @@
                 </div>
             </div>
 
-            <!-- Today's Focus -->
             <div class="focus-card" id="focusCard">
                 <div class="focus-label">🎯 Today's Focus</div>
                 <div class="focus-title" id="focusTitle">Start with Python</div>
@@ -1774,7 +1807,6 @@
                 </div>
             </div>
 
-            <!-- Quick Stats -->
             <div class="quick-stats">
                 <div class="quick-stat">
                     <div class="qs-value" id="qsHours">0</div>
@@ -1790,7 +1822,6 @@
                 </div>
             </div>
 
-            <!-- Learning Path Preview -->
             <div class="path-preview">
                 <div class="path-header">
                     <h3>📌 Your Learning Path</h3>
@@ -1799,7 +1830,6 @@
                 <div class="path-scroll" id="pathScroll"></div>
             </div>
 
-            <!-- Daily Fact / Quote -->
             <div class="daily-fact" id="dailyFact">
                 💡 <strong>Did you know?</strong> <span id="factText">The first AI program was written in 1951 by Christopher Strachey.</span>
             </div>
@@ -1910,7 +1940,7 @@
                 </div>
             </div>
             <div style="margin-top:20px; text-align:center; font-size:12px; color:var(--text-muted);">
-                ML Engineer OS v2.0 · Offline AI Career Companion
+                ML Engineer OS v2.1 · Offline AI Career Companion
             </div>
         </div>
 
@@ -1941,8 +1971,22 @@
         </nav>
     </div>
 
-    <!-- ---------- INSTALL BUTTON ---------- -->
-    <button id="installBtn" aria-label="Install App">📲</button>
+    <!-- ---------- MODAL (Reset Confirmation) ---------- -->
+    <div class="modal-overlay" id="resetModal">
+        <div class="modal-box">
+            <h2>⚠️ Reset All Progress?</h2>
+            <p>
+                This will delete all your XP, completed topics, streak, notes, and settings.<br />
+                <strong>Think twice!</strong> Every journey has setbacks, but starting over is a chance to build stronger.
+                <br /><br />
+                <em style="color:var(--gold);">"The expert in anything was once a beginner."</em>
+            </p>
+            <div class="modal-actions">
+                <button class="btn btn-outline" id="resetCancel">Cancel</button>
+                <button class="btn btn-primary" id="resetConfirm">Yes, Reset Everything</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ---------- SPLASH ---------- -->
     <div id="splash">
@@ -2054,7 +2098,7 @@
     ============================================================ -->
     <script type="module">
         // ============================================================
-        // ML Engineer OS — Main Application v2.0
+        // ML Engineer OS — Main Application v2.1
         // Premium · Offline First · PWA · Vibe-Driven
         // ============================================================
 
@@ -2088,7 +2132,7 @@
             "Natural Language Processing powers chatbots and translation.",
         ];
 
-        // Ordered topics (learning path) — same as before but with order
+        // Ordered topics (learning path)
         const TOPICS = [
             { id: 'python', category: 'Foundations', emoji: '🐍', name: 'Python for Data Science', difficulty: 'Beginner',
                 estimatedTime: '4 hours', prerequisites: 'None',
@@ -2520,11 +2564,10 @@
             const done = state.topics.filter(t => t.completed).length;
             const pct = total ? Math.round((done / total) * 100) : 0;
             document.getElementById('ringPercent').textContent = pct + '%';
-            const circumference = 2 * Math.PI * 42; // r=42
+            const circumference = 2 * Math.PI * 42;
             const offset = circumference - (pct / 100) * circumference;
             document.getElementById('progressCircle').style.strokeDashoffset = offset;
 
-            // Mini stats
             document.getElementById('miniTopics').textContent = done;
             document.getElementById('miniXP').textContent = state.user.xp;
             document.getElementById('miniStreak').textContent = state.user.streak;
@@ -2554,15 +2597,15 @@
                 document.getElementById('focusMeta').textContent = `${focusTopic.difficulty} · ${focusTopic.estimatedTime}`;
                 document.getElementById('focusStartBtn').onclick = () => openTopicDetail(focusTopic.id);
                 document.getElementById('focusDismissBtn').onclick = () => {
-                    // Dismiss: we can remove focus card or just hide it temporarily
                     document.getElementById('focusCard').style.display = 'none';
                     showToast('Focus dismissed. You can find it in Learn.');
                 };
+                document.getElementById('focusCard').style.display = '';
             } else {
                 document.getElementById('focusCard').style.display = 'none';
             }
 
-            // Learning Path Preview (next 5 topics)
+            // Learning Path Preview
             const nextTopics = state.topics.filter(t => !t.completed).slice(0, 5);
             const scroll = document.getElementById('pathScroll');
             if (nextTopics.length === 0) {
@@ -2585,11 +2628,10 @@
             const fact = FACTS[Math.floor(Math.random() * FACTS.length)];
             document.getElementById('factText').textContent = fact;
 
-            // View all link
             document.getElementById('pathViewAll').onclick = () => navigateTo('page-learn');
         }
 
-        // ---- LEARN (Path View) ----
+        // ---- LEARN ----
         function updateLearn() {
             const container = document.getElementById('pathListContainer');
             const search = document.getElementById('searchInput').value.toLowerCase().trim();
@@ -2667,7 +2709,6 @@
             document.getElementById('pStatsXP').textContent = totalXP;
             document.getElementById('pStatsStreak').textContent = streak;
 
-            // Heatmap
             const now = new Date();
             const year = now.getFullYear();
             const month = now.getMonth();
@@ -3131,29 +3172,9 @@
             }, 120);
         }
 
-        // ---------- PWA Install ----------
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            document.getElementById('installBtn').style.display = 'flex';
-        });
-        document.getElementById('installBtn').addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const result = await deferredPrompt.userChoice;
-                if (result.outcome === 'accepted') {
-                    document.getElementById('installBtn').style.display = 'none';
-                }
-                deferredPrompt = null;
-            } else {
-                showToast('Install not available. Try using Chrome on Android.');
-            }
-        });
-        window.addEventListener('appinstalled', () => {
-            document.getElementById('installBtn').style.display = 'none';
-            showToast('🎉 ML Engineer OS installed!');
-        });
+        // ---------- PWA Install (fixed: let browser handle it) ----------
+        // We no longer prevent default, so the browser will show its own prompt.
+        // The floating install button is removed.
 
         // ---------- Event Listeners ----------
         function setupEventListeners() {
@@ -3251,30 +3272,40 @@
                 input.click();
             });
 
+            // Reset: show custom modal
             document.getElementById('profileReset').addEventListener('click', () => {
-                if (confirm('⚠️ Are you sure you want to reset ALL data? This cannot be undone.')) {
-                    if (confirm('Really? All your XP, progress, notes, and settings will be lost.')) {
-                        localStorage.clear();
-                        indexedDB.deleteDatabase(DB_NAME);
-                        state.user = { name: 'AI Engineer', level: 0, xp: 0, streak: 0, lastActive: null,
-                            pledgeSigned: false, pledgeSignature: null };
-                        state.topics = TOPICS.map(t => ({ ...t, completed: false, progress: 0, notes: '' }));
-                        state.topics.sort((a, b) => (a.order || 999) - (b.order || 999));
-                        state.notes = [];
-                        state.progress = {};
-                        state.bookmarks = [];
-                        lsSet('onboarded', false);
-                        saveState().then(() => { updateUI();
-                            showToast('🗑️ All data reset');
-                            location.reload(); });
-                    }
-                }
+                document.getElementById('resetModal').classList.add('active');
+            });
+
+            document.getElementById('resetCancel').addEventListener('click', () => {
+                document.getElementById('resetModal').classList.remove('active');
+            });
+
+            document.getElementById('resetConfirm').addEventListener('click', () => {
+                document.getElementById('resetModal').classList.remove('active');
+                // Perform reset
+                localStorage.clear();
+                indexedDB.deleteDatabase(DB_NAME);
+                state.user = { name: 'AI Engineer', level: 0, xp: 0, streak: 0, lastActive: null,
+                    pledgeSigned: false, pledgeSignature: null };
+                state.topics = TOPICS.map(t => ({ ...t, completed: false, progress: 0, notes: '' }));
+                state.topics.sort((a, b) => (a.order || 999) - (b.order || 999));
+                state.notes = [];
+                state.progress = {};
+                state.bookmarks = [];
+                lsSet('onboarded', false);
+                saveState().then(() => {
+                    updateUI();
+                    showToast('🗑️ All data reset. A fresh start awaits! 💪');
+                    location.reload();
+                });
             });
 
             document.getElementById('profileAbout').addEventListener('click', () => {
-                showToast('🧠 ML Engineer OS v2.0 · Offline AI Career Companion');
+                showToast('🧠 ML Engineer OS v2.1 · Offline AI Career Companion');
             });
 
+            // Reset progress button in Learn
             document.getElementById('resetProgressBtn').addEventListener('click', () => {
                 if (confirm('Reset all topic progress? This will not reset your XP or streak.')) {
                     state.topics.forEach(t => { t.completed = false;
@@ -3295,6 +3326,9 @@
                     if (document.getElementById('topic-detail').classList.contains('active')) closeTopicDetail();
                     if (document.getElementById('noteEditor').classList.contains('active')) closeNoteEditor();
                     if (document.getElementById('bottomSheet').classList.contains('active')) closeBottomSheet();
+                    if (document.getElementById('resetModal').classList.contains('active')) {
+                        document.getElementById('resetModal').classList.remove('active');
+                    }
                 }
             });
         }
@@ -3312,7 +3346,7 @@
             updateStreak();
             setInterval(() => { updateStreak();
                 updateUI(); }, 60000);
-            console.log('🧠 ML Engineer OS v2.0 loaded');
+            console.log('🧠 ML Engineer OS v2.1 loaded');
         }
 
         // ---------- Service Worker ----------
@@ -3324,7 +3358,8 @@
 
         init();
         window.__MLOS = { state, saveState, loadState, addXP, completeTopic, showToast };
-        console.log('🚀 ML Engineer OS v2.0 initialized');
+        console.log('🚀 ML Engineer OS v2.1 initialized');
     </script>
+
 </body>
 </html>
