@@ -9,14 +9,13 @@
     <link rel="icon" id="dynamicFavicon" href="data:image/svg+xml,...">
     <title>Chugh Sahab Lagge Raho</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
     <style>
         /* ============================================================
-           Chugh Sahab Lagge Raho — Complete Design System v3.0
+           Chugh Sahab Lagge Raho — Complete Design System v3.1
            Premium · Dark · Glassmorphism · MD3 · Animated
            ============================================================ */
 
@@ -1599,7 +1598,7 @@
             opacity: 1;
         }
 
-        /* ---------- Custom Modal (Reset) ---------- */
+        /* ---------- Modal Overlay ---------- */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -1715,6 +1714,28 @@
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
+        }
+
+        /* ---------- Pledge View Card ---------- */
+        .pledge-view-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--bg-glass-border);
+            border-radius: var(--radius-lg);
+            padding: 16px 18px;
+            margin-top: 12px;
+        }
+        .pledge-view-card .pledge-sig-image {
+            max-width: 100%;
+            height: 60px;
+            border-radius: var(--radius-sm);
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 8px;
+            object-fit: contain;
+        }
+        .pledge-view-card .pledge-signed-date {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 6px;
         }
 
         @media (min-width: 600px) {
@@ -1913,6 +1934,19 @@
                     <div class="profile-level" id="profileLevel">Level 1 · AI Student</div>
                 </div>
             </div>
+
+            <!-- My Pledge Card -->
+            <div class="pledge-view-card" id="pledgeViewCard">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="font-size:20px;">📜</span>
+                    <div>
+                        <div style="font-weight:600; font-size:15px;">My Pledge</div>
+                        <div style="font-size:12px; color:var(--text-muted);" id="pledgeStatus">Not signed yet</div>
+                    </div>
+                    <button class="btn btn-sm btn-primary" id="pledgeViewBtn" style="margin-left:auto; min-height:32px; padding:4px 14px; font-size:12px;">View</button>
+                </div>
+            </div>
+
             <div class="profile-menu">
                 <div class="profile-menu-item" id="profileEditName">
                     <span class="pmi-icon">✏️</span>
@@ -1936,7 +1970,7 @@
                 </div>
             </div>
             <div style="margin-top:20px; text-align:center; font-size:12px; color:var(--text-muted);">
-                Chugh Sahab Lagge Raho v3.0 · Offline AI Career Companion
+                Chugh Sahab Lagge Raho v3.1 · Offline AI Career Companion
             </div>
         </div>
 
@@ -1965,6 +1999,30 @@
                 <span class="nav-label">Profile</span>
             </button>
         </nav>
+    </div>
+
+    <!-- ---------- PLEDGE VIEW MODAL ---------- -->
+    <div class="modal-overlay" id="pledgeViewModal">
+        <div class="modal-box" style="max-width:420px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <h2 style="font-size:20px;">📜 My Pledge</h2>
+                <button id="pledgeViewClose" style="background:none; border:none; color:var(--text-muted); font-size:24px; cursor:pointer;">✕</button>
+            </div>
+            <div id="pledgeViewContent">
+                <div style="padding:16px; background:var(--bg-glass); border-radius:var(--radius-md); border-left:3px solid var(--accent); margin-bottom:16px;">
+                    <p style="color:var(--text-secondary); font-size:15px; line-height:1.8; font-style:italic;">
+                        "I promise that I will study consistently, complete my learning journey, and become the best AI Engineer I can be."
+                    </p>
+                </div>
+                <div id="pledgeSignatureDisplay" style="text-align:center; padding:12px; background:rgba(0,0,0,0.2); border-radius:var(--radius-sm); min-height:80px; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+                    <span style="color:var(--text-muted); font-size:13px;">No signature yet</span>
+                </div>
+                <div id="pledgeSignedDate" style="text-align:center; margin-top:10px; font-size:12px; color:var(--text-muted);"></div>
+                <div style="margin-top:16px; display:flex; gap:10px;">
+                    <button class="btn btn-primary btn-block" id="pledgeSignNowBtn">✍️ Sign Now</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- ---------- SPLASH ---------- -->
@@ -2018,7 +2076,7 @@
         </div>
     </div>
 
-    <!-- ---------- PLEDGE ---------- -->
+    <!-- ---------- PLEDGE (Signing) ---------- -->
     <div id="pledge">
         <div class="pledge-card glass-card">
             <h2>📜 The AI Engineer Pledge</h2>
@@ -2033,6 +2091,7 @@
                 <button class="btn btn-sm btn-outline" id="clearSignature" style="flex:1;">Clear</button>
                 <button class="btn btn-sm btn-primary" id="confirmPledge" style="flex:2;">I Pledge</button>
             </div>
+            <button class="btn btn-sm btn-outline" id="pledgeCancelBtn" style="margin-top:8px; width:100%;">Cancel</button>
         </div>
     </div>
 
@@ -2077,13 +2136,51 @@
     ============================================================ -->
     <script type="module">
         // ============================================================
-        // Chugh Sahab Lagge Raho — Main Application v3.0
+        // Chugh Sahab Lagge Raho — Main Application v3.1
         // Premium · Offline First · PWA · Vibe-Driven
         // ============================================================
 
         // ---------- PWA: Dynamic Manifest & Favicon (Self-Contained) ----------
         (function setupPWA() {
-            // Create manifest as a Blob URL
+            // Create a beautiful app icon with gradient and chip design
+            const iconSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <defs>
+                    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#4f8cff"/>
+                        <stop offset="100%" stop-color="#7c6aff"/>
+                    </linearGradient>
+                    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#6a9fff"/>
+                        <stop offset="100%" stop-color="#9a8aff"/>
+                    </linearGradient>
+                </defs>
+                <rect width="512" height="512" rx="96" fill="url(#g)"/>
+                <rect x="28" y="28" width="456" height="456" rx="68" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+                <rect x="20" y="20" width="472" height="472" rx="76" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                <g fill="rgba(255,255,255,0.10)">
+                    <circle cx="400" cy="100" r="7"/>
+                    <circle cx="422" cy="100" r="7"/>
+                    <circle cx="444" cy="100" r="7"/>
+                    <circle cx="400" cy="122" r="7"/>
+                    <circle cx="422" cy="122" r="7"/>
+                    <circle cx="444" cy="122" r="7"/>
+                    <circle cx="400" cy="144" r="7"/>
+                    <circle cx="422" cy="144" r="7"/>
+                    <circle cx="444" cy="144" r="7"/>
+                    <circle cx="68" cy="100" r="7"/>
+                    <circle cx="90" cy="100" r="7"/>
+                    <circle cx="112" cy="100" r="7"/>
+                    <circle cx="68" cy="122" r="7"/>
+                    <circle cx="90" cy="122" r="7"/>
+                    <circle cx="112" cy="122" r="7"/>
+                </g>
+                <text x="256" y="320" font-family="Inter, system-ui, sans-serif" font-size="180" font-weight="800" fill="white" text-anchor="middle" letter-spacing="6">AI</text>
+                <text x="256" y="324" font-family="Inter, system-ui, sans-serif" font-size="180" font-weight="800" fill="rgba(255,255,255,0.03)" text-anchor="middle" letter-spacing="6">AI</text>
+            </svg>`;
+
+            const icon512 = iconSVG;
+            const icon192 = iconSVG.replace('512', '192').replace('180', '72').replace('320', '130').replace('6', '3');
+
             const manifest = {
                 name: "Chugh Sahab Lagge Raho",
                 short_name: "CSLR",
@@ -2092,25 +2189,27 @@
                 display: "standalone",
                 background_color: "#070b17",
                 theme_color: "#070b17",
-                icons: [{
-                    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='64' fill='%234f8cff'/%3E%3Ctext x='256' y='340' font-family='Inter, sans-serif' font-size='220' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E",
-                    sizes: "512x512",
-                    type: "image/svg+xml",
-                    purpose: "any maskable"
-                }, {
-                    src: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='32' fill='%234f8cff'/%3E%3Ctext x='96' y='128' font-family='Inter, sans-serif' font-size='82' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E",
-                    sizes: "192x192",
-                    type: "image/svg+xml",
-                    purpose: "any maskable"
-                }]
+                icons: [
+                    { src: "data:image/svg+xml," + encodeURIComponent(icon192), sizes: "192x192", type: "image/svg+xml",
+                        purpose: "any maskable" },
+                    { src: "data:image/svg+xml," + encodeURIComponent(icon512), sizes: "512x512", type: "image/svg+xml",
+                        purpose: "any maskable" }
+                ]
             };
 
             const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
             const manifestURL = URL.createObjectURL(blob);
             document.getElementById('dynamicManifest').href = manifestURL;
 
-            // Favicon as inline SVG
-            const faviconSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="%234f8cff"/><text x="32" y="44" font-family="Inter, sans-serif" font-size="28" font-weight="700" fill="white" text-anchor="middle">AI</text></svg>`;
+            // Favicon - use a smaller version
+            const faviconSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <rect width="64" height="64" rx="14" fill="url(#fg)"/>
+                <defs><linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#4f8cff"/>
+                    <stop offset="100%" stop-color="#7c6aff"/>
+                </linearGradient></defs>
+                <text x="32" y="44" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" fill="white" text-anchor="middle">AI</text>
+            </svg>`;
             const faviconBlob = new Blob([faviconSVG], { type: 'image/svg+xml' });
             const faviconURL = URL.createObjectURL(faviconBlob);
             document.getElementById('dynamicFavicon').href = faviconURL;
@@ -2337,7 +2436,7 @@
         // ---------- State ----------
         const state = {
             user: { name: 'AI Engineer', level: 0, xp: 0, streak: 0, lastActive: null, pledgeSigned: false,
-                pledgeSignature: null },
+                pledgeSignature: null, pledgeDate: null },
             topics: [],
             notes: [],
             progress: {},
@@ -2443,8 +2542,11 @@
                 const name = lsGet('userName', 'AI Engineer');
                 if (name) state.user.name = name;
                 const pledgeSig = lsGet('pledgeSignature', null);
-                if (pledgeSig) { state.user.pledgeSigned = true;
-                    state.user.pledgeSignature = pledgeSig; }
+                if (pledgeSig) {
+                    state.user.pledgeSigned = true;
+                    state.user.pledgeSignature = pledgeSig;
+                    state.user.pledgeDate = lsGet('pledgeDate', new Date().toISOString());
+                }
             } catch (e) {
                 console.error('Load state error:', e);
                 const saved = lsGet('mlos_state', null);
@@ -2459,6 +2561,7 @@
                 state.topics.sort((a, b) => (a.order || 999) - (b.order || 999));
             }
             updateUI();
+            updatePledgeUI();
         }
 
         async function saveState() {
@@ -2472,7 +2575,10 @@
                 await clearStore('bookmarks');
                 for (const id of state.bookmarks) await storeData('bookmarks', { id });
                 lsSet('userName', state.user.name);
-                if (state.user.pledgeSignature) lsSet('pledgeSignature', state.user.pledgeSignature);
+                if (state.user.pledgeSignature) {
+                    lsSet('pledgeSignature', state.user.pledgeSignature);
+                    lsSet('pledgeDate', state.user.pledgeDate || new Date().toISOString());
+                }
             } catch (e) {
                 console.error('Save state error:', e);
                 lsSet('mlos_state', state);
@@ -2562,6 +2668,18 @@
             updateProgress();
             updateProfile();
             updateNavBadges();
+            updatePledgeUI();
+        }
+
+        function updatePledgeUI() {
+            const status = document.getElementById('pledgeStatus');
+            if (state.user.pledgeSigned && state.user.pledgeSignature) {
+                status.textContent = '✅ Signed on ' + new Date(state.user.pledgeDate || Date.now()).toLocaleDateString();
+                status.style.color = 'var(--green)';
+            } else {
+                status.textContent = 'Not signed yet';
+                status.style.color = 'var(--text-muted)';
+            }
         }
 
         // ---- HOME ----
@@ -2579,7 +2697,6 @@
             document.getElementById('levelBadge').innerHTML =
                 `<span class="lb-icon">${level.emoji}</span><span id="levelName">${level.name}</span>`;
 
-            // Progress Ring
             const total = state.topics.length;
             const done = state.topics.filter(t => t.completed).length;
             const pct = total ? Math.round((done / total) * 100) : 0;
@@ -2593,7 +2710,6 @@
             document.getElementById('miniStreak').textContent = state.user.streak;
             document.getElementById('miniLevel').textContent = state.user.level + 1;
 
-            // Quick stats
             const weekAgo = new Date();
             weekAgo.setDate(weekAgo.getDate() - 7);
             let weekHours = 0;
@@ -2609,7 +2725,6 @@
             document.getElementById('qsTopicsMonth').textContent = monthTopics;
             document.getElementById('qsStreak').textContent = state.user.streak;
 
-            // Today's Focus
             const incomplete = state.topics.filter(t => !t.completed);
             let focusTopic = incomplete.length > 0 ? incomplete[0] : null;
             if (focusTopic) {
@@ -2625,7 +2740,6 @@
                 document.getElementById('focusCard').style.display = 'none';
             }
 
-            // Learning Path Preview
             const nextTopics = state.topics.filter(t => !t.completed).slice(0, 5);
             const scroll = document.getElementById('pathScroll');
             if (nextTopics.length === 0) {
@@ -2644,7 +2758,6 @@
                 });
             }
 
-            // Daily Fact
             const fact = FACTS[Math.floor(Math.random() * FACTS.length)];
             document.getElementById('factText').textContent = fact;
 
@@ -2775,6 +2888,7 @@
             document.getElementById('profileLevel').textContent = `Level ${state.user.level + 1} · ${level.emoji} ${level.name}`;
             document.getElementById('profileAvatar').textContent = state.user.name.split(' ').map(n => n[0]).join('').toUpperCase()
                 .slice(0, 2);
+            updatePledgeUI();
         }
 
         // ---- NAV BADGES ----
@@ -3069,10 +3183,14 @@
             }
         }
 
-        // ---------- Pledge ----------
+        // ---------- Pledge Signing ----------
         function showPledge() {
             document.getElementById('pledge').classList.add('active');
             initSignatureCanvas();
+        }
+
+        function hidePledge() {
+            document.getElementById('pledge').classList.remove('active');
         }
 
         let signatureData = null;
@@ -3137,21 +3255,71 @@
             canvas.addEventListener('touchmove', draw, { passive: false });
             canvas.addEventListener('touchend', endDraw, { passive: false });
 
-            document.getElementById('clearSignature').addEventListener('click', () => {
+            document.getElementById('clearSignature').onclick = () => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 signatureData = null;
-            });
+            };
 
-            document.getElementById('confirmPledge').addEventListener('click', () => {
+            document.getElementById('confirmPledge').onclick = () => {
                 if (!signatureData) { showToast('Please sign the pledge first'); return; }
                 state.user.pledgeSigned = true;
                 state.user.pledgeSignature = signatureData;
+                state.user.pledgeDate = new Date().toISOString();
                 lsSet('pledgeSignature', signatureData);
+                lsSet('pledgeDate', state.user.pledgeDate);
                 saveState();
-                document.getElementById('pledge').classList.remove('active');
+                hidePledge();
                 showApp();
+                updatePledgeUI();
                 showToast('📜 Pledge signed! Welcome to Chugh Sahab Lagge Raho.');
-            });
+            };
+
+            document.getElementById('pledgeCancelBtn').onclick = () => {
+                hidePledge();
+                if (state.user.pledgeSigned && state.user.pledgeSignature) {
+                    showApp();
+                } else {
+                    // If not signed and they cancel, still show app but with pledge reminder
+                    showApp();
+                    showToast('You can sign the pledge later from your Profile.');
+                }
+            };
+        }
+
+        // ---------- Pledge View Modal ----------
+        function openPledgeView() {
+            const modal = document.getElementById('pledgeViewModal');
+            const content = document.getElementById('pledgeViewContent');
+            const sigDisplay = document.getElementById('pledgeSignatureDisplay');
+            const dateDisplay = document.getElementById('pledgeSignedDate');
+
+            if (state.user.pledgeSigned && state.user.pledgeSignature) {
+                sigDisplay.innerHTML = `
+                    <img src="${state.user.pledgeSignature}" alt="Your signature" style="max-width:100%; max-height:100px; border-radius:4px; background:rgba(255,255,255,0.05);" />
+                    <span style="font-size:12px; color:var(--text-muted); margin-top:4px;">✍️ Your signature</span>
+                `;
+                dateDisplay.textContent = 'Signed on ' + new Date(state.user.pledgeDate || Date.now()).toLocaleDateString(
+                'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                document.getElementById('pledgeSignNowBtn').textContent = '✍️ Re-sign Pledge';
+                document.getElementById('pledgeSignNowBtn').onclick = () => {
+                    modal.classList.remove('active');
+                    showPledge();
+                };
+            } else {
+                sigDisplay.innerHTML = `<span style="color:var(--text-muted); font-size:13px;">No signature yet</span>`;
+                dateDisplay.textContent = '';
+                document.getElementById('pledgeSignNowBtn').textContent = '✍️ Sign Now';
+                document.getElementById('pledgeSignNowBtn').onclick = () => {
+                    modal.classList.remove('active');
+                    showPledge();
+                };
+            }
+
+            modal.classList.add('active');
+        }
+
+        function closePledgeView() {
+            document.getElementById('pledgeViewModal').classList.remove('active');
         }
 
         // ---------- Show App ----------
@@ -3274,7 +3442,10 @@
                         if (data.user) {
                             state.user = data.user;
                             lsSet('userName', state.user.name);
-                            if (state.user.pledgeSignature) lsSet('pledgeSignature', state.user.pledgeSignature);
+                            if (state.user.pledgeSignature) {
+                                lsSet('pledgeSignature', state.user.pledgeSignature);
+                                lsSet('pledgeDate', state.user.pledgeDate || new Date().toISOString());
+                            }
                         }
                         if (data.topics) state.topics = data.topics;
                         if (data.notes) state.notes = data.notes;
@@ -3282,19 +3453,20 @@
                         if (data.bookmarks) state.bookmarks = data.bookmarks;
                         await saveState();
                         updateUI();
+                        updatePledgeUI();
                         showToast('📂 Backup imported successfully');
                     } catch (err) { showToast('❌ Invalid backup file'); }
                 };
                 input.click();
             });
 
-            // About: Enhanced with story
+            // About modal
             document.getElementById('profileAbout').addEventListener('click', () => {
                 const aboutHTML = `
                     <div style="padding:4px 0;">
                         <h3 style="font-size:18px; margin-bottom:8px;">🧠 Chugh Sahab Lagge Raho</h3>
                         <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">
-                            <strong>Version 3.0</strong> · Offline AI Career Companion
+                            <strong>Version 3.1</strong> · Offline AI Career Companion
                         </p>
                         <div style="margin-top:12px; padding:14px; background:var(--bg-glass); border-radius:var(--radius-md); border-left:3px solid var(--accent);">
                             <p style="color:var(--text-secondary); font-size:14px; line-height:1.7;">
@@ -3310,9 +3482,6 @@
                         </p>
                     </div>
                 `;
-                // Show in a custom modal or toast with more space
-                showToast('📖 About: Chugh Sahab Lagge Raho v3.0');
-                // Use a better display: create a temporary modal
                 const modal = document.createElement('div');
                 modal.style.cssText = `
                     position: fixed; inset: 0; z-index: 9999;
@@ -3331,7 +3500,14 @@
                 modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
             });
 
-            // Reset progress button in Learn (only resets topic progress, not full data)
+            // Pledge View
+            document.getElementById('pledgeViewBtn').addEventListener('click', openPledgeView);
+            document.getElementById('pledgeViewClose').addEventListener('click', closePledgeView);
+            document.getElementById('pledgeViewModal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) closePledgeView();
+            });
+
+            // Reset progress button in Learn
             document.getElementById('resetProgressBtn').addEventListener('click', () => {
                 if (confirm('Reset all topic progress? This will not reset your XP or streak.')) {
                     state.topics.forEach(t => { t.completed = false;
@@ -3352,6 +3528,7 @@
                     if (document.getElementById('topic-detail').classList.contains('active')) closeTopicDetail();
                     if (document.getElementById('noteEditor').classList.contains('active')) closeNoteEditor();
                     if (document.getElementById('bottomSheet').classList.contains('active')) closeBottomSheet();
+                    if (document.getElementById('pledgeViewModal').classList.contains('active')) closePledgeView();
                 }
             });
         }
@@ -3369,7 +3546,7 @@
             updateStreak();
             setInterval(() => { updateStreak();
                 updateUI(); }, 60000);
-            console.log('🧠 Chugh Sahab Lagge Raho v3.0 loaded');
+            console.log('🧠 Chugh Sahab Lagge Raho v3.1 loaded');
         }
 
         // ---------- Service Worker ----------
@@ -3381,7 +3558,7 @@
 
         init();
         window.__CSLR = { state, saveState, loadState, addXP, completeTopic, showToast };
-        console.log('🚀 Chugh Sahab Lagge Raho v3.0 initialized');
+        console.log('🚀 Chugh Sahab Lagge Raho v3.1 initialized');
     </script>
 
 </body>
