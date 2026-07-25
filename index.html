@@ -1,1381 +1,1871 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-  
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#0a0e1a" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="WebSlinger ML" />
-  <link rel="manifest" href="data:application/json,{'name':'WebSlinger ML','short_name':'WebSlinger','start_url':'.','display':'standalone','background_color':'#0a0e1a','theme_color':'#0a0e1a','icons':[{'src':'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22><rect width=%22512%22 height=%22512%22 rx=%2280%22 fill=%22%230a0e1a%22/><circle cx=%22256%22 cy=%22256%22 r=%22200%22 fill=%22none%22 stroke=%22%233b82f6%22 stroke-width=%2212%22/><circle cx=%22256%22 cy=%22256%22 r=%22140%22 fill=%22none%22 stroke=%22%2360a5fa%22 stroke-width=%228%22/><circle cx=%22256%22 cy=%22256%22 r=%2280%22 fill=%22none%22 stroke=%22%2393bbfc%22 stroke-width=%226%22/><circle cx=%22256%22 cy=%22256%22 r=%2230%22 fill=%22%2360a5fa%22/><line x1=%22256%22 y1=%2256%22 x2=%22256%22 y2=%22100%22 stroke=%22%233b82f6%22 stroke-width=%226%22/><line x1=%22256%22 y1=%22412%22 x2=%22256%22 y2=%22456%22 stroke=%22%233b82f6%22 stroke-width=%226%22/><line x1=%2256%22 y1=%22256%22 x2=%22100%22 y2=%22256%22 stroke=%22%233b82f6%22 stroke-width=%226%22/><line x1=%22412%22 y1=%22256%22 x2=%22456%22 y2=%22256%22 stroke=%22%233b82f6%22 stroke-width=%226%22/><line x1=%22116%22 y1=%22116%22 x2=%22148%22 y2=%22148%22 stroke=%22%233b82f6%22 stroke-width=%226%22/><line x1=%22364%22 y1=%22364%22 x2=%22396%22 y2=%22396%22 stroke=%22%233b82f6%22 stroke-width=%226%22/><line x1=%22116%22 y1=%22396%22 x2=%22148%22 y2=%22364%22 stroke=%22%233b82f6%22 stroke-width=%226%22/><line x1=%22364%22 y1=%22148%22 x2=%22396%22 y2=%22116%22 stroke=%22%233b82f6%22 stroke-width=%226%22/><circle cx=%22256%22 cy=%22256%22 r=%22180%22 fill=%22none%22 stroke=%22rgba(230,36,41,0.12)%22 stroke-width=%221%22/><circle cx=%22256%22 cy=%22256%22 r=%22120%22 fill=%22none%22 stroke=%22rgba(230,36,41,0.08)%22 stroke-width=%221%22/><line x1=%2276%22 y1=%22256%22 x2=%22436%22 y2=%22256%22 stroke=%22rgba(230,36,41,0.06)%22 stroke-width=%221%22/><line x1=%22256%22 y1=%2276%22 x2=%22256%22 y2=%22436%22 stroke=%22rgba(230,36,41,0.06)%22 stroke-width=%221%22/><line x1=%22128%22 y1=%22128%22 x2=%22384%22 y2=%22384%22 stroke=%22rgba(230,36,41,0.06)%22 stroke-width=%221%22/><line x1=%22128%22 y1=%22384%22 x2=%22384%22 y2=%22128%22 stroke=%22rgba(230,36,41,0.06)%22 stroke-width=%221%22/></svg>','sizes':'512x512','type':'image/svg+xml'}]}">
-  
-  <title>🕸️ WebSlinger ML</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #080c18;
-      color: #e8edf5;
-      min-height: 100vh;
-      padding: 0.8rem;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      overflow-x: hidden;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="theme-color" content="#0b1120" />
+    <title>ML Engineer Companion</title>
 
-    .app {
-      max-width: 600px;
-      width: 100%;
-      background: rgba(10, 14, 26, 0.92);
-      backdrop-filter: blur(20px);
-      border-radius: 28px;
-      padding: 1.2rem 1.2rem 1.6rem;
-      border: 1px solid rgba(59, 130, 246, 0.2);
-      box-shadow: 0 0 60px rgba(59, 130, 246, 0.06);
-      position: relative;
-      overflow: hidden;
-      z-index: 2;
-    }
+    <!-- PWA manifest link (inline via data URI) -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1MIEVuZ2luZWVyIENvbXBhbmlvbiIsCiAgInNob3J0X25hbWUiOiAiTUwgRW5nIENvbXAiLAogICJkZXNjcmlwdGlvbiI6ICJEYXRhIFNjaWVuY2UgJiBNTCBjb21wYW5pb24gZm9yIGVuZ2luZWVycyIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMGIxMTIwIiwKICAidGhlbWVfY29sb3IiOiAiIzBiMTEyMCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDEwMCAxMDAnPjxyZWN0IHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyByeD0nMTYnIGZpbGw9JyMwYjExMjAnLz48dGV4dCB4PSc1MCcgeT0nNjAnIGZvbnQtc2l6ZT0nNDgnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZpbGw9JyM2M2IzZWMnIGZvbnQtZmFtaWx5PSdzYW5zLXNlcmlmJz7wn5K8PC90ZXh0Pjwvc3ZnPg=="LAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9" />
 
-    /* Subtle web pattern (no animation) */
-    .app::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 70% 20%, rgba(59, 130, 246, 0.04) 0%, transparent 50%),
-                  repeating-linear-gradient(45deg, rgba(59, 130, 246, 0.015) 0px, rgba(59, 130, 246, 0.015) 2px, transparent 2px, transparent 10px),
-                  repeating-linear-gradient(-45deg, rgba(59, 130, 246, 0.015) 0px, rgba(59, 130, 246, 0.015) 2px, transparent 2px, transparent 10px);
-      pointer-events: none;
-      z-index: 0;
-    }
+    <style>
+        /* ---------- CSS Reset & Variables ---------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* --- Onboarding Modal --- */
-    .onboarding-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(10px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9998;
-      padding: 1.5rem;
-    }
-    .onboarding-overlay.hidden { display: none; }
-    .onboarding-box {
-      max-width: 400px;
-      width: 100%;
-      background: #0a0e1a;
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      border-radius: 28px;
-      padding: 2rem 1.5rem;
-      box-shadow: 0 0 60px rgba(59, 130, 246, 0.1);
-    }
-    .onboarding-box h2 { font-size: 1.5rem; font-weight: 900; margin-bottom: 0.3rem; color: #f8fafc; }
-    .onboarding-box h2 span { color: #3b82f6; }
-    .onboarding-box .sub { color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem; }
-    .onboarding-box label { display: block; font-size: 0.75rem; font-weight: 700; color: #94a3b8; margin-top: 1rem; margin-bottom: 0.3rem; }
-    .onboarding-box input, .onboarding-box select {
-      width: 100%;
-      padding: 0.7rem 1rem;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05);
-      color: #f8fafc;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-    .onboarding-box input:focus, .onboarding-box select:focus { border-color: #3b82f6; }
-    .onboarding-box .btn-start {
-      width: 100%;
-      margin-top: 1.5rem;
-      padding: 0.8rem;
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      border: none;
-      border-radius: 14px;
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 800;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .onboarding-box .btn-start:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(59, 130, 246, 0.3); }
+        :root {
+            --bg-primary: #0b1120;
+            --bg-secondary: #111b2e;
+            --bg-card: #162033;
+            --bg-card-hover: #1c2a44;
+            --bg-input: #0f1a2b;
+            --border-subtle: #2a3f5e;
+            --border-active: #4a7db5;
+            --text-primary: #e8edf5;
+            --text-secondary: #94a9c9;
+            --text-muted: #5a7a9f;
+            --accent-cyan: #63b3ec;
+            --accent-blue: #4a7db5;
+            --accent-purple: #9b7fd4;
+            --accent-green: #5cdb9e;
+            --accent-amber: #f0b34b;
+            --accent-rose: #e8738a;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-    /* --- Header --- */
-    .header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.8rem;
-      position: relative;
-      z-index: 2;
-    }
-    .logo { display: flex; align-items: center; gap: 0.5rem; }
-    .logo svg { width: 36px; height: 36px; }
-    .logo h1 { font-size: 1.3rem; font-weight: 900; background: linear-gradient(to right, #f8fafc, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .logo .badge { font-size: 0.5rem; background: #3b82f6; color: #fff; padding: 0.1rem 0.5rem; border-radius: 40px; -webkit-text-fill-color: #fff; font-weight: 700; }
-    
-    .header-actions { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
-    .streak-box, .level-box {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 0.15rem 0.7rem;
-      border-radius: 100px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      color: #fbbf24;
-    }
-    .level-box { background: #3b82f6; border-color: #3b82f6; color: #fff; }
-    .progress-stats {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 0.15rem 0.7rem;
-      border-radius: 100px;
-    }
-    .progress-stats span { font-size: 0.6rem; color: #94a3b8; }
-    .progress-stats strong { color: #f8fafc; }
+        html {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-    /* --- Greeting --- */
-    .greeting {
-      background: rgba(59, 130, 246, 0.08);
-      border: 1px solid rgba(59, 130, 246, 0.15);
-      border-radius: 14px;
-      padding: 0.6rem 1rem;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
-    }
-    .greeting .hello { font-size: 1rem; font-weight: 700; color: #f8fafc; }
-    .greeting .hello span { color: #3b82f6; }
-    .greeting .info { font-size: 0.7rem; color: #94a3b8; margin-top: 0.1rem; }
+        body {
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            background: var(--bg-primary);
+            padding: 0 0 80px 0;
+            /* bottom nav space */;
+        }
 
-    /* --- Heatmap --- */
-    .heatmap-container {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
-      padding: 0.8rem 1rem;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
-    }
-    .heatmap-container .label {
-      font-size: 0.6rem;
-      color: #94a3b8;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.4rem;
-      display: flex;
-      justify-content: space-between;
-    }
-    .heatmap-tubes {
-      display: flex;
-      gap: 0.3rem;
-      align-items: center;
-    }
-    .heatmap-tube {
-      flex: 1;
-      height: 12px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 20px;
-      overflow: hidden;
-      position: relative;
-      transition: all 0.3s;
-    }
-    .heatmap-tube .fill {
-      height: 100%;
-      width: 0%;
-      border-radius: 20px;
-      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .heatmap-label {
-      font-size: 0.5rem;
-      color: #6b7280;
-      text-align: center;
-      margin-top: 0.2rem;
-      display: flex;
-      justify-content: space-between;
-    }
+        #app {
+            max-width: 520px;
+            width: 100%;
+            background: var(--bg-primary);
+            position: relative;
+            padding: 16px 16px 0 16px;
+        }
 
-    /* --- Tabs --- */
-    .tabs {
-      display: flex;
-      gap: 0.2rem;
-      margin-bottom: 1.2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding-bottom: 0.4rem;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 2;
-    }
-    .tab-btn {
-      background: transparent;
-      border: none;
-      padding: 0.3rem 0.8rem;
-      font-weight: 700;
-      font-size: 0.65rem;
-      color: #71717a;
-      border-radius: 40px;
-      cursor: pointer;
-      transition: all 0.25s;
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-    .tab-btn:hover { color: #f4f4f5; background: rgba(255,255,255,0.06); }
-    .tab-btn.active { background: #3b82f6; color: #fff; box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
+        /* ---------- Scrollbar ---------- */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-active);
+            border-radius: 10px;
+        }
 
-    /* --- Panels --- */
-    .panel { display: none; animation: springIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-    .panel.active { display: block; }
-    @keyframes springIn {
-      0% { opacity: 0; transform: translate3d(0, 20px, 0) scale3d(0.96, 0.96, 1); }
-      70% { transform: translate3d(0, -2px, 0) scale3d(1.005, 1.005, 1); }
-      100% { opacity: 1; transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
-    }
+        /* ---------- Onboarding Overlay ---------- */
+        #onboarding {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(11, 17, 32, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            animation: fadeIn 0.5s ease;
+        }
+        #onboarding.hidden {
+            display: none;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
-    /* --- Cards --- */
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem; }
-    .card {
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
-      padding: 0.85rem 1rem;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .card:hover { border-color: rgba(59, 130, 246, 0.4); transform: translate3d(0, -4px, 0); box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
-    .card .badge-cat {
-      font-size: 0.5rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 0.1rem 0.5rem;
-      border-radius: 40px;
-      background: rgba(59, 130, 246, 0.15);
-      color: #60a5fa;
-      display: inline-block;
-      margin-bottom: 0.25rem;
-    }
-    .card .badge-cat.red { background: rgba(230, 36, 41, 0.15); color: #ef4444; }
-    .card .title { font-weight: 700; font-size: 0.88rem; color: #f8fafc; margin-bottom: 0.15rem; }
-    .card .desc { font-size: 0.7rem; color: #94a3b8; line-height: 1.35; margin-bottom: 0.45rem; }
-    .card .resource-links { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.45rem; }
-    .card .resource-links a {
-      font-size: 0.6rem;
-      color: #60a5fa;
-      text-decoration: none;
-      background: rgba(255,255,255,0.04);
-      padding: 0.1rem 0.55rem;
-      border-radius: 40px;
-      border: 1px solid rgba(255,255,255,0.06);
-      transition: all 0.2s;
-      display: inline-block;
-    }
-    .card .resource-links a:hover { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+        .onboarding-box {
+            background: var(--bg-secondary);
+            padding: 40px 32px 36px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+        .onboarding-box .icon-big {
+            font-size: 54px;
+            margin-bottom: 12px;
+        }
+        .onboarding-box h1 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+        .onboarding-box p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+        .onboarding-box label {
+            display: block;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+            letter-spacing: 0.02em;
+        }
+        .onboarding-box input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border-subtle);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition);
+            outline: none;
+        }
+        .onboarding-box input:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(99, 179, 236, 0.15);
+        }
+        .onboarding-box input::placeholder {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .onboarding-box .btn-primary {
+            margin-top: 24px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #fff;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 0.01em;
+        }
+        .onboarding-box .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(74, 125, 181, 0.35);
+        }
+        .onboarding-box .btn-primary:active {
+            transform: scale(0.97);
+        }
 
-    /* --- Steps --- */
-    .steps-list { margin: 0.3rem 0 0.45rem; }
-    .steps-list .step {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.65rem;
-      color: #94a3b8;
-      padding: 0.15rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      cursor: default;
-    }
-    .steps-list .step:last-child { border-bottom: none; }
-    .steps-list .step input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      accent-color: #3b82f6;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .steps-list .step .step-label { flex: 1; }
-    .steps-list .step.done .step-label { color: #4ade80; text-decoration: line-through; opacity: 0.7; }
-    .steps-list .step .step-icon { color: #4ade80; font-size: 0.6rem; }
+        /* ---------- Header ---------- */
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0 16px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 20px;
+        }
+        .app-header .greeting {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .app-header .greeting span {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .app-header .streak-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-secondary);
+            padding: 6px 14px 6px 10px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-amber);
+            border: 1px solid var(--border-subtle);
+        }
+        .app-header .streak-badge .flame {
+            font-size: 18px;
+        }
 
-    .card .actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 0.45rem;
-      margin-top: 0.2rem;
-    }
-    .card .actions .check-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.65rem;
-      color: #94a3b8;
-      cursor: pointer;
-    }
-    .card .actions .check-wrap input[type="checkbox"] {
-      width: 16px;
-      height: 16px;
-      accent-color: #3b82f6;
-      cursor: pointer;
-    }
+        /* ---------- Tab Navigation ---------- */
+        .tab-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 520px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-around;
+            padding: 6px 0 env(safe-area-inset-bottom, 6px) 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .tab-nav button {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 8px 0 4px 0;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.02em;
+        }
+        .tab-nav button .tab-icon {
+            font-size: 22px;
+            line-height: 1.2;
+        }
+        .tab-nav button.active {
+            color: var(--accent-cyan);
+        }
+        .tab-nav button.active::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 30%;
+            right: 30%;
+            height: 3px;
+            background: var(--accent-cyan);
+            border-radius: 0 0 4px 4px;
+        }
+        .tab-nav button:active {
+            transform: scale(0.92);
+        }
 
-    /* --- Stats --- */
-    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 0.5rem 0; }
-    .stat-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
-      padding: 0.85rem;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-    .stat-card:hover { transform: translate3d(0, -4px, 0); border-color: rgba(59, 130, 246, 0.3); }
-    .stat-card .number { font-size: 1.7rem; font-weight: 900; color: #3b82f6; }
-    .stat-card .label { font-size: 0.6rem; color: #94a3b8; margin-top: 0.1rem; }
+        /* ---------- Tab Content ---------- */
+        .tab-panel {
+            display: none;
+            animation: fadeSlide 0.3s ease;
+            padding-bottom: 12px;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .reset-btn {
-      background: rgba(230, 36, 41, 0.15);
-      color: #ef4444;
-      border: 1px solid rgba(230, 36, 41, 0.2);
-      padding: 0.4rem 1rem;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 1rem;
-    }
-    .reset-btn:hover { background: rgba(230, 36, 41, 0.3); }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 20px 0 12px 0;
+            letter-spacing: -0.01em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .badge-count {
+            font-size: 12px;
+            font-weight: 500;
+            background: var(--bg-secondary);
+            padding: 2px 12px;
+            border-radius: 40px;
+            color: var(--text-secondary);
+        }
 
-    /* --- Notepad --- */
-    .notepad-area {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
-      padding: 0.85rem;
-      margin-top: 0.5rem;
-    }
-    .notepad-area textarea {
-      width: 100%;
-      background: transparent;
-      border: none;
-      color: #e8edf5;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.82rem;
-      resize: vertical;
-      min-height: 110px;
-      outline: none;
-      padding: 0.2rem;
-    }
-    .notepad-area textarea::placeholder { color: #6b7280; }
-    .notepad-actions {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-    }
-    .notepad-actions button {
-      padding: 0.3rem 1.2rem;
-      border-radius: 40px;
-      border: none;
-      font-weight: 700;
-      font-size: 0.7rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .notepad-actions .save-btn { background: #3b82f6; color: #fff; }
-    .notepad-actions .save-btn:hover { background: #60a5fa; transform: scale(1.02); }
-    .notepad-actions .clear-btn { background: rgba(255,255,255,0.06); color: #94a3b8; border: 1px solid rgba(255,255,255,0.08); }
-    .notepad-actions .clear-btn:hover { background: rgba(230,36,41,0.2); color: #ef4444; }
-    .save-feedback {
-      font-size: 0.65rem;
-      color: #4ade80;
-      margin-top: 0.3rem;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .save-feedback.show { opacity: 1; }
+        /* ---------- Topic Cards (Accordion) ---------- */
+        .topic-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            border: 1px solid var(--border-subtle);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .topic-card:hover {
+            border-color: var(--border-active);
+        }
+        .topic-card .topic-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            cursor: pointer;
+            user-select: none;
+            transition: var(--transition);
+        }
+        .topic-card .topic-header:active {
+            background: var(--bg-card-hover);
+        }
+        .topic-card .topic-header .svg-ring {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            transform: rotate(-90deg);
+        }
+        .topic-card .topic-header .topic-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .topic-card .topic-header .topic-info .topic-title {
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 1.3;
+        }
+        .topic-card .topic-header .topic-info .topic-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 2px;
+            flex-wrap: wrap;
+        }
+        .topic-card .topic-header .topic-info .topic-meta .cat-tag {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 2px 10px;
+            border-radius: 40px;
+            background: var(--bg-input);
+            color: var(--text-secondary);
+        }
+        .topic-card .topic-header .topic-info .topic-meta .cat-tag.foundation {
+            color: var(--accent-green);
+            border: 1px solid rgba(92, 219, 158, 0.25);
+        }
+        .topic-card .topic-header .topic-info .topic-meta .cat-tag.core {
+            color: var(--accent-cyan);
+            border: 1px solid rgba(99, 179, 236, 0.25);
+        }
+        .topic-card .topic-header .topic-info .topic-meta .cat-tag.advanced {
+            color: var(--accent-purple);
+            border: 1px solid rgba(155, 127, 212, 0.25);
+        }
+        .topic-card .topic-header .topic-info .topic-meta .step-progress-text {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .topic-card .topic-header .chevron {
+            font-size: 18px;
+            color: var(--text-muted);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .topic-card .topic-header .chevron.open {
+            transform: rotate(180deg);
+        }
 
-    /* --- Commitment --- */
-    .commitment-box {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 14px;
-      padding: 1.2rem;
-      text-align: center;
-    }
-    .commitment-box .title { font-size: 1.1rem; font-weight: 800; color: #f8fafc; margin-bottom: 0.2rem; }
-    .commitment-box .sub { font-size: 0.75rem; color: #94a3b8; margin-bottom: 1rem; }
-    .commitment-box .commitment-text {
-      font-size: 0.9rem;
-      color: #f8fafc;
-      background: rgba(255,255,255,0.04);
-      padding: 1rem;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.06);
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-    .commitment-box .commitment-text strong { color: #3b82f6; }
-    .signature-area {
-      border: 2px dashed rgba(255,255,255,0.1);
-      border-radius: 14px;
-      height: 150px;
-      background: rgba(255,255,255,0.02);
-      margin-bottom: 1rem;
-      touch-action: none;
-      position: relative;
-      overflow: hidden;
-    }
-    .signature-area canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-      touch-action: none;
-    }
-    .signature-area .placeholder {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.65rem;
-      color: #6b7280;
-      pointer-events: none;
-    }
-    .commitment-box .sign-actions {
-      display: flex;
-      gap: 0.5rem;
-      justify-content: center;
-    }
-    .commitment-box .sign-actions button {
-      padding: 0.4rem 1.2rem;
-      border-radius: 40px;
-      border: none;
-      font-weight: 700;
-      font-size: 0.7rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .commitment-box .sign-actions .clear-sign { background: rgba(255,255,255,0.06); color: #94a3b8; border: 1px solid rgba(255,255,255,0.08); }
-    .commitment-box .sign-actions .clear-sign:hover { background: rgba(230,36,41,0.2); color: #ef4444; }
-    .commitment-box .sign-actions .submit-sign {
-      background: #3b82f6;
-      color: #fff;
-    }
-    .commitment-box .sign-actions .submit-sign:hover { background: #60a5fa; transform: scale(1.02); }
-    .commitment-box .sign-actions .submit-sign:disabled { opacity: 0.5; cursor: not-allowed; }
-    .commitment-box .commitment-status {
-      margin-top: 0.8rem;
-      padding: 0.6rem;
-      border-radius: 10px;
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-    .commitment-box .commitment-status.committed {
-      background: rgba(34, 197, 94, 0.15);
-      color: #4ade80;
-      border: 1px solid rgba(34, 197, 94, 0.2);
-    }
-    .commitment-box .commitment-status.not-committed {
-      background: rgba(251, 191, 36, 0.1);
-      color: #fbbf24;
-      border: 1px solid rgba(251, 191, 36, 0.15);
-    }
+        .topic-card .topic-body {
+            padding: 0 16px 16px 16px;
+            display: none;
+        }
+        .topic-card .topic-body.open {
+            display: block;
+        }
 
-    /* --- Footer --- */
-    .footer {
-      margin-top: 1.2rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 0.6rem;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      font-size: 0.55rem;
-      color: #4b5563;
-    }
+        .topic-card .topic-body .step-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(42, 63, 94, 0.3);
+        }
+        .topic-card .topic-body .step-item:last-child {
+            border-bottom: none;
+        }
+        .topic-card .topic-body .step-item label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            flex: 1;
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+        .topic-card .topic-body .step-item label.done {
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+        .topic-card .topic-body .step-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-cyan);
+            cursor: pointer;
+            flex-shrink: 0;
+            border-radius: 4px;
+        }
+        .topic-card .topic-body .step-item .step-num {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            min-width: 20px;
+        }
 
-    /* --- Responsive --- */
-    @media (max-width: 450px) {
-      .app { padding: 0.8rem; }
-      .logo h1 { font-size: 1.1rem; }
-      .grid-2 { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(3, 1fr); }
-      .tabs { gap: 0.1rem; }
-      .tab-btn { padding: 0.2rem 0.6rem; font-size: 0.6rem; }
-      .heatmap-tubes { gap: 0.15rem; }
-      .heatmap-tube { height: 10px; }
-      .signature-area { height: 120px; }
-    }
-  </style>
+        .topic-card .topic-body .resource-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(42, 63, 94, 0.3);
+        }
+        .topic-card .topic-body .resource-pills a {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 14px 4px 10px;
+            border-radius: 40px;
+            background: var(--bg-input);
+            color: var(--accent-cyan);
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition);
+        }
+        .topic-card .topic-body .resource-pills a:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-cyan);
+            transform: translateY(-1px);
+        }
+        .topic-card .topic-body .resource-pills a .ext {
+            font-size: 11px;
+            opacity: 0.6;
+        }
+
+        /* ---------- Video & Dataset Items ---------- */
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .item-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-card);
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition);
+        }
+        .item-row:hover {
+            border-color: var(--border-active);
+        }
+        .item-row .item-check {
+            flex-shrink: 0;
+        }
+        .item-row .item-check input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent-cyan);
+            cursor: pointer;
+        }
+        .item-row .item-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .item-row .item-info .item-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            word-break: break-word;
+        }
+        .item-row .item-info .item-title.done {
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+        .item-row .item-info .item-sub {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+        .item-row .item-link {
+            flex-shrink: 0;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .item-row .item-link:hover {
+            background: var(--bg-card-hover);
+            color: var(--accent-blue);
+        }
+        .item-row .item-link .ext {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        /* ---------- Debug Cards ---------- */
+        .debug-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 6px;
+        }
+        .debug-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            padding: 14px 12px;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition);
+        }
+        .debug-card:hover {
+            border-color: var(--accent-rose);
+        }
+        .debug-card .debug-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--accent-rose);
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+        .debug-card .debug-tip {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        /* ---------- Commitment Tab ---------- */
+        .pledge-box {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 24px 20px;
+            border: 1px solid var(--border-subtle);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .pledge-box .pledge-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .pledge-box .pledge-text strong {
+            color: var(--text-primary);
+        }
+        .pledge-box .pledge-text .name-highlight {
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        .signature-section {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            border: 1px solid var(--border-subtle);
+        }
+        .signature-section .canvas-wrap {
+            background: var(--bg-input);
+            border-radius: var(--radius-sm);
+            border: 1.5px dashed var(--border-subtle);
+            touch-action: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .signature-section .canvas-wrap canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 1;
+            touch-action: none;
+            cursor: crosshair;
+        }
+        .signature-section .sig-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+        .signature-section .sig-actions button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 80px;
+        }
+        .signature-section .sig-actions .btn-clear {
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+        }
+        .signature-section .sig-actions .btn-clear:hover {
+            background: var(--bg-card-hover);
+        }
+        .signature-section .sig-actions .btn-submit-sig {
+            background: linear-gradient(135deg, var(--accent-green), #3bb87c);
+            color: #fff;
+        }
+        .signature-section .sig-actions .btn-submit-sig:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(92, 219, 158, 0.3);
+        }
+        .signature-section .sig-actions .btn-submit-sig:active {
+            transform: scale(0.97);
+        }
+        .signature-section .sig-actions .btn-submit-sig:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .commit-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 15px;
+            background: var(--bg-input);
+        }
+        .commit-status.committed {
+            background: rgba(92, 219, 158, 0.12);
+            color: var(--accent-green);
+            border: 1px solid rgba(92, 219, 158, 0.25);
+        }
+        .commit-status.not-committed {
+            background: rgba(232, 115, 138, 0.08);
+            color: var(--accent-rose);
+            border: 1px solid rgba(232, 115, 138, 0.2);
+        }
+
+        /* ---------- Notepad ---------- */
+        .notepad-area {
+            width: 100%;
+            min-height: 280px;
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border-subtle);
+            background: var(--bg-input);
+            color: var(--text-primary);
+            font-size: 15px;
+            line-height: 1.6;
+            font-family: var(--font-sans);
+            resize: vertical;
+            transition: var(--transition);
+            outline: none;
+        }
+        .notepad-area:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(99, 179, 236, 0.1);
+        }
+        .notepad-area::placeholder {
+            color: var(--text-muted);
+        }
+        .notepad-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .notepad-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .notepad-actions .btn-save {
+            background: var(--accent-cyan);
+            color: #0b1120;
+        }
+        .notepad-actions .btn-save:hover {
+            box-shadow: 0 4px 16px rgba(99, 179, 236, 0.3);
+        }
+        .notepad-actions .btn-clear-notes {
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+        }
+        .notepad-actions .btn-clear-notes:hover {
+            background: var(--bg-card-hover);
+        }
+
+        /* ---------- Stats ---------- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 8px 0 16px 0;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            padding: 16px 14px;
+            border: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+        .stat-card .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+            font-weight: 500;
+        }
+        .stat-card .stat-value.green {
+            background: linear-gradient(135deg, var(--accent-green), #3bb87c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card .stat-value.amber {
+            background: linear-gradient(135deg, var(--accent-amber), #e8942a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card .stat-value.rose {
+            background: linear-gradient(135deg, var(--accent-rose), #d45a72);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-reset {
+            width: 100%;
+            padding: 14px;
+            border: 1.5px solid var(--accent-rose);
+            background: rgba(232, 115, 138, 0.08);
+            color: var(--accent-rose);
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+        .btn-reset:hover {
+            background: rgba(232, 115, 138, 0.18);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(232, 115, 138, 0.2);
+        }
+        .btn-reset:active {
+            transform: scale(0.97);
+        }
+
+        /* ---------- Toast ---------- */
+        #toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 40px;
+            border: 1px solid var(--border-subtle);
+            font-weight: 500;
+            font-size: 14px;
+            box-shadow: var(--shadow-card);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            z-index: 200;
+            max-width: 90%;
+            text-align: center;
+            backdrop-filter: blur(8px);
+        }
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        /* ---------- Responsive tweaks ---------- */
+        @media (max-width: 420px) {
+            .app-header .greeting {
+                font-size: 17px;
+            }
+            .app-header .streak-badge {
+                font-size: 12px;
+                padding: 4px 10px 4px 8px;
+            }
+            .topic-card .topic-header {
+                padding: 12px 12px;
+            }
+            .topic-card .topic-header .svg-ring {
+                width: 36px;
+                height: 36px;
+            }
+            .debug-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .onboarding-box {
+                padding: 28px 20px 28px;
+            }
+            .item-row {
+                padding: 8px 10px;
+            }
+            .item-row .item-info .item-title {
+                font-size: 13px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            #app {
+                padding: 24px 24px 0 24px;
+            }
+            .tab-nav {
+                border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            }
+        }
+
+        /* ---------- Utilities ---------- */
+        .mt-1 {
+            margin-top: 4px;
+        }
+        .mt-2 {
+            margin-top: 8px;
+        }
+        .mt-3 {
+            margin-top: 16px;
+        }
+        .mb-2 {
+            margin-bottom: 8px;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .gap-1 {
+            gap: 6px;
+        }
+
+        /* PWA install banner (minimal) */
+        .pwa-install-banner {
+            display: none;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            align-items: center;
+            justify-content: space-between;
+        }
+        .pwa-install-banner.show {
+            display: flex;
+        }
+        .pwa-install-banner button {
+            background: var(--accent-cyan);
+            border: none;
+            color: #0b1120;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+    </style>
 </head>
 <body>
 
-<!-- Onboarding -->
-<div class="onboarding-overlay" id="onboardingOverlay">
-  <div class="onboarding-box">
-    <h2>Welcome to <span>WebSlinger ML</span></h2>
-    <div class="sub">Let's personalize your learning journey</div>
-    
-    <label>What's your name?</label>
-    <input type="text" id="userName" placeholder="e.g., Yashit" />
-    
-    <label>How old are you?</label>
-    <input type="number" id="userAge" placeholder="e.g., 21" min="1" max="120" />
-    
-    <label>What's your primary interest?</label>
-    <select id="userInterest">
-      <option value="Machine Learning">Machine Learning</option>
-      <option value="Deep Learning">Deep Learning</option>
-      <option value="NLP & LLMs">NLP & LLMs</option>
-      <option value="Data Science">Data Science</option>
-      <option value="MLOps">MLOps</option>
-      <option value="Computer Vision">Computer Vision</option>
-      <option value="Data Engineering">Data Engineering</option>
-      <option value="Everything">Everything</option>
-    </select>
-    
-    <button class="btn-start" id="startJourney">Start Your Journey 🚀</button>
-  </div>
-</div>
-
-<!-- Main App -->
-<div class="app" id="app">
-  
-  <!-- Header -->
-  <header class="header">
-    <div class="logo">
-      <svg viewBox="0 0 512 512">
-        <rect width="512" height="512" rx="80" fill="#0a0e1a"/>
-        <circle cx="256" cy="256" r="200" fill="none" stroke="#3b82f6" stroke-width="12"/>
-        <circle cx="256" cy="256" r="140" fill="none" stroke="#60a5fa" stroke-width="8"/>
-        <circle cx="256" cy="256" r="80" fill="none" stroke="#93bbfc" stroke-width="6"/>
-        <circle cx="256" cy="256" r="30" fill="#60a5fa"/>
-        <line x1="256" y1="56" x2="256" y2="100" stroke="#3b82f6" stroke-width="6"/>
-        <line x1="256" y1="412" x2="256" y2="456" stroke="#3b82f6" stroke-width="6"/>
-        <line x1="56" y1="256" x2="100" y2="256" stroke="#3b82f6" stroke-width="6"/>
-        <line x1="412" y1="256" x2="456" y2="256" stroke="#3b82f6" stroke-width="6"/>
-        <line x1="116" y1="116" x2="148" y2="148" stroke="#3b82f6" stroke-width="6"/>
-        <line x1="364" y1="364" x2="396" y2="396" stroke="#3b82f6" stroke-width="6"/>
-        <line x1="116" y1="396" x2="148" y2="364" stroke="#3b82f6" stroke-width="6"/>
-        <line x1="364" y1="148" x2="396" y2="116" stroke="#3b82f6" stroke-width="6"/>
-        <circle cx="256" cy="256" r="180" fill="none" stroke="rgba(230,36,41,0.12)" stroke-width="1"/>
-        <circle cx="256" cy="256" r="120" fill="none" stroke="rgba(230,36,41,0.08)" stroke-width="1"/>
-        <line x1="76" y1="256" x2="436" y2="256" stroke="rgba(230,36,41,0.06)" stroke-width="1"/>
-        <line x1="256" y1="76" x2="256" y2="436" stroke="rgba(230,36,41,0.06)" stroke-width="1"/>
-        <line x1="128" y1="128" x2="384" y2="384" stroke="rgba(230,36,41,0.06)" stroke-width="1"/>
-        <line x1="128" y1="384" x2="384" y2="128" stroke="rgba(230,36,41,0.06)" stroke-width="1"/>
-      </svg>
-      <h1>WebSlinger ML</h1>
-      <span class="badge">Pro</span>
-    </div>
-    <div class="header-actions">
-      <div class="streak-box"><i class="fas fa-fire"></i> <span id="streakDisplay">0</span></div>
-      <div class="level-box" id="levelBadge">🌱</div>
-      <div class="progress-stats">
-        <span><strong id="doneCount">0</strong>/<span id="totalCount">0</span></span>
-      </div>
-    </div>
-  </header>
-
-  <!-- Greeting -->
-  <div class="greeting" id="greeting">
-    <div class="hello">Hello, <span id="userNameDisplay">Learner</span> 👋</div>
-    <div class="info" id="userInfoDisplay">Age: — · Interest: —</div>
-  </div>
-
-  <!-- Heatmap -->
-  <div class="heatmap-container">
-    <div class="label">
-      <span>📊 Progress Heatmap</span>
-      <span id="heatmapPct">0%</span>
-    </div>
-    <div class="heatmap-tubes" id="heatmapTubes"></div>
-    <div class="heatmap-label" id="heatmapLabels"></div>
-  </div>
-
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab-btn active" data-panel="topics"><i class="fas fa-graduation-cap"></i> Topics</button>
-    <button class="tab-btn" data-panel="videos"><i class="fab fa-youtube"></i> Videos</button>
-    <button class="tab-btn" data-panel="datasets"><i class="fas fa-database"></i> Datasets</button>
-    <button class="tab-btn" data-panel="errors"><i class="fas fa-bug"></i> Errors</button>
-    <button class="tab-btn" data-panel="commitment"><i class="fas fa-handshake"></i> Commit</button>
-    <button class="tab-btn" data-panel="stats"><i class="fas fa-chart-pie"></i> Stats</button>
-    <button class="tab-btn" data-panel="notepad"><i class="fas fa-pen"></i> Notes</button>
-  </div>
-
-  <!-- Panels -->
-  <div class="panel active" id="panel-topics"><div class="grid-2" id="topicsGrid"></div></div>
-  <div class="panel" id="panel-videos"><div class="grid-2" id="videosGrid"></div></div>
-  <div class="panel" id="panel-datasets"><div class="grid-2" id="datasetsGrid"></div></div>
-  <div class="panel" id="panel-errors"><div class="grid-2" id="errorsGrid"></div></div>
-  
-  <div class="panel" id="panel-commitment">
-    <div class="commitment-box">
-      <div class="title">🕸️ Your Commitment</div>
-      <div class="sub">Sign below to commit to completing this learning path</div>
-      
-      <div class="commitment-text">
-        <strong>I, <span id="commitName">_________</span>,</strong> commit to completing all topics, videos, and datasets in WebSlinger ML. I understand that consistency is the key to mastery, and I will show up every day to learn and build.
-      </div>
-      
-      <div class="signature-area" id="signatureArea">
-        <canvas id="signatureCanvas"></canvas>
-        <div class="placeholder" id="signPlaceholder">✍️ Draw your signature here</div>
-      </div>
-      
-      <div class="sign-actions">
-        <button class="clear-sign" id="clearSignature">Clear</button>
-        <button class="submit-sign" id="submitSignature">Submit Commitment</button>
-      </div>
-      
-      <div id="commitmentStatus" class="commitment-status not-committed">
-        ⏳ Not yet committed
-      </div>
-    </div>
-  </div>
-  
-  <div class="panel" id="panel-stats">
-    <div class="stats-grid" id="statsGrid"></div>
-    <div style="text-align:center;margin-top:0.8rem;">
-      <button class="reset-btn" id="resetProgress">🔄 Reset All Progress</button>
-    </div>
-  </div>
-  
-  <div class="panel" id="panel-notepad">
-    <div class="notepad-area">
-      <textarea id="notepadContent" placeholder="📝 Write your notes here..."></textarea>
-      <div class="notepad-actions">
-        <button class="save-btn" id="saveNote">💾 Save Notes</button>
-        <button class="clear-btn" id="clearNote">🗑️ Clear</button>
-      </div>
-      <div class="save-feedback" id="saveFeedback">✓ Notes saved!</div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <span><i class="fas fa-spider"></i> With great power comes great ML</span>
-    <span><i class="fas fa-sync-alt"></i> Auto-saved</span>
-  </div>
-</div>
-
-<script>
-// ============================================================
-//  APPLICATION DATA
-// ============================================================
-
-const TOPICS = [
-  { 
-    id: 't1', 
-    title: 'Feature Engineering', 
-    cat: 'Core', 
-    desc: 'Turn raw data into model-ready features.',
-    steps: [
-      'Read GFG guide on Feature Engineering',
-      'Watch Feature Engineering video',
-      'Practice with Titanic dataset',
-      'Create 3 new features from existing columns'
-    ],
-    resources: [
-      { label: 'GFG Guide', url: 'https://www.geeksforgeeks.org/machine-learning/what-is-feature-engineering/' },
-      { label: 'TDS Techniques', url: 'https://towardsdatascience.com/feature-engineering-techniques-bab6cb39ed7e/' }
-    ]
-  },
-  { 
-    id: 't2', 
-    title: 'Model Evaluation', 
-    cat: 'Core', 
-    desc: 'Know if your model actually works.',
-    steps: [
-      'Read GFG Metrics guide',
-      'Read GFG Model Evaluation guide',
-      'Take the model evaluation quiz',
-      'Implement cross-validation on a dataset'
-    ],
-    resources: [
-      { label: 'GFG Metrics', url: 'https://www.geeksforgeeks.org/machine-learning/metrics-for-machine-learning-model/' },
-      { label: 'GFG Evaluation', url: 'https://www.geeksforgeeks.org/machine-learning/machine-learning-model-evaluation/' }
-    ]
-  },
-  { 
-    id: 't3', 
-    title: 'Deep Learning', 
-    cat: 'Advanced', 
-    desc: 'Neural networks for complex problems.',
-    steps: [
-      'Watch 3Blue1Brown neural network video',
-      'Learn PyTorch basics',
-      'Build a CNN on MNIST',
-      'Train a model with transfer learning'
-    ],
-    resources: [
-      { label: 'Learn PyTorch', url: 'https://www.learnpytorch.io/' },
-      { label: 'GFG DL', url: 'https://www.geeksforgeeks.org/deep-learning/deep-learning-tutorial/' }
-    ]
-  },
-  { 
-    id: 't4', 
-    title: 'NLP & LLMs', 
-    cat: 'Advanced', 
-    desc: 'Make machines understand human text.',
-    steps: [
-      'Read Hugging Face NLP course',
-      'Fine-tune a BERT model',
-      'Build a RAG pipeline',
-      'Deploy an LLM with LangChain'
-    ],
-    resources: [
-      { label: 'Hugging Face', url: 'https://huggingface.co/learn' },
-      { label: 'GFG NLP', url: 'https://www.geeksforgeeks.org/nlp/natural-language-processing-nlp-tutorial/' }
-    ]
-  },
-  { 
-    id: 't5', 
-    title: 'MLOps & MLflow', 
-    cat: 'Advanced', 
-    desc: 'Deploy, monitor, and scale models.',
-    steps: [
-      'Read IBM MLOps guide',
-      'Read GFG MLOps intro',
-      'Set up MLflow tracking',
-      'Deploy a model with MLflow'
-    ],
-    resources: [
-      { label: 'IBM MLOps', url: 'https://www.ibm.com/think/topics/mlops' },
-      { label: 'GFG MLOps', url: 'https://www.geeksforgeeks.org/machine-learning/what-is-mlops/' },
-      { label: 'MLflow Tutorial', url: 'https://www.geeksforgeeks.org/machine-learning/machine-learning-with-mlflow/' }
-    ]
-  },
-  { 
-    id: 't6', 
-    title: 'Data Visualization', 
-    cat: 'Core', 
-    desc: 'Tell stories with data.',
-    steps: [
-      'Read IBM Visualization guide',
-      'Build a dashboard with Streamlit',
-      'Create 5 different chart types',
-      'Add interactivity to your dashboard'
-    ],
-    resources: [
-      { label: 'IBM Guide', url: 'https://www.ibm.com/think/topics/data-visualization' },
-      { label: 'GFG Viz', url: 'https://www.geeksforgeeks.org/data-visualization/' }
-    ]
-  },
-  { 
-    id: 't7', 
-    title: 'Python & SQL', 
-    cat: 'Foundation', 
-    desc: 'The backbone of data science.',
-    steps: [
-      'Complete Real Python basics',
-      'Practice SQL queries on W3Schools',
-      'Build a data pipeline using Python',
-      'Clean and analyze a real dataset'
-    ],
-    resources: [
-      { label: 'Real Python', url: 'https://realpython.com/' },
-      { label: 'W3Schools SQL', url: 'https://www.w3schools.com/sql/' }
-    ]
-  }
-];
-
-const VIDEOS = [
-  { id: 'v1', title: 'Python for Data Science (freeCodeCamp)', cat: 'Foundation', video: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI', channel: 'freeCodeCamp' },
-  { id: 'v2', title: 'SQL for Data Analytics (Alex The Analyst)', cat: 'Foundation', video: 'https://www.youtube.com/watch?v=7S_tz1z_5bA', channel: 'Alex The Analyst' },
-  { id: 'v3', title: 'Logistic Regression (StatQuest)', cat: 'Core', video: 'https://www.youtube.com/watch?v=yIYKR4sgzI8', channel: 'StatQuest' },
-  { id: 'v4', title: 'Decision Trees & Random Forest (StatQuest)', cat: 'Core', video: 'https://www.youtube.com/watch?v=7VeUPuFGJHk', channel: 'StatQuest' },
-  { id: 'v5', title: 'XGBoost (StatQuest)', cat: 'Core', video: 'https://www.youtube.com/watch?v=ZVFeW798-2I', channel: 'StatQuest' },
-  { id: 'v6', title: 'Neural Networks (3B1B)', cat: 'Advanced', video: 'https://www.youtube.com/watch?v=aircAruvnKk', channel: '3Blue1Brown' },
-  { id: 'v7', title: 'CNNs (StatQuest)', cat: 'Advanced', video: 'https://www.youtube.com/watch?v=HGwBXDKFk9I', channel: 'StatQuest' },
-  { id: 'v8', title: 'Transformers (3B1B)', cat: 'Advanced', video: 'https://www.youtube.com/watch?v=eMlx5fFNoYc', channel: '3Blue1Brown' },
-  { id: 'v9', title: 'BERT (StatQuest)', cat: 'Advanced', video: 'https://www.youtube.com/watch?v=0MJRdVyQvRM', channel: 'StatQuest' },
-  { id: 'v10', title: 'RAG in 10 min (LangChain)', cat: 'Advanced', video: 'https://www.youtube.com/watch?v=wd7TZ4w1mSw', channel: 'LangChain' },
-  { id: 'v11', title: 'GPT (StatQuest)', cat: 'Advanced', video: 'https://www.youtube.com/watch?v=5vY2_5Gm_6g', channel: 'StatQuest' },
-  { id: 'v12', title: 'MLOps (Chip Huyen)', cat: 'Advanced', video: 'https://www.youtube.com/watch?v=06-AZXmwHjo', channel: 'Chip Huyen' }
-];
-
-const DATASETS = [
-  { id: 'd1', title: 'Titanic', cat: 'Tabular', desc: 'Classic survival prediction starter.', link: 'https://www.kaggle.com/c/titanic' },
-  { id: 'd2', title: 'Iris', cat: 'Tabular', desc: '3-species flower classification.', link: 'https://www.kaggle.com/datasets/uciml/iris' },
-  { id: 'd3', title: 'Boston Housing', cat: 'Tabular', desc: 'House price prediction.', link: 'https://www.kaggle.com/datasets/altruistdelhite04/boston-housing' },
-  { id: 'd4', title: 'MNIST', cat: 'Vision', desc: 'Handwritten digit recognition.', link: 'https://www.kaggle.com/datasets/hojjatk/mnist-dataset' },
-  { id: 'd5', title: 'Fashion-MNIST', cat: 'Vision', desc: 'Clothing classification.', link: 'https://www.kaggle.com/datasets/zalando-research/fashionmnist' },
-  { id: 'd6', title: 'CIFAR-10', cat: 'Vision', desc: 'Object recognition.', link: 'https://www.kaggle.com/datasets/fedesoriano/cifar10' },
-  { id: 'd7', title: 'IMDB Reviews', cat: 'NLP', desc: 'Sentiment analysis.', link: 'https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews' },
-  { id: 'd8', title: 'Spam/Ham', cat: 'NLP', desc: 'SMS classification.', link: 'https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset' },
-  { id: 'd9', title: 'Twitter Sentiment', cat: 'NLP', desc: 'Tweet sentiment.', link: 'https://www.kaggle.com/datasets/kazanova/sentiment140' },
-  { id: 'd10', title: 'Stock Prices', cat: 'Time Series', desc: 'Price forecast.', link: 'https://www.kaggle.com/datasets/borismarjanovic/price-volume-data-for-all-us-stocks-etfs' },
-  { id: 'd11', title: 'Air Quality', cat: 'Time Series', desc: 'PM2.5 forecasting.', link: 'https://www.kaggle.com/datasets/fedesoriano/air-quality-data-set' },
-  { id: 'd12', title: 'Credit Card Fraud', cat: 'Other', desc: 'Fraud detection.', link: 'https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud' },
-  { id: 'd13', title: 'Customer Segmentation', cat: 'Other', desc: 'Clustering.', link: 'https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign' },
-  { id: 'd14', title: 'COCO', cat: 'Vision', desc: 'Object detection.', link: 'https://www.kaggle.com/datasets/awsaf49/coco-2017-dataset' },
-  { id: 'd15', title: 'KITTI', cat: 'Vision', desc: 'Autonomous driving.', link: 'https://www.kaggle.com/datasets/klemenko/kitti-dataset' }
-];
-
-const ERRORS = [
-  { id: 'e1', title: 'KeyError: column not found', severity: 'Low', desc: 'Column typo or missing.', fix: 'Print df.columns. "With great power comes great responsibility – check your spelling!"' },
-  { id: 'e2', title: 'ValueError: shapes not aligned', severity: 'High', desc: 'Matrix dimensions mismatch.', fix: 'Use .shape. "Your friendly neighborhood debugger – check dimensions!"' },
-  { id: 'e3', title: 'CUDA Out of Memory', severity: 'High', desc: 'GPU ran out of RAM.', fix: 'Reduce batch size. "With great memory comes great responsibility – downsize!"' },
-  { id: 'e4', title: 'MemoryError (RAM)', severity: 'High', desc: 'Dataset too large for RAM.', fix: 'Use chunksize. "Spidey senses tingling – use a smaller chunk!"' },
-  { id: 'e5', title: 'ConvergenceWarning', severity: 'Medium', desc: 'Model failed to converge.', fix: 'Increase max_iter or scale features. "Persistence is key – keep iterating!"' },
-  { id: 'e6', title: 'AttributeError: module has no attr', severity: 'Medium', desc: 'Typo or deprecated function.', fix: 'Check library docs. "Your spidey senses – check the docs!"' }
-];
-
-// ============================================================
-//  STATE MANAGEMENT
-// ============================================================
-
-function getData(key, fallback) {
-  try { const d = localStorage.getItem('wsm_' + key); return d ? JSON.parse(d) : fallback; } catch(e) { return fallback; }
-}
-function setData(key, val) { localStorage.setItem('wsm_' + key, JSON.stringify(val)); }
-
-let userProfile = getData('profile', null);
-let isCommitted = getData('committed', false);
-let signatureData = getData('signature', null);
-let completed = getData('completed', {});
-let stepProgress = getData('steps', {});
-let errorRead = getData('errorRead', {});
-
-// ============================================================
-//  CORE FUNCTIONS
-// ============================================================
-
-function toggleStep(topicId, stepIndex) {
-  const key = topicId + '_' + stepIndex;
-  stepProgress[key] = !stepProgress[key];
-  setData('steps', stepProgress);
-  renderAll();
-  updateProgress();
-  // Auto-complete topic if all steps done
-  const topic = TOPICS.find(t => t.id === topicId);
-  if (topic) {
-    const allDone = topic.steps.every((_, idx) => stepProgress[topicId + '_' + idx]);
-    if (allDone && !completed[topicId]) {
-      completed[topicId] = true;
-      setData('completed', completed);
-      fireConfetti();
-    }
-  }
-  renderAll();
-  updateProgress();
-}
-
-function isStepDone(topicId, stepIndex) {
-  const key = topicId + '_' + stepIndex;
-  return !!stepProgress[key];
-}
-
-function toggleDone(id) {
-  completed[id] = !completed[id];
-  setData('completed', completed);
-  renderAll();
-  updateProgress();
-  if (completed[id]) fireConfetti();
-}
-
-function isDone(id) { return !!completed[id]; }
-
-function toggleErrorRead(id) {
-  errorRead[id] = !errorRead[id];
-  setData('errorRead', errorRead);
-  renderAll();
-}
-
-function isErrorRead(id) { return !!errorRead[id]; }
-
-// --- Streak ---
-function getStreak() { try { return parseInt(localStorage.getItem('wsm_streak')) || 0; } catch(e) { return 0; } }
-function setStreak(v) { localStorage.setItem('wsm_streak', v); }
-function getLastVisit() { return localStorage.getItem('wsm_lastvisit') || ''; }
-function setLastVisit(v) { localStorage.setItem('wsm_lastvisit', v); }
-
-function updateStreak() {
-  const today = new Date().toDateString();
-  const last = getLastVisit();
-  let s = getStreak();
-  if (last !== today) {
-    const y = new Date(); y.setDate(y.getDate()-1);
-    if (last === y.toDateString()) s += 1; else s = 1;
-    setStreak(s); setLastVisit(today);
-  }
-  document.getElementById('streakDisplay').textContent = s;
-  return s;
-}
-
-function getLevel(done, total) {
-  const pct = total > 0 ? done/total : 0;
-  if (pct < 0.15) return '🌱 Starter';
-  if (pct < 0.35) return '📘 Explorer';
-  if (pct < 0.55) return '🚀 Builder';
-  if (pct < 0.75) return '⚡ Pro';
-  if (pct < 0.9) return '🦸 Hero';
-  return '🏆 Master';
-}
-
-function updateProgress() {
-  const allIds = [...TOPICS.map(t => t.id), ...VIDEOS.map(v => v.id), ...DATASETS.map(d => d.id)];
-  const done = allIds.filter(id => completed[id]).length;
-  const total = allIds.length;
-  document.getElementById('doneCount').textContent = done;
-  document.getElementById('totalCount').textContent = total;
-  document.getElementById('levelBadge').textContent = getLevel(done, total);
-  updateHeatmap();
-  return { done, total };
-}
-
-function updateHeatmap() {
-  const container = document.getElementById('heatmapTubes');
-  const labelContainer = document.getElementById('heatmapLabels');
-  const pctDisplay = document.getElementById('heatmapPct');
-  
-  const allIds = [...TOPICS.map(t => t.id), ...VIDEOS.map(v => v.id), ...DATASETS.map(d => d.id)];
-  const done = allIds.filter(id => completed[id]).length;
-  const total = allIds.length;
-  const pct = total > 0 ? Math.round(done/total*100) : 0;
-  pctDisplay.textContent = pct + '%';
-  
-  const categories = {
-    'Topics': TOPICS.map(t => ({ id: t.id, done: !!completed[t.id] })),
-    'Videos': VIDEOS.map(v => ({ id: v.id, done: !!completed[v.id] })),
-    'Datasets': DATASETS.map(d => ({ id: d.id, done: !!completed[d.id] }))
-  };
-  
-  let tubesHtml = '';
-  let labelsHtml = '';
-  const tubeColors = ['#3b82f6', '#60a5fa', '#93bbfc'];
-  let catIndex = 0;
-  
-  for (const [cat, items] of Object.entries(categories)) {
-    const doneCount = items.filter(i => i.done).length;
-    const totalCount = items.length;
-    const catPct = totalCount > 0 ? Math.round(doneCount/totalCount*100) : 0;
-    const color = tubeColors[catIndex % tubeColors.length];
-    
-    tubesHtml += `
-      <div class="heatmap-tube" title="${cat}: ${doneCount}/${totalCount}">
-        <div class="fill ${catPct === 100 ? 'done' : catPct > 0 ? 'partial' : ''}" 
-             style="width: ${catPct}%; background: ${catPct === 100 ? 'linear-gradient(90deg, #22c55e, #4ade80)' : catPct > 0 ? 'linear-gradient(90deg, #f59e0b, #fbbf24)' : 'linear-gradient(90deg, #3b82f6, #60a5fa)'};"></div>
-      </div>
-    `;
-    labelsHtml += `<span style="color:${color}">${cat.substring(0,4)} ${doneCount}/${totalCount}</span>`;
-    catIndex++;
-  }
-  
-  container.innerHTML = tubesHtml;
-  labelContainer.innerHTML = labelsHtml;
-}
-
-// ============================================================
-//  CONFETTI
-// ============================================================
-function fireConfetti() {
-  const colors = ['#3b82f6', '#60a5fa', '#e62429', '#fbbf24', '#22c55e'];
-  for (let i = 0; i < 20; i++) {
-    const p = document.createElement('div');
-    p.style.cssText = `
-      position: fixed; top: -10px; left: ${Math.random() * 100}%;
-      width: ${Math.random() * 5 + 3}px; height: ${Math.random() * 5 + 3}px;
-      background: ${colors[Math.floor(Math.random() * colors.length)]};
-      border-radius: 2px; pointer-events: none; z-index: 9999;
-      animation: confettiFall ${Math.random() * 1.2 + 0.8}s linear forwards;
-    `;
-    document.body.appendChild(p);
-    setTimeout(() => p.remove(), 2500);
-  }
-  if (!document.getElementById('confettiStyle')) {
-    const style = document.createElement('style');
-    style.id = 'confettiStyle';
-    style.textContent = `
-      @keyframes confettiFall {
-        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(style);
-  }
-}
-
-// ============================================================
-//  RENDER FUNCTIONS
-// ============================================================
-
-function renderTopics() {
-  const grid = document.getElementById('topicsGrid');
-  grid.innerHTML = TOPICS.map(t => {
-    const stepsHtml = t.steps.map((s, idx) => {
-      const done = isStepDone(t.id, idx);
-      return `
-        <div class="step ${done ? 'done' : ''}">
-          <input type="checkbox" ${done ? 'checked' : ''} onchange="toggleStep('${t.id}', ${idx})" />
-          <span class="step-label">${s}</span>
-          ${done ? '<span class="step-icon"><i class="fas fa-check-circle"></i></span>' : ''}
+    <div id="app">
+        <!-- Onboarding Overlay -->
+        <div id="onboarding">
+            <div class="onboarding-box">
+                <div class="icon-big">🧠</div>
+                <h1>ML Engineer Companion</h1>
+                <p>Your personal data science &amp; machine learning command center.</p>
+                <label for="nameInput">Enter your engineer name</label>
+                <input type="text" id="nameInput" placeholder="e.g. Alex" autocomplete="off" />
+                <button class="btn-primary" id="onboardBtn">Launch Dashboard →</button>
+            </div>
         </div>
-      `;
-    }).join('');
-    
-    return `
-      <div class="card">
-        <span class="badge-cat">${t.cat}</span>
-        <div class="title">${t.title}</div>
-        <div class="desc">${t.desc}</div>
-        <div class="steps-list">${stepsHtml}</div>
-        <div class="resource-links">${t.resources.map(r => `<a href="${r.url}" target="_blank">${r.label}</a>`).join('')}</div>
-        <div class="actions">
-          <label class="check-wrap">
-            <input type="checkbox" ${isDone(t.id) ? 'checked' : ''} onchange="toggleDone('${t.id}')"> Topic Complete
-          </label>
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="greeting">Hello, <span id="userNameDisplay">Engineer</span> 👋</div>
+            <div class="streak-badge"><span class="flame">🔥</span> <span id="streakDisplay">0</span> day streak</div>
+        </header>
+
+        <!-- PWA install banner (hidden by default) -->
+        <div class="pwa-install-banner" id="pwaBanner">
+            <span>📲 Install this app for offline access</span>
+            <button id="pwaInstallBtn">Install</button>
         </div>
-      </div>
-    `;
-  }).join('');
-}
 
-function renderVideos() {
-  const grid = document.getElementById('videosGrid');
-  grid.innerHTML = VIDEOS.map(v => `
-    <div class="card">
-      <span class="badge-cat">${v.cat}</span>
-      <div class="title">${v.title}</div>
-      <div class="desc" style="color:#6b7280;font-size:0.65rem;"><i class="fab fa-youtube" style="color:#e62429;"></i> ${v.channel}</div>
-      <div style="margin:0.3rem 0;padding:0.1rem 0;"><a href="${v.video}" target="_blank" style="color:#60a5fa;font-size:0.75rem;text-decoration:none;background:rgba(255,255,255,0.05);padding:0.2rem 0.8rem;border-radius:40px;border:1px solid rgba(255,255,255,0.08);display:inline-block;">▶ Watch Video</a></div>
-      <div class="actions">
-        <label class="check-wrap">
-          <input type="checkbox" ${isDone(v.id) ? 'checked' : ''} onchange="toggleDone('${v.id}')"> Watched
-        </label>
-      </div>
+        <!-- Tab Panels -->
+        <!-- TAB 1: Topics & Content -->
+        <div class="tab-panel active" id="panel-tab1">
+            <!-- Topics -->
+            <div class="section-title">📚 Topics <span class="badge-count" id="topicCount">0/7</span></div>
+            <div id="topicsContainer"></div>
+
+            <!-- Videos -->
+            <div class="section-title">🎬 Videos <span class="badge-count" id="videoCount">0/12</span></div>
+            <div class="item-list" id="videosContainer"></div>
+
+            <!-- Datasets -->
+            <div class="section-title">📊 Datasets <span class="badge-count" id="datasetCount">0/15</span></div>
+            <div class="item-list" id="datasetsContainer"></div>
+
+            <!-- Debugging Errors -->
+            <div class="section-title">🐞 Debugging Errors <span class="badge-count">6</span></div>
+            <div class="debug-grid" id="debugContainer"></div>
+        </div>
+
+        <!-- TAB 2: Commitment -->
+        <div class="tab-panel" id="panel-tab2">
+            <div class="section-title">✍️ Commitment</div>
+            <div class="pledge-box">
+                <div class="pledge-text">
+                    I, <strong class="name-highlight" id="pledgeName">Engineer</strong>, pledge to<br />
+                    <strong>pursue excellence</strong> in data science &amp; machine learning,<br />
+                    to document my journey, and to <strong>build with integrity</strong>.
+                </div>
+            </div>
+
+            <div class="signature-section">
+                <div class="canvas-wrap">
+                    <canvas id="sigCanvas" width="600" height="150"></canvas>
+                </div>
+                <div class="sig-actions">
+                    <button class="btn-clear" id="sigClearBtn">✕ Clear</button>
+                    <button class="btn-submit-sig" id="sigSubmitBtn">✅ Submit Signature</button>
+                </div>
+                <div class="commit-status not-committed" id="commitStatus">⏳ Not yet committed</div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Notepad -->
+        <div class="tab-panel" id="panel-tab3">
+            <div class="section-title">📝 Notes</div>
+            <textarea class="notepad-area" id="notesArea" placeholder="Write your thoughts, ideas, or debugging notes here…"></textarea>
+            <div class="notepad-actions">
+                <button class="btn-save" id="notesSaveBtn">💾 Save Notes</button>
+                <button class="btn-clear-notes" id="notesClearBtn">🗑️ Clear</button>
+            </div>
+        </div>
+
+        <!-- TAB 4: Stats & Settings -->
+        <div class="tab-panel" id="panel-tab4">
+            <div class="section-title">📊 Stats &amp; Settings</div>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-value" id="statCompleted">0</div><div class="stat-label">Completed</div></div>
+                <div class="stat-card"><div class="stat-value" id="statRemaining">0</div><div class="stat-label">Remaining</div></div>
+                <div class="stat-card"><div class="stat-value green" id="statProgress">0%</div><div class="stat-label">Progress</div></div>
+                <div class="stat-card"><div class="stat-value amber" id="statSteps">0</div><div class="stat-label">Steps Done</div></div>
+            </div>
+            <button class="btn-reset" id="resetBtn">⚠️ Reset All Progress</button>
+        </div>
+
+        <!-- Bottom Tab Nav -->
+        <nav class="tab-nav" id="tabNav">
+            <button data-tab="tab1" class="active"><span class="tab-icon">📚</span> Topics</button>
+            <button data-tab="tab2"><span class="tab-icon">✍️</span> Commit</button>
+            <button data-tab="tab3"><span class="tab-icon">📝</span> Notes</button>
+            <button data-tab="tab4"><span class="tab-icon">📊</span> Stats</button>
+        </nav>
+
+        <!-- Toast -->
+        <div id="toast"></div>
     </div>
-  `).join('');
-}
 
-function renderDatasets() {
-  const grid = document.getElementById('datasetsGrid');
-  grid.innerHTML = DATASETS.map(d => `
-    <div class="card">
-      <span class="badge-cat">${d.cat}</span>
-      <div class="title">${d.title}</div>
-      <div class="desc">${d.desc}</div>
-      <div style="margin:0.2rem 0;"><a href="${d.link}" target="_blank" style="color:#60a5fa;font-size:0.7rem;text-decoration:none;background:rgba(255,255,255,0.05);padding:0.1rem 0.6rem;border-radius:40px;border:1px solid rgba(255,255,255,0.08);">📊 Download</a></div>
-      <div class="actions">
-        <label class="check-wrap">
-          <input type="checkbox" ${isDone(d.id) ? 'checked' : ''} onchange="toggleDone('${d.id}')"> Explored
-        </label>
-      </div>
-    </div>
-  `).join('');
-}
+    <script>
+        // =====================================================================
+        // DATA
+        // =====================================================================
 
-function renderErrors() {
-  const grid = document.getElementById('errorsGrid');
-  grid.innerHTML = ERRORS.map(e => `
-    <div class="card">
-      <span class="badge-cat ${e.severity === 'High' ? 'red' : ''}">${e.severity}</span>
-      <div class="title">${e.title}</div>
-      <div class="desc"><strong>Cause:</strong> ${e.desc}</div>
-      <div class="desc" style="color:#fcd34d;"><strong>Fix:</strong> ${e.fix}</div>
-      <div class="actions">
-        <label class="check-wrap">
-          <input type="checkbox" ${isErrorRead(e.id) ? 'checked' : ''} onchange="toggleErrorRead('${e.id}')"> Read
-        </label>
-      </div>
-    </div>
-  `).join('');
-}
+        const TOPICS_DATA = [{
+            id: 'topic-fe',
+            title: 'Feature Engineering',
+            category: 'Foundation',
+            steps: ['Understand missing value imputation', 'Master encoding techniques', 'Apply scaling & normalization',
+                'Create interaction features'
+            ],
+            resources: [
+                { label: 'GeeksforGeeks', url: 'https://www.geeksforgeeks.org/machine-learning/what-is-feature-engineering/' },
+                { label: 'TDS', url: 'https://towardsdatascience.com/feature-engineering-techniques-bab6cb39ed7e/' }
+            ]
+        }, {
+            id: 'topic-me',
+            title: 'Model Evaluation',
+            category: 'Core',
+            steps: ['Confusion matrix & metrics', 'ROC & AUC curves', 'Cross-validation strategies',
+                'Bias-variance tradeoff'
+            ],
+            resources: [
+                { label: 'GFG Metrics', url: 'https://www.geeksforgeeks.org/machine-learning/metrics-for-machine-learning-model/' },
+                { label: 'GFG Evaluation', url: 'https://www.geeksforgeeks.org/machine-learning/machine-learning-model-evaluation/' }
+            ]
+        }, {
+            id: 'topic-dl',
+            title: 'Deep Learning',
+            category: 'Core',
+            steps: ['Neural network fundamentals', 'Activation & loss functions', 'Backpropagation & optimizers',
+                'Training & regularization'
+            ],
+            resources: [
+                { label: 'Learn PyTorch', url: 'https://www.learnpytorch.io/' },
+                { label: 'GFG DL', url: 'https://www.geeksforgeeks.org/deep-learning/deep-learning-tutorial/' }
+            ]
+        }, {
+            id: 'topic-nlp',
+            title: 'NLP & LLMs',
+            category: 'Advanced',
+            steps: ['Text preprocessing & tokenization', 'Word embeddings (Word2Vec, GloVe)',
+                'Transformers & attention', 'Fine-tuning LLMs'
+            ],
+            resources: [
+                { label: 'Hugging Face', url: 'https://huggingface.co/learn' },
+                { label: 'GFG NLP', url: 'https://www.geeksforgeeks.org/nlp/natural-language-processing-nlp-tutorial/' }
+            ]
+        }, {
+            id: 'topic-mlops',
+            title: 'MLOps & MLflow',
+            category: 'Advanced',
+            steps: ['Model lifecycle management', 'Experiment tracking with MLflow', 'CI/CD for ML',
+                'Model monitoring & governance'
+            ],
+            resources: [
+                { label: 'IBM MLOps', url: 'https://www.ibm.com/think/topics/mlops' },
+                { label: 'GFG MLOps', url: 'https://www.geeksforgeeks.org/machine-learning/what-is-mlops/' },
+                { label: 'MLflow', url: 'https://www.geeksforgeeks.org/machine-learning/machine-learning-with-mlflow/' }
+            ]
+        }, {
+            id: 'topic-viz',
+            title: 'Data Visualization',
+            category: 'Foundation',
+            steps: ['Exploratory plotting (Matplotlib, Seaborn)', 'Interactive viz (Plotly, Bokeh)',
+                'Dashboard design principles', 'Storytelling with data'
+            ],
+            resources: [
+                { label: 'IBM Viz', url: 'https://www.ibm.com/think/topics/data-visualization' },
+                { label: 'GFG Viz', url: 'https://www.geeksforgeeks.org/data-visualization/' }
+            ]
+        }, {
+            id: 'topic-sql',
+            title: 'Python & SQL',
+            category: 'Foundation',
+            steps: ['Python data structures & OOP', 'Pandas & NumPy mastery', 'SQL query fundamentals',
+                'Database integration'
+            ],
+            resources: [
+                { label: 'Real Python', url: 'https://realpython.com/' },
+                { label: 'W3Schools SQL', url: 'https://www.w3schools.com/sql/' }
+            ]
+        }];
 
-function renderStats() {
-  const grid = document.getElementById('statsGrid');
-  const allIds = [...TOPICS.map(t => t.id), ...VIDEOS.map(v => v.id), ...DATASETS.map(d => d.id)];
-  const done = allIds.filter(id => completed[id]).length;
-  const total = allIds.length;
-  const pct = total > 0 ? Math.round(done/total*100) : 0;
-  
-  let totalSteps = 0;
-  let doneSteps = 0;
-  TOPICS.forEach(t => {
-    t.steps.forEach((_, idx) => {
-      totalSteps++;
-      if (isStepDone(t.id, idx)) doneSteps++;
-    });
-  });
-  
-  const errorDone = Object.values(errorRead).filter(v => v).length;
-  const errorTotal = ERRORS.length;
-  
-  grid.innerHTML = `
-    <div class="stat-card"><div class="number">${done}</div><div class="label">Completed</div></div>
-    <div class="stat-card"><div class="number">${total - done}</div><div class="label">Remaining</div></div>
-    <div class="stat-card"><div class="number">${pct}%</div><div class="label">Progress</div></div>
-    <div class="stat-card"><div class="number">${getStreak()}</div><div class="label">Streak</div></div>
-    <div class="stat-card"><div class="number">${doneSteps}/${totalSteps}</div><div class="label">Steps</div></div>
-    <div class="stat-card"><div class="number">${errorDone}/${errorTotal}</div><div class="label">Errors Read</div></div>
-    <div class="stat-card"><div class="number">${isCommitted ? '✅' : '⏳'}</div><div class="label">Committed</div></div>
-  `;
-}
+        const VIDEOS_DATA = [
+            { id: 'vid-fcc-py', title: 'fCC Python for Data Science', url: 'https://www.youtube.com/watch?v=LHBE6Q9XlzI' },
+            { id: 'vid-sql', title: 'SQL for Data Science', url: 'https://www.youtube.com/watch?v=7S_tz1z_5bA' },
+            { id: 'vid-stat-logreg', title: 'StatQuest: Logistic Regression', url: 'https://www.youtube.com/watch?v=yIYKR4sgzI8' },
+            { id: 'vid-stat-dt', title: 'StatQuest: Decision Trees', url: 'https://www.youtube.com/watch?v=7VeUPuFGJHk' },
+            { id: 'vid-stat-xgb', title: 'StatQuest: XGBoost', url: 'https://www.youtube.com/watch?v=ZVFeW798-2I' },
+            { id: 'vid-stat-cnn', title: 'StatQuest: CNNs', url: 'https://www.youtube.com/watch?v=HGwBXDKFk9I' },
+            { id: 'vid-stat-bert', title: 'StatQuest: BERT', url: 'https://www.youtube.com/watch?v=eMlx5fFNoYc' },
+            { id: 'vid-stat-gpt', title: 'StatQuest: GPT', url: 'https://www.youtube.com/watch?v=0MJRdVyQvRM' },
+            { id: 'vid-3b1b-nn', title: '3B1B: Neural Networks', url: 'https://www.youtube.com/watch?v=wd7TZ4w1mSw' },
+            { id: 'vid-3b1b-trans', title: '3B1B: Transformers', url: 'https://www.youtube.com/watch?v=5vY2_5Gm_6g' },
+            { id: 'vid-langchain', title: 'LangChain RAG', url: 'https://www.youtube.com/watch?v=06-AZXmwHjo' },
+            { id: 'vid-chip-huyen', title: 'Chip Huyen: MLOps', url: 'https://www.youtube.com/watch?v=06-AZXmwHjo' }
+        ];
 
-function renderAll() {
-  renderTopics();
-  renderVideos();
-  renderDatasets();
-  renderErrors();
-  renderStats();
-  updateGreeting();
-  updateCommitmentStatus();
-}
+        const DATASETS_DATA = [
+            { id: 'ds-titanic', title: 'Titanic', url: 'https://www.kaggle.com/c/titanic' },
+            { id: 'ds-iris', title: 'Iris', url: 'https://www.kaggle.com/datasets/uciml/iris' },
+            { id: 'ds-boston', title: 'Boston Housing', url: 'https://www.kaggle.com/datasets/altruistdelhite04/boston-housing' },
+            { id: 'ds-mnist', title: 'MNIST', url: 'https://www.kaggle.com/datasets/hojjatk/mnist-dataset' },
+            { id: 'ds-fashion', title: 'Fashion-MNIST', url: 'https://www.kaggle.com/datasets/zalando-research/fashionmnist' },
+            { id: 'ds-cifar', title: 'CIFAR-10', url: 'https://www.kaggle.com/datasets/fedesoriano/cifar10' },
+            { id: 'ds-imdb', title: 'IMDB Reviews', url: 'https://www.kaggle.com/datasets/lakshmi25npathi/imdb-dataset-of-50k-movie-reviews' },
+            { id: 'ds-spam', title: 'Spam / Ham', url: 'https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset' },
+            { id: 'ds-twitter', title: 'Sentiment140 (Twitter)', url: 'https://www.kaggle.com/datasets/kazanova/sentiment140' },
+            { id: 'ds-stocks', title: 'Stock Prices', url: 'https://www.kaggle.com/datasets/borismarjanovic/price-volume-data-for-all-us-stocks-etfs' },
+            { id: 'ds-air', title: 'Air Quality', url: 'https://www.kaggle.com/datasets/fedesoriano/air-quality-data-set' },
+            { id: 'ds-fraud', title: 'Credit Card Fraud', url: 'https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud' },
+            { id: 'ds-cust', title: 'Customer Segmentation', url: 'https://www.kaggle.com/datasets/rodsaldanha/arketing-campaign' },
+            { id: 'ds-coco', title: 'COCO 2017', url: 'https://www.kaggle.com/datasets/awsaf49/coco-2017-dataset' },
+            { id: 'ds-kitti', title: 'KITTI', url: 'https://www.kaggle.com/datasets/klemenko/kitti-dataset' }
+        ];
 
-// ============================================================
-//  GREETING
-// ============================================================
-function updateGreeting() {
-  if (userProfile) {
-    document.getElementById('userNameDisplay').textContent = userProfile.name || 'Learner';
-    document.getElementById('userInfoDisplay').textContent = `Age: ${userProfile.age || '—'} · Interest: ${userProfile.interest || 'Everything'}`;
-    document.getElementById('commitName').textContent = userProfile.name || '_________';
-  }
-}
+        const DEBUG_DATA = [
+            { name: 'KeyError', tip: 'Check dictionary keys; use .get() or in operator to avoid KeyError.' },
+            { name: 'ValueError', tip: 'Ensure data types match; reshape arrays or convert dtypes.' },
+            { name: 'CUDA OOM', tip: 'Reduce batch size, use gradient accumulation, or switch to CPU.' },
+            { name: 'MemoryError', tip: 'Use chunking, data generators, or reduce feature dimensions.' },
+            { name: 'ConvergenceWarning', tip: 'Increase max_iter, scale features, or adjust learning rate.' },
+            { name: 'AttributeError', tip: 'Verify object type; check for typos or missing imports.' }
+        ];
 
-// ============================================================
-//  ONBOARDING
-// ============================================================
-function showOnboarding() {
-  document.getElementById('onboardingOverlay').classList.remove('hidden');
-}
-function hideOnboarding() {
-  document.getElementById('onboardingOverlay').classList.add('hidden');
-}
+        // =====================================================================
+        // STATE
+        // =====================================================================
 
-document.getElementById('startJourney').addEventListener('click', function() {
-  const name = document.getElementById('userName').value.trim();
-  const age = document.getElementById('userAge').value.trim();
-  const interest = document.getElementById('userInterest').value;
-  
-  if (!name) { alert('Please enter your name!'); return; }
-  if (!age || parseInt(age) < 1 || parseInt(age) > 120) { alert('Please enter a valid age!'); return; }
-  
-  userProfile = { name, age: parseInt(age), interest };
-  setData('profile', userProfile);
-  hideOnboarding();
-  updateGreeting();
-  renderAll();
-});
+        const STORAGE_KEY = 'ml_companion_state';
 
-// ============================================================
-//  SIGNATURE (Finger Drawing)
-// ============================================================
-let isDrawing = false;
-let lastX = 0, lastY = 0;
-let signatureCanvas, ctx;
-let canvasInitialized = false;
+        function getDefaultState() {
+            return {
+                name: '',
+                streak: 0,
+                lastActive: null, // ISO date string
+                topics: {}, // { topicId: [true/false, ...] }
+                videos: {}, // { videoId: true/false }
+                datasets: {}, // { datasetId: true/false }
+                signature: '', // data URL
+                committed: false,
+                notes: ''
+            };
+        }
 
-function initSignature() {
-  signatureCanvas = document.getElementById('signatureCanvas');
-  const area = document.getElementById('signatureArea');
-  const rect = area.getBoundingClientRect();
-  signatureCanvas.width = rect.width || 300;
-  signatureCanvas.height = rect.height || 150;
-  ctx = signatureCanvas.getContext('2d');
-  ctx.lineWidth = 3;
-  ctx.lineCap = 'round';
-  ctx.strokeStyle = '#3b82f6';
-  
-  if (signatureData) {
-    const img = new Image();
-    img.onload = () => { ctx.drawImage(img, 0, 0, signatureCanvas.width, signatureCanvas.height); };
-    img.src = signatureData;
-    document.getElementById('signPlaceholder').style.display = 'none';
-  }
-  
-  // Remove old listeners to avoid duplicates
-  signatureCanvas.removeEventListener('pointerdown', startDraw);
-  signatureCanvas.removeEventListener('pointermove', draw);
-  signatureCanvas.removeEventListener('pointerup', endDraw);
-  signatureCanvas.removeEventListener('pointercancel', endDraw);
-  
-  // Use pointer events for both touch and mouse
-  signatureCanvas.addEventListener('pointerdown', startDraw);
-  signatureCanvas.addEventListener('pointermove', draw);
-  signatureCanvas.addEventListener('pointerup', endDraw);
-  signatureCanvas.addEventListener('pointercancel', endDraw);
-  
-  canvasInitialized = true;
-}
+        let state = loadState();
 
-function startDraw(e) {
-  e.preventDefault();
-  isDrawing = true;
-  const rect = signatureCanvas.getBoundingClientRect();
-  lastX = e.clientX - rect.left;
-  lastY = e.clientY - rect.top;
-  document.getElementById('signPlaceholder').style.display = 'none';
-}
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    // Ensure all keys exist
+                    const def = getDefaultState();
+                    for (const k in def) { if (!(k in parsed)) parsed[k] = def[k]; }
+                    // Ensure topics structure
+                    for (const t of TOPICS_DATA) {
+                        if (!parsed.topics[t.id]) parsed.topics[t.id] = t.steps.map(() => false);
+                        else if (parsed.topics[t.id].length !== t.steps.length) {
+                            // fix length
+                            const old = parsed.topics[t.id];
+                            parsed.topics[t.id] = t.steps.map((_, i) => old[i] || false);
+                        }
+                    }
+                    for (const v of VIDEOS_DATA) { if (!(v.id in parsed.videos)) parsed.videos[v.id] = false; }
+                    for (const d of DATASETS_DATA) { if (!(d.id in parsed.datasets)) parsed.datasets[d.id] = false; }
+                    return parsed;
+                }
+            } catch (_) { /* ignore */ }
+            return getDefaultState();
+        }
 
-function draw(e) {
-  if (!isDrawing) return;
-  e.preventDefault();
-  const rect = signatureCanvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  ctx.beginPath();
-  ctx.moveTo(lastX, lastY);
-  ctx.lineTo(x, y);
-  ctx.stroke();
-  lastX = x; lastY = y;
-}
+        function saveState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
 
-function endDraw(e) {
-  if (isDrawing) {
-    isDrawing = false;
-    signatureData = signatureCanvas.toDataURL('image/png');
-    setData('signature', signatureData);
-  }
-}
+        // =====================================================================
+        // STREAK
+        // =====================================================================
 
-// Resize canvas on orientation change
-window.addEventListener('resize', () => {
-  if (document.getElementById('panel-commitment').classList.contains('active')) {
-    initSignature();
-  }
-});
+        function updateStreak() {
+            const today = new Date().toISOString().split('T')[0];
+            if (!state.lastActive) {
+                state.streak = 1;
+                state.lastActive = today;
+            } else {
+                const last = state.lastActive.split('T')[0];
+                if (last === today) {
+                    // already active today
+                } else {
+                    const lastDate = new Date(last + 'T00:00:00');
+                    const todayDate = new Date(today + 'T00:00:00');
+                    const diff = (todayDate - lastDate) / (1000 * 60 * 60 * 24);
+                    if (diff === 1) {
+                        state.streak += 1;
+                    } else if (diff > 1) {
+                        state.streak = 1;
+                    }
+                    state.lastActive = today;
+                }
+            }
+            // Ensure we don't lose the streak if it's the same day
+            if (state.lastActive !== today) {
+                // if lastActive is null or different day, already handled
+            }
+            // If lastActive is today but streak is 0, set to 1
+            if (state.lastActive === today && state.streak === 0) state.streak = 1;
+            // If lastActive is null, set
+            if (!state.lastActive) {
+                state.lastActive = today;
+                state.streak = 1;
+            }
+            saveState();
+            document.getElementById('streakDisplay').textContent = state.streak;
+        }
 
-// Re-init when commitment tab is shown
-document.querySelector('[data-panel="commitment"]').addEventListener('click', function() {
-  setTimeout(initSignature, 300);
-});
+        // =====================================================================
+        // RENDER HELPERS
+        // =====================================================================
 
-// --- Signature actions ---
-document.getElementById('clearSignature').addEventListener('click', function() {
-  ctx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-  signatureData = null;
-  setData('signature', null);
-  document.getElementById('signPlaceholder').style.display = 'block';
-  document.getElementById('submitSignature').disabled = false;
-});
+        function getTopicProgress(topicId) {
+            const steps = state.topics[topicId] || [];
+            const done = steps.filter(Boolean).length;
+            const total = TOPICS_DATA.find(t => t.id === topicId)?.steps.length || 0;
+            return { done, total, pct: total ? Math.round((done / total) * 100) : 0 };
+        }
 
-document.getElementById('submitSignature').addEventListener('click', function() {
-  if (isCommitted) {
-    alert('You have already committed! 🕸️');
-    return;
-  }
-  if (!signatureData) {
-    alert('Please draw your signature first! ✍️');
-    return;
-  }
-  isCommitted = true;
-  setData('committed', true);
-  document.getElementById('submitSignature').disabled = true;
-  updateCommitmentStatus();
-  fireConfetti();
-  alert('🎉 Commitment submitted! You are now on the path to mastery!');
-});
+        function renderSVGProgress(pct, size = 44, stroke = 4) {
+            const radius = (size - stroke) / 2;
+            const circum = 2 * Math.PI * radius;
+            const offset = circum - (pct / 100) * circum;
+            return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" class="svg-ring">
+            <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="#1c2a44" stroke-width="${stroke}"/>
+            <circle cx="${size/2}" cy="${size/2}" r="${radius}" fill="none" stroke="#63b3ec" stroke-width="${stroke}"
+              stroke-dasharray="${circum}" stroke-dashoffset="${offset}" stroke-linecap="round"/>
+            <text x="${size/2}" y="${size/2 + 5}" text-anchor="middle" font-size="${size * 0.3}" font-weight="700" fill="#e8edf5">${pct}%</text>
+          </svg>`;
+        }
 
-function updateCommitmentStatus() {
-  const status = document.getElementById('commitmentStatus');
-  if (isCommitted) {
-    status.className = 'commitment-status committed';
-    status.innerHTML = '✅ Committed! You have signed the pledge. 🕸️';
-    document.getElementById('submitSignature').disabled = true;
-    document.getElementById('signatureArea').style.borderColor = 'rgba(34, 197, 94, 0.3)';
-  } else {
-    status.className = 'commitment-status not-committed';
-    status.innerHTML = '⏳ Not yet committed – sign above to start your journey!';
-  }
-}
+        function renderTopics() {
+            const container = document.getElementById('topicsContainer');
+            let html = '';
+            for (const topic of TOPICS_DATA) {
+                const prog = getTopicProgress(topic.id);
+                const steps = state.topics[topic.id] || topic.steps.map(() => false);
+                const catClass = topic.category.toLowerCase();
+                const isOpen = true; // all open by default, but we'll use accordion toggle
 
-// ============================================================
-//  NOTEPAD
-// ============================================================
-const notepadContent = document.getElementById('notepadContent');
-notepadContent.value = getData('notes', '');
+                html += `<div class="topic-card" data-topic="${topic.id}">
+              <div class="topic-header" data-toggle>
+                <div class="svg-ring">${renderSVGProgress(prog.pct)}</div>
+                <div class="topic-info">
+                  <div class="topic-title">${topic.title}</div>
+                  <div class="topic-meta">
+                    <span class="cat-tag ${catClass}">${topic.category}</span>
+                    <span class="step-progress-text">${prog.done}/${prog.total} steps</span>
+                  </div>
+                </div>
+                <div class="chevron open">▾</div>
+              </div>
+              <div class="topic-body open">
+                ${topic.steps.map((step, i) => `
+                  <div class="step-item">
+                    <span class="step-num">${i+1}</span>
+                    <label class="${steps[i] ? 'done' : ''}">
+                      <input type="checkbox" data-topic="${topic.id}" data-step="${i}" ${steps[i] ? 'checked' : ''} />
+                      ${step}
+                    </label>
+                  </div>
+                `).join('')}
+                <div class="resource-pills">
+                  ${topic.resources.map(r => `<a href="${r.url}" target="_blank" rel="noopener">${r.label} <span class="ext">↗</span></a>`).join('')}
+                </div>
+              </div>
+            </div>`;
+            }
+            container.innerHTML = html;
 
-document.getElementById('saveNote').addEventListener('click', function() {
-  setData('notes', notepadContent.value);
-  const feedback = document.getElementById('saveFeedback');
-  feedback.classList.add('show');
-  setTimeout(() => feedback.classList.remove('show'), 2500);
-});
+            // Event listeners for toggles
+            container.querySelectorAll('[data-toggle]').forEach(header => {
+                header.addEventListener('click', function(e) {
+                    // Ignore if click on checkbox or link
+                    if (e.target.closest('input') || e.target.closest('a')) return;
+                    const card = this.closest('.topic-card');
+                    const body = card.querySelector('.topic-body');
+                    const chevron = card.querySelector('.chevron');
+                    body.classList.toggle('open');
+                    chevron.classList.toggle('open');
+                });
+            });
 
-document.getElementById('clearNote').addEventListener('click', function() {
-  if (confirm('Clear all notes?')) {
-    notepadContent.value = '';
-    setData('notes', '');
-  }
-});
+            // Checkbox listeners
+            container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.addEventListener('change', function() {
+                    const topicId = this.dataset.topic;
+                    const stepIdx = parseInt(this.dataset.step);
+                    if (!state.topics[topicId]) state.topics[topicId] = TOPICS_DATA.find(t => t.id === topicId)
+                        .steps.map(() => false);
+                    state.topics[topicId][stepIdx] = this.checked;
+                    saveState();
+                    // Re-render just this topic card
+                    const card = this.closest('.topic-card');
+                    const topic = TOPICS_DATA.find(t => t.id === topicId);
+                    if (topic) {
+                        const prog = getTopicProgress(topicId);
+                        const ring = card.querySelector('.svg-ring');
+                        if (ring) ring.innerHTML = renderSVGProgress(prog.pct);
+                        const meta = card.querySelector('.step-progress-text');
+                        if (meta) meta.textContent = `${prog.done}/${prog.total} steps`;
+                        const label = this.closest('label');
+                        if (label) label.classList.toggle('done', this.checked);
+                    }
+                    updateAllCounts();
+                    updateStats();
+                    updateStreak();
+                });
+            });
+        }
 
-// ============================================================
-//  RESET PROGRESS
-// ============================================================
-document.getElementById('resetProgress').addEventListener('click', function() {
-  if (confirm('⚠️ This will delete ALL your progress. Are you sure?')) {
-    if (confirm('Really? This cannot be undone!')) {
-      localStorage.clear();
-      location.reload();
-    }
-  }
-});
+        function renderVideos() {
+            const container = document.getElementById('videosContainer');
+            let html = '';
+            for (const v of VIDEOS_DATA) {
+                const done = state.videos[v.id] || false;
+                html += `<div class="item-row">
+              <div class="item-check"><input type="checkbox" data-video="${v.id}" ${done ? 'checked' : ''} /></div>
+              <div class="item-info"><div class="item-title ${done ? 'done' : ''}">${v.title}</div></div>
+              <a href="${v.url}" target="_blank" rel="noopener" class="item-link">▶ <span class="ext">YouTube</span></a>
+            </div>`;
+            }
+            container.innerHTML = html;
+            container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.addEventListener('change', function() {
+                    const id = this.dataset.video;
+                    state.videos[id] = this.checked;
+                    saveState();
+                    const titleEl = this.closest('.item-row').querySelector('.item-title');
+                    if (titleEl) titleEl.classList.toggle('done', this.checked);
+                    updateAllCounts();
+                    updateStats();
+                    updateStreak();
+                });
+            });
+        }
 
-// ============================================================
-//  TABS
-// ============================================================
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', function(e) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('panel-' + this.dataset.panel).classList.add('active');
-    if (this.dataset.panel === 'stats') renderStats();
-    if (this.dataset.panel === 'commitment') {
-      setTimeout(initSignature, 300);
-      updateCommitmentStatus();
-    }
-  });
-});
+        function renderDatasets() {
+            const container = document.getElementById('datasetsContainer');
+            let html = '';
+            for (const d of DATASETS_DATA) {
+                const done = state.datasets[d.id] || false;
+                html += `<div class="item-row">
+              <div class="item-check"><input type="checkbox" data-dataset="${d.id}" ${done ? 'checked' : ''} /></div>
+              <div class="item-info"><div class="item-title ${done ? 'done' : ''}">${d.title}</div></div>
+              <a href="${d.url}" target="_blank" rel="noopener" class="item-link">📊 <span class="ext">Kaggle</span></a>
+            </div>`;
+            }
+            container.innerHTML = html;
+            container.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                cb.addEventListener('change', function() {
+                    const id = this.dataset.dataset;
+                    state.datasets[id] = this.checked;
+                    saveState();
+                    const titleEl = this.closest('.item-row').querySelector('.item-title');
+                    if (titleEl) titleEl.classList.toggle('done', this.checked);
+                    updateAllCounts();
+                    updateStats();
+                    updateStreak();
+                });
+            });
+        }
 
-// ============================================================
-//  BOOT
-// ============================================================
-function init() {
-  updateStreak();
-  
-  if (!userProfile) {
-    showOnboarding();
-  } else {
-    hideOnboarding();
-    updateGreeting();
-  }
-  
-  // Init signature after DOM
-  setTimeout(initSignature, 500);
-  
-  renderAll();
-  updateProgress();
-  updateCommitmentStatus();
-}
+        function renderDebug() {
+            const container = document.getElementById('debugContainer');
+            let html = '';
+            for (const d of DEBUG_DATA) {
+                html += `<div class="debug-card">
+              <div class="debug-name">${d.name}</div>
+              <div class="debug-tip">💡 ${d.tip}</div>
+            </div>`;
+            }
+            container.innerHTML = html;
+        }
 
-// Start
-init();
-</script>
+        function updateAllCounts() {
+            // Topics
+            let totalSteps = 0,
+                doneSteps = 0;
+            for (const t of TOPICS_DATA) {
+                const steps = state.topics[t.id] || [];
+                totalSteps += steps.length;
+                doneSteps += steps.filter(Boolean).length;
+            }
+            document.getElementById('topicCount').textContent = `${doneSteps}/${totalSteps}`;
+
+            // Videos
+            const vidDone = Object.values(state.videos).filter(Boolean).length;
+            document.getElementById('videoCount').textContent = `${vidDone}/${VIDEOS_DATA.length}`;
+
+            // Datasets
+            const dsDone = Object.values(state.datasets).filter(Boolean).length;
+            document.getElementById('datasetCount').textContent = `${dsDone}/${DATASETS_DATA.length}`;
+        }
+
+        function updateStats() {
+            let totalSteps = 0,
+                doneSteps = 0;
+            for (const t of TOPICS_DATA) {
+                const steps = state.topics[t.id] || [];
+                totalSteps += steps.length;
+                doneSteps += steps.filter(Boolean).length;
+            }
+            const vidDone = Object.values(state.videos).filter(Boolean).length;
+            const dsDone = Object.values(state.datasets).filter(Boolean).length;
+            const totalItems = totalSteps + VIDEOS_DATA.length + DATASETS_DATA.length;
+            const doneItems = doneSteps + vidDone + dsDone;
+            const pct = totalItems ? Math.round((doneItems / totalItems) * 100) : 0;
+
+            document.getElementById('statCompleted').textContent = doneItems;
+            document.getElementById('statRemaining').textContent = totalItems - doneItems;
+            document.getElementById('statProgress').textContent = pct + '%';
+            document.getElementById('statSteps').textContent = doneSteps;
+        }
+
+        // =====================================================================
+        // COMMITMENT / SIGNATURE
+        // =====================================================================
+
+        let sigCanvas, sigCtx, isDrawing = false,
+            lastX = 0,
+            lastY = 0;
+        let sigHasDrawing = false;
+
+        function initSignature() {
+            sigCanvas = document.getElementById('sigCanvas');
+            sigCtx = sigCanvas.getContext('2d');
+
+            // Load saved signature
+            if (state.signature) {
+                const img = new Image();
+                img.onload = function() {
+                    sigCtx.drawImage(img, 0, 0, sigCanvas.width, sigCanvas.height);
+                    sigHasDrawing = true;
+                    updateCommitStatus();
+                };
+                img.src = state.signature;
+            }
+
+            // Resize canvas to match CSS
+            function resizeCanvas() {
+                const rect = sigCanvas.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+                // We keep fixed canvas size (600x150) and let CSS scale it.
+                // No need to resize.
+            }
+            resizeCanvas();
+
+            // Mouse events
+            sigCanvas.addEventListener('mousedown', startDraw);
+            sigCanvas.addEventListener('mousemove', draw);
+            sigCanvas.addEventListener('mouseup', endDraw);
+            sigCanvas.addEventListener('mouseleave', endDraw);
+
+            // Touch events
+            sigCanvas.addEventListener('touchstart', handleTouch(startDraw));
+            sigCanvas.addEventListener('touchmove', handleTouch(draw));
+            sigCanvas.addEventListener('touchend', endDraw);
+
+            function handleTouch(fn) {
+                return function(e) {
+                    e.preventDefault();
+                    const touch = e.touches[0];
+                    if (!touch) return;
+                    const rect = sigCanvas.getBoundingClientRect();
+                    const scaleX = sigCanvas.width / rect.width;
+                    const scaleY = sigCanvas.height / rect.height;
+                    const ev = { offsetX: (touch.clientX - rect.left) * scaleX, offsetY: (touch.clientY - rect.top) *
+                            scaleY };
+                    fn.call(this, ev);
+                };
+            }
+
+            document.getElementById('sigClearBtn').addEventListener('click', clearSignature);
+            document.getElementById('sigSubmitBtn').addEventListener('click', submitSignature);
+
+            updateCommitStatus();
+        }
+
+        function startDraw(e) {
+            isDrawing = true;
+            const rect = sigCanvas.getBoundingClientRect();
+            const scaleX = sigCanvas.width / rect.width;
+            const scaleY = sigCanvas.height / rect.height;
+            const offsetX = (e.offsetX !== undefined) ? e.offsetX : (e.clientX - rect.left) * scaleX;
+            const offsetY = (e.offsetY !== undefined) ? e.offsetY : (e.clientY - rect.top) * scaleY;
+            lastX = offsetX;
+            lastY = offsetY;
+            sigCtx.beginPath();
+            sigCtx.moveTo(lastX, lastY);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const rect = sigCanvas.getBoundingClientRect();
+            const scaleX = sigCanvas.width / rect.width;
+            const scaleY = sigCanvas.height / rect.height;
+            let offsetX, offsetY;
+            if (e.offsetX !== undefined) {
+                offsetX = e.offsetX;
+                offsetY = e.offsetY;
+            } else {
+                offsetX = (e.clientX - rect.left) * scaleX;
+                offsetY = (e.clientY - rect.top) * scaleY;
+            }
+            sigCtx.lineWidth = 2.5;
+            sigCtx.lineCap = 'round';
+            sigCtx.lineJoin = 'round';
+            sigCtx.strokeStyle = '#e8edf5';
+            sigCtx.beginPath();
+            sigCtx.moveTo(lastX, lastY);
+            sigCtx.lineTo(offsetX, offsetY);
+            sigCtx.stroke();
+            lastX = offsetX;
+            lastY = offsetY;
+            sigHasDrawing = true;
+            updateCommitStatus();
+        }
+
+        function endDraw() {
+            isDrawing = false;
+        }
+
+        function clearSignature() {
+            sigCtx.clearRect(0, 0, sigCanvas.width, sigCanvas.height);
+            sigHasDrawing = false;
+            state.signature = '';
+            state.committed = false;
+            saveState();
+            updateCommitStatus();
+            showToast('Signature cleared');
+        }
+
+        function submitSignature() {
+            if (!sigHasDrawing) {
+                showToast('Please draw your signature first ✍️');
+                return;
+            }
+            const dataUrl = sigCanvas.toDataURL('image/png');
+            state.signature = dataUrl;
+            state.committed = true;
+            saveState();
+            updateCommitStatus();
+            showToast('✅ Commitment recorded!');
+            updateStreak();
+        }
+
+        function updateCommitStatus() {
+            const el = document.getElementById('commitStatus');
+            const name = state.name || 'Engineer';
+            document.getElementById('pledgeName').textContent = name;
+
+            if (state.committed && state.signature) {
+                el.className = 'commit-status committed';
+                el.innerHTML = '✅ Committed — you\'ve signed the pledge!';
+                document.getElementById('sigSubmitBtn').disabled = true;
+            } else {
+                el.className = 'commit-status not-committed';
+                el.innerHTML = '⏳ Not yet committed — draw your signature above.';
+                document.getElementById('sigSubmitBtn').disabled = false;
+            }
+        }
+
+        // =====================================================================
+        // NOTEPAD
+        // =====================================================================
+
+        function initNotepad() {
+            const area = document.getElementById('notesArea');
+            area.value = state.notes || '';
+
+            area.addEventListener('input', function() {
+                state.notes = this.value;
+                saveState();
+            });
+
+            document.getElementById('notesSaveBtn').addEventListener('click', function() {
+                state.notes = area.value;
+                saveState();
+                showToast('💾 Notes saved');
+            });
+
+            document.getElementById('notesClearBtn').addEventListener('click', function() {
+                if (confirm('Clear all notes?')) {
+                    area.value = '';
+                    state.notes = '';
+                    saveState();
+                    showToast('🗑️ Notes cleared');
+                }
+            });
+        }
+
+        // =====================================================================
+        // STATS & RESET
+        // =====================================================================
+
+        function initSettings() {
+            document.getElementById('resetBtn').addEventListener('click', function() {
+                if (confirm('⚠️ Are you sure you want to reset ALL progress? This cannot be undone.')) {
+                    if (confirm('⚠️⚠️ Double confirm: Reset everything?')) {
+                        // Reset all progress but keep name and streak
+                        const name = state.name;
+                        const streak = state.streak;
+                        const lastActive = state.lastActive;
+                        state = getDefaultState();
+                        state.name = name;
+                        state.streak = streak;
+                        state.lastActive = lastActive;
+                        // Re-initialize topic structure
+                        for (const t of TOPICS_DATA) {
+                            state.topics[t.id] = t.steps.map(() => false);
+                        }
+                        for (const v of VIDEOS_DATA) { state.videos[v.id] = false; }
+                        for (const d of DATASETS_DATA) { state.datasets[d.id] = false; }
+                        state.signature = '';
+                        state.committed = false;
+                        state.notes = '';
+                        saveState();
+                        // Re-render everything
+                        renderTopics();
+                        renderVideos();
+                        renderDatasets();
+                        renderDebug();
+                        updateAllCounts();
+                        updateStats();
+                        updateCommitStatus();
+                        document.getElementById('notesArea').value = '';
+                        clearSignature();
+                        showToast('🔄 All progress has been reset');
+                    }
+                }
+            });
+        }
+
+        // =====================================================================
+        // TOAST
+        // =====================================================================
+
+        let toastTimeout;
+
+        function showToast(msg) {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                el.classList.remove('show');
+            }, 2500);
+        }
+
+        // =====================================================================
+        // TAB NAVIGATION
+        // =====================================================================
+
+        function initTabs() {
+            const nav = document.getElementById('tabNav');
+            const panels = {
+                tab1: document.getElementById('panel-tab1'),
+                tab2: document.getElementById('panel-tab2'),
+                tab3: document.getElementById('panel-tab3'),
+                tab4: document.getElementById('panel-tab4')
+            };
+
+            nav.addEventListener('click', function(e) {
+                const btn = e.target.closest('button');
+                if (!btn) return;
+                const tabId = btn.dataset.tab;
+                if (!tabId) return;
+
+                // Update buttons
+                nav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Update panels
+                Object.keys(panels).forEach(key => {
+                    panels[key].classList.toggle('active', key === tabId);
+                });
+
+                // If switching to commitment, update signature status
+                if (tabId === 'tab2') {
+                    updateCommitStatus();
+                }
+                if (tabId === 'tab4') {
+                    updateStats();
+                }
+            });
+        }
+
+        // =====================================================================
+        // PWA INSTALL
+        // =====================================================================
+
+        function initPWA() {
+            let deferredPrompt = null;
+            const banner = document.getElementById('pwaBanner');
+            const btn = document.getElementById('pwaInstallBtn');
+
+            window.addEventListener('beforeinstallprompt', function(e) {
+                e.preventDefault();
+                deferredPrompt = e;
+                banner.classList.add('show');
+            });
+
+            btn.addEventListener('click', async function() {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const result = await deferredPrompt.userChoice;
+                    if (result.outcome === 'accepted') {
+                        banner.classList.remove('show');
+                        showToast('📲 App installed!');
+                    }
+                    deferredPrompt = null;
+                } else {
+                    showToast('ℹ️ Open this page in Chrome or Edge and use "Add to Home Screen"');
+                }
+            });
+
+            window.addEventListener('appinstalled', function() {
+                banner.classList.remove('show');
+                showToast('🎉 Thank you for installing!');
+            });
+        }
+
+        // =====================================================================
+        // ONBOARDING
+        // =====================================================================
+
+        function initOnboarding() {
+            const overlay = document.getElementById('onboarding');
+            const input = document.getElementById('nameInput');
+            const btn = document.getElementById('onboardBtn');
+
+            if (state.name && state.name.trim().length > 0) {
+                overlay.classList.add('hidden');
+                document.getElementById('userNameDisplay').textContent = state.name;
+                document.getElementById('pledgeName').textContent = state.name;
+                return;
+            }
+
+            // Show onboarding
+            overlay.classList.remove('hidden');
+            input.focus();
+
+            function completeOnboarding() {
+                const name = input.value.trim();
+                if (!name) {
+                    input.style.borderColor = 'var(--accent-rose)';
+                    showToast('Please enter your name');
+                    return;
+                }
+                state.name = name;
+                saveState();
+                overlay.classList.add('hidden');
+                document.getElementById('userNameDisplay').textContent = name;
+                document.getElementById('pledgeName').textContent = name;
+                updateStreak();
+                showToast(`Welcome, ${name}! 🚀`);
+            }
+
+            btn.addEventListener('click', completeOnboarding);
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') completeOnboarding();
+            });
+            input.addEventListener('input', function() {
+                input.style.borderColor = '';
+            });
+        }
+
+        // =====================================================================
+        // INIT
+        // =====================================================================
+
+        function init() {
+            // Ensure all state structures exist
+            for (const t of TOPICS_DATA) {
+                if (!state.topics[t.id]) state.topics[t.id] = t.steps.map(() => false);
+            }
+            for (const v of VIDEOS_DATA) { if (!(v.id in state.videos)) state.videos[v.id] = false; }
+            for (const d of DATASETS_DATA) { if (!(d.id in state.datasets)) state.datasets[d.id] = false; }
+            saveState();
+
+            renderTopics();
+            renderVideos();
+            renderDatasets();
+            renderDebug();
+            updateAllCounts();
+            updateStats();
+            initSignature();
+            initNotepad();
+            initSettings();
+            initTabs();
+            initOnboarding();
+            initPWA();
+
+            // Update streak on load
+            updateStreak();
+
+            // If user is already onboarded, show pledge name
+            if (state.name) {
+                document.getElementById('pledgeName').textContent = state.name;
+            }
+
+            // Handle visibility change to update streak
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'visible') {
+                    updateStreak();
+                }
+            });
+
+            console.log('🧠 ML Engineer Companion ready');
+        }
+
+        // Run when DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
 </body>
 </html>
