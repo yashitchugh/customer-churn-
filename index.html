@@ -7,7 +7,7 @@
     <meta name="description" content="ML Engineer 2026 – Learn Data Science & AI at your own pace" />
     <title>ML Engineer 2026 – Learn AI</title>
 
-    <!-- PWA manifest (inline) -->
+    <!-- PWA manifest -->
     <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1MIEVuZ2luZWVyIDIwMjYiLAogICJzaG9ydF9uYW1lIjogIk1MIEVuZyAyMDI2IiwKICAiZGVzY3JpcHRpb24iOiAiTGVhcm4gRGF0YSBTY2llbmNlICYgQUkgYXQgeW91ciBvd24gcGFjZSIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMGIxMTIwIiwKICAidGhlbWVfY29sb3IiOiAiIzBiMTEyMCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0nZycgeDE9JzAlJyB5MT0nMCUnIHgyPScxMDAlJyB5Mj0nMTAwJSc+PHN0b3Agb2Zmc2V0PScwJScgc3R5bGU9J3N0b3AtY29sb3I6IzYzYjNlYztzdG9wLW9wYWNpdHk6MScvPjxzdG9wIG9mZnNldD0nNTAlJyBzdHlsZT0nc3RvcC1jb2xvcjojOWM3ZmQ0O3N0b3Atb3BhY2l0eToxJy8+PHN0b3Agb2Zmc2V0PScxMDAlJyBzdHlsZT0nc3RvcC1jb2xvcjojZTg3MzhhO3N0b3Atb3BhY2l0eToxJy8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9JzUxMicgaGVpZ2h0PSc1MTInIHJ4PSc2NCcgZmlsbD0nIzBiMTEyMCcvPjxjaXJjbGUgY3g9JzI1NicgY3k9JzIyOCcgcj0nNzYnIGZpbGw9J25vbmUnIHN0cm9rZT0ndXJsKCNnKScgc3Ryb2tlLXdpZHRoPScxMicvPjxjaXJjbGUgY3g9JzE1MicgY3k9JzM1Micgcj0nNTInIGZpbGw9J25vbmUnIHN0cm9rZT0ndXJsKCNnKScgc3Ryb2tlLXdpZHRoPScxMCcvPjxjaXJjbGUgY3g9JzM2MCcgY3k9JzM1Micgcj0nNTInIGZpbGw9J25vbmUnIHN0cm9rZT0ndXJsKCNnKScgc3Ryb2tlLXdpZHRoPScxMCcvPjxjaXJjbGUgY3g9JzIwNCcgY3k9JzQyMCcgcj0nMzYnIGZpbGw9J25vbmUnIHN0cm9rZT0ndXJsKCNnKScgc3Ryb2tlLXdpZHRoPSc4Jy8+PGNpcmNsZSBjeD0nMzA4JyBjeT0nNDIwJyByPSczNicgZmlsbD0nbm9uZScgc3Ryb2tlPSd1cmwoI2cpJyBzdHJva2Utd2lkdGg9JzgnLz48dGV4dCB4PScyNTYnIHk9JzE5MCcgZm9udC1zaXplPSc3MicgdGV4dC1hbmNob3I9J21pZGRsZScgZmlsbD0nI2U4ZWRmNScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZvbnQtd2VpZ2h0PSc3MDAnPvCfpLw8L3RleHQ+PC9zdmc+IgogICAgfQogIF0KfQ==" />
 
     <style>
@@ -38,7 +38,6 @@
             --accent-green: #5cdb9e;
             --accent-amber: #f0b34b;
             --accent-rose: #e8738a;
-            --accent-teal: #4dd0c7;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             --radius-sm: 8px;
             --radius-md: 14px;
@@ -1173,6 +1172,118 @@
         }
 
         /* ============================================================
+           Heatmap
+           ============================================================ */
+        .heatmap-container {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            border: 1px solid var(--border-subtle);
+            margin: 10px 0 14px 0;
+        }
+        .heatmap-container .heatmap-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .heatmap-container .heatmap-title span {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 3px;
+        }
+        .heatmap-grid .day-label {
+            font-size: 9px;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 2px 0;
+        }
+        .heatmap-grid .day-cell {
+            aspect-ratio: 1;
+            border-radius: 3px;
+            background: var(--bg-input);
+            transition: var(--transition);
+            position: relative;
+            cursor: default;
+        }
+        .heatmap-grid .day-cell.level-0 {
+            background: var(--bg-input);
+        }
+        .heatmap-grid .day-cell.level-1 {
+            background: rgba(99, 179, 236, 0.25);
+        }
+        .heatmap-grid .day-cell.level-2 {
+            background: rgba(99, 179, 236, 0.5);
+        }
+        .heatmap-grid .day-cell.level-3 {
+            background: rgba(99, 179, 236, 0.75);
+        }
+        .heatmap-grid .day-cell.level-4 {
+            background: var(--accent-cyan);
+        }
+        .heatmap-grid .day-cell.today {
+            border: 1.5px solid var(--accent-amber);
+        }
+        .heatmap-grid .day-cell .tooltip {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+            font-size: 10px;
+            white-space: nowrap;
+            border: 1px solid var(--border-subtle);
+            pointer-events: none;
+            z-index: 10;
+        }
+        .heatmap-grid .day-cell:hover .tooltip {
+            display: block;
+        }
+        .heatmap-legend {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            font-size: 11px;
+            color: var(--text-muted);
+            justify-content: flex-end;
+        }
+        .heatmap-legend .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .heatmap-legend .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            background: var(--bg-input);
+        }
+        .heatmap-legend .legend-color.l1 {
+            background: rgba(99, 179, 236, 0.25);
+        }
+        .heatmap-legend .legend-color.l2 {
+            background: rgba(99, 179, 236, 0.5);
+        }
+        .heatmap-legend .legend-color.l3 {
+            background: rgba(99, 179, 236, 0.75);
+        }
+        .heatmap-legend .legend-color.l4 {
+            background: var(--accent-cyan);
+        }
+
+        /* ============================================================
            Reset Button
            ============================================================ */
         .btn-reset {
@@ -1412,7 +1523,7 @@
         TAB PANELS
         ============================================================ -->
 
-        <!-- ===== TAB 1: DASHBOARD ===== -->
+        <!-- TAB 1: DASHBOARD -->
         <div class="tab-panel active" id="panel-tab1">
             <div class="section-title">🏠 Dashboard</div>
             <div class="dash-grid">
@@ -1420,7 +1531,6 @@
                 <div class="dash-stat"><div class="num green" id="dashDone">0</div><div class="lbl">Done</div></div>
                 <div class="dash-stat"><div class="num amber" id="dashStreak">0</div><div class="lbl">Day streak</div></div>
             </div>
-
             <div class="daily-challenge" id="dailyChallenge">
                 <div class="dc-icon">⚡</div>
                 <div class="dc-info">
@@ -1429,18 +1539,16 @@
                 </div>
                 <button class="dc-btn" id="dcBtn">Complete</button>
             </div>
-
             <div class="roadmap-preview" id="roadmapPreview">
                 <div class="rp-title">🗺️ Your Roadmap <span style="font-size:12px;color:var(--text-muted);font-weight:400;" id="rpLevelLabel">Beginner</span></div>
                 <div class="rp-steps" id="rpSteps"></div>
                 <div class="rp-more">👆 Tap the Roadmap tab for full view</div>
             </div>
-
             <div class="section-title" style="margin-top:6px;">🏅 Achievements</div>
             <div class="achievement-grid" id="achievementGrid"></div>
         </div>
 
-        <!-- ===== TAB 2: LEARN ===== -->
+        <!-- TAB 2: LEARN -->
         <div class="tab-panel" id="panel-tab2">
             <div class="section-title">📚 Learn <span class="badge-count" id="topicCount">0/0</span></div>
             <div class="section-sub" id="levelSubtitle">🌱 Beginner — building your foundation</div>
@@ -1453,14 +1561,14 @@
             <div class="debug-grid" id="debugContainer"></div>
         </div>
 
-        <!-- ===== TAB 3: ROADMAP ===== -->
+        <!-- TAB 3: ROADMAP -->
         <div class="tab-panel" id="panel-tab3">
             <div class="section-title">🗺️ Learning Roadmap</div>
             <div class="section-sub" id="roadmapSubtitle">🌱 Beginner — 6 milestones to mastery</div>
             <div id="roadmapFullContainer"></div>
         </div>
 
-        <!-- ===== TAB 4: COMMITMENT ===== -->
+        <!-- TAB 4: COMMITMENT -->
         <div class="tab-panel" id="panel-tab4">
             <div class="section-title">✍️ Commitment</div>
             <div class="pledge-box">
@@ -1482,7 +1590,7 @@
             </div>
         </div>
 
-        <!-- ===== TAB 5: STATS ===== -->
+        <!-- TAB 5: STATS -->
         <div class="tab-panel" id="panel-tab5">
             <div class="section-title">📊 Stats &amp; Settings</div>
             <div class="stats-grid">
@@ -1491,7 +1599,24 @@
                 <div class="stat-card"><div class="stat-value green" id="statProgress">0%</div><div class="stat-label">Progress</div></div>
                 <div class="stat-card"><div class="stat-value amber" id="statSteps">0</div><div class="stat-label">Steps Done</div></div>
             </div>
-            <div style="margin-top:12px;">
+            <!-- HEATMAP -->
+            <div class="heatmap-container" id="heatmapContainer">
+                <div class="heatmap-title">
+                    <span>📅 Activity Heatmap</span>
+                    <span id="heatmapYear"></span>
+                </div>
+                <div class="heatmap-grid" id="heatmapGrid"></div>
+                <div class="heatmap-legend">
+                    <span>Less</span>
+                    <span class="legend-item"><span class="legend-color"></span></span>
+                    <span class="legend-item"><span class="legend-color l1"></span></span>
+                    <span class="legend-item"><span class="legend-color l2"></span></span>
+                    <span class="legend-item"><span class="legend-color l3"></span></span>
+                    <span class="legend-item"><span class="legend-color l4"></span></span>
+                    <span>More</span>
+                </div>
+            </div>
+            <div style="margin-top:8px;">
                 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">
                     <span style="font-size:12px;color:var(--text-muted);">🏅 <span id="achieveCount">0</span> achievements</span>
                     <span style="font-size:12px;color:var(--text-muted);">📅 <span id="statStreak">0</span> day streak</span>
@@ -1514,7 +1639,7 @@
 
     <script>
         // =====================================================================
-        // DATA — Level-based educational content
+        // DATA — Full definitions
         // =====================================================================
 
         const TOPICS_DATA = [{
@@ -1761,7 +1886,8 @@
                 notes: '',
                 challengeDone: false,
                 challengeDate: '',
-                achievements: []
+                achievements: [],
+                activity: {}
             };
         }
 
@@ -1784,6 +1910,7 @@
                     for (const v of VIDEOS_DATA) { if (!(v.id in parsed.videos)) parsed.videos[v.id] = false; }
                     for (const d of DATASETS_DATA) { if (!(d.id in parsed.datasets)) parsed.datasets[d.id] = false; }
                     if (!parsed.achievements) parsed.achievements = [];
+                    if (!parsed.activity) parsed.activity = {};
                     return parsed;
                 }
             } catch (_) {}
@@ -1876,6 +2003,13 @@
           </svg>`;
         }
 
+        function recordActivity() {
+            const today = new Date().toISOString().split('T')[0];
+            if (!state.activity[today]) state.activity[today] = 0;
+            state.activity[today] += 1;
+            saveState();
+        }
+
         // =====================================================================
         // STREAK
         // =====================================================================
@@ -1908,7 +2042,7 @@
         }
 
         // =====================================================================
-        // RENDER: Dashboard
+        // RENDER FUNCTIONS
         // =====================================================================
 
         function renderDashboard() {
@@ -1931,8 +2065,8 @@
                     const today = new Date().toISOString().split('T')[0];
                     state.challengeDone = true;
                     state.challengeDate = today;
-                    // Boost streak as reward
                     state.streak = (state.streak || 0) + 1;
+                    recordActivity();
                     saveState();
                     renderDashboard();
                     updateStreak();
@@ -1982,10 +2116,6 @@
             container.innerHTML = html;
             document.getElementById('achieveCount').textContent = unlocked.length;
         }
-
-        // =====================================================================
-        // RENDER: Learn
-        // =====================================================================
 
         function renderLearn() {
             const level = state.level;
@@ -2053,8 +2183,10 @@
                     const stepIdx = parseInt(this.dataset.step);
                     if (!state.topics[topicId]) state.topics[topicId] = TOPICS_DATA.find(t => t.id === topicId)
                         .steps.map(() => false);
+                    const wasChecked = state.topics[topicId][stepIdx];
                     state.topics[topicId][stepIdx] = this.checked;
                     saveState();
+                    if (this.checked && !wasChecked) recordActivity();
                     const card = this.closest('.topic-card');
                     const topic = TOPICS_DATA.find(t => t.id === topicId);
                     if (topic) {
@@ -2091,8 +2223,10 @@
             vContainer.querySelectorAll('input[type="checkbox"]').forEach(cb => {
                 cb.addEventListener('change', function() {
                     const id = this.dataset.video;
+                    const wasChecked = state.videos[id];
                     state.videos[id] = this.checked;
                     saveState();
+                    if (this.checked && !wasChecked) recordActivity();
                     const titleEl = this.closest('.item-row').querySelector('.item-title');
                     if (titleEl) titleEl.classList.toggle('done', this.checked);
                     updateStreak();
@@ -2120,8 +2254,10 @@
             dContainer.querySelectorAll('input[type="checkbox"]').forEach(cb => {
                 cb.addEventListener('change', function() {
                     const id = this.dataset.dataset;
+                    const wasChecked = state.datasets[id];
                     state.datasets[id] = this.checked;
                     saveState();
+                    if (this.checked && !wasChecked) recordActivity();
                     const titleEl = this.closest('.item-row').querySelector('.item-title');
                     if (titleEl) titleEl.classList.toggle('done', this.checked);
                     updateStreak();
@@ -2143,10 +2279,6 @@
             dbContainer.innerHTML = dbHtml;
             document.getElementById('debugCount').textContent = data.debug.length;
         }
-
-        // =====================================================================
-        // RENDER: Roadmap Full
-        // =====================================================================
 
         function renderRoadmapFull() {
             const container = document.getElementById('roadmapFullContainer');
@@ -2193,8 +2325,54 @@
             container.innerHTML = html;
         }
 
+        function renderHeatmap() {
+            const grid = document.getElementById('heatmapGrid');
+            const yearEl = document.getElementById('heatmapYear');
+            const now = new Date();
+            const year = now.getFullYear();
+            yearEl.textContent = year;
+
+            const start = new Date(year, 0, 1);
+            const dayOfWeek = start.getDay();
+            const isLeap = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+            const daysInYear = isLeap ? 366 : 365;
+
+            const cells = [];
+            for (let i = 0; i < dayOfWeek; i++) {
+                cells.push({ date: null, day: null, level: 0 });
+            }
+
+            for (let d = 0; d < daysInYear; d++) {
+                const date = new Date(year, 0, d + 1);
+                const dateStr = date.toISOString().split('T')[0];
+                const count = state.activity[dateStr] || 0;
+                let level = 0;
+                if (count > 0) level = Math.min(Math.ceil(count / 2), 4);
+                const todayStr = now.toISOString().split('T')[0];
+                const isToday = dateStr === todayStr;
+                cells.push({ date: dateStr, day: d + 1, level, isToday });
+            }
+
+            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            let html = '';
+            for (let i = 0; i < 7; i++) {
+                html += `<div class="day-label">${dayNames[i]}</div>`;
+            }
+
+            cells.forEach(cell => {
+                const cls = `day-cell level-${cell.level}${cell.isToday ? ' today' : ''}`;
+                const tooltip = cell.date ? `${cell.date} — ${cell.level > 0 ? cell.level + ' steps' : 'no activity'}` :
+                    '';
+                html += `<div class="${cls}"${tooltip ? ` title="${tooltip}"` : ''}>
+              ${tooltip ? `<span class="tooltip">${tooltip}</span>` : ''}
+            </div>`;
+            });
+
+            grid.innerHTML = html;
+        }
+
         // =====================================================================
-        // RENDER: Commitment
+        // COMMITMENT (Signature)
         // =====================================================================
 
         let sigCanvas, sigCtx, isDrawing = false,
@@ -2293,6 +2471,7 @@
             state.signature = sigCanvas.toDataURL('image/png');
             state.committed = true;
             saveState();
+            recordActivity();
             updateCommitStatus();
             showToast('✅ Commitment recorded!');
             updateStreak();
@@ -2316,7 +2495,7 @@
         }
 
         // =====================================================================
-        // RENDER: Notepad
+        // NOTEPAD
         // =====================================================================
 
         function initNotepad() {
@@ -2362,6 +2541,7 @@
                         state.notes = '';
                         state.achievements = [];
                         state.challengeDone = false;
+                        state.activity = {};
                         saveState();
                         renderAll();
                         showToast('🔄 All progress reset');
@@ -2411,7 +2591,8 @@
                 if (tabId === 'tab2') renderLearn();
                 if (tabId === 'tab3') renderRoadmapFull();
                 if (tabId === 'tab4') updateCommitStatus();
-                if (tabId === 'tab5') updateStats();
+                if (tabId === 'tab5') { updateStats();
+                    renderHeatmap(); }
             });
         }
 
@@ -2493,7 +2674,7 @@
         }
 
         // =====================================================================
-        // ONBOARDING
+        // ONBOARDING (FIXED)
         // =====================================================================
 
         function initOnboarding() {
@@ -2548,13 +2729,19 @@
                 showToast(`Welcome, ${name}! 🚀 Let's learn ${selectedLevel} level`);
             }
 
-            btn.addEventListener('click', complete);
-            input.addEventListener('keydown', e => { if (e.key === 'Enter') complete(); });
+            // Replace button to avoid duplicate listeners
+            const newBtn = btn.cloneNode(true);
+            btn.parentNode.replaceChild(newBtn, btn);
+            newBtn.addEventListener('click', complete);
+
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') complete();
+            });
             input.addEventListener('input', function() { this.style.borderColor = ''; });
         }
 
         // =====================================================================
-        // STATS
+        // STATS UPDATE
         // =====================================================================
 
         function updateStats() {
@@ -2575,6 +2762,7 @@
             renderRoadmapFull();
             updateStats();
             updateCommitStatus();
+            renderHeatmap();
             document.querySelectorAll('#levelSelector button').forEach(b => {
                 b.classList.toggle('active', b.dataset.level === state.level);
             });
@@ -2600,6 +2788,7 @@
             for (const d of DATASETS_DATA) { if (!(d.id in state.datasets)) state.datasets[d.id] = false; }
             if (!state.achievements) state.achievements = [];
             if (!state.level) state.level = 'beginner';
+            if (!state.activity) state.activity = {};
             saveState();
 
             initSignature();
@@ -2617,11 +2806,12 @@
                 if (document.visibilityState === 'visible') {
                     updateStreak();
                     renderDashboard();
+                    renderHeatmap();
                     updateAchievements();
                 }
             });
 
-            console.log('🧠 ML Engineer 2026 — Educational Edition ready');
+            console.log('🧠 ML Engineer 2026 — complete with heatmap & fixed onboarding');
         }
 
         if (document.readyState === 'loading') {
